@@ -1,0 +1,20 @@
+%
+% Copyright (c) 2011, Michael Ummels <michael.ummels@rwth-aachen.de>
+%
+% This Font Software is licensed under the SIL Open Font License,
+% Version 1.1. This license is in the accompanying file OFL.txt, and
+% is also available with a FAQ at: http://scripts.sil.org/OFL
+%
+
+font_identifier := "FdSymbolD";
+design_size := 10;
+font_size design_size * pt#;
+
+input base.mf
+
+boolean negated;
+negated := true;
+
+input arrows.mf;
+
+bye;

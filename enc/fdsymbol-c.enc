@@ -1,0 +1,54 @@
+% TeX extra characters encoding.
+% CODINGSCHEME FONTSPECIFIC
+%
+
+/FdSymbolC [
+%00
+  /arrowright /arrowup /arrowleft /arrowdown /arrowupright /arrowupleft /arrowdownleft /arrowdownright
+  /arrowdblright /arrowdblup /arrowdblleft /arrowdbldown /uni21D7 /uni21D6 /uni21D9 /uni21D8
+%10
+  /arrowboth /arrowupdn /uni2921 /uni2922 /arrowdblboth /uni21D5 /Neswarrow /Nwsearrow
+  /uni21A0 /uni219F /uni219E /uni21A1 /twoheadnearrow /twoheadnwarrow /twoheadswarrow /twoheadsearrow
+%20
+  /uni21A3 /uparrowtail /uni21A2 /downarrowtail /nearrowtail /nwarrowtail /swarrowtail /searrowtail
+  /uni21A6 /uni21A5 /uni21A4 /uni21A7 /nemapsto /nwmapsto /swmapsto /semapsto
+%30
+  /uni21AA /lhookuparrow /lhookleftarrow /lhookdownarrow /lhooknearrow /uni2923 /lhookswarrow /uni2925
+  /rhookrightarrow /rhookuparrow /uni21A9 /rhookdownarrow /uni2924 /rhooknwarrow /uni2926 /rhooksearrow
+%40
+  /harpoonrightbarbup /uni21BF /uni21BD /uni21C2 /neharpoonup /nwharpoonup /swharpoonup /seharpoonup
+  /uni21C1 /uni21BE /harpoonleftbarbup /uni21C3 /neharpoondown /nwharpoondown /swharpoondown /seharpoondown
+%50
+  /uni294B /uni294D /neswharpoonnwse /senwharpoonnesw /uni294A /uni294B /neswharpoonsenw /nwseharpoonswne
+  /uni21CC /uni296E /neswharpoons /senwharpoons /uni21CB /uni296F /swneharpoons /nwseharpoons
+%60
+  /arrowdashright /arrowdashup /arrowdashleft /arrowdashdown /dashednearrow /dashednwarrow /dashedswarrow /dashedsearrow
+  /uni22B8 /uni2AEF /uni27DC /uni2AF0 /rightfilledspoon /upfilledspoon /leftfilledspoon /downfilledspoon
+%70
+  /rightpitchfork /uni22D4 /leftpitchfork /downpitchfork /uni21C9 /uni21C8 /uni21C7 /uni21CA
+  /nenearrows /nwnwarrows /swswarrows /sesearrows /arrowrightoverleft /updownarrows /neswarrows /nwsearrows
+%80
+  /uni21C6 /uni21F5 /swnearrows /senwarrows /uni219D /uplsquigarrow /leftlsquigarrow /downlsquigarrow
+  /rightrsquigarrow /uprsquigarrow /uni219C /downrsquigarrow /uni21AD /squigarrowupdown /squigarrowrightleft /squigarrowdownup
+%90
+  /uni21B7 /lcurvearrowup /lcurvearrowleft /uni2938 /lcurvearrowne /lcurvearrownw /uni293E /lcurvearrowse
+  /uni293B /rcurvearrowup /uni21B6 /uni2939 /rcurvearrowne /rcurvearrownw /rcurvearrowsw /uni293F
+%A0
+  /curvearrowleftright /curvearrowupdown /curvearrowrightleft /curvearrowdownup /curvearrownesw /curvearrownwse /curvearrowswne /curvearrowsenw
+  /leftrightline /divides /neswline /nwseline /Leftrightline /parallel /uni27DD /uni27DE
+%B0
+  /uni22A2 /uni27C2 /uni22A3 /downvdash /uni22A8 /uni2AEB /uni2AE4 /uni2AEA
+  /uni22A9 /uni234A /uni2AE3 /uni2351 /uni22AB /upVDash /uni2AE5 /downVDash
+%C0
+  /acwcirclearrowup /uni21BA /uni27F2 /acwcirclearrowright /uni27F3 /uni21BB /cwcirclearrowup /cwcirclearrowleft
+  /uni21DB /uni290A /uni21DA /uni290B /uni21B0 /uni21B1 /uni21B2 /uni21B3
+%D0
+  /uni21AC /uni21AB /uni22AA /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def

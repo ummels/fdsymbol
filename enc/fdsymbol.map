@@ -1,0 +1,27 @@
+FdSymbolA-Book FdSymbol-Book "FdSymbolA ReEncodeFont" <[fdSymbol-a.enc <FdSymbol-Book.pfb
+FdSymbolB-Book FdSymbol-Book "FdSymbolB ReEncodeFont" <[fdSymbol-b.enc <FdSymbol-Book.pfb
+FdSymbolC-Book FdSymbol-Book "FdSymbolC ReEncodeFont" <[fdSymbol-c.enc <FdSymbol-Book.pfb
+FdSymbolD-Book FdSymbol-Book "FdSymbolD ReEncodeFont" <[fdSymbol-d.enc <FdSymbol-Book.pfb
+FdSymbolE-Book FdSymbol-Book "FdSymbolE ReEncodeFont" <[fdSymbol-e.enc <FdSymbol-Book.pfb
+FdSymbolF-Book FdSymbol-Book "FdSymbolF ReEncodeFont" <[fdSymbol-f.enc <FdSymbol-Book.pfb
+
+FdSymbolA-Regular FdSymbol-Regular "FdSymbolA ReEncodeFont" <[fdSymbol-a.enc <FdSymbol-Regular.pfb
+FdSymbolB-Regular FdSymbol-Regular "FdSymbolB ReEncodeFont" <[fdSymbol-b.enc <FdSymbol-Regular.pfb
+FdSymbolC-Regular FdSymbol-Regular "FdSymbolC ReEncodeFont" <[fdSymbol-c.enc <FdSymbol-Regular.pfb
+FdSymbolD-Regular FdSymbol-Regular "FdSymbolD ReEncodeFont" <[fdSymbol-d.enc <FdSymbol-Regular.pfb
+FdSymbolE-Regular FdSymbol-Regular "FdSymbolE ReEncodeFont" <[fdSymbol-e.enc <FdSymbol-Regular.pfb
+FdSymbolF-Regular FdSymbol-Regular "FdSymbolF ReEncodeFont" <[fdSymbol-f.enc <FdSymbol-Regular.pfb
+
+FdSymbolA-Medium FdSymbol-Medium "FdSymbolA ReEncodeFont" <[fdSymbol-a.enc <FdSymbol-Medium.pfb
+FdSymbolB-Medium FdSymbol-Medium "FdSymbolB ReEncodeFont" <[fdSymbol-b.enc <FdSymbol-Medium.pfb
+FdSymbolC-Medium FdSymbol-Medium "FdSymbolC ReEncodeFont" <[fdSymbol-c.enc <FdSymbol-Medium.pfb
+FdSymbolD-Medium FdSymbol-Medium "FdSymbolD ReEncodeFont" <[fdSymbol-d.enc <FdSymbol-Medium.pfb
+FdSymbolE-Medium FdSymbol-Medium "FdSymbolE ReEncodeFont" <[fdSymbol-e.enc <FdSymbol-Medium.pfb
+FdSymbolF-Medium FdSymbol-Medium "FdSymbolF ReEncodeFont" <[fdSymbol-f.enc <FdSymbol-Medium.pfb
+
+FdSymbolA-Bold FdSymbol-Bold "FdSymbolA ReEncodeFont" <[fdSymbol-a.enc <FdSymbol-Bold.pfb
+FdSymbolB-Bold FdSymbol-Bold "FdSymbolB ReEncodeFont" <[fdSymbol-b.enc <FdSymbol-Bold.pfb
+FdSymbolC-Bold FdSymbol-Bold "FdSymbolC ReEncodeFont" <[fdSymbol-c.enc <FdSymbol-Bold.pfb
+FdSymbolD-Bold FdSymbol-Bold "FdSymbolD ReEncodeFont" <[fdSymbol-d.enc <FdSymbol-Bold.pfb
+FdSymbolE-Bold FdSymbol-Bold "FdSymbolE ReEncodeFont" <[fdSymbol-e.enc <FdSymbol-Bold.pfb
+FdSymbolF-Bold FdSymbol-Bold "FdSymbolF ReEncodeFont" <[fdSymbol-f.enc <FdSymbol-Bold.pfb

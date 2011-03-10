@@ -1,0 +1,37 @@
+FONTLOG for FdSymbol
+--------------------
+
+This file provides detailed information on the FdSymbol font family.
+This information should be distributed along with the FdSymbol fonts
+and any derivative works.
+
+
+Basic Font Information
+----------------------
+
+FdSymbol is a font of mathematical symbols designed as a companion to
+Typotheque's Fedra family, but it might also fit well to other contemporary
+typefaces.
+
+FdSymbol is derived from MnSymbol, designed and released into the public
+domain by Achim Blumensath.
+
+FdSymbol development is currently hosted on:
+http://github.com/...
+
+
+ChangeLog
+---------
+
+9 Mar 2011 (Michael Ummels) FdSymbol version 1.000
+- First public release
+
+
+Acknowledgements
+-------------------------
+(Here is where contributors can be acknowledged. If you make modifications be sure to add your name (N), email (E), web-address (W) and description (D). This list is sorted by last name in alphabetical order.)
+
+N: Michael Ummels
+E: michael.ummels@rwth-aachen.de
+W: http://www.ummels.de
+D: Original Designer

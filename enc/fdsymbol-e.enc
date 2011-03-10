@@ -1,0 +1,54 @@
+% TeX extra characters encoding.
+% CODINGSCHEME FONTSPECIFIC
+%
+
+/FdSymbolE [
+%00
+  /plus.big /plus.big.disp /uni2A09 /uni2A09.disp /uni22C0 /uni22C0.disp /uni22C1 /uni22C1.disp
+  /uni27D1.big /uni27D1.big.disp /uni27C7.big /uni27C7.big.disp /uni2A07 /uni2A07.disp /uni2A08 /uni2A08.disp
+%10
+  /curlyand.big /curlyand.big.disp /curlyor.big /curlyor.big.disp /curlywedgedot.big /curlywedgedot.big.disp /curlyveedot.big /curlyveedot.big.disp
+  /doublecurlywedge.big /doublecurlywedge.big.disp /doublecurlyvee.big /doublecurlyvee.big.disp /uni22C2 /uni22C2.disp /uni22C3 /uni22C3.disp
+%20
+  /uni2A40.big /uni2A40.big.disp /uni2A03 /uni2A03.disp /capplus.big /capplus.big.disp /uni2A04 /uni2A04.disp
+  /uni2A05 /uni2A05.disp /uni2A06 /uni2A06.disp /sqcapdot.big /sqcapdot.big.disp /sqcupdot.big /sqcupdot.big.disp
+%30
+  /sqcapplus.big /sqcapplus.big.disp /sqcupplus.big /sqcupplus.big.disp /uni2A01 /uni2A01.disp /uni2A02 /uni2A02.disp
+  /uni2A00 /uni2A00.disp /uni229B.big /uni229B.big.disp /product /product.disp /uni2210 /uni2210.disp
+%40
+  /summation /summation.disp /uni2A0A /uni2A0A.disp /integral /integral.disp /uni222C /uni222C.disp
+  /uni222D /uni222D.disp /uni2A0C /uni2A0C.disp /uni222B2026222B /uni222B2026222B.disp /uni2231 /uni2231.disp
+%50
+  /uni2A11 /uni2A11.disp /uni2A0D /uni2A0D.disp /uni2A0E /uni2A0E.disp /uni2A0F /uni2A0F.disp
+  /uni222E /uni222E.disp /uni222F /uni222F.disp /uni2230 /uni2230.disp /uni2233 /uni2233.disp
+%60
+  /uni2232.alt /uni2232.alt.disp /uni2233.alt /uni2233.alt.disp /uni2232 /uni2232.disp /uni2A0B /uni2A0B.disp
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%70
+  /.notdef /.notdef /circumflexcmb /circumflexcmb.big1 /circumflexcmb.big2 /circumflexcmb.big3 /circumflexcmb.big4 /circumflexcmb.big5
+  /tildecomb /tildecomb.big1 /tildecomb.big2 /tildecomb.big3 /tildecomb.big4 /tildecomb.big5 /parencmb /parencmb.big1
+%80
+  /parencmb.big2 /parencmb.big3 /parencmb.big4 /parencmb.big5 /uni20D7 /uni0335 /uni0337 /uni0338
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%90
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%A0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%B0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%C0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def

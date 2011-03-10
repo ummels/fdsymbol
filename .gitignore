@@ -1,0 +1,17 @@
+.DS_Store
+*.bak
+*.old
+*.tmp
+*.log
+*.aux
+*.out
+*.toc
+*.???gf
+*.????gf
+*.dvi
+*.pdf
+*.sty
+*.tmproj
+*.pfa
+*.pfb
+*.tfm

@@ -1,0 +1,53 @@
+% TeX extra characters encoding.
+% CODINGSCHEME FONTSPECIFIC
+%
+/FdSymbolA [
+%00
+  /dotmath /hdotdot /ratio /udotdot /ddotdot /uni22EF /ellipsisvertical /uni22F0
+  /uni22F1 /righttherefore /therefore /lefttherefore /because /proportion /divides.small /parallel.small
+%10
+  /uni2224.small /notparallel.short /minus /divisionslash.small /uni2216 /plus /multiply /plusminus
+  /minusplus /uni2238 /uni2A2A /uni2A2B /uni2A2C /uni223A /divide /logicalnot 
+%20
+  /revlogicalnot /uni2A3C /uni2A3D /uni22CB /uni22CC /uni2A32 /uni22CA /utimes
+  /uni22C9 /uni22C8 /uni29D6 /rightY /upY /leftY /downY /logicaland
+%30
+  /logicalor /uni27D1 /uni27C7 /uni2A55 /uni2A56 /curlyand /curlyor /curlywedgedot
+  /curlyveedot /doublecurlywedge /doublecurlyvee /union /intersection /uni22D3 /uni22D2 /uni228D
+%40
+  /uni2A40 /uni228E /capplus /uni2294 /uni2293 /uni2A4F /uni2A4E /sqcupdot
+  /sqcapdot /sqcupplus /sqcapplus /uni27D3 /uni27D4 /uni25B9 /uni25B5 /uni25C3
+%50
+  /uni25BF /uni25B8 /uni25B4 /uni25C2 /uni25BE /uni25B7 /uni25B3 /uni25C1
+  /uni25BD /uni25B6 /uni25B2 /uni25C0 /uni25BC /uni25B3.big /uni25BD.big /openbullet
+%60
+  /bullet /uni25CB /uni25CF /minuscircle /uni29B6 /uni2298 /uni29B8 /circleplus
+  /circlemultiply /circleot /uni229A /uni229B /uni229C /uni229D /emptyset /uni29B0
+%70
+  /uni25EF /uni2B24 /uni25AB /uni25AA /uni25A1 /uni25A0 /uni229F /uni25EB
+  /uni29C4 /uni29C5 /uni229E /uni22A0 /uni22A1 /uni29C8 /uni2B1C /uni2B1B
+%80
+  /uni22C4 /uni2B29 /uni25C7 /uni25C6 /diamondminus /diamondvert /diamondslash /diamondbackslash
+  /diamondplus /diamondtimes /uni27D0 /diamonddiamond /uni2B2B /uni2B2A /uni25CA /uni29EB
+%90
+  /uni27E0 /uni2B52 /uni22C6 /uni2B50 /uni2B51 /uni2606 /uni2605 /asteriskmath
+  /infinity /proportional /revproportional /crossing /uni226C /separated /uni22A5 /uni22A4
+%A0
+  /uni2240 /angle /uni29A3 /uni2221 /uni299B /uni2222 /uni29A1 /uni29A0
+  /sphericaldown /uni221F /uni22BE /uni299C /uni299D /minute /primereversed /product.small
+%B0
+  /uni2A3F /integral.small /checkmark /uni21AF /diamondsuitwhite /diamond /heartsuitwhite /heartsuitblack
+  /spade /club /uni2720 /uni2721 /uni2314 /universal /existential /uni2204
+%C0
+  /uni2132 /uni2141 /uni2201 /musicflatsign /uni266E /musicsharpsign /uni2135 /uni2136
+  /uni2137 /uni2138 /weierstrass /.notdef /.notdef /.notdef /.notdef /.notdef
+%D0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%E0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+%F0
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+] def
