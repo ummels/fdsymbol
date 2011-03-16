@@ -32,7 +32,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \IfFileExists{fedraserif.sty}{%
-  \usepackage[variantb,lf]{fedraserif}
+  \usepackage[variantb]{fedraserif}
 }{%
   \usepackage{fdsymbol}
 }
@@ -160,10 +160,354 @@
 % \newcommand\showaccent[1]{\par\noindent\hangindent=4em%
 %   \makebox[3em][l]{$#1b$}\cmd{#1}}
 %
-% \subsection*{Arrows}
+% \subsection{Ordinary symbols}
 %
 % \begin{multicols}{2}
 % \raggedright
+% \showsymbol\hdots
+% \showsymbol\vdots
+% \showsymbol\udots, \cmd{\adots}
+% \showsymbol{\ddots}
+% \showsymbol{\righttherefore}
+% \showsymbol{\uptherefore}, \cmd{\therefore}
+% \showsymbol{\lefttherefore}
+% \showsymbol{\downtherefore}, \cmd{\because}
+% \showsymbol{\squaredots}
+% \showsymbol{\neg}, \cmd{\lnot}
+% \showsymbol{\backneg}, \cmd{\invnot}, \cmd{\invneg}
+% \showsymbol{\turnedneg}, \cmd{\turnednot}
+% \showsymbol{\turnedbackneg}
+% \showsymbol{\largetriangleup}
+% \showsymbol{\largetriangledown}
+% \showsymbol{\emptyset}, \cmd{\diameter}, \cmd{\varnothing}
+% \showsymbol{\revemptyset}
+% \showsymbol{\largecircle}, \cmd{\lgwhtcircle}
+% \showsymbol{\largeblackcircle}
+% \showsymbol{\largesquare}, \cmd{\lgwhtsquare}
+% \showsymbol{\largeblacksquare}, \cmd{\lgblksquare}
+% \showsymbol{\smalllozenge}, \cmd{\smwhtlozenge}
+% \showsymbol{\smallblacklozenge}, \cmd{\smblklozenge}
+% \showsymbol{\medlozenge}, \cmd{\lozenge}, \cmd{\mdlgwhtlozenge},
+%   \cmd{\mdwhtlozenge}
+% \showsymbol{\medblacklozenge}, \cmd{\blacklozenge}, \cmd{\mdlgblklozenge},
+%   \cmd{\mdblklozenge}
+% \showsymbol{\lozengeminus}
+% \showsymbol{\largewhitestar}
+% \showsymbol{\largeblackstar}, \cmd{\bigstar}
+% \showsymbol{\infty}
+% \showsymbol{\bot}
+% \showsymbol{\top}
+% \showsymbol{\angle}
+% \showsymbol{\revangle}
+% \showsymbol{\measuredangle}
+% \showsymbol{\revmeasuredangle}, \cmd{\measuredangleleft}
+% \showsymbol{\sphericalangle}
+% \showsymbol{\sphericalangleup}
+% \showsymbol{\sphericalangleleft}, \cmd{\revsphericalangle}, \cmd{\gtlpar}
+% \showsymbol{\sphericalangledown}
+% \showsymbol{\rightangle}
+% \showsymbol{\measuredrightangle}
+% \showsymbol{\rightanglesquare}, \cmd{\rightanglesqr}
+% \showsymbol{\measuredrightangledot}, \cmd{\rightanglemdot}
+% \showsymbol{\prime}
+% \showsymbol{\backprime}
+% \showsymbol{\checkmark}
+% \showsymbol{\lightning}, \cmd{\downzigzagarrow}
+% \showsymbol{\diamondsuit}
+% \showsymbol{\vardiamondsuit}
+% \showsymbol{\heartsuit}
+% \showsymbol{\varheartsuit}
+% \showsymbol{\spadesuit}
+% \showsymbol{\clubsuit}
+% \showsymbol{\maltese}
+% \showsymbol{\starofdavid}
+% \showsymbol{\sector}
+% \showsymbol{\forall}
+% \showsymbol{\exists}
+% \showsymbol{\nexists}
+% \showsymbol{\Finv}
+% \showsymbol{\Game}
+% \showsymbol{\complement}
+% \showsymbol{\flat}
+% \showsymbol{\natural}
+% \showsymbol{\sharp}
+% \iffalse
+% \showsymbol{\aleph}
+% \showsymbol{\beth}
+% \showsymbol{\gimel}
+% \showsymbol{\daleth}
+% \fi
+% \showsymbol{\wp}
+% \showsymbol{/}, \cmd{\mathslash} \iffalse Delimiters! \fi
+% \showsymbol{\backslash}
+% {\catcode`\|=11 \showsymbol{|}, \cmd{\vert}}
+% \showsymbol{\Vert}
+% \showsymbol{\Vvert}
+% \end{multicols}
+%
+% \subsection{Binary operators}
+%
+% \begin{multicols}{2}
+% \raggedright
+% \showsymbol{\cdot}
+% \showsymbol{\centerdot}
+% \showsymbol{\hdotdot}
+% \showsymbol{\vdotdot}
+% \showsymbol{\udotdot}
+% \showsymbol{\ddotdot}
+% \showsymbol{-}, \cmd{\minus}
+% \showsymbol{\medslash}, \cmd{\smalldivslash}
+% \showsymbol{\medbackslash}, \cmd{\smallsetminus}
+% \showsymbol{+}, \cmd{\plus}
+% \showsymbol{\times}
+% \showsymbol{\pm}
+% \showsymbol{\mp}
+% \showsymbol{\dotminus}
+% \showsymbol{\minusdot}
+% \showsymbol{\minusfdots}
+% \showsymbol{\minusrdots}
+% \showsymbol{\dotsminusdots}
+% \showsymbol{\dotplus}
+% \showsymbol{\div}
+% \showsymbol{\divideontimes}
+% \showsymbol{\minushookdown}
+% \showsymbol{\hookdownminus}
+% \showsymbol{\intprod}, \cmd{\minushookup}
+% \showsymbol{\intprodr}, \cmd{\hookupminus}
+% \showsymbol{\leftthreetimes}
+% \showsymbol{\rightthreetimes}
+% \showsymbol{\dtimes}, \cmd{\btimes}
+% \showsymbol{\rtimes}
+% \showsymbol{\utimes}, \cmd{\ttimes}
+% \showsymbol{\ltimes}
+% \showsymbol{\lrtimes}
+% \showsymbol{\upbowtie}, \cmd{\hourglass}
+% \showsymbol{\rightY}
+% \showsymbol{\upY}
+% \showsymbol{\leftY}
+% \showsymbol{\downY}
+% \showsymbol{\wedge}, \cmd{\land}
+% \showsymbol{\vee}, \cmd{\lor}
+% \showsymbol{\wedgedot}
+% \showsymbol{\veedot}
+% \showsymbol{\veebar}
+% \showsymbol{\barwedge}
+% \showsymbol{\veedoublebar}
+% \showsymbol{\doublebarwedge}
+% \showsymbol{\doublewedge}, \cmd{\wedgeonwedge}
+% \showsymbol{\doublevee}, \cmd{\veeonwee}
+% \showsymbol{\curlywedge}
+% \showsymbol{\curlyvee}
+% \showsymbol{\curlywedgedot}
+% \showsymbol{\curlyveedot}
+% \showsymbol{\doublecurlywedge}
+% \showsymbol{\doublecurlyvee}
+% \showsymbol{\cup}
+% \showsymbol{\cap}
+% \showsymbol{\doublecup}, \cmd{\Cup}
+% \showsymbol{\doublecap}, \cmd{\Cap}
+% \showsymbol{\cupdot}
+% \showsymbol{\capdot}
+% \showsymbol{\cupplus}, \cmd{\uplus}
+% \showsymbol{\capplus}
+% \showsymbol{\sqcup}
+% \showsymbol{\sqcap}
+% \showsymbol{\doublesqcup}, \cmd{\Sqcup}
+% \showsymbol{\doublesqcap}, \cmd{\Sqcap}
+% \showsymbol{\sqcupdot}
+% \showsymbol{\sqcapdot}
+% \showsymbol{\sqcupplus}
+% \showsymbol{\sqcapplus}
+% \showsymbol{\pullback}
+% \showsymbol{\pushout}
+% \showsymbol{\smalltriangleright}
+% \showsymbol{\smalltriangleup}
+% \showsymbol{\smalltriangleleft}
+% \showsymbol{\smalltriangledown}
+% \showsymbol{\smallblacktriangleright}
+% \showsymbol{\smallblacktriangleup}
+% \showsymbol{\smallblacktriangleleft}
+% \showsymbol{\smallblacktriangledown}
+% \showsymbol{\medtriangleright}, \cmd{\triangleright}
+% \showsymbol{\medtriangleup}, \cmd{\triangle}, \cmd{\vartriangle}
+% \showsymbol{\medtriangleleft}, \cmd{\triangleleft}
+% \showsymbol{\medtriangledown}, \cmd{\triangledown}
+% \showsymbol{\medblacktriangleright}, \cmd{\blacktriangleright}
+% \showsymbol{\medblacktriangleup}, \cmd{\blacktriangle}
+% \showsymbol{\medblacktriangleleft}, \cmd{\blacktriangleleft}
+% \showsymbol{\medblacktriangledown}, \cmd{\blacktriangledown}
+% \showsymbol{\bigtriangleup}
+% \showsymbol{\bigtriangledown}
+% \showsymbol{\smallcircle}, \cmd{\circ}, \cmd{\smwhtcircle}
+% \showsymbol{\smallblackcircle}, \cmd{\bullet}, \cmd{\smblkcircle}
+% \showsymbol{\medcircle}, \cmd{\mdlgwhtcircle}, \cmd{\mdwhtcircle}
+% \showsymbol{\medblackcircle}, \cmd{\mdlgblkcircle}, \cmd{\mdblkcircle}
+% \showsymbol{\ominus}
+% \showsymbol{\overt}, \cmd{\circledvert}
+% \showsymbol{\oslash}
+% \showsymbol{\obackslash}, \cmd{\obslash}
+% \showsymbol{\oplus}
+% \showsymbol{\otimes}
+% \showsymbol{\odot}
+% \showsymbol{\ocirc}, \cmd{\circledcirc}
+% \showsymbol{\oast}, \cmd{\circledast}
+% \showsymbol{\odash}, \cmd{\circleddash}
+% \showsymbol{\oequal}, \cmd{\circledequal}
+% \showsymbol{\bigcirc}
+% \showsymbol{\smallsquare}, \cmd{\smwhtsquare}
+% \showsymbol{\smallblacksquare}, \cmd{\smblksquare}
+% \showsymbol{\medsquare}, \cmd{\square}, \cmd{\Box}, \cmd{\mdlgwhtsquare},
+%   \cmd{\mdwhtsquare}
+% \showsymbol{\medblacksquare}, \cmd{\mdlgblksquare}, \cmd{\mdblksquare}
+% \showsymbol{\boxminus}
+% \showsymbol{\boxvert}, \cmd{\boxbar}
+% \showsymbol{\boxslash}, \cmd{\boxdiag}
+% \showsymbol{\boxbackslash}, \cmd{\boxbslash}
+% \showsymbol{\boxplus}
+% \showsymbol{\boxtimes}
+% \showsymbol{\boxdot}
+% \showsymbol{\boxbox}
+% \showsymbol{\smalldiamond}, \cmd{\diamond}, \cmd{\smwhtdiamond}
+% \showsymbol{\smallblackdiamond}, \cmd{\blackdiamond}, \cmd{\smblkdiamond}
+% \showsymbol{\meddiamond}, \cmd{\Diamond}, \cmd{\mdlgwhtdiamond},
+%   \cmd{\mdwhtdiamond}
+% \showsymbol{\medblackdiamond}, \cmd{\mdlgblkdiamond}, \cmd{\mdblkdiamond}
+% \showsymbol{\diamondminus}
+% \showsymbol{\diamondvert}
+% \showsymbol{\diamondslash}
+% \showsymbol{\diamondbackslash}, \cmd{\diamondbslash}
+% \showsymbol{\diamondplus}
+% \showsymbol{\diamondtimes}
+% \showsymbol{\diamonddot}, \cmd{\diamondcdot}
+% \showsymbol{\diamonddiamond}
+% \showsymbol{\smallwhitestar}, \cmd{\smwhitestar}
+% \showsymbol{\smallblackstar}, \cmd{\star}
+% \showsymbol{\medwhitestar}
+% \showsymbol{\medblackstar}, \cmd{\medstar}
+% \showsymbol{*}, \cmd{\ast}
+% \showsymbol{\intercal}
+% \showsymbol{\wreath}, \cmd{\wr}
+% \showsymbol{\amalg}
+% \showsymbol{\lhd}
+% \showsymbol{\rhd}
+% \showsymbol{\unlhd}
+% \showsymbol{\unrhd}
+% \showsymbol{\divslash}
+% \showsymbol{\setminus}
+% \end{multicols}
+%
+% \subsection{Relations}
+%
+% \begin{multicols}{2}
+% \raggedright
+% \showsymbol{=}, \cmd{\equal}
+% \showsymbol{\coloneq}, \cmd{\coloneqq}
+% \showsymbol{\equiv}
+% \showsymbol{\sim}
+% \showsymbol{\backsim}
+% \showsymbol{\approx}
+% \showsymbol{\triplesim}, \cmd{\approxident}
+% \showsymbol{\simeq}
+% \showsymbol{\backsimeq}
+% \showsymbol{\eqsim}
+% \showsymbol{\cong}
+% \showsymbol{\backcong}
+% \showsymbol{\dotcong}
+% \showsymbol{\approxeq}
+% \showsymbol{\bumpeq}
+% \showsymbol{\bumpeqq}
+% \showsymbol{\Bumpeq}
+% \showsymbol{\doteq}
+% \showsymbol{\eqdot}
+% \showsymbol{\Doteq}
+% \showsymbol{\fallingdotseq}
+% \showsymbol{\risingdotseq}
+% \showsymbol{\smile}, \cmd{\smallsmile}
+% \showsymbol{\frown}, \cmd{\smallfrown}
+% \showsymbol{\smilefrown}, \cmd{\asymp}
+% \showsymbol{\frownsmile}, \cmd{\closure}
+% \showsymbol{\smileeq}
+% \showsymbol{\frowneq}, \cmd{\arceq}
+% \showsymbol{\eqcirc}
+% \showsymbol{\circeq}
+% \showsymbol{\wedgeq}, \cmd{\hateq}
+% \showsymbol{\veeeq}
+% \showsymbol{\stareq}
+% \showsymbol{\triangleeq}, \cmd{\triangleq}
+% \showsymbol{\in}
+% \showsymbol{\owns}, \cmd{\ni}
+% \showsymbol{<}, \cmd{\less}
+% \showsymbol{>}, \cmd{\gtr}
+% \showsymbol{\leq}, \cmd{\le}
+% \showsymbol{\geq}, \cmd{\ge}
+% \showsymbol{\leqslant}
+% \showsymbol{\geqslant}
+% \showsymbol{\leqq}
+% \showsymbol{\geqq}
+% \showsymbol{\lesssim}
+% \showsymbol{\gtrsim}
+% \showsymbol{\lessapprox}
+% \showsymbol{\gtrapprox}
+% \showsymbol{\lessgtr}
+% \showsymbol{\gtrless}
+% \showsymbol{\lesseqgtr}
+% \showsymbol{\gtreqless}
+% \showsymbol{\lesseqqgtr}
+% \showsymbol{\gtreqqless}
+% \showsymbol{\lesseqgtrslant}
+% \showsymbol{\gtreqlessslant}
+% \showsymbol{\ll}
+% \showsymbol{\gg}
+% \showsymbol{\lll}, \cmd{\llless}
+% \showsymbol{\ggg}, \cmd{\gggtr}
+% \showsymbol{\lessclosed}, \cmd{\vartriangleleft}
+% \showsymbol{\gtrclosed}, \cmd{\vartriangleright}
+% \showsymbol{\leqclosed}, \cmd{\trianglelefteq}
+% \showsymbol{\geqclosed}, \cmd{\trianglerighteq}
+% \showsymbol{\lesscc}, \cmd{\ltcc}
+% \showsymbol{\gtrcc}, \cmd{\gtcc}
+% \showsymbol{\leqslcc}, \cmd{\lescc}
+% \showsymbol{\geqslcc}, \cmd{\gescc}
+% \showsymbol{\sqsubset}
+% \showsymbol{\sqsupset}
+% \showsymbol{\sqsubseteq}
+% \showsymbol{\sqsupseteq}
+% \showsymbol{\sqsubseteqq}
+% \showsymbol{\sqsupseteqq}
+% \showsymbol{\Sqsubset}
+% \showsymbol{\Sqsupset}
+% \showsymbol{\subset}
+% \showsymbol{\supset}
+% \showsymbol{\subseteq}
+% \showsymbol{\supseteq}
+% \showsymbol{\subseteqq}
+% \showsymbol{\supseteqq}
+% \showsymbol{\Subset}
+% \showsymbol{\Supset}
+% \showsymbol{\prec}
+% \showsymbol{\succ}
+% \showsymbol{\preceq}
+% \showsymbol{\succeq}
+% \showsymbol{\preccurlyeq}
+% \showsymbol{\succcurlyeq}
+% \showsymbol{\preceqq}
+% \showsymbol{\succeqq}
+% \showsymbol{\precsim}
+% \showsymbol{\succsim}
+% \showsymbol{\precapprox}
+% \showsymbol{\succapprox}
+% \showsymbol{\lessdot}
+% \showsymbol{\gtrdot}
+% \showsymbol{\leqdot}
+% \showsymbol{\geqdot}
+% \showsymbol{\leqslantdot}, \cmd{\lesdot}
+% \showsymbol{\geqslantdot}, \cmd{\gesdot}
+% \showsymbol{\eqslantless}
+% \showsymbol{\eqslantgtr}
+% \showsymbol{\curlyeqprec}
+% \showsymbol{\curlyeqsucc}
+% \showsymbol{\thicksim}
+% \showsymbol{\thickapprox}
 % \showsymbol{\rightarrow},
 %   \cmd{\to}
 % \showsymbol{\uparrow}
@@ -368,16 +712,14 @@
 % \showsymbol{\senwcurvearrow}
 % \showsymbol{\leftrightline},
 %   \cmd{\relbar}
-% \showsymbol{\updownline},
-%   \cmd{\divides}
+% \showsymbol{\updownline}
 % \showsymbol{\neswline},
 %   \cmd{\diagup}
 % \showsymbol{\nwseline},
 %   \cmd{\diagdown}
 % \showsymbol{\Leftrightline},
 %   \cmd{\Relbar}
-% \showsymbol{\Updownline},
-%   \cmd{\parallel}
+% \showsymbol{\Updownline}
 % \showsymbol{\leftfootline},
 %   \cmd{\vlongdash}
 % \showsymbol{\rightfootline},
@@ -436,12 +778,152 @@
 % \showsymbol{\looparrowright}
 % \showsymbol{\looparrowleft}
 % \showsymbol{\Vvdash}
-% \end{multicols}
-%
-% \subsection*{Negated arrows}
-%
-% \begin{multicols}{2}
-% \raggedright
+% \showsymbol{\longrightarrow}
+% \showsymbol{\longleftarrow}
+% \showsymbol{\longleftrightarrow}
+% \showsymbol{\Longrightarrow}
+% \showsymbol{\Longleftarrow}
+% \showsymbol{\Longleftrightarrow}
+% \showsymbol{\longmapsto}
+% \showsymbol{\emptyblackspoon},
+%   \cmd{\origof}
+% \showsymbol{\filledemptyspoon},
+%   \cmd{\imageof}
+% \showsymbol{\leftrightspoon},
+%   \cmd{\dualmap}
+% \showsymbol{\leftrightblackspoon}
+% \showsymbol{\nequal}, \cmd{\neq}, \cmd{\ne}
+% \showsymbol{\nequiv}
+% \showsymbol{\nsim}
+% \showsymbol{\nbacksim}
+% \showsymbol{\napprox}
+% \showsymbol{\ntriplesim}, \cmd{\napproxident}
+% \showsymbol{\nsimeq}, \cmd{\nsime}
+% \showsymbol{\nbacksimeq}
+% \showsymbol{\neqsim}
+% \showsymbol{\ncong}
+% \showsymbol{\nbackcong}
+% \showsymbol{\napproxeq}
+% \showsymbol{\nbumpeq}
+% \showsymbol{\nbumpeqq}
+% \showsymbol{\nBumpeq}
+% \showsymbol{\ndoteq}
+% \showsymbol{\neqdot}
+% \showsymbol{\nDoteq}
+% \showsymbol{\nfallingdotseq}
+% \showsymbol{\nrisingdotseq}
+% \showsymbol{\nsmile}
+% \showsymbol{\nfrown}
+% \showsymbol{\nsmilefrown}, \cmd{\nasymp}
+% \showsymbol{\nfrownsmile}, \cmd{\nclosure}
+% \showsymbol{\nsmileeq}
+% \showsymbol{\nfrowneq}, \cmd{\narceq}
+% \showsymbol{\neqcirc}
+% \showsymbol{\ncirceq}
+% \showsymbol{\nwedgeq}, \cmd{\nhateq}
+% \showsymbol{\nveeeq}
+% \showsymbol{\nstareq}
+% \showsymbol{\ntriangleeq}
+% \showsymbol{\nin}, \cmd{\notin}
+% \showsymbol{\nowns}, \cmd{\nni}
+% \showsymbol{\nless}
+% \showsymbol{\ngtr}
+% \showsymbol{\nleq}
+% \showsymbol{\ngeq}
+% \showsymbol{\nleqslant}
+% \showsymbol{\ngeqslant}
+% \showsymbol{\nleqq}
+% \showsymbol{\ngeqq}
+% \showsymbol{\nlesssim}
+% \showsymbol{\ngtrsim}
+% \showsymbol{\nlessapprox}
+% \showsymbol{\ngtrapprox}
+% \showsymbol{\nlessgtr}
+% \showsymbol{\ngtrless}
+% \showsymbol{\nlesseqgtr}
+% \showsymbol{\ngtreqless}
+% \showsymbol{\nlesseqqgtr}
+% \showsymbol{\ngtreqqless}
+% \showsymbol{\nlesseqgtrslant}
+% \showsymbol{\ngtreqlessslant}
+% \showsymbol{\nll}
+% \showsymbol{\ngg}
+% \showsymbol{\nlll}
+% \showsymbol{\nggg}
+% \showsymbol{\nlessclosed}, \cmd{\ntriangleleft}
+% \showsymbol{\ngtrclosed}, \cmd{\ntriangleright}
+% \showsymbol{\nleqclosed}, \cmd{\ntrianglelefteq}
+% \showsymbol{\ngeqclosed}, \cmd{\ntrianglerighteq}
+% \showsymbol{\nlesscc}, \cmd{\nltcc}
+% \showsymbol{\ngtrcc}, \cmd{\ngtcc}
+% \showsymbol{\nleqslcc}, \cmd{\nlescc}
+% \showsymbol{\ngeqslcc}, \cmd{\ngescc}
+% \showsymbol{\nsqsubset}
+% \showsymbol{\nsqsupset}
+% \showsymbol{\nsqsubseteq}
+% \showsymbol{\nsqsupseteq}
+% \showsymbol{\nsqsubseteqq}
+% \showsymbol{\nsqsupseteqq}
+% \showsymbol{\nSqsubset}
+% \showsymbol{\nSqsupset}
+% \showsymbol{\nsubset}
+% \showsymbol{\nsupset}
+% \showsymbol{\nsubseteq}
+% \showsymbol{\nsupseteq}
+% \showsymbol{\nsubseteqq}
+% \showsymbol{\nsupseteqq}
+% \showsymbol{\nSubset}
+% \showsymbol{\nSupset}
+% \showsymbol{\nprec}
+% \showsymbol{\nsucc}
+% \showsymbol{\npreceq}
+% \showsymbol{\nsucceq}
+% \showsymbol{\npreccurlyeq}
+% \showsymbol{\nsucccurlyeq}
+% \showsymbol{\npreceqq}
+% \showsymbol{\nsucceqq}
+% \showsymbol{\nprecsim}
+% \showsymbol{\nsuccsim}
+% \showsymbol{\nprecapprox}
+% \showsymbol{\nsuccapprox}
+% \showsymbol{\nlessdot}
+% \showsymbol{\ngtrdot}
+% \showsymbol{\nleqdot}
+% \showsymbol{\ngeqdot}
+% \showsymbol{\nleqslantdot}, \cmd{\nlesdot}
+% \showsymbol{\ngeqslantdot}, \cmd{\ngesdot}
+% \showsymbol{\neqslantless}
+% \showsymbol{\neqslantgtr}
+% \showsymbol{\ncurlyeqprec}
+% \showsymbol{\ncurlyeqsucc}
+% \showsymbol{\simneqq}
+% \showsymbol{\backsimneqq}
+% \showsymbol{\lneq}
+% \showsymbol{\gneq}
+% \showsymbol{\lneqq}, \cmd{\lvertneqq}
+% \showsymbol{\gneqq}, \cmd{\gvertneqq}
+% \showsymbol{\lnsim}
+% \showsymbol{\gnsim}
+% \showsymbol{\lnapprox}
+% \showsymbol{\gnapprox}
+% \showsymbol{\lessneqqgtr}
+% \showsymbol{\gtrneqqless}
+% \showsymbol{\sqsubsetneq}
+% \showsymbol{\sqsupsetneq}
+% \showsymbol{\sqsubsetneqq}
+% \showsymbol{\sqsupsetneqq}
+% \showsymbol{\subsetneq}, \cmd{\varsubsetneq}
+% \showsymbol{\supsetneq}, \cmd{\varsupsetneq}
+% \showsymbol{\subsetneqq}, \cmd{\varsubsetneqq}
+% \showsymbol{\supsetneqq}, \cmd{\varsupsetneqq}
+% \showsymbol{\precneq}
+% \showsymbol{\succneq}
+% \showsymbol{\precneqq}
+% \showsymbol{\succneqq}
+% \showsymbol{\precnsim}
+% \showsymbol{\succnsim}
+% \showsymbol{\precnapprox}
+% \showsymbol{\succnapprox}
 % \showsymbol{\nrightarrow},
 %   \cmd{\nto}
 % \showsymbol{\nuparrow}
@@ -647,16 +1129,13 @@
 % \showsymbol{\nleftrightline},
 %   \cmd{\nrelbar}
 % \showsymbol{\nupdownline},
-%   \cmd{\ndivides},
-%   \cmd{\nmid}
 % \showsymbol{\nneswline},
 %   \cmd{\ndiagup}
 % \showsymbol{\nnwseline},
 %   \cmd{\ndiagdown}
 % \showsymbol{\nLeftrightline},
 %   \cmd{\nRelbar}
-% \showsymbol{\nUpdownline},
-%   \cmd{\nparallel}
+% \showsymbol{\nUpdownline}
 % \showsymbol{\nleftfootline},
 %   \cmd{\nvlongdash}
 % \showsymbol{\nrightfootline},
@@ -708,607 +1187,35 @@
 % \showsymbol{\nUuparrow}
 % \showsymbol{\nLleftarrow}
 % \showsymbol{\nDdownarrow}
-% \end{multicols}
-%
-% \subsection*{Binary operators and letters}
-%
-% \begin{multicols}{2}
-% \raggedright
-% \showsymbol{\cdot},
-%   \cmd{\cdotp}
-% \showsymbol{\hdotdot}
-% \showsymbol{:},
-%   \cmd{\vdotdot}, \cmd{\colon}, \cmd{\mathratio}
-% \showsymbol{\udotdot}
-% \showsymbol{\ddotdot}
-% \showsymbol{\hdots},
-%   \cmd{\cdots}
-% \showsymbol{\vdots}
-% \showsymbol{\udots},
-%   \cmd{\adots}
-% \showsymbol{\ddots}
-% \showsymbol{\righttherefore}
-% \showsymbol{\uptherefore},
-%   \cmd{\therefore}
-% \showsymbol{\lefttherefore}
-% \showsymbol{\downtherefore},
-%   \cmd{\because}
-% \showsymbol{\squaredots},
-%   \cmd{\Colon}
-% \showsymbol{\medvert},
-%   \cmd{\shortmid}
-% \showsymbol{\shortparallel}
-% \showsymbol{\nshortmid}
-% \showsymbol{\nshortparallel}
-% \showsymbol{-},
-%   \cmd{\minus}
-% \showsymbol{\medslash},
-%   \cmd{\smalldivslash}
-% \showsymbol{\medbackslash},
-%   \cmd{\smallsetminus}
-% \showsymbol{+},
-%   \cmd{\plus}
-% \showsymbol{\times}
-% \showsymbol{\pm}
-% \showsymbol{\mp}
-% \showsymbol{\dotminus}
-% \showsymbol{\minusdot}
-% \showsymbol{\minusfdots}
-% \showsymbol{\minusrdots}
-% \showsymbol{\dotsminusdots}
-% \showsymbol{\div}
-% \showsymbol{\neg},
-%   \cmd{\lnot}, \cmd{\minushookdown}
-% \showsymbol{\backneg},
-%   \cmd{\invnot}, \cmd{\invneg}, \cmd{\hookdownminus}
-% \showsymbol{\intprod},
-%   \cmd{\minushookup}, \cmd{\turnedneg}, \cmd{\turnednot}
-% \showsymbol{\intprodr},
-%   \cmd{\hookupminus}, \cmd{\turnedbackneg}
-% \showsymbol{\leftthreetimes}
-% \showsymbol{\rightthreetimes}
-% \showsymbol{\dtimes},
-%   \cmd{\btimes}
-% \showsymbol{\rtimes},
-%    \cmd{\rJoin}
-% \showsymbol{\utimes},
-%   \cmd{\ttimes}
-% \showsymbol{\ltimes},
-%   \cmd{\lJoin}
-% \showsymbol{\bowtie},
-%   \cmd{\Join}, \cmd{\lrtimes}
-% \showsymbol{\upbowtie},
-%   \cmd{\hourglass}
-% \showsymbol{\rightY}
-% \showsymbol{\upY}
-% \showsymbol{\leftY}
-% \showsymbol{\downY}
-% \showsymbol{\wedge},
-%   \cmd{\land}
-% \showsymbol{\vee},
-%   \cmd{\lor}
-% \showsymbol{\wedgedot}
-% \showsymbol{\veedot}
-% \showsymbol{\doublewedge},
-%   \cmd{\wedgeonwedge}
-% \showsymbol{\doublevee},
-%   \cmd{\veeonwee}
-% \showsymbol{\curlywedge}
-% \showsymbol{\curlyvee}
-% \showsymbol{\curlywedgedot}
-% \showsymbol{\curlyveedot}
-% \showsymbol{\doublecurlywedge}
-% \showsymbol{\doublecurlyvee}
-% \showsymbol{\cup}
-% \showsymbol{\cap}
-% \showsymbol{\doublecup},
-%   \cmd{\Cup}
-% \showsymbol{\doublecap},
-%   \cmd{\Cap}
-% \showsymbol{\cupdot}
-% \showsymbol{\capdot}
-% \showsymbol{\cupplus},
-%   \cmd{\uplus}
-% \showsymbol{\capplus}
-% \showsymbol{\sqcup}
-% \showsymbol{\sqcap}
-% \showsymbol{\doublesqcup},
-%   \cmd{\Sqcup}
-% \showsymbol{\doublesqcap},
-%   \cmd{\Sqcap}
-% \showsymbol{\sqcupdot}
-% \showsymbol{\sqcapdot}
-% \showsymbol{\sqcupplus}
-% \showsymbol{\sqcapplus}
-% \showsymbol{\pullback}
-% \showsymbol{\pushout}
-% \showsymbol{\smalltriangleright}
-% \showsymbol{\smalltriangleup}
-% \showsymbol{\smalltriangleleft}
-% \showsymbol{\smalltriangledown}
-% \showsymbol{\smallblacktriangleright}
-% \showsymbol{\smallblacktriangleup}
-% \showsymbol{\smallblacktriangleleft}
-% \showsymbol{\smallblacktriangledown}
-% \showsymbol{\medtriangleright},
-%   \cmd{\triangleright}
-% \showsymbol{\medtriangleup},
-%   \cmd{\triangle}, \cmd{\vartriangle}
-% \showsymbol{\medtriangleleft},
-%   \cmd{\triangleleft}
-% \showsymbol{\medtriangledown},
-%   \cmd{\triangledown}
-% \showsymbol{\medblacktriangleright},
-%   \cmd{\blacktriangleright}
-% \showsymbol{\medblacktriangleup},
-%   \cmd{\blacktriangle}
-% \showsymbol{\medblacktriangleleft},
-%   \cmd{\blacktriangleleft}
-% \showsymbol{\medblacktriangledown},
-%   \cmd{\blacktriangledown}
-% \showsymbol{\largetriangleup},
-%   \cmd{\bigtriangleup}
-% \showsymbol{\largetriangledown},
-%   \cmd{\bigtriangledown}
-% \showsymbol{\smallcircle},
-%   \cmd{\circ}, \cmd{\smwhtcircle}
-% \showsymbol{\smallblackcircle},
-%    \cmd{\bullet}, \cmd{\smblkcircle}
-% \showsymbol{\medcircle},
-%   \cmd{\mdlgwhtcircle}, \cmd{\mdwhtcircle}
-% \showsymbol{\medblackcircle},
-%   \cmd{\mdlgblkcircle}, \cmd{\mdblkcircle}
-% \showsymbol{\ominus}
-% \showsymbol{\overt},
-%   \cmd{\circledvert}
-% \showsymbol{\oslash}
-% \showsymbol{\obackslash},
-%   \cmd{\obslash}
-% \showsymbol{\oplus}
-% \showsymbol{\otimes}
-% \showsymbol{\odot}
-% \showsymbol{\ocirc},
-%   \cmd{\circledcirc}
-% \showsymbol{\oast},
-%   \cmd{\circledast}
-% \showsymbol{\odash},
-%   \cmd{\circleddash}
-% \showsymbol{\oequal},
-%   \cmd{\circledequal}
-% \showsymbol{\emptyset},
-%   \cmd{\diameter}, \cmd{\varnothing}
-% \showsymbol{\revemptyset}
-% \showsymbol{\largecircle},
-%   \cmd{\bigcirc}, \cmd{\lgwhtcircle}
-% \showsymbol{\largeblackcircle},
-%   \cmd{\lgblkcircle}
-% \showsymbol{\smallsquare},
-%   \cmd{\smwhtsquare}
-% \showsymbol{\smallblacksquare},
-%   \cmd{smblksquare}
-% \showsymbol{\medsquare},
-%   \cmd{\square}, \cmd{\Box}, \cmd{\mdlgwhtsquare}, \cmd{\mdwhtsquare}
-% \showsymbol{\medblacksquare},
-%   \cmd{\mdlgblksquare}, \cmd{\mdblksquare}
-% \showsymbol{\boxminus}
-% \showsymbol{\boxvert},
-%   \cmd{\boxbar}
-% \showsymbol{\boxslash},
-%   \cmd{\boxdiag}
-% \showsymbol{\boxbackslash},
-%   \cmd{\boxbslash}
-% \showsymbol{\boxplus}
-% \showsymbol{\boxtimes}
-% \showsymbol{\boxdot}
-% \showsymbol{\boxbox}
-% \showsymbol{\largesquare},
-%   \cmd{\lgwhtsquare}
-% \showsymbol{\largeblacksquare},
-%   \cmd{\lgblksquare}
-% \showsymbol{\smalldiamond},
-%   \cmd{\diamond}, \cmd{\smwhtdiamond}
-% \showsymbol{\smallblackdiamond},
-%   \cmd{\blackdiamond}, \cmd{\smblkdiamond}
-% \showsymbol{\meddiamond},
-%   \cmd{\Diamond}, \cmd{\mdlgwhtdiamond}, \cmd{\mdwhtdiamond}
-% \showsymbol{\medblackdiamond},
-%   \cmd{\mdlgblkdiamond}, \cmd{\mdblkdiamond}
-% \showsymbol{\diamondminus}
-% \showsymbol{\diamondvert}
-% \showsymbol{\diamondslash}
-% \showsymbol{\diamondbackslash},
-%   \cmd{\diamondbslash}
-% \showsymbol{\diamondplus}
-% \showsymbol{\diamondtimes}
-% \showsymbol{\diamonddot},
-%   \cmd{\diamondcdot}
-% \showsymbol{\diamonddiamond}
-% \showsymbol{\smalllozenge},
-%   \cmd{\smwhtlozenge}
-% \showsymbol{\smallblacklozenge},
-%   \cmd{\smblklozenge}
-% \showsymbol{\medlozenge},
-%   \cmd{\lozenge}, \cmd{\mdlgwhtlozenge}, \cmd{\mdwhtlozenge}
-% \showsymbol{\medblacklozenge},
-%   \cmd{\blacklozenge}, \cmd{\mdlgblklozenge}, \cmd{\mdblklozenge}
-% \showsymbol{\lozengeminus}
-% \showsymbol{\smallwhitestar},
-%   \cmd{\smwhitestar}
-% \showsymbol{\smallblackstar},
-%   \cmd{\star}
-% \showsymbol{\medwhitestar}
-% \showsymbol{\medblackstar},
-%   \cmd{\medstar}
-% \showsymbol{\largewhitestar}
-% \showsymbol{\largeblackstar},
-%   \cmd{\bigstar}
-% \showsymbol{*},
-%   \cmd{\ast}
-% \showsymbol{\infty}
-% \showsymbol{\propto},
-%   \cmd{\varpropto}
-% \showsymbol{\backpropto},
-%   \cmd{\propfrom}
+% \showsymbol{:}, \cmd{\mathratio}
+% \showsymbol{\Colon}
+% \showsymbol{\rJoin}
+% \showsymbol{\lJoin}
+% \showsymbol{\bowtie}, \cmd{\Join}
+% \showsymbol{\propto}, \cmd{\varpropto}
+% \showsymbol{\backpropto}, \cmd{propfrom}
 % \showsymbol{\crossing}
 % \showsymbol{\between}
 % \showsymbol{\separated}
-% \showsymbol{\bot}
-% \showsymbol{\top},
-%   \cmd{\intercal}
-% \showsymbol{\wreath},
-%   \cmd{\wr}
-% \showsymbol{\angle}
-% \showsymbol{\revangle}
-% \showsymbol{\measuredangle}
-% \showsymbol{\revmeasuredangle},
-%   \cmd{\measuredangleleft}
-% \showsymbol{\sphericalangle}
-% \showsymbol{\sphericalangleup}
-% \showsymbol{\sphericalangleleft},
-%   \cmd{\revsphericalangle}, \cmd{\gtlpar}
-% \showsymbol{\sphericalangledown}
-% \showsymbol{\rightangle}
-% \showsymbol{\measuredrightangle}
-% \showsymbol{\rightanglesquare},
-%   \cmd{\rightanglesqr}
-% \showsymbol{\measuredrightangledot},
-%   \cmd{\rightanglemdot}
-% \showsymbol{\prime}
-% \showsymbol{\backprime}
-% \showsymbol{\smallprod}
-% \showsymbol{\smallcoprod},
-%   \cmd{\amalg}
-% \showsymbol{\smallint}
-% \showsymbol{\checkmark}
-% \showsymbol{\lightning},
-%   \cmd{\downzigzagarrow}
-% \showsymbol{\diamondsuit}
-% \showsymbol{\vardiamondsuit}
-% \showsymbol{\heartsuit}
-% \showsymbol{\varheartsuit}
-% \showsymbol{\spadesuit}
-% \showsymbol{\clubsuit}
-% \showsymbol{\maltese}
-% \showsymbol{\starofdavid}
-% \showsymbol{\sector}
-% \showsymbol{\forall}
-% \showsymbol{\exists}
-% \showsymbol{\nexists}
-% \showsymbol{\Finv}
-% \showsymbol{\Game}
-% \showsymbol{\complement}
-% \showsymbol{\flat}
-% \showsymbol{\natural}
-% \showsymbol{\sharp}
-% \iffalse
-% \showsymbol{\aleph}
-% \showsymbol{\beth}
-% \showsymbol{\gimel}
-% \showsymbol{\daleth}
-% \fi
-% \showsymbol{\wp}
+% \showsymbol{\shortmid}
+% \showsymbol{\mid}, \cmd{\divides}
+% \showsymbol{\nshortmid}
+% \showsymbol{\nmid}, \cmd{\ndivides}
+% \showsymbol{\shortparallel}
+% \showsymbol{\parallel}
+% \showsymbol{\nshortparallel}
+% \showsymbol{\nparallel}
 % \end{multicols}
 %
-% \subsection*{Relations}
+% \subsection{Punctuation symbols}
 %
 % \begin{multicols}{2}
 % \raggedright
-% \showsymbol{=},
-%   \cmd{\equal}
-% \showsymbol{\equiv}
-% \showsymbol{\sim}
-% \showsymbol{\backsim}
-% \showsymbol{\approx}
-% \showsymbol{\triplesim},
-%   \cmd{\approxident}
-% \showsymbol{\simeq}
-% \showsymbol{\backsimeq}
-% \showsymbol{\eqsim}
-% \showsymbol{\cong}
-% \showsymbol{\backcong}
-% \showsymbol{\approxeq}
-% \showsymbol{\bumpeq}
-% \showsymbol{\bumpeqq}
-% \showsymbol{\Bumpeq}
-% \showsymbol{\doteq}
-% \showsymbol{\eqdot}
-% \showsymbol{\Doteq},
-%   \cmd{\doteqdot}
-% \showsymbol{\fallingdotseq}
-% \showsymbol{\risingdotseq}
-% \showsymbol{\smile},
-%   \cmd{\smallsmile}
-% \showsymbol{\frown},
-%   \cmd{\smallfrown}
-% \showsymbol{\smilefrown},
-%   \cmd{\asymp}
-% \showsymbol{\frownsmile},
-%   \cmd{\closure}
-% \showsymbol{\smileeq}
-% \showsymbol{\frowneq},
-%   \cmd{\arceq}
-% \showsymbol{\eqcirc}
-% \showsymbol{\circeq}
-% \showsymbol{\wedgeq},
-%   \cmd{\hateq}
-% \showsymbol{\veeeq}
-% \showsymbol{\stareq}
-% \showsymbol{\triangleeq},
-%   \cmd{\triangleq}
-% \showsymbol{\in}
-% \showsymbol{\owns},
-%   \cmd{\ni}
-% \showsymbol{<},
-%   \cmd{\less}
-% \showsymbol{>},
-%   \cmd{\gtr}
-% \showsymbol{\leq},
-%   \cmd{\le}
-% \showsymbol{\geq},
-%   \cmd{\ge}
-% \showsymbol{\leqslant}
-% \showsymbol{\geqslant}
-% \showsymbol{\leqq}
-% \showsymbol{\geqq}
-% \showsymbol{\lesssim}
-% \showsymbol{\gtrsim}
-% \showsymbol{\lessapprox}
-% \showsymbol{\gtrapprox}
-% \showsymbol{\lessgtr}
-% \showsymbol{\gtrless}
-% \showsymbol{\lesseqgtr}
-% \showsymbol{\gtreqless}
-% \showsymbol{\lesseqqgtr}
-% \showsymbol{\gtreqqless}
-% \showsymbol{\lesseqgtrslant}
-% \showsymbol{\gtreqlessslant}
-% \showsymbol{\ll}
-% \showsymbol{\gg}
-% \showsymbol{\lll},
-%   \cmd{\llless}
-% \showsymbol{\ggg},
-%   \cmd{\gggtr}
-% \showsymbol{\lessclosed},
-%   \cmd{\lhd},
-%   \cmd{\vartriangleleft}
-% \showsymbol{\gtrclosed},
-%   \cmd{\rhd},
-%   \cmd{\vartriangleright}
-% \showsymbol{\leqclosed},
-%   \cmd{\unlhd},
-%   \cmd{\trianglelefteq}
-% \showsymbol{\geqclosed},
-%   \cmd{\unrhd},
-%   \cmd{\trianglerighteq}
-% \showsymbol{\lesscc},
-%   \cmd{\ltcc}
-% \showsymbol{\gtrcc},
-%   \cmd{\gtcc}
-% \showsymbol{\leqslcc},
-%   \cmd{\lescc}
-% \showsymbol{\geqslcc},
-%   \cmd{\gescc}
-% \showsymbol{\sqsubset}
-% \showsymbol{\sqsupset}
-% \showsymbol{\sqsubseteq}
-% \showsymbol{\sqsupseteq}
-% \showsymbol{\sqsubseteqq}
-% \showsymbol{\sqsupseteqq}
-% \showsymbol{\Sqsubset}
-% \showsymbol{\Sqsupset}
-% \showsymbol{\subset}
-% \showsymbol{\supset}
-% \showsymbol{\subseteq}
-% \showsymbol{\supseteq}
-% \showsymbol{\subseteqq}
-% \showsymbol{\supseteqq}
-% \showsymbol{\Subset}
-% \showsymbol{\Supset}
-% \showsymbol{\prec}
-% \showsymbol{\succ}
-% \showsymbol{\preceq}
-% \showsymbol{\succeq}
-% \showsymbol{\preccurlyeq}
-% \showsymbol{\succcurlyeq}
-% \showsymbol{\preceqq}
-% \showsymbol{\succeqq}
-% \showsymbol{\precsim}
-% \showsymbol{\succsim}
-% \showsymbol{\precapprox}
-% \showsymbol{\succapprox}
-% \showsymbol{\lessdot}
-% \showsymbol{\gtrdot}
-% \showsymbol{\leqdot}
-% \showsymbol{\geqdot}
-% \showsymbol{\leqslantdot},
-%   \cmd{\lesdot}
-% \showsymbol{\geqslantdot},
-%   \cmd{\gesdot}
-% \showsymbol{\eqslantless}
-% \showsymbol{\eqslantgtr}
-% \showsymbol{\curlyeqprec}
-% \showsymbol{\curlyeqsucc}
-% \showsymbol{\nequal},
-%   \cmd{\neq},
-%   \cmd{\ne}
-% \showsymbol{\nequiv}
-% \showsymbol{\nsim}
-% \showsymbol{\nbacksim}
-% \showsymbol{\napprox}
-% \showsymbol{\ntriplesim},
-%   \cmd{\napproxident}
-% \showsymbol{\nsimeq},
-%   \cmd{\nsime}
-% \showsymbol{\nbacksimeq}
-% \showsymbol{\neqsim}
-% \showsymbol{\ncong}
-% \showsymbol{\nbackcong}
-% \showsymbol{\napproxeq}
-% \showsymbol{\nbumpeq}
-% \showsymbol{\nbumpeqq}
-% \showsymbol{\nBumpeq}
-% \showsymbol{\ndoteq}
-% \showsymbol{\neqdot}
-% \showsymbol{\nDoteq}
-% \showsymbol{\nfallingdotseq}
-% \showsymbol{\nrisingdotseq}
-% \showsymbol{\nsmile}
-% \showsymbol{\nfrown}
-% \showsymbol{\nsmilefrown},
-%   \cmd{\nasymp}
-% \showsymbol{\nfrownsmile},
-%   \cmd{\nclosure}
-% \showsymbol{\nsmileeq}
-% \showsymbol{\nfrowneq},
-%   \cmd{\narceq}
-% \showsymbol{\neqcirc}
-% \showsymbol{\ncirceq}
-% \showsymbol{\nwedgeq},
-%   \cmd{\nhateq}
-% \showsymbol{\nveeeq}
-% \showsymbol{\nstareq}
-% \showsymbol{\ntriangleeq}
-% \showsymbol{\nin},
-%   \cmd{\notin}
-% \showsymbol{\nowns},
-%   \cmd{\nni}
-% \showsymbol{\nless}
-% \showsymbol{\ngtr}
-% \showsymbol{\nleq}
-% \showsymbol{\ngeq}
-% \showsymbol{\nleqslant}
-% \showsymbol{\ngeqslant}
-% \showsymbol{\nleqq}
-% \showsymbol{\ngeqq}
-% \showsymbol{\nlesssim}
-% \showsymbol{\ngtrsim}
-% \showsymbol{\nlessapprox}
-% \showsymbol{\ngtrapprox}
-% \showsymbol{\nlessgtr}
-% \showsymbol{\ngtrless}
-% \showsymbol{\nlesseqgtr}
-% \showsymbol{\ngtreqless}
-% \showsymbol{\nlesseqqgtr}
-% \showsymbol{\ngtreqqless}
-% \showsymbol{\nlesseqgtrslant}
-% \showsymbol{\ngtreqlessslant}
-% \showsymbol{\nll}
-% \showsymbol{\ngg}
-% \showsymbol{\nlll}
-% \showsymbol{\nggg}
-% \showsymbol{\nlessclosed},
-%   \cmd{\ntriangleleft}
-% \showsymbol{\ngtrclosed},
-%   \cmd{\ntriangleright}
-% \showsymbol{\nleqclosed},
-%   \cmd{\ntrianglelefteq}
-% \showsymbol{\ngeqclosed},
-%   \cmd{\ntrianglerighteq}
-% \showsymbol{\nlesscc},
-%   \cmd{\nltcc}
-% \showsymbol{\ngtrcc},
-%   \cmd{\ngtcc}
-% \showsymbol{\nleqslcc},
-%   \cmd{\nlescc}
-% \showsymbol{\ngeqslcc},
-%   \cmd{\ngescc}
-% \showsymbol{\nsqsubset}
-% \showsymbol{\nsqsupset}
-% \showsymbol{\nsqsubseteq}
-% \showsymbol{\nsqsupseteq}
-% \showsymbol{\nsqsubseteqq}
-% \showsymbol{\nsqsupseteqq}
-% \showsymbol{\nSqsubset}
-% \showsymbol{\nSqsupset}
-% \showsymbol{\nsubset}
-% \showsymbol{\nsupset}
-% \showsymbol{\nsubseteq}
-% \showsymbol{\nsupseteq}
-% \showsymbol{\nsubseteqq}
-% \showsymbol{\nsupseteqq}
-% \showsymbol{\nSubset}
-% \showsymbol{\nSupset}
-% \showsymbol{\nprec}
-% \showsymbol{\nsucc}
-% \showsymbol{\npreceq}
-% \showsymbol{\nsucceq}
-% \showsymbol{\npreccurlyeq}
-% \showsymbol{\nsucccurlyeq}
-% \showsymbol{\npreceqq}
-% \showsymbol{\nsucceqq}
-% \showsymbol{\nprecsim}
-% \showsymbol{\nsuccsim}
-% \showsymbol{\nprecapprox}
-% \showsymbol{\nsuccapprox}
-% \showsymbol{\nlessdot}
-% \showsymbol{\ngtrdot}
-% \showsymbol{\nleqdot}
-% \showsymbol{\ngeqdot}
-% \showsymbol{\nleqslantdot},
-%   \cmd{\nlesdot}
-% \showsymbol{\ngeqslantdot},
-%   \cmd{\ngesdot}
-% \showsymbol{\neqslantless}
-% \showsymbol{\neqslantgtr}
-% \showsymbol{\ncurlyeqprec}
-% \showsymbol{\ncurlyeqsucc}
-% \showsymbol{\simneqq}
-% \showsymbol{\backsimneqq}
-% \showsymbol{\lneq}
-% \showsymbol{\gneq}
-% \showsymbol{\lneqq},
-%   \cmd{\lvertneqq}
-% \showsymbol{\gneqq},
-%   \cmd{\gvertneqq}
-% \showsymbol{\lnsim}
-% \showsymbol{\gnsim}
-% \showsymbol{\lnapprox}
-% \showsymbol{\gnapprox}
-% \showsymbol{\lessneqqgtr}
-% \showsymbol{\gtrneqqless}
-% \showsymbol{\sqsubsetneq}
-% \showsymbol{\sqsupsetneq}
-% \showsymbol{\sqsubsetneqq}
-% \showsymbol{\sqsupsetneqq}
-% \showsymbol{\subsetneq},
-%   \cmd{\varsubsetneq}
-% \showsymbol{\supsetneq},
-%   \cmd{\varsupsetneq}
-% \showsymbol{\subsetneqq},
-%   \cmd{\varsubsetneqq}
-% \showsymbol{\supsetneqq},
-%   \cmd{\varsupsetneqq}
-% \showsymbol{\precneq}
-% \showsymbol{\succneq}
-% \showsymbol{\precneqq}
-% \showsymbol{\succneqq}
-% \showsymbol{\precnsim}
-% \showsymbol{\succnsim}
-% \showsymbol{\precnapprox}
-% \showsymbol{\succnapprox}
+% \showsymbol\cdotp
+% \showsymbol\colon, \cmd{\mathcolon}
 % \end{multicols}
 %
-% \subsection*{Operators}
+% \subsection{Large operators}
 %
 % \begin{multicols}{2}
 % \raggedright
@@ -1375,20 +1282,20 @@
 % \showop{\lcircleleftint},
 %   \cmd{\ointclockwise}
 % \showop{\sumint}
+% \showop{\smallprod}
+% \showop{\smallcoprod}
+% \showop{\smallint}
+% \showop{\surd}
 % \end{multicols}
 %
-% \subsection*{Braces and accents}
+% \subsection{Delimiters and accents}
 %
 % \begin{multicols}{2}
 % \raggedright
-% \showlbrace{(},
-%   \cmd{\lparen}
-% \showrbrace{)},
-%   \cmd{\rparen}
-% \showlbrace{[},
-%   \cmd{\lbrack}
-% \showrbrace{]},
-%   \cmd{\rbrack}
+% \showlbrace{(}, \cmd{\lparen}
+% \showrbrace{)}, \cmd{\rparen}
+% \showlbrace{[}, \cmd{\lbrack}
+% \showrbrace{]}, \cmd{\rbrack}
 % \showlbrace{\lfloor}
 % \showrbrace{\rfloor}
 % \showlbrace{\lceil}
@@ -1399,39 +1306,25 @@
 % \showrbrace{\lrcorner}
 % \showlbrace{\ullcorner}
 % \showrbrace{\ulrcorner}
-% \showlbrace{\lsem},
-%   \cmd{\lBrack}
-% \showrbrace{\rsem},
-%   \cmd{\rBrack}
-% \showlbrace{\lbrace},
-%   \cmd{\{}
-% \showrbrace{\rbrace},
-%   \cmd{\}}
+% \showlbrace{\lsem}, \cmd{\lBrack}
+% \showrbrace{\rsem}, \cmd{\rBrack}
+% \showlbrace{\lbrace}, \cmd{\{}
+% \showrbrace{\rbrace}, \cmd{\}}
 % \showlbrace{\langle}
 % \showrbrace{\rangle}
 % \showlbrace{\lAngle}
 % \showrbrace{\rAngle}
 % \showlbrace{\langledot}
 % \showrbrace{\rangledot}
-% \showmbrace{/},
-%   \cmd{\mathslash},
-%   \cmd{\divslash}
-% \showmbrace{\backslash},
-%   \cmd{\setminus}
-% {\catcode`\|=11
-% \showmbrace{|},
-%   \cmd{\vert},
-%   \cmd{\mvert},
-%   \cmd{\mid}}
+% \showmbrace{/}, \cmd{\mathslash}
+% \showmbrace{\backslash}
+% {\catcode`\|=11 \showmbrace{|}, \cmd{\vert}}
 % \showlbrace{\lvert}
 % \showrbrace{\rvert}
-% \showmbrace{\Vert},
-%   \cmd{\|},
-%   \cmd{\mVert}
+% \showmbrace{\Vert}, \cmd{\|}
 % \showlbrace{\lVert}
 % \showrbrace{\rVert}
-% \showmbrace{\Vvert},
-%   \cmd{\mVvert}
+% \showmbrace{\Vvert}
 % \showlbrace{\lVvert}
 % \showrbrace{\rVvert}
 % \showmbrace{\arrowvert}
@@ -1463,7 +1356,6 @@
 % \begin{multicols}{2}
 % \raggedright
 % \showaccent{\sqrt}
-% \showwidesymbol\surd
 % \showover{\widehat}
 % \showover{\widetilde}
 % \showover{\wideparen}
@@ -1473,28 +1365,14 @@
 % \showaccent{\strokethrough}
 % \end{multicols}
 %
-% \subsection*{Faked symbols}
+% \subsection{Faked symbols}
 %
-% The following symbols are taken from the text font or they are assembled
-% from several glyphs.
+% The following symbols are taken from the text font or
+% another math font (in case of \cmd{\Re} and \cmd{\Im}).
+%
 % \begin{multicols}{2}
 % \raggedright
-% \showsymbol{\longrightarrow}
-% \showsymbol{\longleftarrow}
-% \showsymbol{\longleftrightarrow}
-% \showsymbol{\Longrightarrow}
-% \showsymbol{\Longleftarrow}
-% \showsymbol{\Longleftrightarrow}
-% \showsymbol{\longmapsto}
-% \showsymbol{\emptyblackspoon},
-%   \cmd{\origof}
-% \showsymbol{\filledemptyspoon},
-%   \cmd{\imageof}
-% \showsymbol{\leftrightspoon},
-%   \cmd{\dualmap}
-% \showsymbol{\leftrightblackspoon}
-% \showsymbol{\coloneq},
-%   \cmd{\coloneqq}
+
 % \showsymbol{\dagger}
 % \showsymbol{\ddagger}
 % \showsymbol{\mathparagraph}
@@ -1508,21 +1386,12 @@
 % \showsymbol{\hslash}
 % \showsymbol{\circledR}
 % \showsymbol{\circledS}
-% \showsymbol{\dotplus}
-% \showsymbol{\dotcong}
-% \showsymbol{\thicksim}
-% \showsymbol{\thickapprox}
-% \showsymbol{\veebar}
-% \showsymbol{\barwedge}
-% \showsymbol{\doublebarwedge}
-% \showsymbol{\centerdot}
-% \showsymbol{\divideontimes}
 % \end{multicols}
 %
-% \subsection*{Missing symbols}
+% \subsection{Missing symbols}
 %
 % The following symbols from Computer Modern or the AMS fonts are missing
-% in FdSymbol. If available they should be taken from the text font.
+% in FdSymbol. If available, they should be taken from the text font.
 % \iffalse
 % (For instance, the \pkg{fedraserif} package defines most of them.)
 % \fi
@@ -1631,8 +1500,8 @@
   \check@mathfonts\fontsize\sf@size\z@\math@fontsfalse\selectfont S}}}
 \DeclareRobustCommand{\Re}{\mathfrak{R}}
 \DeclareRobustCommand{\Im}{\mathfrak{I}}
-\DeclareRobustCommand{\dotplus}{\dot{+}}
-\DeclareRobustCommand{\dotcong}{\dot{\cong}}
+\DeclareRobustCommand{\dotplus}{\mathbin{\dot{+}}}
+\DeclareRobustCommand{\dotcong}{\mathrel{\dot{\cong}}}
 \DeclareRobustCommand{\thicksim}{\mathrel{\text{\boldmath$\m@th\sim$}}}
 \DeclareRobustCommand{\thickapprox}{\mathrel{\text{\boldmath$\m@th\approx$}}}
 \let\hbar\undefined
@@ -1641,6 +1510,7 @@
 \DeclareRobustCommand{\hslash}{\middleslash h}
 \DeclareRobustCommand{\veebar}{\mathbin{\underline{\vee}}}
 \DeclareRobustCommand{\barwedge}{\mathbin{\overline{\wedge}}}
+\DeclareRobustCommand{\veedoublebar}{\mathbin{\underline{\underline{\vee}}}}
 \DeclareRobustCommand{\doublebarwedge}{\mathbin{\overline{\overline{\wedge}}}}
 \DeclareRobustCommand{\centerdot}{\mathbin{\rule{0.15em}{0.15em}}}
 \DeclareRobustCommand{\divideontimes}{\mathbin{\ooalign{$\div$\crcr$\times$}}}
@@ -1765,6 +1635,7 @@
 \fdsy@DeclareSymbol{\hdotdot}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\vdotdot}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\colon}{symbols}{\mathpunct}
+  \fdsy@DeclareAlias{\mathcolon}{symbols}{\mathpunct}
   \fdsy@DeclareAlias{\mathratio}{symbols}{\mathrel}
 \fdsy@DeclareSymbol{\udotdot}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\ddotdot}{symbols}{\mathbin}
@@ -1784,11 +1655,6 @@
   \fdsy@DeclareAlias{\because}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\squaredots}{symbols}{\mathord}
   \fdsy@DeclareAlias{\Colon}{symbols}{\mathrel}
-\fdsy@DeclareSymbol{\medvert}{symbols}{\mathbin}
-  \fdsy@DeclareAlias{\shortmid}{symbols}{\mathrel}
-\fdsy@DeclareSymbol{\shortparallel}{symbols}{\mathrel}
-\fdsy@DeclareSymbol{\nshortmid}{symbols}{\mathrel}
-\fdsy@DeclareSymbol{\nshortparallel}{symbols}{\mathrel}
 \fdsy@DeclareSymbol{\minus}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\medslash}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\smalldivslash}{symbols}{\mathbin}
@@ -1884,22 +1750,22 @@
 \fdsy@DeclareSymbol{\smallblacktriangleup}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\smallblacktriangleleft}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\smallblacktriangledown}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medtriangleright}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medtriangleright}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\triangleright}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medtriangleup}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medtriangleup}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\triangle}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\vartriangle}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medtriangleleft}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medtriangleleft}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\triangleleft}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medtriangledown}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medtriangledown}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\triangledown}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medblacktriangleright}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medblacktriangleright}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\blacktriangleright}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medblacktriangleup}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medblacktriangleup}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\blacktriangle}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medblacktriangleleft}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medblacktriangleleft}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\blacktriangleleft}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\medblacktriangledown}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\medblacktriangledown}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\blacktriangledown}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\largetriangleup}{symbols}{\mathord}
   \fdsy@DeclareAlias{\bigtriangleup}{symbols}{\mathbin}
@@ -2015,7 +1881,7 @@
 \fdsy@DeclareSymbol{\largeblackstar}{symbols}{\mathord}
   \fdsy@DeclareAlias{\bigstar}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\ast}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\infty}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\infty}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\propto}{symbols}{\mathrel}
   \fdsy@DeclareAlias{\varpropto}{symbols}{\mathrel}
 \fdsy@DeclareSymbol{\backpropto}{symbols}{\mathrel}
@@ -2047,10 +1913,10 @@
   \fdsy@DeclareAlias{\rightanglemdot}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\prime}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\backprime}{symbols}{\mathord}
-\fdsy@DeclareSymbol{\smallprod}{symbols}{\mathord}
-\fdsy@DeclareSymbol{\smallcoprod}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\smallprod}{symbols}{\mathop}
+\fdsy@DeclareSymbol{\smallcoprod}{symbols}{\mathop}
   \fdsy@DeclareAlias{\amalg}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\smallint}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\smallint}{symbols}{\mathop}
 \fdsy@DeclareSymbol{\checkmark}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\lightning}{symbols}{\mathord}
   \fdsy@DeclareAlias{\downzigzagarrow}{symbols}{\mathord}
@@ -2081,7 +1947,7 @@
 \fdsy@setslot{202}
 \fdsy@DeclareSymbol{\wp}{symbols}{\mathord}
 %    \end{macrocode}
-% FdSymbolB: Relations.
+% FdSymbolB: relations
 %    \begin{macrocode}
 \fdsy@setslot{0}
 \fdsy@DeclareSymbol{\equal}{relations}{\mathrel}
@@ -2103,7 +1969,7 @@
 \fdsy@DeclareSymbol{\doteq}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\eqdot}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\Doteq}{relations}{\mathrel}
-  \fdsy@DeclareAlias{\doteqdot}{relations}{\mathbin}
+  \fdsy@DeclareAlias{\doteqdot}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\fallingdotseq}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\risingdotseq}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\smile}{relations}{\mathrel}
@@ -2157,16 +2023,16 @@
 \fdsy@DeclareSymbol{\ggg}{relations}{\mathrel}
   \fdsy@DeclareAlias{\gggtr}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\lessclosed}{relations}{\mathrel}
-  \fdsy@DeclareAlias{\lhd}{relations}{\mathrel}
+  \fdsy@DeclareAlias{\lhd}{relations}{\mathbin}
   \fdsy@DeclareAlias{\vartriangleleft}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\gtrclosed}{relations}{\mathrel}
-  \fdsy@DeclareAlias{\rhd}{relations}{\mathrel}
+  \fdsy@DeclareAlias{\rhd}{relations}{\mathbin}
   \fdsy@DeclareAlias{\vartriangleright}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\leqclosed}{relations}{\mathrel}
-  \fdsy@DeclareAlias{\unlhd}{relations}{\mathrel}
+  \fdsy@DeclareAlias{\unlhd}{relations}{\mathbin}
   \fdsy@DeclareAlias{\trianglelefteq}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\geqclosed}{relations}{\mathrel}
-  \fdsy@DeclareAlias{\unrhd}{relations}{\mathrel}
+  \fdsy@DeclareAlias{\unrhd}{relations}{\mathbin}
   \fdsy@DeclareAlias{\trianglerighteq}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\lesscc}{relations}{\mathrel}
   \fdsy@DeclareAlias{\ltcc}{relations}{\mathrel}
@@ -2378,7 +2244,7 @@
 \DeclareRobustCommand{\coloneq}{\mathrel{{\vdotdot}{\equal}}}
 \let\coloneqq\coloneq
 %    \end{macrocode}
-% FdSymbolC: arrows.
+% FdSymbolC: arrows
 %    \begin{macrocode}
 \fdsy@setslot{0}
 \fdsy@DeclareSymbol{\rightarrow}{arrows}{\mathrel}
@@ -2587,7 +2453,6 @@
   \fdsy@DeclareAlias{\@relbar}{arrows}{\mathrel}
 \DeclareRobustCommand\relbar{\@relbar\mathrel{\mkern-2.5mu}}
 \fdsy@DeclareSymbol{\updownline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\divides}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\neswline}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\diagup}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\nwseline}{arrows}{\mathrel}
@@ -2596,7 +2461,6 @@
   \fdsy@DeclareAlias{\@Relbar}{arrows}{\mathrel}
 \DeclareRobustCommand\Relbar{\@Relbar\mathrel{\mkern-2.5mu}}
 \fdsy@DeclareSymbol{\Updownline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\parallel}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\leftfootline}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\vlongdash}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\rightfootline}{arrows}{\mathrel}
@@ -2673,7 +2537,7 @@
 \let\dualmap\leftrightspoon
 \DeclareRobustCommand\leftrightblackspoon{\DOTSB\leftblackspoon\mkern-13mu\rightblackspoon}
 %    \end{macrocode}
-% FdSymbolD: stroked arrows.
+% FdSymbolD: stroked arrows
 %    \begin{macrocode}
 \fdsy@setslot{0}
 \fdsy@DeclareSymbol{\nrightarrow}{narrows}{\mathrel}
@@ -2882,8 +2746,6 @@
   \fdsy@DeclareAlias{\n@relbar}{narrows}{\mathrel}
 \DeclareRobustCommand\nrelbar{\n@relbar\mathrel{\mkern-2.5mu}}
 \fdsy@DeclareSymbol{\nupdownline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ndivides}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\nmid}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nneswline}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\ndiagup}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nnwseline}{narrows}{\mathrel}
@@ -2892,7 +2754,6 @@
   \fdsy@DeclareAlias{\n@Relbar}{narrows}{\mathrel}
 \DeclareRobustCommand\nRelbar{\n@Relbar\mathrel{\mkern-2.5mu}}
 \fdsy@DeclareSymbol{\nUpdownline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\nparallel}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nleftfootline}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nvlongdash}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nrightfootline}{narrows}{\mathrel}
@@ -2945,7 +2806,7 @@
 \fdsy@DeclareSymbol{\nLleftarrow}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nDdownarrow}{narrows}{\mathrel}
 %    \end{macrocode}
-% FdSymbolE: Big operators.
+% FdSymbolE: large operators
 %    \begin{macrocode}
 \fdsy@setslot{0}
 \fdsy@DeclareSymbol{\tbigplus}{largesymbols}{\mathop}
@@ -3158,7 +3019,7 @@
 \DeclareMathAccent{\middleslash}{\mathord}{largesymbols}{"86}
 \DeclareMathAccent{\strokethrough}{\mathord}{largesymbols}{"87}
 %    \end{macrocode}
-% FdSymbolF: Delimiters.
+% FdSymbolF: delimiters
 %    \begin{macrocode}
 \let\lfloor\undefined
 \let\rfloor\undefined
@@ -3166,7 +3027,6 @@
 \let\rceil\undefined
 \let\langle\undefined
 \let\rangle\undefined
-
 \iffdsy@largedelims
   \fdsy@DeclareOpen{(}{delimiters}{"01}
   \fdsy@DeclareClose{)}{delimiters}{"07}
@@ -3202,24 +3062,25 @@
   \fdsy@DeclareClose{\rangledot}{delimiters}{"A4}
   \fdsy@DeclareDelimiter{/}{\mathord}{delimiters}{"AA}
   \fdsy@DeclareDelimiter{\mathslash}{\mathord}{delimiters}{"AA}
-  \fdsy@DeclareDelimiter{\divslash}{\mathbin}{delimiters}{"AA}
+  \DeclareMathSymbol{\divslash}{\mathbin}{delimiters}{"AA}
   \fdsy@DeclareDelimiter{\backslash}{\mathord}{delimiters}{"B0}
   \expandafter\DeclareMathDelimiter\@backslashchar%
     {\mathord}{delimiters}{"B0}{delimiters}{"B0}
-  \fdsy@DeclareDelimiter{\setminus}{\mathbin}{delimiters}{"B0}
-  \fdsy@DeclareDelimiter{|}{\mathord}{delimiters}{"B6}
-  \fdsy@DeclareDelimiter{\vert}{\mathord}{delimiters}{"B6}
-  \fdsy@DeclareDelimiter{\mvert}{\mathrel}{delimiters}{"B6}
-  \fdsy@DeclareOpen{\lvert}{delimiters}{"B6}
-  \fdsy@DeclareClose{\rvert}{delimiters}{"B6}
-  \fdsy@DeclareDelimiter{\Vert}{\mathord}{delimiters}{"B9}
-  \fdsy@DeclareDelimiter{\mVert}{\mathrel}{delimiters}{"B9}
-  \fdsy@DeclareOpen{\lVert}{delimiters}{"B9}
-  \fdsy@DeclareClose{\rVert}{delimiters}{"B9}
-  \fdsy@DeclareDelimiter{\Vvert}{\mathord}{delimiters}{"BC}
-  \fdsy@DeclareDelimiter{\mVvert}{\mathrel}{delimiters}{"BC}
-  \fdsy@DeclareOpen{\lVvert}{delimiters}{"BC}
-  \fdsy@DeclareClose{\rVvert}{delimiters}{"BC}
+  \DeclareMathSymbol{\setminus}{\mathbin}{delimiters}{"B0}
+  \fdsy@DeclareDelimiter{|}{\mathord}{delimiters}{"B7}
+  \fdsy@DeclareDelimiter{\vert}{\mathord}{delimiters}{"B7}
+  \fdsy@DeclareOpen{\lvert}{delimiters}{"B7}
+  \fdsy@DeclareClose{\rvert}{delimiters}{"B7}
+  \DeclareMathSymbol{\mid}{\mathrel}{delimiters}{"B7}
+  \DeclareMathSymbol{\nmid}{\mathrel}{delimiters}{"BA}
+  \fdsy@DeclareDelimiter{\Vert}{\mathord}{delimiters}{"BE}
+  \fdsy@DeclareOpen{\lVert}{delimiters}{"BE}
+  \fdsy@DeclareClose{\rVert}{delimiters}{"BE}
+  \DeclareMathSymbol{\parallel}{\mathrel}{delimiters}{"BE}
+  \DeclareMathSymbol{\nparallel}{\mathrel}{delimiters}{"C1}
+  \fdsy@DeclareDelimiter{\Vvert}{\mathord}{delimiters}{"C4}
+  \fdsy@DeclareOpen{\lVvert}{delimiters}{"C4}
+  \fdsy@DeclareClose{\rVvert}{delimiters}{"C4}
 \else
   \fdsy@DeclareOpen{(}{delimiters}{"00}
   \fdsy@DeclareClose{)}{delimiters}{"06}
@@ -3255,58 +3116,62 @@
   \fdsy@DeclareClose{\rangledot}{delimiters}{"A3}
   \fdsy@DeclareDelimiter{/}{\mathord}{delimiters}{"A9}
   \fdsy@DeclareDelimiter{\mathslash}{\mathord}{delimiters}{"A9}
-  \fdsy@DeclareDelimiter{\divslash}{\mathbin}{delimiters}{"A9}
+  \DeclareMathSymbol{\divslash}{\mathbin}{delimiters}{"A9}
   \fdsy@DeclareDelimiter{\backslash}{\mathord}{delimiters}{"AF}
   \expandafter\DeclareMathDelimiter\@backslashchar%
     {\mathord}{delimiters}{"AF}{delimiters}{"AF}
-  \fdsy@DeclareDelimiter{\setminus}{\mathbin}{delimiters}{"AF}
-  \fdsy@DeclareDelimiter{|}{\mathord}{delimiters}{"B5}
-  \fdsy@DeclareDelimiter{\vert}{\mathord}{delimiters}{"B5}
-  \fdsy@DeclareDelimiter{\mvert}{\mathrel}{delimiters}{"B5}
-  \fdsy@DeclareOpen{\lvert}{delimiters}{"B5}
-  \fdsy@DeclareClose{\rvert}{delimiters}{"B5}
-  \fdsy@DeclareDelimiter{\Vert}{\mathord}{delimiters}{"B8}
-  \fdsy@DeclareDelimiter{\mVert}{\mathrel}{delimiters}{"B8}
-  \fdsy@DeclareOpen{\lVert}{delimiters}{"B8}
-  \fdsy@DeclareClose{\rVert}{delimiters}{"B8}
-  \fdsy@DeclareDelimiter{\Vvert}{\mathord}{delimiters}{"BB}
-  \fdsy@DeclareDelimiter{\mVvert}{\mathrel}{delimiters}{"BB}
-  \fdsy@DeclareOpen{\lVvert}{delimiters}{"BB}
-  \fdsy@DeclareClose{\rVvert}{delimiters}{"BB}
+  \DeclareMathSymbol{\setminus}{\mathbin}{delimiters}{"AF}
+  \fdsy@DeclareDelimiter{|}{\mathord}{delimiters}{"B6}
+  \fdsy@DeclareDelimiter{\vert}{\mathord}{delimiters}{"B6}
+  \fdsy@DeclareOpen{\lvert}{delimiters}{"B6}
+  \fdsy@DeclareClose{\rvert}{delimiters}{"B6}
+  \DeclareMathSymbol{\mid}{\mathrel}{delimiters}{"B6}
+  \DeclareMathSymbol{\nmid}{\mathrel}{delimiters}{"B9}
+  \fdsy@DeclareDelimiter{\Vert}{\mathord}{delimiters}{"BD}
+  \fdsy@DeclareOpen{\lVert}{delimiters}{"BD}
+  \fdsy@DeclareClose{\rVert}{delimiters}{"BD}
+  \DeclareMathSymbol{\parallel}{\mathrel}{delimiters}{"BD}
+  \DeclareMathSymbol{\nparallel}{\mathrel}{delimiters}{"C0}
+  \fdsy@DeclareDelimiter{\Vvert}{\mathord}{delimiters}{"C3}
+  \fdsy@DeclareOpen{\lVvert}{delimiters}{"C3}
+  \fdsy@DeclareClose{\rVvert}{delimiters}{"C3}
 \fi
-
-\let\mid\mvert
 \let\|\Vert
-\fdsy@DeclareDelimiter{\arrowvert}{\mathord}{delimiters}{"B7}
-\fdsy@DeclareDelimiter{\Arrowvert}{\mathord}{delimiters}{"BA}
+\let\divides\mid
+\let\ndivides\nmid
+\DeclareMathSymbol{\shortmid}{\mathrel}{delimiters}{"B5}
+\DeclareMathSymbol{\nshortmid}{\mathrel}{delimiters}{"B8}
+\DeclareMathSymbol{\shortparallel}{\mathrel}{delimiters}{"BC}
+\DeclareMathSymbol{\nshortparallel}{\mathrel}{delimiters}{"BF}
+\fdsy@DeclareDelimiter{\arrowvert}{\mathord}{delimiters}{"BB}
+\fdsy@DeclareDelimiter{\Arrowvert}{\mathord}{delimiters}{"C2}
 \fdsy@DeclareClose{\lgroup}{delimiters}{"7E}
 \fdsy@DeclareOpen{\rgroup}{delimiters}{"7F}
 \fdsy@DeclareClose{\rmoustache}{delimiters}{"80}
 \fdsy@DeclareOpen{\lmoustache}{delimiters}{"81}
 \fdsy@DeclareDelimiter{\bracevert}{\mathord}{delimiters}{"84}
-
 \let\uparrow\undefined
 \let\downarrow\undefined
 \let\updownarrow\undefined
 \let\Uparrow\undefined
 \let\Downarrow\undefined
 \let\Updownarrow\undefined
-\DeclareMathDelimiter{\uparrow}{\mathrel}{arrows}{"01}{delimiters}{"BE}
-\DeclareMathDelimiter{\downarrow}{\mathrel}{arrows}{"03}{delimiters}{"BF}
-\DeclareMathDelimiter{\updownarrow}{\mathrel}{arrows}{"11}{delimiters}{"C0}
-\DeclareMathDelimiter{\Uparrow}{\mathrel}{arrows}{"09}{delimiters}{"C1}
-\DeclareMathDelimiter{\Downarrow}{\mathrel}{arrows}{"0B}{delimiters}{"C2}
-\DeclareMathDelimiter{\Updownarrow}{\mathrel}{arrows}{"15}{delimiters}{"C3}
+\DeclareMathDelimiter{\uparrow}{\mathrel}{arrows}{"01}{delimiters}{"C6}
+\DeclareMathDelimiter{\downarrow}{\mathrel}{arrows}{"03}{delimiters}{"C7}
+\DeclareMathDelimiter{\updownarrow}{\mathrel}{arrows}{"11}{delimiters}{"C8}
+\DeclareMathDelimiter{\Uparrow}{\mathrel}{arrows}{"09}{delimiters}{"C9}
+\DeclareMathDelimiter{\Downarrow}{\mathrel}{arrows}{"0B}{delimiters}{"CA}
+\DeclareMathDelimiter{\Updownarrow}{\mathrel}{arrows}{"15}{delimiters}{"CB}
 %    \end{macrocode}
 % Horizontal braces.
 %    \begin{macrocode}
-\DeclareMathSymbol{\braceld}{\mathord}{delimiters}{"C4}
-\DeclareMathSymbol{\bracelu}{\mathord}{delimiters}{"C5}
-\DeclareMathSymbol{\bracerd}{\mathord}{delimiters}{"C6}
-\DeclareMathSymbol{\braceru}{\mathord}{delimiters}{"C7}
-\DeclareMathSymbol{\bracemd}{\mathord}{delimiters}{"C8}
-\DeclareMathSymbol{\bracemu}{\mathord}{delimiters}{"C9}
-\DeclareMathSymbol{\bracemid}{\mathord}{delimiters}{"CA}
+\DeclareMathSymbol{\braceld}{\mathord}{delimiters}{"CC}
+\DeclareMathSymbol{\bracelu}{\mathord}{delimiters}{"CD}
+\DeclareMathSymbol{\bracerd}{\mathord}{delimiters}{"CE}
+\DeclareMathSymbol{\braceru}{\mathord}{delimiters}{"CF}
+\DeclareMathSymbol{\bracemd}{\mathord}{delimiters}{"D0}
+\DeclareMathSymbol{\bracemu}{\mathord}{delimiters}{"D1}
+\DeclareMathSymbol{\bracemid}{\mathord}{delimiters}{"D2}
 
 \def\bracefill@#1#2#3#4#5{$\m@th#5#1\leaders\hbox{$#4$}\hfill#2\leaders\hbox{$#4$}\hfill#3$}
 \def\downbracefill@{\bracefill@\braceld\bracemd\bracerd\bracemid}
@@ -3329,11 +3194,11 @@
 % Radical symbols.
 %    \begin{macrocode}
 \iffdsy@largedelims
-  \DeclareMathRadical{\sqrtsign}{delimiters}{"CC}{delimiters}{"CC}
-  \DeclareMathSymbol{\surd}{\mathop}{delimiters}{"CC}
+  \DeclareMathRadical{\sqrtsign}{delimiters}{"D4}{delimiters}{"D4}
+  \DeclareMathSymbol{\surd}{\mathop}{delimiters}{"D4}
 \else
-  \DeclareMathRadical{\sqrtsign}{delimiters}{"CB}{delimiters}{"CB}
-  \DeclareMathSymbol{\surd}{\mathop}{delimiters}{"CB}
+  \DeclareMathRadical{\sqrtsign}{delimiters}{"D3}{delimiters}{"D3}
+  \DeclareMathSymbol{\surd}{\mathop}{delimiters}{"D3}
 \fi
 %    \end{macrocode}
 % In the \textit{n}-th root, we don't want the~\textit{n} to come too
@@ -3345,9 +3210,9 @@
 %    \end{macrocode}
 % Mathchars.
 %    \begin{macrocode}
-\DeclareMathSymbol{+}{\mathbin}{symbols}{"15}
-\DeclareMathSymbol{-}{\mathbin}{symbols}{"12}
-\DeclareMathSymbol{*}{\mathbin}{symbols}{"97}
+\DeclareMathSymbol{+}{\mathbin}{symbols}{"11}
+\DeclareMathSymbol{-}{\mathbin}{symbols}{"0E}
+\DeclareMathSymbol{*}{\mathbin}{symbols}{"93}
 \DeclareMathSymbol{:}{\mathrel}{symbols}{"02}
 \DeclareMathSymbol{=}{\mathrel}{relations}{"00}
 \DeclareMathSymbol{<}{\mathrel}{relations}{"22}

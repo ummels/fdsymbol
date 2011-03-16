@@ -10,8 +10,8 @@ font_identifier := "FdSymbolA";
 design_size := 10;
 font_size design_size * pt#;
 
-input base.mf;
-input geometric.mf;
+input base;
+input ordinary;
 
 font_slant 0;
 font_x_height x_height#;

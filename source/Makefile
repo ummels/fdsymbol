@@ -1,6 +1,6 @@
 NAMES = A B C D E F
 WEIGHTS = Book Regular Medium Bold
-MFFILES = accents.mf arrows.mf base.mf delims.mf geometric.mf operators.mf order.mf
+MFFILES = accents.mf arrows.mf base.mf delims.mf operators.mf ordinary.mf relations.mf
 TFMFILES = $(foreach i,$(NAMES),$(patsubst %,FdSymbol$(i)-%.tfm,$(WEIGHTS)))
 PFAFILES = $(foreach i,$(NAMES),$(patsubst %,FdSymbol$(i)-%.pfa,$(WEIGHTS)))
 PFBFILES = $(patsubst %,FdSymbol-%.pfb,$(WEIGHTS))

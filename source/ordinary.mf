@@ -64,37 +64,6 @@ beginoperator(plus_size#, 1); "double colon";
   fill dot(centre + r * dir 315, dot_size);
 endchar;
 
-for negated = false, true:
-  beginsymbol(if negated: 3/4plus_size# else: 1/4plus_size# fi + line_thickness# + 2side_bearing#, vcentre(plus_size#)); "medium bar";
-    pair centre;
-    centre := (w/2, (h-d)/2);
-
-    draw_line(centre + plus_size/2 * up, centre - plus_size/2 * up, false);
-  
-    if negated:
-      arrow_dir := 0;
-      stroke_through_arrow(centre, 90, 2/3plus_size, 45);
-    fi;
-  endchar;
-
-  beginsymbol(if negated: 1/2plus_size# else: 1/4plus_size# fi + equal_spread# + line_thickness# + 2side_bearing#, vcentre(plus_size#)); "double bar";
-    pair centre;
-	centre := (w/2, (h-d)/2);
-	r := plus_size/2;
-
-    z1 - z0 = equal_spread * right;
-    1/2[z0,z1] = centre;
-
-    draw_line(z0 + r * up, z0 + r * down, false);
-    draw_line(z1 + r * up, z1 + r * down, false);
-
-    if negated:
-      arrow_dir := 0;
-      stroke_through_arrow(centre, 90, 2/3plus_size, 40);
-    fi
-  endchar;
-endfor;
-
 beginoperator(plus_size#, 1); "minus";
   draw_line(centre + radius * right, centre + radius * left, true);
 endchar;
@@ -162,7 +131,7 @@ beginoperator(plus_size#, 1); "minus with four dots";
   fill dot(centre + (radius - 3/4dot_size) * right + equal_spread * down, 3/4dot_size);
 endchar;
 
-beginoperator(plus_size#, 1); "divides";
+beginoperator(plus_size#, 1); "divide";
   draw_line(centre + radius * right, centre + radius * left, true);
   fill dot(centre + equal_spread * up, 3/4dot_size);
   fill dot(centre + equal_spread * down, 3/4dot_size);
@@ -1770,4 +1739,3 @@ beginsymbol(11u#, x_height#, desc_depth#); "Weierstrass p";
   penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13);
 endchar;
 endgroup;
-

@@ -1,10 +1,10 @@
 .PHONY: all clean
 
-all: fdsymbol.pdf fdsymbol.sty
+all: fdsymbol.sty fdsymbol.pdf
 
 fdsymbol.pdf: fdsymbol.dtx
 	pdflatex fdsymbol.dtx
-	while grep -s 'Rerun to get cross-references right.' fdsymbol.log; do \
+	while grep -s 'Rerun to get' fdsymbol.log; do \
 	  pdflatex fdsymbol.dtx; \
 	done
 

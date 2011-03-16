@@ -4,9 +4,9 @@
 /FdSymbolA [
 %00
   /dotmath /hdotdot /ratio /udotdot /ddotdot /uni22EF /ellipsisvertical /uni22F0
-  /uni22F1 /righttherefore /therefore /lefttherefore /because /proportion /divides.small /parallel.small
+  /uni22F1 /righttherefore /therefore /lefttherefore /because /proportion
 %10
-  /uni2224.small /notparallel.short /minus /divisionslash.small /uni2216 /plus /multiply /plusminus
+  /minus /divisionslash.small /uni2216 /plus /multiply /plusminus
   /minusplus /uni2238 /uni2A2A /uni2A2B /uni2A2C /uni223A /divide /logicalnot 
 %20
   /revlogicalnot /uni2A3C /uni2A3D /uni22CB /uni22CC /uni2A32 /uni22CA /utimes
@@ -50,4 +50,5 @@
 %F0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
 ] def

@@ -746,4 +746,4 @@ if not negated:
     draw_line(z0 - s * dir (arrow_dir + 90), z0 + s * dir (arrow_dir + 90), true);
     draw_line(z1 - s * dir (arrow_dir + 90), z1 + s * dir (arrow_dir + 90), true);
   endchar;
-fi;
+fi

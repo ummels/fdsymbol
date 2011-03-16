@@ -10,11 +10,11 @@ font_identifier := "FdSymbolC";
 design_size := 10;
 font_size design_size * pt#;
 
-input base.mf;
+input base;
 
 boolean negated;
 negated := false;
 
-input arrows.mf;
+input arrows;
 
 bye;

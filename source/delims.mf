@@ -355,39 +355,59 @@ endfor;
 
 % vertical bars
 
-for scale = 1, 1.2:
-  beginsymbol(2u# + line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "vertical bar";
-    x2 = x3 = w/2;
-    y2 = h;
-    y3 = -d;
+for negated = false, true:
+  for scale = 0.5, 1, 1.2:
+    beginsymbol(if negated: 4u# else: 2u# fi + line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "vertical bar";
+      x0 = x1 = w/2;
+      y0 = h;
+      y1 = -d;
 
-    draw_line(z2, z3, false);
-  endchar;
+      draw_line(z0, z1, false);
+
+      if negated:
+        if scale < 1: theta := 30; else: theta := 45; fi
+        len := 2u / cosd theta;
+
+        draw_straight(1/2[z0,z1] + len * dir theta, 1/2[z0,z1] - len * dir theta, stroke_through_thickness, true);
+      fi
+    endchar;
+  endfor;
 endfor;
 
 beginsymbol(2u# + line_thickness# + 2side_bearing#, vcentre(0.6delim_height#)); "vertical bar -- module";
-  x2 = x3 = w/2;
-  y2 = h + 1/2line_thickness;
-  y3 = -d - 1/2line_thickness;
+  x0 = x1 = w/2;
+  y0 = h + 1/2line_thickness;
+  y1 = -d - 1/2line_thickness;
 
-  draw_line(z2, z3, false);
+  draw_line(z0, z1, false);
 endchar;
 
 extensible current_char: 0, 0, 0, current_char; % vertical bar
-charlist current_char - 2: current_char - 1: current_char;
+charlist current_char - 5: current_char - 4: current_char;
 
-for scale = 1, 1.2:
-  beginsymbol(5u# + 2line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "double vertical bar";
-    x0 = x1;
-    x2 = x3;
-    1/2[x0,x2] = w/2;
-    x2 - x0 = 3u + line_thickness;
-    y0 = y2 = h;
-    y1 = y3 = -d;
+for negated = false, true:
+  for scale = 0.5, 1, 1.2:
+    beginsymbol(if negated: 7u# else: 5u# fi + 2line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "double vertical bar";
+      x0 = x1;
+      x2 = x3;
+      1/2[x0,x2] = w/2;
+      x2 - x0 = 3u + line_thickness;
+      y0 = y2 = h;
+      y1 = y3 = -d;
 
-    draw_line(z0, z1, false);
-    draw_line(z2, z3, false);
-  endchar;
+      draw_line(z0, z1, false);
+      draw_line(z2, z3, false);
+
+	  if negated:
+        if scale < 1: theta := 30; else: theta := 45; fi
+        len := 1/2(7u + line_thickness) / cosd theta;
+        pair centre;
+        centre := 1/2[1/2[z0,z1],1/2[z2,z3]];
+
+        draw_straight(centre + len * dir theta, centre - len * dir theta, stroke_through_thickness, true);
+      fi
+    endchar;
+  endfor;
 endfor;
 
 beginsymbol(5u# + 2line_thickness# + 2side_bearing#, vcentre(0.6delim_height#)); "double vertical bar -- module";
@@ -403,7 +423,7 @@ beginsymbol(5u# + 2line_thickness# + 2side_bearing#, vcentre(0.6delim_height#));
 endchar;
 
 extensible current_char: 0, 0, 0, current_char; % double vertical line
-charlist current_char - 2: current_char -1: current_char;
+charlist current_char - 5: current_char -4: current_char;
 
 for scale = 1, 1.2:
   beginsymbol(8u# + 3line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "tripe vertical bar";
@@ -441,7 +461,7 @@ charlist current_char - 2: current_char -1: current_char;
 % Arrows
 
 for arrow_dir = 90, 270:
-  beginsymbol(5u# + line_thickness# + 2side_bearing#, vcentre(0.6delim_height#)); "arrow up/down";
+  beginsymbol(5u# + line_thickness# + 2side_bearing#, vcentre(1.2delim_height#)); "arrow up/down";
     pair foot, head;
 
     if arrow_dir = 90:
@@ -469,7 +489,7 @@ extensible current_char-1: current_char, 0, current_char-1, current_char;
 extensible current_char: current_char-2, 0, current_char-1, current_char;
 
 for arrow_dir = 90, 270:
-  beginsymbol(7u# + line_thickness# + 2side_bearing#, vcentre(0.6delim_height#)); "double arrow up/down";
+  beginsymbol(7u# + line_thickness# + 2side_bearing#, vcentre(1.2delim_height#)); "double arrow up/down";
     pair foot, head;
 
     if arrow_dir = 90:

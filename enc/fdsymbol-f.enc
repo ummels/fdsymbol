@@ -1,7 +1,6 @@
 % TeX extra characters encoding.
 % CODINGSCHEME FONTSPECIFIC
 %
-
 /FdSymbolF [
 %00
   /parenleft /parenleft.big1 /parenleft.big2 /parenleft.big3 /parenleft.big4 /parenleft.big5 /parenright /parenright.big1
@@ -37,14 +36,14 @@
   /uni2991.big3 /uni2991.big4 /uni2991.big5 /uni2992 /uni2992.big1 /uni2992.big2 /uni2992.big3 /uni2992.big4
   /uni2992.big5 /slash /slash.big1 /slash.big2 /slash.big3 /slash.big4 /slash.big5 /backslash
 %B0
-  /backslash.big1 /backslash.big2 /backslash.big3 /backslash.big4 /backslash.big5 /verticalbar /verticalbar.big1 /arrowvert
-  /dblverticalbar /dblverticalbar.big1 /dblarrowvert /uni2980 /uni2980.big1 /trparrowvert /arrowtop /arrowbot
+  /backslash.big1 /backslash.big2 /backslash.big3 /backslash.big4 /backslash.big5 /divides.small /verticalbar /verticalbar.big1
+  /uni2224.small /uni2224 /uni224.big1 /arrowvert /parallel.small /dblverticalbar /dblverticalbar.big1 /notparallel.small
 %C0
+  /notparallel /notparallel.big1 /dblarrowvert /uni2980 /uni2980.big1 /trparrowvert /arrowtop /arrowbot
   /arrowmod /dblarrowtop /dblarrowbot /dblarrowmod /ucurlyleft /dcurlyleft /ucurlyright /dcurlyright
-  /ucurlymid /dcurlymid /udcurlymod /radical /radical.big1 /radical.big2 /radical.big3 /radical.big4
 %D0
+  /ucurlymid /dcurlymid /udcurlymod /radical /radical.big1 /radical.big2 /radical.big3 /radical.big4
   /radical.big5 /roottop /uni23B7 /rootmod /.notdef /.notdef /.notdef /.notdef
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %E0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
