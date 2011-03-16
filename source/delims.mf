@@ -357,7 +357,7 @@ endfor;
 
 for negated = false, true:
   for scale = 0.5, 1, 1.2:
-    beginsymbol(if negated: 4u# else: 2u# fi + line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "vertical bar";
+    beginsymbol(2u# + if negated: 2u# + floor scale * u# else: 0u# fi + line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "vertical bar";
       x0 = x1 = w/2;
       y0 = h;
       y1 = -d;
@@ -366,7 +366,7 @@ for negated = false, true:
 
       if negated:
         if scale < 1: theta := 30; else: theta := 45; fi
-        len := 2u / cosd theta;
+        len := 1/2(4u + floor scale * u) / cosd theta;
 
         draw_straight(1/2[z0,z1] + len * dir theta, 1/2[z0,z1] - len * dir theta, stroke_through_thickness, true);
       fi
@@ -387,7 +387,7 @@ charlist current_char - 5: current_char - 4: current_char;
 
 for negated = false, true:
   for scale = 0.5, 1, 1.2:
-    beginsymbol(if negated: 7u# else: 5u# fi + 2line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "double vertical bar";
+    beginsymbol(5u# + if negated: 2u# + floor scale * u# else: 0u# fi + 2line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "double vertical bar";
       x0 = x1;
       x2 = x3;
       1/2[x0,x2] = w/2;
@@ -400,7 +400,7 @@ for negated = false, true:
 
 	  if negated:
         if scale < 1: theta := 30; else: theta := 45; fi
-        len := 1/2(7u + line_thickness) / cosd theta;
+        len := 1/2(7u + floor scale * u + line_thickness) / cosd theta;
         pair centre;
         centre := 1/2[1/2[z0,z1],1/2[z2,z3]];
 
