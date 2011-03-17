@@ -34,20 +34,20 @@
   /uni293B /rcurvearrowup /uni21B6 /uni2939 /rcurvearrowne /rcurvearrownw /rcurvearrowsw /uni293F
 %A0
   /curvearrowleftright /curvearrowupdown /curvearrowrightleft /curvearrowdownup /curvearrownesw /curvearrownwse /curvearrowswne /curvearrowsenw
-  /leftrightline /divides /neswline /nwseline /Leftrightline /parallel /uni27DD /uni27DE
+  /uni27DD /uni27DE /acwcirclearrowup /uni21BA /uni27F2 /acwcirclearrowright /uni27F3 /uni21BB
 %B0
-  /uni22A2 /uni27C2 /uni22A3 /downvdash /uni22A8 /uni2AEB /uni2AE4 /uni2AEA
-  /uni22A9 /uni234A /uni2AE3 /uni2351 /uni22AB /upVDash /uni2AE5 /downVDash
+  /cwcirclearrowup /cwcirclearrowleft /uni21DB /uni290A /uni21DA /uni290B /uni21B0 /uni21B1
+  /uni21B2 /uni21B3 /uni21AC /uni21AB /.notdef /.notdef /.notdef /.notdef
 %C0
-  /acwcirclearrowup /uni21BA /uni27F2 /acwcirclearrowright /uni27F3 /uni21BB /cwcirclearrowup /cwcirclearrowleft
-  /uni21DB /uni290A /uni21DA /uni290B /uni21B0 /uni21B1 /uni21B2 /uni21B3
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %D0
-  /uni21AC /uni21AB /uni22AA /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %E0
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /uni22A2 /uni27C2 /uni22A3 /downvdash /uni22A8 /uni2AEB /uni2AE4 /uni2AEA
+  /uni22A9 /uni234A /uni2AE3 /uni2351 /uni22AB /upVDash /uni2AE5 /downVDash
 %F0
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /uni22AA /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 ] def

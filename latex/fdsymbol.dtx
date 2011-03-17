@@ -21,10 +21,10 @@
 %
 %\iffalse
 %<*driver>
-\ProvidesFile{fdsymbol.dtx}[2011/03/08 v1.0 FdSymbol support package]
+\ProvidesFile{fdsymbol.dtx}[2011/03/08 v0.5 FdSymbol support package]
 %</driver>
 %<style>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<style>\ProvidesPackage{fdsymbol}[2011/03/08 v1.0 FdSymbol support package]
+%<style>\ProvidesPackage{fdsymbol}[2011/03/08 v0.5 FdSymbol support package]
 %<*driver>
 \documentclass[10pt]{ltxdoc}
 
@@ -400,7 +400,7 @@
 %
 % \begin{multicols}{2}
 % \raggedright
-% \showsymbol{=}, \cmd{\equal}
+% \showsymbol{=}, \cmd{\equal}, \cmd{\Relbar}
 % \showsymbol{\coloneq}, \cmd{\coloneqq}
 % \showsymbol{\equiv}
 % \showsymbol{\sim}
@@ -710,20 +710,48 @@
 % \showsymbol{\nwsecurvearrow}
 % \showsymbol{\swnecurvearrow}
 % \showsymbol{\senwcurvearrow}
-% \showsymbol{\leftrightline},
-%   \cmd{\relbar}
-% \showsymbol{\updownline}
-% \showsymbol{\neswline},
-%   \cmd{\diagup}
-% \showsymbol{\nwseline},
-%   \cmd{\diagdown}
-% \showsymbol{\Leftrightline},
-%   \cmd{\Relbar}
-% \showsymbol{\Updownline}
 % \showsymbol{\leftfootline},
 %   \cmd{\vlongdash}
 % \showsymbol{\rightfootline},
 %   \cmd{\longdashv}
+% \showsymbol{\acwcirclearrowup}
+% \showsymbol{\acwcirclearrowleft},
+%   \cmd{\circlearrowleft},
+%   \cmd{\acwopencirclearrow}
+% \showsymbol{\acwcirclearrowdown},
+%   \cmd{\acwgapcirclearrow}
+% \showsymbol{\acwcirclearrowright}
+% \showsymbol{\cwcirclearrowdown},
+%   \cmd{\cwgapcirclearrow}
+% \showsymbol{\cwcirclearrowright},
+%   \cmd{\circlearrowright},
+%   \cmd{\cwopencirclearrow}
+% \showsymbol{\cwcirclearrowup}
+% \showsymbol{\cwcirclearrowleft}
+% \showsymbol{\Rrightarrow}
+% \showsymbol{\Uuparrow}
+% \showsymbol{\Lleftarrow}
+% \showsymbol{\Ddownarrow}
+% \showsymbol{\Lsh}
+% \showsymbol{\Rsh}
+% \showsymbol{\Ldsh}
+% \showsymbol{\Rdsh}
+% \showsymbol{\looparrowright}
+% \showsymbol{\looparrowleft}
+% \showsymbol{\longrightarrow}
+% \showsymbol{\longleftarrow}
+% \showsymbol{\longleftrightarrow}
+% \showsymbol{\Longrightarrow}
+% \showsymbol{\Longleftarrow}
+% \showsymbol{\Longleftrightarrow}
+% \showsymbol{\longmapsto}
+% \showsymbol{\emptyblackspoon},
+%   \cmd{\origof}
+% \showsymbol{\filledemptyspoon},
+%   \cmd{\imageof}
+% \showsymbol{\leftrightspoon},
+%   \cmd{\dualmap}
+% \showsymbol{\leftrightblackspoon}
 % \showsymbol{\rightvdash},
 %   \cmd{\vdash},
 %   \cmd{\assert}
@@ -753,45 +781,7 @@
 % \showsymbol{\leftVDash},
 %   \cmd{\DashV}
 % \showsymbol{\downVDash}
-% \showsymbol{\acwcirclearrowup}
-% \showsymbol{\acwcirclearrowleft},
-%   \cmd{\circlearrowleft},
-%   \cmd{\acwopencirclearrow}
-% \showsymbol{\acwcirclearrowdown},
-%   \cmd{\acwgapcirclearrow}
-% \showsymbol{\acwcirclearrowright}
-% \showsymbol{\cwcirclearrowdown},
-%   \cmd{\cwgapcirclearrow}
-% \showsymbol{\cwcirclearrowright},
-%   \cmd{\circlearrowright},
-%   \cmd{\cwopencirclearrow}
-% \showsymbol{\cwcirclearrowup}
-% \showsymbol{\cwcirclearrowleft}
-% \showsymbol{\Rrightarrow}
-% \showsymbol{\Uuparrow}
-% \showsymbol{\Lleftarrow}
-% \showsymbol{\Ddownarrow}
-% \showsymbol{\Lsh}
-% \showsymbol{\Rsh}
-% \showsymbol{\Ldsh}
-% \showsymbol{\Rdsh}
-% \showsymbol{\looparrowright}
-% \showsymbol{\looparrowleft}
 % \showsymbol{\Vvdash}
-% \showsymbol{\longrightarrow}
-% \showsymbol{\longleftarrow}
-% \showsymbol{\longleftrightarrow}
-% \showsymbol{\Longrightarrow}
-% \showsymbol{\Longleftarrow}
-% \showsymbol{\Longleftrightarrow}
-% \showsymbol{\longmapsto}
-% \showsymbol{\emptyblackspoon},
-%   \cmd{\origof}
-% \showsymbol{\filledemptyspoon},
-%   \cmd{\imageof}
-% \showsymbol{\leftrightspoon},
-%   \cmd{\dualmap}
-% \showsymbol{\leftrightblackspoon}
 % \showsymbol{\nequal}, \cmd{\neq}, \cmd{\ne}
 % \showsymbol{\nequiv}
 % \showsymbol{\nsim}
@@ -1126,20 +1116,28 @@
 % \showsymbol{\nnwsecurvearrow}
 % \showsymbol{\nswnecurvearrow}
 % \showsymbol{\nsenwcurvearrow}
-% \showsymbol{\nleftrightline},
-%   \cmd{\nrelbar}
-% \showsymbol{\nupdownline},
-% \showsymbol{\nneswline},
-%   \cmd{\ndiagup}
-% \showsymbol{\nnwseline},
-%   \cmd{\ndiagdown}
-% \showsymbol{\nLeftrightline},
-%   \cmd{\nRelbar}
-% \showsymbol{\nUpdownline}
 % \showsymbol{\nleftfootline},
 %   \cmd{\nvlongdash}
 % \showsymbol{\nrightfootline},
 %   \cmd{\nlongdashv}
+% \showsymbol{\nacwcirclearrowup}
+% \showsymbol{\nacwcirclearrowleft},
+%   \cmd{\ncirclearrowleft},
+%   \cmd{\nacwopencirclearrow}
+% \showsymbol{\nacwcirclearrowdown},
+%   \cmd{\nacwgapcirclearrow}
+% \showsymbol{\nacwcirclearrowright}
+% \showsymbol{\ncwcirclearrowdown},
+%   \cmd{\ncwgapcirclearrow}
+% \showsymbol{\ncwcirclearrowright},
+%   \cmd{\ncirclearrowright},
+%   \cmd{\ncwopencirclearrow}
+% \showsymbol{\ncwcirclearrowup}
+% \showsymbol{\ncwcirclearrowleft}
+% \showsymbol{\nRrightarrow}
+% \showsymbol{\nUuparrow}
+% \showsymbol{\nLleftarrow}
+% \showsymbol{\nDdownarrow}
 % \showsymbol{\nrightvdash},
 %   \cmd{\nvdash},
 %   \cmd{\nassert}
@@ -1169,26 +1167,9 @@
 % \showsymbol{\nleftVDash},
 %   \cmd{\nDashV}
 % \showsymbol{\ndownVDash}
-% \showsymbol{\nacwcirclearrowup}
-% \showsymbol{\nacwcirclearrowleft},
-%   \cmd{\ncirclearrowleft},
-%   \cmd{\nacwopencirclearrow}
-% \showsymbol{\nacwcirclearrowdown},
-%   \cmd{\nacwgapcirclearrow}
-% \showsymbol{\nacwcirclearrowright}
-% \showsymbol{\ncwcirclearrowdown},
-%   \cmd{\ncwgapcirclearrow}
-% \showsymbol{\ncwcirclearrowright},
-%   \cmd{\ncirclearrowright},
-%   \cmd{\ncwopencirclearrow}
-% \showsymbol{\ncwcirclearrowup}
-% \showsymbol{\ncwcirclearrowleft}
-% \showsymbol{\nRrightarrow}
-% \showsymbol{\nUuparrow}
-% \showsymbol{\nLleftarrow}
-% \showsymbol{\nDdownarrow}
 % \showsymbol{:}, \cmd{\mathratio}
 % \showsymbol{\Colon}
+% \showsymbol{\relbar}
 % \showsymbol{\rJoin}
 % \showsymbol{\lJoin}
 % \showsymbol{\bowtie}, \cmd{\Join}
@@ -1407,11 +1388,9 @@
 % |\mapstochar|\par
 % |\lhook|\par
 % |\rhook|\par
+% |\diagup|\par
+% |\diagdown|
 % \end{multicols}
-%
-% \section{Version history}
-%
-% Version 0.1: Alpha Release
 %
 % \StopEventually{}
 %
@@ -2449,22 +2428,35 @@
 \fdsy@DeclareSymbol{\nwsecurvearrow}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\swnecurvearrow}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\senwcurvearrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\leftrightline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\@relbar}{arrows}{\mathrel}
-\DeclareRobustCommand\relbar{\@relbar\mathrel{\mkern-2.5mu}}
-\fdsy@DeclareSymbol{\updownline}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\neswline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\diagup}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\nwseline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\diagdown}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Leftrightline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\@Relbar}{arrows}{\mathrel}
-\DeclareRobustCommand\Relbar{\@Relbar\mathrel{\mkern-2.5mu}}
-\fdsy@DeclareSymbol{\Updownline}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\leftfootline}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\vlongdash}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\rightfootline}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\longdashv}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\acwcirclearrowup}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\acwcirclearrowleft}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\circlearrowleft}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\acwopencirclearrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\acwcirclearrowdown}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\acwgapcirclearrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\acwcirclearrowright}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\cwcirclearrowdown}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\cwgapcirclearrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\cwcirclearrowright}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\circlearrowright}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\cwopencirclearrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\cwcirclearrowup}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\cwcirclearrowleft}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Rrightarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Uuparrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Lleftarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Ddownarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Lsh}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Rsh}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Ldsh}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Rdsh}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\looparrowright}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\looparrowleft}{arrows}{\mathrel}
+\fdsy@setslot{224}
 \fdsy@DeclareSymbol{\rightvdash}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\vdash}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\assert}{arrows}{\mathrel}
@@ -2494,41 +2486,19 @@
 \fdsy@DeclareSymbol{\leftVDash}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\DashV}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\downVDash}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\acwcirclearrowup}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\acwcirclearrowleft}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\circlearrowleft}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\acwopencirclearrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\acwcirclearrowdown}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\acwgapcirclearrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\acwcirclearrowright}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\cwcirclearrowdown}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\cwgapcirclearrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\cwcirclearrowright}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\circlearrowright}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\cwopencirclearrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\cwcirclearrowup}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\cwcirclearrowleft}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Rrightarrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Uuparrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Lleftarrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Ddownarrow}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Lsh}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Rsh}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Ldsh}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\Rdsh}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\looparrowright}{arrows}{\mathrel}
-\fdsy@DeclareSymbol{\looparrowleft}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\Vvdash}{arrows}{\mathrel}
 
+\DeclareRobustCommand{\relbar}{\mathrel{\smash-}}
+\DeclareRobustCommand{\Relbar}{\mathrel=}
 \let\joinrel\undefined
 \DeclareRobustCommand\joinrel{\mathrel{\mkern-4mu}}
-\DeclareRobustCommand\longrightarrow{\DOTSB\leftrightline\joinrel\rightarrow}
-\DeclareRobustCommand\longleftarrow{\DOTSB\leftarrow\joinrel\leftrightline}
+\DeclareRobustCommand\longrightarrow{\DOTSB\relbar\joinrel\rightarrow}
+\DeclareRobustCommand\longleftarrow{\DOTSB\leftarrow\joinrel\relbar}
 \DeclareRobustCommand\longleftrightarrow{\DOTSB\leftarrow\joinrel\rightarrow}
-\DeclareRobustCommand\Longrightarrow{\DOTSB\Leftrightline\joinrel\Rightarrow}
-\DeclareRobustCommand\Longleftarrow{\DOTSB\Leftarrow\joinrel\Leftrightline}
+\DeclareRobustCommand\Longrightarrow{\DOTSB\Relbar\joinrel\Rightarrow}
+\DeclareRobustCommand\Longleftarrow{\DOTSB\Leftarrow\joinrel\Relbar}
 \DeclareRobustCommand\Longleftrightarrow{\DOTSB\Leftarrow\joinrel\Rightarrow}
-\DeclareRobustCommand\longmapsto{\DOTSB\leftfootline\joinrel\rightarrow}
+\DeclareRobustCommand\longmapsto{\DOTSB\leftfootline\mkern-7mu\rightarrow}
 \DeclareRobustCommand\emptyblackspoon{\DOTSB\leftspoon\mkern-13mu\rightblackspoon}
 \let\origof\emptyblackspoon
 \DeclareRobustCommand\filledemptyspoon{\DOTSB\leftblackspoon\mkern-13mu\rightspoon}
@@ -2742,22 +2712,29 @@
 \fdsy@DeclareSymbol{\nnwsecurvearrow}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nswnecurvearrow}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nsenwcurvearrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nleftrightline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\n@relbar}{narrows}{\mathrel}
-\DeclareRobustCommand\nrelbar{\n@relbar\mathrel{\mkern-2.5mu}}
-\fdsy@DeclareSymbol{\nupdownline}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nneswline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ndiagup}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nnwseline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ndiagdown}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nLeftrightline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\n@Relbar}{narrows}{\mathrel}
-\DeclareRobustCommand\nRelbar{\n@Relbar\mathrel{\mkern-2.5mu}}
-\fdsy@DeclareSymbol{\nUpdownline}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nleftfootline}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nvlongdash}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nrightfootline}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nlongdashv}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nacwcirclearrowup}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nacwcirclearrowleft}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\ncirclearrowleft}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nacwopencirclearrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nacwcirclearrowdown}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nacwgapcirclearrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nacwcirclearrowright}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\ncwcirclearrowdown}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\ncwgapcirclearrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\ncwcirclearrowright}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\ncirclearrowright}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\ncwopencirclearrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\ncwcirclearrowup}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\ncwcirclearrowleft}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nRrightarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nUuparrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nLleftarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nDdownarrow}{narrows}{\mathrel}
+\fdsy@setslot{224}
 \fdsy@DeclareSymbol{\nrightvdash}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nvdash}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nassert}{narrows}{\mathrel}
@@ -2787,24 +2764,6 @@
 \fdsy@DeclareSymbol{\nleftVDash}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nDashV}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\ndownVDash}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nacwcirclearrowup}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nacwcirclearrowleft}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ncirclearrowleft}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\nacwopencirclearrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nacwcirclearrowdown}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\nacwgapcirclearrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nacwcirclearrowright}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\ncwcirclearrowdown}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ncwgapcirclearrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\ncwcirclearrowright}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ncirclearrowright}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\ncwopencirclearrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\ncwcirclearrowup}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\ncwcirclearrowleft}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nRrightarrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nUuparrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nLleftarrow}{narrows}{\mathrel}
-\fdsy@DeclareSymbol{\nDdownarrow}{narrows}{\mathrel}
 %    \end{macrocode}
 % FdSymbolE: large operators
 %    \begin{macrocode}

@@ -34,19 +34,19 @@
   /uni293B0338 /rcurvearrowup_uni0338 /uni21B60338 /uni29390338 /rcurvearrowne_uni0338 /rcurvearrownw_uni0338 /rcurvearrowsw_uni0338 /uni293F0338
 %A0
   /curvearrowleftright_uni0338 /curvearrowupdown_uni0338 /curvearrowrightleft_uni0338 /curvearrowdownup_uni0338 /curvearrownesw_uni0338 /curvearrownwse_uni0338 /curvearrowswne_uni0338 /curvearrowsenw_uni0338
-  /leftrightline_uni0338 /uni2224 /neswline_uni0338 /nwseline_uni0338 /Leftrightline_uni0338 /notparallel /uni27DD0338 /uni27DE0338
+  /uni27DD0338 /uni27DE0338 /acwcirclearrowup_uni0338 /uni21BA0338 /uni27F20338 /acwcirclearrowright_uni0338 /uni27F30338 /uni21BB0338
 %B0
-  /uni22AC /uni27C20338 /uni22A30338 /downvdash_uni0338 /uni22AD /uni2AEB0338 /uni2AE40338 /uni2AEA0338
-  /uni22AE /uni234A0338 /uni2AE30338 /uni23510338 /uni22AF /upVDash_uni0338 /uni2AE50338 /downVDash_uni0338
+  /cwcirclearrowup_uni0338 /cwcirclearrowleft_uni0338 /uni21DB0338 /uni290A0338 /uni21DA0338 /uni290B0338 /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %C0
-  /acwcirclearrowup_uni0338 /uni21BA0338 /uni27F20338 /acwcirclearrowright_uni0338 /uni27F30338 /uni21BB0338 /cwcirclearrowup_uni0338 /cwcirclearrowleft_uni0338
-  /uni21DB0338 /uni290A0338 /uni21DA0338 /uni290B0338 /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %D0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %E0
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /uni22AC /uni27C20338 /uni22A30338 /downvdash_uni0338 /uni22AD /uni2AEB0338 /uni2AE40338 /uni2AEA0338
+  /uni22AE /uni234A0338 /uni2AE30338 /uni23510338 /uni22AF /upVDash_uni0338 /uni2AE50338 /downVDash_uni0338
 %F0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
