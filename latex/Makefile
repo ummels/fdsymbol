@@ -1,15 +1,32 @@
-.PHONY: all clean
+LATEX = pdflatex
+INSTALL = install
+INSTALLDATA = install -m 644
 
-all: fdsymbol.sty fdsymbol.pdf
+pkg = fdsymbol
+texmfdir = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 
-fdsymbol.pdf: fdsymbol.dtx
-	pdflatex fdsymbol.dtx
-	while grep -s 'Rerun to get' fdsymbol.log; do \
-	  pdflatex fdsymbol.dtx; \
+.PHONY: all package doc install clean
+
+all: package doc
+
+package: $(pkg).sty
+
+doc: $(pkg).pdf
+
+$(pkg).sty: $(pkg).ins $(pkg).dtx
+	$(LATEX) $(pkg).ins
+
+$(pkg).pdf: $(pkg).dtx
+	$(LATEX) $(pkg).dtx
+	while grep -s 'Rerun to get' $(pkg).log; do \
+	  $(LATEX) $(pkg).dtx; \
 	done
 
-fdsymbol.sty: fdsymbol.ins fdsymbol.dtx
-	latex fdsymbol.ins
+install: all
+	$(INSTALL) -d $(texmfdir)/tex/latex/fdsymbol
+	$(INSTALLDATA) $(pkg).sty $(texmfdir)/tex/latex/fdsymbol
+	$(INSTALL) -d $(texmfdir)/doc/latex/fdsymbol
+	$(INSTALLDATA) $(pkg).pdf $(texmfdir)/doc/latex/fdsymbol
 
 clean:
-	rm -f fdsymbol.aux fdsymbol.log fdsymbol.out fdsymbol.sty fdsymbol.pdf fdsymbol.toc
+	rm -f $(pkg).aux $(pkg).log $(pkg).out $(pkg).sty $(pkg).pdf $(pkg).toc

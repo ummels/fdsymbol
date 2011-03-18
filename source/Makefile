@@ -1,27 +1,47 @@
+FONTFORGE = fontforge
+MF = mf
+MFTRACE = mftrace
+INSTALL = install
+INSTALLDATA = install -m 644
+
+font = FdSymbol
 NAMES = A B C D E F
 WEIGHTS = Book Regular Medium Bold
-MFFILES = accents.mf arrows.mf base.mf delims.mf operators.mf ordinary.mf relations.mf
-TFMFILES = $(foreach i,$(NAMES),$(patsubst %,FdSymbol$(i)-%.tfm,$(WEIGHTS)))
-PFAFILES = $(foreach i,$(NAMES),$(patsubst %,FdSymbol$(i)-%.pfa,$(WEIGHTS)))
-PFBFILES = $(patsubst %,FdSymbol-%.pfb,$(WEIGHTS))
+texmfdir = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 
-getName = $(shell (echo $(1) | sed 's/FdSymbol\([A-Z]\).*/\1/'))
+MFFILES = accents.mf arrows.mf base.mf delims.mf operators.mf ordinary.mf relations.mf
+TFMFILES = $(foreach i,$(NAMES),$(patsubst %,$(font)$(i)-%.tfm,$(WEIGHTS)))
+PFAFILES = $(foreach i,$(NAMES),$(patsubst %,$(font)$(i)-%.pfa,$(WEIGHTS)))
+LOGFILES = $(foreach i,$(NAMES),$(patsubst %,$(font)$(i)-%.log,$(WEIGHTS)))
+PFBFILES = $(patsubst %,$(font)-%.pfb,$(WEIGHTS))
+
+getName = $(shell (echo $(1) | sed 's/$(font)\([A-Z]\).*/\1/'))
 getname = $(shell (echo $(call getName,$(1)) | tr "[:upper:]" "[:lower:]"))
 
-all: $(PFBFILES) $(TFMFILES)
+.PHONY: all metrics type1 install clean
 
-.PHONY: clean
+all: metrics type1
+
+metrics: $(TFMFILES)
+
+type1: $(PFBFILES)
+
+$(PFBFILES): $(font)-%.pfb: $(foreach i,$(NAMES),$(font)$(i)-%.pfa)
+	$(FONTFORGE) merge-fonts.pe $*
+
+install: all
+	$(INSTALL) -d $(texmfdir)/fonts/tfm/public/$(font)
+	$(INSTALLDATA) $(TFMFILES) $(texmfdir)/fonts/tfm/public/$(font)
+	$(INSTALL) -d $(texmfdir)/fonts/type1/public/$(font)
+	$(INSTALLDATA) $(PFBFILES) $(texmfdir)/fonts/type1/public/$(font)
 
 clean:
-	rm -f *.log *.tfm *.pfa *.pfb
-
-$(PFBFILES): FdSymbol-%.pfb: $(foreach i,$(NAMES),FdSymbol$(i)-%.pfa)
-	fontforge merge-fonts.pe $*
+	rm -f $(LOGFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES)
 
 .SECONDEXPANSION:
 
-$(TFMFILES): %.tfm: %.mf FdSymbol$$(call getName,$$*).mf $(MFFILES)
-	mf '\mode=nullmode; input $*'
+$(TFMFILES): %.tfm: %.mf $(font)$$(call getName,$$*).mf $(MFFILES)
+	$(MF) '\mode=nullmode; input $*'
 
 $(PFAFILES): %.pfa: ../enc/fdsymbol-$$(call getname,$$*).enc %.tfm
-	mftrace --simplify -e $< $*
+	$(MFTRACE) --simplify -e $< $*
