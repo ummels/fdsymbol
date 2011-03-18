@@ -23,7 +23,7 @@ http://github.com/...
 ChangeLog
 ---------
 
-9 Mar 2011 (Michael Ummels) FdSymbol version 1.000
+17 Mar 2011 (Michael Ummels) FdSymbol version 1.000
 - First public release
 
 
