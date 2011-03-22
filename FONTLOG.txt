@@ -17,7 +17,7 @@ FdSymbol is derived from MnSymbol, designed and released into the public
 domain by Achim Blumensath.
 
 FdSymbol development is currently hosted on:
-http://github.com/...
+http://github.com/ummels/fdsymbol
 
 
 ChangeLog
