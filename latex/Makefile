@@ -2,31 +2,31 @@ LATEX = pdflatex
 INSTALL = install
 INSTALLDATA = install -m 644
 
-pkg = fdsymbol
-texmfdir = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
+PKG = fdsymbol
+TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 
 .PHONY: all package doc install clean
 
-all: package doc
+all: package
 
-package: $(pkg).sty
+package: $(PKG).sty
 
-doc: $(pkg).pdf
+doc: $(PKG).pdf
 
-$(pkg).sty: $(pkg).ins $(pkg).dtx
-	$(LATEX) $(pkg).ins
+$(PKG).sty: $(PKG).ins $(PKG).dtx
+	$(LATEX) $(PKG).ins
 
-$(pkg).pdf: $(pkg).dtx
-	$(LATEX) $(pkg).dtx
-	while grep -s 'Rerun to get' $(pkg).log; do \
-	  $(LATEX) $(pkg).dtx; \
+$(PKG).pdf: $(PKG).dtx
+	$(LATEX) $(PKG).dtx
+	while grep -s 'Rerun to get' $(PKG).log; do \
+	  $(LATEX) $(PKG).dtx; \
 	done
 
-install: all
-	$(INSTALL) -d $(texmfdir)/tex/latex/fdsymbol
-	$(INSTALLDATA) $(pkg).sty $(texmfdir)/tex/latex/fdsymbol
-	$(INSTALL) -d $(texmfdir)/doc/latex/fdsymbol
-	$(INSTALLDATA) $(pkg).pdf $(texmfdir)/doc/latex/fdsymbol
+install: all doc
+	$(INSTALL) -d $(TEXMFDIR)/tex/latex/fdsymbol
+	$(INSTALLDATA) $(PKG).sty $(TEXMFDIR)/tex/latex/fdsymbol
+	$(INSTALL) -d $(TEXMFDIR)/doc/latex/fdsymbol
+	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/fdsymbol
 
 clean:
-	rm -f $(pkg).aux $(pkg).log $(pkg).out $(pkg).sty $(pkg).pdf $(pkg).toc
+	rm -f $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc
