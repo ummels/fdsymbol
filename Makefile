@@ -1,4 +1,4 @@
-SUBDIRS = source enc latex
+SUBDIRS = enc font latex
 INSTALL = install
 INSTALLDATA = install -m 644
 
