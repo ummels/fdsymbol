@@ -29,4 +29,4 @@ install: all doc
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/fdsymbol
 
 clean:
-	rm -f $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc
+	$(RM) $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc

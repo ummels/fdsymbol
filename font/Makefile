@@ -36,7 +36,7 @@ install: all
 	$(INSTALLDATA) $(PFBFILES) $(TEXMFDIR)/fonts/type1/public/$(FONT)
 
 clean:
-	rm -f $(LOGFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES)
+	$(RM) $(LOGFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES)
 
 .SECONDEXPANSION:
 
