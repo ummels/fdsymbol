@@ -10,11 +10,12 @@ typefaces.
 Usage
 -----
 
-Please see the PDF documentation for details. To get started, include
+To use this font in LaTeX, include
 
     \usepackage{fdsymbol}
 
-in the preamble of your LaTeX document.
+in the preamble of your LaTeX document. See the PDF documentation for
+the details.
 
 Installation
 ------------
@@ -46,13 +47,14 @@ License
 Copyright (c) 2011 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
 The font components of this software, e.g. MetaFont (.mf), TeX font metric
-(.tfm), and Type 1 (.pfb) files, are licensed under the [SIL Open Font
-License][OFL], Version 1.1.
+(.tfm), and Type 1 (.pfb) files, are licensed under the
+[SIL Open Font License][OFL], Version 1.1.
 
 [OFL]: http://scripts.sil.org/OFL
 
 The LaTeX support files contained in this software may be modified and
-distributed under the terms and conditions of the [LaTeX Project Public License][LPPL], version 1.3c or greater.
+distributed under the terms and conditions of the
+[LaTeX Project Public License][LPPL], version 1.3c or greater (your choice).
 
 [LPPL]: http://www.latex-project.org/lppl/
 
