@@ -231,12 +231,10 @@
 % \showsymbol{\flat}
 % \showsymbol{\natural}
 % \showsymbol{\sharp}
-% \iffalse
 % \showsymbol{\aleph}
 % \showsymbol{\beth}
 % \showsymbol{\gimel}
 % \showsymbol{\daleth}
-% \fi
 % \showsymbol{\wp}
 % \showsymbol{/}, \cmd{\mathslash} \iffalse Delimiters! \fi
 % \showsymbol{\backslash}
@@ -1378,10 +1376,6 @@
 % \fi
 % \begin{multicols}{3}
 % \parindent=0pt
-% |\aleph|\par
-% |\beth|\par
-% |\gimel|\par
-% |\daleth|\par
 % |\mho|\par
 % |\nabla|\par
 % |\eth|\par
@@ -1433,7 +1427,8 @@
   \or
     \renewcommand\fdsy@mweight{Book}
     \renewcommand\fdsy@msweight{Regular}
-  \fi}
+  \fi
+}
 \define@choicekey*{fdsymbol.sty}{boldweight}[\@tempa\@tempb]{medium,bold,auto}{%
   \ifcase\@tempb\relax
     \renewcommand\fdsy@bweight{Medium}
@@ -1444,7 +1439,8 @@
   \or
     \renewcommand\fdsy@bweight{Medium}
     \renewcommand\fdsy@bsweight{Bold}
-  \fi}
+  \fi
+}
 
 \ExecuteOptionsX{largedelims=false}
 \ProcessOptionsX
@@ -1514,13 +1510,15 @@
 \newcommand\fdsy@DeclareSymbol[3]{%
   \if\relax\noexpand#1\let#1\undefined\fi
   \expandafter\fdsy@@DeclareSymbol\expandafter{\the\@tempcnta}{#1}{#3}{#2}%
-  \fdsy@nextslot}
+  \fdsy@nextslot
+}
 \newcommand\fdsy@DeclareAlias[3]{\fdsy@prevslot\fdsy@DeclareSymbol{#1}{#2}{#3}}
 \newcommand\fdsy@DeclareOperator[3]{\def#1{\DOTSB#3\slimits@}}
 \newcommand\fdsy@DeclareIntegral[3]{\def#1{\DOTSI#3\ilimits@}}
 \newcommand\fdsy@DeclareDelimiter[4]{%
   \if\relax\noexpand#1\let#1\undefined\fi
-  \DeclareMathDelimiter{#1}{#2}{#3}{#4}{#3}{#4}}
+  \DeclareMathDelimiter{#1}{#2}{#3}{#4}{#3}{#4}%
+}
 \newcommand\fdsy@DeclareOpen[3]{\fdsy@DeclareDelimiter{#1}{\mathopen}{#2}{#3}}
 \newcommand\fdsy@DeclareClose[3]{\fdsy@DeclareDelimiter{#1}{\mathclose}{#2}{#3}}
 %    \end{macrocode}
@@ -1608,7 +1606,8 @@
     \text{\bfseries#1}%
   \else
     \text{\mdseries#1}%
-  \fi}
+  \fi
+}
 %    \end{macrocode}
 % FdSymbolA: binary operators and ordinary symbols
 %    \begin{macrocode}
@@ -1921,13 +1920,10 @@
 \fdsy@DeclareSymbol{\flat}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\natural}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\sharp}{symbols}{\mathord}
-\iffalse
 \fdsy@DeclareSymbol{\aleph}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\beth}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\gimel}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\daleth}{symbols}{\mathord}
-\fi
-\fdsy@setslot{202}
 \fdsy@DeclareSymbol{\wp}{symbols}{\mathord}
 %    \end{macrocode}
 % FdSymbolB: relations

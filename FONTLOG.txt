@@ -26,6 +26,8 @@ ChangeLog
 17 Mar 2011 (Michael Ummels) FdSymbol version 1.000
 - First public release
 
+31 Mar 2011 (Michael Ummels) FdSymbol version 1.001
+- Added aleph, beth, daleth and gimel
 
 Acknowledgements
 -------------------------
