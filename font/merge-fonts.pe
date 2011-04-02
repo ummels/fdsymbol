@@ -7,6 +7,7 @@
 # is also available with a FAQ at: http://scripts.sil.org/OFL
 #
 
+version = "1.001"
 weight=$argv[1];
 
 Open("FdSymbolA-" + weight + ".pfa");
@@ -16,7 +17,7 @@ MergeFonts("FdSymbolD-" + weight + ".pfa");
 MergeFonts("FdSymbolE-" + weight + ".pfa");
 MergeFonts("FdSymbolF-" + weight + ".pfa");
 
-SetFontNames("FdSymbol-" + weight, "FdSymbol", "FdSymbol", weight ,"Copyright (c) 2011, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.", "1.000");
+SetFontNames("FdSymbol-" + weight, "FdSymbol", "FdSymbol", weight ,"Copyright (c) 2011, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.", version);
 
 SelectAll();
 AddExtrema();
