@@ -1775,6 +1775,8 @@ beginsymbol(9u# + 2side_bearing#, cap_height#, 0); "daleth";
 
   fill stroke z0.e -- z1.e;
   fill stroke z2.e -- z3.e;
+
+  penlabels(0,1,2,3);
 endchar;
 
 begingroup;
@@ -1786,7 +1788,7 @@ currenttransform := identity slanted slant yscaled aspect_ratio scaled granulari
 
 beginsymbol(11u#, x_height#, desc_depth#); "Weierstrass p";
   numeric theta;
-  theta = 90-angle(8u,h);
+  theta = 90 - angle(8u,h);
   slope := -h/8u;  % angle at middle
   superness := 1/sqrt 2;
   superpull := 1/6;
@@ -1799,10 +1801,8 @@ beginsymbol(11u#, x_height#, desc_depth#); "Weierstrass p";
   y2l = h;
   y7r = -d;
   y1 = 2/5[-d, h];
-
   x3l = .5u;
   x6r = max(rt x7 + .5, .5w - .25u);
-
   x3r - x3l = x6r - x6l = 5/4line_thickness;
 
   ellipse_set(2l,3l,4l,1l);
@@ -1820,7 +1820,6 @@ beginsymbol(11u#, x_height#, desc_depth#); "Weierstrass p";
   penpos10(3/2line_thickness, 0);
   penpos11(line_thickness, -90);
   penpos12(line_thickness, -100);
-  penpos13(5/7line_thickness, -180);
 
   x10r = w - 1.5u + 1/2line_thickness;
   x8l  = 2.25u;
@@ -1833,9 +1832,6 @@ beginsymbol(11u#, x_height#, desc_depth#); "Weierstrass p";
 
   fill stroke z7e{left} ... z8e{up} ... pulled_arc.e(9,10) & pulled_arc.e(10,11) .. z12.e;  % stem and bowl
 
-  y13 - 5/7line_thickness = .15h;
-  %bulb(11,12,13);  % bulb
-
-  penlabels(1,2,3,4,5,6,7,8,9,10,11,12,13);
+  penlabels(1,2,3,4,5,6,7,8,9,10,11,12);
 endchar;
 endgroup;

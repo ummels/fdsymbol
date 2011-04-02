@@ -9,7 +9,7 @@ NAMES = A B C D E F
 WEIGHTS = Book Regular Medium Bold
 TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 
-MFFILES = accents.mf arrows.mf base.mf delims.mf operators.mf ordinary.mf relations.mf
+MFFILES = accents.mf arrows.mf base.mf delims.mf geometric.mf operators.mf relations.mf
 TFMFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.tfm,$(WEIGHTS)))
 PFAFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.pfa,$(WEIGHTS)))
 LOGFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
