@@ -23,10 +23,10 @@ $(PKG).pdf: $(PKG).dtx
 	done
 
 install: all doc
-	$(INSTALL) -d $(TEXMFDIR)/tex/latex/fdsymbol
-	$(INSTALLDATA) $(PKG).sty $(TEXMFDIR)/tex/latex/fdsymbol
-	$(INSTALL) -d $(TEXMFDIR)/doc/latex/fdsymbol
-	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/fdsymbol
+	$(INSTALL) -d $(TEXMFDIR)/tex/latex/$(PKG)
+	$(INSTALLDATA) $(PKG).sty $(TEXMFDIR)/tex/latex/$(PKG)
+	$(INSTALL) -d $(TEXMFDIR)/doc/latex/$(PKG)
+	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
 
 clean:
 	$(RM) $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc

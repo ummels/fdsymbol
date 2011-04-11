@@ -1,6 +1,7 @@
 INSTALL = install
 INSTALLDATA = install -m 644
 
+PKG = fdsymbol
 TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 
 .PHONY: all install clean
@@ -8,9 +9,9 @@ TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 all:
 
 install:
-	$(INSTALL) -d $(TEXMFDIR)/fonts/map/dvips/fdsymbol
-	$(INSTALLDATA) fdsymbol.map $(TEXMFDIR)/fonts/map/dvips/fdsymbol
-	$(INSTALL) -d $(TEXMFDIR)/fonts/enc/dvips/fdsymbol
-	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/fdsymbol
+	$(INSTALL) -d $(TEXMFDIR)/fonts/map/dvips/$(PKG)
+	$(INSTALLDATA) $(PKG).map $(TEXMFDIR)/fonts/map/dvips/$(PKG)
+	$(INSTALL) -d $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
+	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
 
 clean:

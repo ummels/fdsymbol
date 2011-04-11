@@ -2,6 +2,7 @@ SUBDIRS = enc font latex
 INSTALL = install
 INSTALLDATA = install -m 644
 
+FONT = FdSymbol
 TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
 
 .PHONY: all $(SUBDIRS) install $(SUBDIRS:%=install-%) clean $(SUBDIRS:%=clean-%)
@@ -12,8 +13,8 @@ $(SUBDIRS):
 	$(MAKE) -C $@
 
 install: $(SUBDIRS:%=install-%)
-	$(INSTALL) -d $(TEXMFDIR)/doc/fonts/FdSymbol
-	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/FdSymbol
+	$(INSTALL) -d $(TEXMFDIR)/doc/fonts/$(FONT)
+	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(FONT)
 
 $(SUBDIRS:%=install-%): install-%:
 	$(MAKE) -C $* install
