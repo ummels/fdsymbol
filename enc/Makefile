@@ -2,7 +2,7 @@ INSTALL = install
 INSTALLDATA = install -m 644
 
 PKG = fdsymbol
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
+TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
 .PHONY: all install clean
 

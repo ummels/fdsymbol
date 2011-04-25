@@ -3,7 +3,7 @@ INSTALL = install
 INSTALLDATA = install -m 644
 
 FONT = FdSymbol
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
+TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
 .PHONY: all $(SUBDIRS) install $(SUBDIRS:%=install-%) clean $(SUBDIRS:%=clean-%)
 

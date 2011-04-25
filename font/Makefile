@@ -7,16 +7,15 @@ INSTALLDATA = install -m 644
 FONT = FdSymbol
 NAMES = A B C D E F
 WEIGHTS = Book Regular Medium Bold
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME' | sed 's/:.*//'))
+TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
-MFFILES = accents.mf arrows.mf base.mf delims.mf geometric.mf operators.mf relations.mf
 TFMFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.tfm,$(WEIGHTS)))
 PFAFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.pfa,$(WEIGHTS)))
 LOGFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
+MKFILES = $(patsubst %,$(FONT)%.mak,$(NAMES))
 PFBFILES = $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
 
-getName = $(shell (echo $(1) | sed 's/$(FONT)\([A-Z]\).*/\1/'))
-getname = $(shell (echo $(call getName,$(1)) | tr "[:upper:]" "[:lower:]"))
+toLower = $(shell (echo $(1) | tr "[:upper:]" "[:lower:]"))
 
 .PHONY: all metrics type1 install clean
 
@@ -25,6 +24,18 @@ all: metrics type1
 metrics: $(TFMFILES)
 
 type1: $(PFBFILES)
+
+$(MKFILES): %.mak: %.mf
+	@echo "$(patsubst %,$*-%.tfm,$(WEIGHTS)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
+	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../enc/$(call toLower,$*).enc" >> $@
+
+-include $(MKFILES)
+
+$(TFMFILES): %.tfm: %.mf
+	$(MF) '\mode=nullmode; input $*'
+
+$(PFAFILES): %.pfa: %.tfm
+	$(MFTRACE) --simplify -e $(filter %.enc,$^) $*
 
 $(PFBFILES): $(FONT)-%.pfb: $(foreach i,$(NAMES),$(FONT)$(i)-%.pfa)
 	$(FONTFORGE) merge-fonts.pe $*
@@ -36,12 +47,4 @@ install: all
 	$(INSTALLDATA) $(PFBFILES) $(TEXMFDIR)/fonts/type1/public/$(FONT)
 
 clean:
-	$(RM) $(LOGFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES)
-
-.SECONDEXPANSION:
-
-$(TFMFILES): %.tfm: %.mf $(FONT)$$(call getName,$$*).mf $(MFFILES)
-	$(MF) '\mode=nullmode; input $*'
-
-$(PFAFILES): %.pfa: ../enc/fdsymbol-$$(call getname,$$*).enc %.tfm
-	$(MFTRACE) --simplify -e $< $*
+	$(RM) $(MKFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES) $(LOGFILES)
