@@ -5,21 +5,19 @@ INSTALLDATA = install -m 644
 FONT = FdSymbol
 TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
-.PHONY: all $(SUBDIRS) install $(SUBDIRS:%=install-%) clean $(SUBDIRS:%=clean-%)
+.PHONY: all install uninstall clean
 
-all: $(SUBDIRS)
+all:
+	for d in $(SUBDIRS); do $(MAKE) -C $$d; done
 
-$(SUBDIRS):
-	$(MAKE) -C $@
-
-install: $(SUBDIRS:%=install-%)
+install:
+	for d in $(SUBDIRS); do $(MAKE) -C $$d install; done
 	$(INSTALL) -d $(TEXMFDIR)/doc/fonts/$(FONT)
 	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(FONT)
 
-$(SUBDIRS:%=install-%): install-%:
-	$(MAKE) -C $* install
+uninstall:
+	for d in $(SUBDIRS); do $(MAKE) -C $$d uninstall; done
+	rm -rf $(TEXMFDIR)/doc/fonts/$(FONT)
 
-clean: $(SUBDIRS:%=clean-%)
-
-$(SUBDIRS:%=clean-%): clean-%:
-	$(MAKE) -C $* clean
+clean:
+	for d in $(SUBDIRS); do $(MAKE) -C $$d clean; done

@@ -14,4 +14,8 @@ install:
 	$(INSTALL) -d $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
 	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
 
+uninstall:
+	rm -rf $(TEXMFDIR)/fonts/map/dvips/$(PKG)
+	rm -rf $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
+
 clean:

@@ -15,7 +15,7 @@ LOGFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
 MKFILES = $(patsubst %,$(FONT)%.mak,$(NAMES))
 PFBFILES = $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
 
-toLower = $(shell (echo $(1) | tr "[:upper:]" "[:lower:]"))
+tolower = $(shell (echo $(1) | tr "[:upper:]" "[:lower:]"))
 
 .PHONY: all metrics type1 install clean
 
@@ -27,7 +27,7 @@ type1: $(PFBFILES)
 
 $(MKFILES): %.mak: %.mf
 	@echo "$(patsubst %,$*-%.tfm,$(WEIGHTS)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
-	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../enc/$(call toLower,$*).enc" >> $@
+	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../enc/$(call tolower,$*).enc" >> $@
 
 -include $(MKFILES)
 
@@ -46,5 +46,9 @@ install: all
 	$(INSTALL) -d $(TEXMFDIR)/fonts/type1/public/$(FONT)
 	$(INSTALLDATA) $(PFBFILES) $(TEXMFDIR)/fonts/type1/public/$(FONT)
 
+uninstall:
+	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(FONT)
+	rm -rf $(TEXMFDIR)/fonts/type1/public/$(FONT)
+
 clean:
-	$(RM) $(MKFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES) $(LOGFILES)
+	rm -f $(MKFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES) $(LOGFILES)

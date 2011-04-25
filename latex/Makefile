@@ -28,5 +28,9 @@ install: all doc
 	$(INSTALL) -d $(TEXMFDIR)/doc/latex/$(PKG)
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
 
+uninstall:
+	rm -rf $(TEXMFDIR)/tex/latex/$(PKG)
+	rm -rf $(TEXMFDIR)/doc/latex/$(PKG)
+
 clean:
-	$(RM) $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc
+	rm -f $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc
