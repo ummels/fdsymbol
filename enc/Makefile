@@ -4,7 +4,7 @@ INSTALLDATA = install -m 644
 PKG = fdsymbol
 TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
-.PHONY: all install clean
+.PHONY: all install uninstall clean
 
 all:
 

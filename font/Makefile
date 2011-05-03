@@ -17,7 +17,7 @@ PFBFILES = $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
 
 tolower = $(shell (echo $(1) | tr "[:upper:]" "[:lower:]"))
 
-.PHONY: all metrics type1 install clean
+.PHONY: all metrics type1 install uninstall clean
 
 all: metrics type1
 
