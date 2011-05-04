@@ -4,6 +4,7 @@ MFTRACE = mftrace
 INSTALL = install
 INSTALLDATA = install -m 644
 
+PKG = fdsymbol
 FONT = FdSymbol
 NAMES = A B C D E F
 WEIGHTS = Book Regular Medium Bold
@@ -15,7 +16,7 @@ LOGFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
 MKFILES = $(patsubst %,$(FONT)%.mak,$(NAMES))
 PFBFILES = $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
 
-tolower = $(shell (echo $(1) | tr "[:upper:]" "[:lower:]"))
+getenc = $(shell (echo $(1) | sed 's/$(FONT)/$(PKG)-/' | tr [:upper:] [:lower:]))
 
 .PHONY: all metrics type1 install uninstall clean
 
@@ -27,7 +28,7 @@ type1: $(PFBFILES)
 
 $(MKFILES): %.mak: %.mf
 	@echo "$(patsubst %,$*-%.tfm,$(WEIGHTS)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
-	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../enc/$(call tolower,$*).enc" >> $@
+	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../enc/$(call getenc,$*).enc" >> $@
 
 -include $(MKFILES)
 

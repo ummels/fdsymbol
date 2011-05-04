@@ -2,13 +2,24 @@ INSTALL = install
 INSTALLDATA = install -m 644
 
 PKG = fdsymbol
+FONT = FdSymbol
+NAMES = A B C D E F
+WEIGHTS = Book Regular Medium Bold
 TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
 .PHONY: all install uninstall clean
 
-all:
+all: $(PKG).map
 
-install:
+$(PKG).map:
+	for name in $(NAMES); do \
+	  n=$$(echo $${name} | tr [:upper:] [:lower:]); \
+	  for weight in $(WEIGHTS); do \
+	    echo "$(FONT)$${name}-$${weight} $(FONT)-$${weight} \"$(FONT)$${name} ReEncodeFont\" <[$(PKG)-$$n.enc <$(FONT)-$${weight}.pfb" >> $@; \
+	  done; \
+	done
+
+install: all
 	$(INSTALL) -d $(TEXMFDIR)/fonts/map/dvips/$(PKG)
 	$(INSTALLDATA) $(PKG).map $(TEXMFDIR)/fonts/map/dvips/$(PKG)
 	$(INSTALL) -d $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
@@ -19,3 +30,4 @@ uninstall:
 	rm -rf $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
 
 clean:
+	rm -f $(PKG).map
