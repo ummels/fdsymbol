@@ -2,8 +2,8 @@ LATEX = pdflatex
 INSTALL = install
 INSTALLDATA = install -m 644
 
-PKG = fdsymbol
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
+PKG := fdsymbol
+TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
 .PHONY: all package doc install uninstall clean
 

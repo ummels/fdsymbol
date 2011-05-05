@@ -2,8 +2,8 @@ SUBDIRS = enc font latex
 INSTALL = install
 INSTALLDATA = install -m 644
 
-FONT = FdSymbol
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
+FONT := FdSymbol
+TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
 .PHONY: all install uninstall clean
 

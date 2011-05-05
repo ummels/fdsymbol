@@ -4,17 +4,17 @@ MFTRACE = mftrace
 INSTALL = install
 INSTALLDATA = install -m 644
 
-PKG = fdsymbol
-FONT = FdSymbol
-NAMES = A B C D E F
-WEIGHTS = Book Regular Medium Bold
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
+PKG := fdsymbol
+FONT := FdSymbol
+NAMES := A B C D E F
+WEIGHTS := Book Regular Medium Bold
+TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
-TFMFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.tfm,$(WEIGHTS)))
-PFAFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.pfa,$(WEIGHTS)))
-LOGFILES = $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
-MKFILES = $(patsubst %,$(FONT)%.mak,$(NAMES))
-PFBFILES = $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
+TFMFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.tfm,$(WEIGHTS)))
+PFAFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.pfa,$(WEIGHTS)))
+LOGFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
+MKFILES := $(patsubst %,$(FONT)%.mak,$(NAMES))
+PFBFILES := $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
 
 getenc = $(shell (echo $(1) | sed 's/$(FONT)/$(PKG)-/' | tr [:upper:] [:lower:]))
 

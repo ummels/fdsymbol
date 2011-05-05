@@ -1,11 +1,11 @@
 INSTALL = install
 INSTALLDATA = install -m 644
 
-PKG = fdsymbol
-FONT = FdSymbol
-NAMES = A B C D E F
-WEIGHTS = Book Regular Medium Bold
-TEXMFDIR = $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
+PKG := fdsymbol
+FONT := FdSymbol
+NAMES := A B C D E F
+WEIGHTS := Book Regular Medium Bold
+TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
 
 .PHONY: all install uninstall clean
 
