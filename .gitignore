@@ -13,4 +13,5 @@
 *.pfa
 *.pfb
 *.tfm
+*.map
 *.mak
