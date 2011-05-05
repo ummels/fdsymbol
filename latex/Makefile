@@ -1,6 +1,7 @@
 LATEX = pdflatex
 INSTALL = install
-INSTALLDATA = install -m 644
+INSTALLDIR = $(INSTALL) -d
+INSTALLDATA = $(INSTALL) -m 644
 
 PKG := fdsymbol
 TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
@@ -23,9 +24,9 @@ $(PKG).pdf: $(PKG).dtx
 	done
 
 install: all doc
-	$(INSTALL) -d $(TEXMFDIR)/tex/latex/$(PKG)
+	$(INSTALLDIR) -d $(TEXMFDIR)/tex/latex/$(PKG)
 	$(INSTALLDATA) $(PKG).sty $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/doc/latex/$(PKG)
+	$(INSTALLDIR) -d $(TEXMFDIR)/doc/latex/$(PKG)
 	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
 
 uninstall:

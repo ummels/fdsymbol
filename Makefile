@@ -1,6 +1,7 @@
 SUBDIRS = dvips font latex
 INSTALL = install
-INSTALLDATA = install -m 644
+INSTALLDIR = $(INSTALL) -d
+INSTALLDATA = $(INSTALL) -m 644
 
 FONT := FdSymbol
 TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
@@ -12,7 +13,7 @@ all:
 
 install:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d install; done
-	$(INSTALL) -d $(TEXMFDIR)/doc/fonts/$(FONT)
+	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(FONT)
 	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(FONT)
 
 uninstall:

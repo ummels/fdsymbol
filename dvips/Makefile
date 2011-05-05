@@ -1,5 +1,6 @@
 INSTALL = install
-INSTALLDATA = install -m 644
+INSTALLDIR = $(INSTALL) -d
+INSTALLDATA = $(INSTALL) -m 644
 
 PKG := fdsymbol
 FONT := FdSymbol
@@ -20,9 +21,9 @@ $(PKG).map:
 	done
 
 install: all
-	$(INSTALL) -d $(TEXMFDIR)/fonts/map/dvips/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/map/dvips/$(PKG)
 	$(INSTALLDATA) $(PKG).map $(TEXMFDIR)/fonts/map/dvips/$(PKG)
-	$(INSTALL) -d $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
 	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
 
 uninstall:

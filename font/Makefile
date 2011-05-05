@@ -2,7 +2,8 @@ FONTFORGE = fontforge
 MF = mf
 MFTRACE = mftrace
 INSTALL = install
-INSTALLDATA = install -m 644
+INSTALLDIR = $(INSTALL) -d
+INSTALLDATA = $(INSTALL) -m 644
 
 PKG := fdsymbol
 FONT := FdSymbol
@@ -42,9 +43,9 @@ $(PFBFILES): $(FONT)-%.pfb: $(foreach i,$(NAMES),$(FONT)$(i)-%.pfa)
 	$(FONTFORGE) merge-fonts.pe $*
 
 install: all
-	$(INSTALL) -d $(TEXMFDIR)/fonts/tfm/public/$(FONT)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(FONT)
 	$(INSTALLDATA) $(TFMFILES) $(TEXMFDIR)/fonts/tfm/public/$(FONT)
-	$(INSTALL) -d $(TEXMFDIR)/fonts/type1/public/$(FONT)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(FONT)
 	$(INSTALLDATA) $(PFBFILES) $(TEXMFDIR)/fonts/type1/public/$(FONT)
 
 uninstall:
