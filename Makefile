@@ -1,4 +1,4 @@
-SUBDIRS = enc font latex
+SUBDIRS = dvips font latex
 INSTALL = install
 INSTALLDATA = install -m 644
 

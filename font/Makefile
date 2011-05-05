@@ -28,7 +28,7 @@ type1: $(PFBFILES)
 
 $(MKFILES): %.mak: %.mf
 	@echo "$(patsubst %,$*-%.tfm,$(WEIGHTS)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
-	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../enc/$(call getenc,$*).enc" >> $@
+	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../dvips/$(call getenc,$*).enc" >> $@
 
 -include $(MKFILES)
 
