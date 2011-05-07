@@ -6,7 +6,7 @@ PKG := fdsymbol
 FONT := FdSymbol
 NAMES := A B C D E F
 WEIGHTS := Book Regular Medium Bold
-TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
+TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 .PHONY: all install uninstall clean
 

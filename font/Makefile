@@ -9,7 +9,7 @@ PKG := fdsymbol
 FONT := FdSymbol
 NAMES := A B C D E F
 WEIGHTS := Book Regular Medium Bold
-TEXMFDIR := $(shell (kpsewhich -expand-var='$$TEXMFHOME'))
+TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 TFMFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.tfm,$(WEIGHTS)))
 PFAFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.pfa,$(WEIGHTS)))
@@ -31,13 +31,13 @@ $(MKFILES): %.mak: %.mf
 	@echo "$(patsubst %,$*-%.tfm,$(WEIGHTS)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
 	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../dvips/$(call getenc,$*).enc" >> $@
 
--include $(MKFILES)
-
 $(TFMFILES): %.tfm: %.mf
 	$(MF) '\mode=nullmode; input $*'
 
 $(PFAFILES): %.pfa: %.tfm
 	$(MFTRACE) --simplify -e $(filter %.enc,$^) $*
+
+-include $(MKFILES)
 
 $(PFBFILES): $(FONT)-%.pfb: $(foreach i,$(NAMES),$(FONT)$(i)-%.pfa)
 	$(FONTFORGE) merge-fonts.pe $*
