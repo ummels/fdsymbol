@@ -21,10 +21,10 @@
 %
 %\iffalse
 %<*driver>
-\ProvidesFile{fdsymbol.dtx}[2011/03/22 v0.5 FdSymbol support package]
+\ProvidesFile{fdsymbol.dtx}[2011/03/30 v0.5 FdSymbol support package]
 %</driver>
 %<style>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<style>\ProvidesPackage{fdsymbol}[2011/03/22 v0.5 FdSymbol support package]
+%<style>\ProvidesPackage{fdsymbol}[2011/03/30 v0.5 FdSymbol support package]
 %<*driver>
 \documentclass[10pt]{ltxdoc}
 
@@ -45,6 +45,12 @@
   pdftitle={FdSymbol: A Math Symbol Font},
   pdfauthor={Michael Ummels}
 }
+
+% Restore FdSymbol's Hebrew letters (overwritten by fedraserif)
+\DeclareMathSymbol{\aleph}{0}{symbols}{"C2}
+\DeclareMathSymbol{\beth}{0}{symbols}{"C3}
+\DeclareMathSymbol{\gimel}{0}{symbols}{"C4}
+\DeclareMathSymbol{\daleth}{0}{symbols}{"C5}
 
 \linespread{1.1}
 
@@ -236,7 +242,7 @@
 % \showsymbol{\gimel}
 % \showsymbol{\daleth}
 % \showsymbol{\wp}
-% \showsymbol{/}, \cmd{\mathslash} \iffalse Delimiters! \fi
+% \showsymbol{/}, \cmd{\mathslash}
 % \showsymbol{\backslash}
 % {\catcode`\|=11 \showsymbol{|}, \cmd{\vert}}
 % \showsymbol{\Vert}
