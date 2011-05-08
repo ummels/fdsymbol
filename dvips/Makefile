@@ -2,33 +2,34 @@ INSTALL = install
 INSTALLDIR = $(INSTALL) -d
 INSTALLDATA = $(INSTALL) -m 644
 
-PKG := fdsymbol
-FONT := FdSymbol
-NAMES := A B C D E F
-WEIGHTS := Book Regular Medium Bold
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
+
+pkg := fdsymbol
+font := FdSymbol
+names := A B C D E F
+weights := Book Regular Medium Bold
 
 .PHONY: all install uninstall clean
 
-all: $(PKG).map
+all: $(pkg).map
 
-$(PKG).map:
-	for name in $(NAMES); do \
+$(pkg).map:
+	for name in $(names); do \
 	  n=$$(echo $${name} | tr [:upper:] [:lower:]); \
-	  for weight in $(WEIGHTS); do \
-	    echo "$(FONT)$${name}-$${weight} $(FONT)-$${weight} \"$(FONT)$${name} ReEncodeFont\" <[$(PKG)-$$n.enc <$(FONT)-$${weight}.pfb" >> $@; \
+	  for weight in $(weights); do \
+	    echo "$(font)$${name}-$${weight} $(font)-$${weight} \"$(font)$${name} ReEncodeFont\" <[$(pkg)-$$n.enc <$(font)-$${weight}.pfb" >> $@; \
 	  done; \
 	done
 
 install: all
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/map/dvips/$(PKG)
-	$(INSTALLDATA) $(PKG).map $(TEXMFDIR)/fonts/map/dvips/$(PKG)
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
-	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	$(INSTALLDATA) $(pkg).map $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
+	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 
 uninstall:
-	rm -rf $(TEXMFDIR)/fonts/map/dvips/$(PKG)
-	rm -rf $(TEXMFDIR)/fonts/enc/dvips/$(PKG)
+	rm -rf $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	rm -rf $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 
 clean:
-	rm -f $(PKG).map
+	rm -f $(pkg).map

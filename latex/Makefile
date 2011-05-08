@@ -3,37 +3,38 @@ INSTALL = install
 INSTALLDIR = $(INSTALL) -d
 INSTALLDATA = $(INSTALL) -m 644
 
-PKG := fdsymbol
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
+
+pkg := fdsymbol
 
 .PHONY: all package doc install uninstall clean
 
 all: package
 
-package: $(PKG).sty
+package: $(pkg).sty
 
-doc: $(PKG).pdf
+doc: $(pkg).pdf
 
-$(PKG).sty: $(PKG).ins $(PKG).dtx
-	$(LATEX) $(PKG).ins
+$(pkg).sty: $(pkg).ins $(pkg).dtx
+	$(LATEX) $(pkg).ins
 
-$(PKG).pdf: $(PKG).dtx
-	$(LATEX) $(PKG).dtx
-	while grep -s 'Rerun to get' $(PKG).log; do \
-	  $(LATEX) $(PKG).dtx; \
+$(pkg).pdf: $(pkg).dtx
+	$(LATEX) $(pkg).dtx
+	while grep -s 'Rerun to get' $(pkg).log; do \
+	  $(LATEX) $(pkg).dtx; \
 	done
 
 install: all doc
-	$(INSTALLDIR) -d $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALLDATA) $(PKG).sty $(TEXMFDIR)/tex/latex/$(PKG)
-	$(INSTALLDIR) -d $(TEXMFDIR)/doc/latex/$(PKG)
-	$(INSTALLDATA) $(PKG).pdf $(TEXMFDIR)/doc/latex/$(PKG)
-	$(INSTALLDIR) -d $(TEXMFDIR)/source/latex/$(PKG)
-	$(INSTALLDATA) $(PKG).ins $(PKG).dtx $(TEXMFDIR)/source/latex/$(PKG)
+	$(INSTALLDIR) -d $(TEXMFDIR)/tex/latex/$(pkg)
+	$(INSTALLDATA) $(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
+	$(INSTALLDIR) -d $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDATA) $(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDIR) -d $(TEXMFDIR)/source/latex/$(pkg)
+	$(INSTALLDATA) $(pkg).ins $(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
 
 uninstall:
-	rm -rf $(TEXMFDIR)/tex/latex/$(PKG)
-	rm -rf $(TEXMFDIR)/doc/latex/$(PKG)
+	rm -rf $(TEXMFDIR)/tex/latex/$(pkg)
+	rm -rf $(TEXMFDIR)/doc/latex/$(pkg)
 
 clean:
-	rm -f $(PKG).aux $(PKG).log $(PKG).out $(PKG).sty $(PKG).toc
+	rm -f $(pkg).aux $(pkg).log $(pkg).out $(pkg).sty $(pkg).toc

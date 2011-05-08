@@ -5,54 +5,55 @@ INSTALL = install
 INSTALLDIR = $(INSTALL) -d
 INSTALLDATA = $(INSTALL) -m 644
 
-PKG := fdsymbol
-FONT := FdSymbol
-NAMES := A B C D E F
-WEIGHTS := Book Regular Medium Bold
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
-TFMFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.tfm,$(WEIGHTS)))
-PFAFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.pfa,$(WEIGHTS)))
-LOGFILES := $(foreach i,$(NAMES),$(patsubst %,$(FONT)$(i)-%.log,$(WEIGHTS)))
-MKFILES := $(patsubst %,$(FONT)%.mak,$(NAMES))
-PFBFILES := $(patsubst %,$(FONT)-%.pfb,$(WEIGHTS))
+pkg := fdsymbol
+font := FdSymbol
+names := A B C D E F
+weights := Book Regular Medium Bold
 
-getenc = $(shell (echo $(1) | sed 's/$(FONT)/$(PKG)-/' | tr [:upper:] [:lower:]))
+tfmfiles := $(foreach i,$(names),$(patsubst %,$(font)$(i)-%.tfm,$(weights)))
+pfafiles := $(foreach i,$(names),$(patsubst %,$(font)$(i)-%.pfa,$(weights)))
+logfiles := $(foreach i,$(names),$(patsubst %,$(font)$(i)-%.log,$(weights)))
+makfiles := $(patsubst %,$(font)%.mak,$(names))
+pfbfiles := $(patsubst %,$(font)-%.pfb,$(weights))
+
+getenc = $(shell (echo $(1) | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]))
 
 .PHONY: all metrics type1 install uninstall clean
 
 all: metrics type1
 
-metrics: $(TFMFILES)
+metrics: $(tfmfiles)
 
-type1: $(PFBFILES)
+type1: $(pfbfiles)
 
-$(MKFILES): %.mak: %.mf
-	@echo "$(patsubst %,$*-%.tfm,$(WEIGHTS)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
-	@echo "$(patsubst %,$*-%.pfa,$(WEIGHTS)): ../dvips/$(call getenc,$*).enc" >> $@
+$(makfiles): %.mak: %.mf
+	@echo "$(patsubst %,$*-%.tfm,$(weights)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
+	@echo "$(patsubst %,$*-%.pfa,$(weights)): ../dvips/$(call getenc,$*).enc" >> $@
 
-$(TFMFILES): %.tfm: %.mf
+$(tfmfiles): %.tfm: %.mf
 	$(MF) '\mode=nullmode; input $*'
 
-$(PFAFILES): %.pfa: %.tfm
+$(pfafiles): %.pfa: %.tfm
 	$(MFTRACE) --simplify -e $(filter %.enc,$^) $*
 
--include $(MKFILES)
+-include $(makfiles)
 
-$(PFBFILES): $(FONT)-%.pfb: $(foreach i,$(NAMES),$(FONT)$(i)-%.pfa)
+$(pfbfiles): $(font)-%.pfb: $(foreach i,$(names),$(font)$(i)-%.pfa)
 	$(FONTFORGE) merge-fonts.pe $*
 
 install: all
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(FONT)
-	$(INSTALLDATA) $(TFMFILES) $(TEXMFDIR)/fonts/tfm/public/$(FONT)
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(FONT)
-	$(INSTALLDATA) $(PFBFILES) $(TEXMFDIR)/fonts/type1/public/$(FONT)
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(FONT)
-	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(FONT)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(font)
+	$(INSTALLDATA) $(tfmfiles) $(TEXMFDIR)/fonts/tfm/public/$(font)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(font)
+	$(INSTALLDATA) $(pfbfiles) $(TEXMFDIR)/fonts/type1/public/$(font)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(font)
+	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(font)
 
 uninstall:
-	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(FONT)
-	rm -rf $(TEXMFDIR)/fonts/type1/public/$(FONT)
+	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(font)
+	rm -rf $(TEXMFDIR)/fonts/type1/public/$(font)
 
 clean:
-	rm -f $(MKFILES) $(PFAFILES) $(TFMFILES) $(PFBFILES) $(LOGFILES)
+	rm -f $(makfiles) $(pfafiles) $(tfmfiles) $(pfbfiles) $(logfiles)
