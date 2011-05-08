@@ -47,6 +47,8 @@ install: all
 	$(INSTALLDATA) $(TFMFILES) $(TEXMFDIR)/fonts/tfm/public/$(FONT)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(FONT)
 	$(INSTALLDATA) $(PFBFILES) $(TEXMFDIR)/fonts/type1/public/$(FONT)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(FONT)
+	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(FONT)
 
 uninstall:
 	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(FONT)
