@@ -16,6 +16,7 @@ package: $(pkg).sty
 doc: $(pkg).pdf
 
 $(pkg).sty: $(pkg).ins $(pkg).dtx
+	rm -f $@
 	$(LATEX) $(pkg).ins
 
 $(pkg).pdf: $(pkg).dtx
