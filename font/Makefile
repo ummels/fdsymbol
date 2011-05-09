@@ -44,16 +44,17 @@ $(pfbfiles): $(font)-%.pfb: $(foreach i,$(names),$(font)$(i)-%.pfa)
 	$(FONTFORGE) merge-fonts.pe $*
 
 install: all
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(font)
-	$(INSTALLDATA) $(tfmfiles) $(TEXMFDIR)/fonts/tfm/public/$(font)
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(font)
-	$(INSTALLDATA) $(pfbfiles) $(TEXMFDIR)/fonts/type1/public/$(font)
-	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(font)
-	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(font)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(INSTALLDATA) $(tfmfiles) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(INSTALLDATA) $(pfbfiles) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(pkg)
+	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 uninstall:
-	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(font)
-	rm -rf $(TEXMFDIR)/fonts/type1/public/$(font)
+	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	rm -rf $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	rm -rf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 clean:
 	rm -f $(makfiles) $(pfafiles) $(tfmfiles) $(pfbfiles) $(logfiles)

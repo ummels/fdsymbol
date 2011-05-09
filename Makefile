@@ -15,12 +15,12 @@ all:
 
 install:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d install; done
-	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(font)
-	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(font)
+	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(pkg)
+	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(pkg)
 
 uninstall:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d uninstall; done
-	rm -rf $(TEXMFDIR)/doc/fonts/$(font)
+	rm -rf $(TEXMFDIR)/doc/fonts/$(pkg)
 
 ctan: $(pkg).tar.gz
 

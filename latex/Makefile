@@ -35,6 +35,7 @@ install: all doc
 uninstall:
 	rm -rf $(TEXMFDIR)/tex/latex/$(pkg)
 	rm -rf $(TEXMFDIR)/doc/latex/$(pkg)
+	rm -rf $(TEXMFDIR)/source/latex/$(pkg)
 
 clean:
 	rm -f $(pkg).aux $(pkg).log $(pkg).out $(pkg).sty $(pkg).toc
