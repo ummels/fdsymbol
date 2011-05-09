@@ -10,11 +10,11 @@ font_identifier := "FdSymbolE";
 design_size := 10;
 font_size design_size * pt#;
 
-input base;
-input operators;
+input fdbase;
+input fdoperators;
 
 current_char := 113;
-input accents.mf;
+input fdaccents.mf;
 
 font_x_height x_height#;
 

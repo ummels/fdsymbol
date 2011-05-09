@@ -10,15 +10,15 @@ font_identifier := "FdSymbolB";
 design_size := 10;
 font_size design_size * pt#;
 
-input base;
+input fdbase;
 
 negated := 0;
-input relations;
+input fdrelations;
 
 negated := 1;
-input relations;
+input fdrelations;
 
 negated := 2;
-input relations;
+input fdrelations;
 
 bye;

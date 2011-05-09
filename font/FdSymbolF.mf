@@ -10,7 +10,7 @@ font_identifier := "FdSymbolF";
 design_size := 10;
 font_size design_size * pt#;
 
-input base;
-input delims;
+input fdbase;
+input fddelims;
 
 bye;
