@@ -33,6 +33,7 @@
 \usepackage{lmodern}
 \IfFileExists{fedraserif.sty}{%
   \usepackage[variantb]{fedraserif}
+  \IfFileExists{luximono.sty}{\usepackage[scaled=0.9]{luximono}}{}
 }{%
   \usepackage{fdsymbol}
 }
@@ -54,7 +55,7 @@
 
 \linespread{1.1}
 
-\newcommand{\pkg}[1]{\mbox{\textsf{#1}}}
+\newcommand{\pkg}[1]{\mbox{#1}}
 \newcommand{\opt}[1]{\mbox{\texttt{#1}}}
 \newcommand{\file}[1]{\texttt{#1}}
 \providecommand{\figureversion}[1]{}
@@ -82,7 +83,7 @@
 % \begin{quote}
 %   |\usepackage|\oarg{options}|{fdsymbol}|
 % \end{quote}
-% to the preamble of your document. This redefined most of the standard
+% to the preamble of your document. This redefines most of the standard
 % mathematical symbols and makes available many new ones
 % (see Section~\ref{sec:glyphs}). For the available options see
 % Section~\ref{sec:selection}.
@@ -111,7 +112,7 @@
 % the normal weight in math, add \opt{normalweight=Medium} to the package
 % options. Analogously, to use the Bold weight with |\boldmath| or
 % |\boldsymbol|, add \opt{boldweight=Bold} to the package options. By default,
-% Book and Medium are used. Additionally, it is possible to use select a
+% Book and Medium are used. Additionally, it is possible to use a
 % suitable weight automatically depending on the font size by selecting
 % \opt{auto}. For example, if you use the option \opt{normalweight=auto}, the
 % Book weight will be used for normal and large sizes, but the Regular weight
@@ -1178,7 +1179,7 @@
 % \showsymbol{\lJoin}
 % \showsymbol{\bowtie}, \cmd{\Join}
 % \showsymbol{\propto}, \cmd{\varpropto}
-% \showsymbol{\backpropto}, \cmd{propfrom}
+% \showsymbol{\backpropto}, \cmd{\propfrom}
 % \showsymbol{\crossing}
 % \showsymbol{\between}
 % \showsymbol{\separated}
@@ -1506,7 +1507,7 @@
 \let\lhook\undefined
 \let\rhook\undefined
 %    \end{macrocode}
-% Short hands to simplify the definitions below.
+% Shorthands to simplify the definitions below.
 %    \begin{macrocode}
 \newcommand\fdsy@setslot[1]{\@tempcnta #1\relax}
 \newcommand\fdsy@nextslot{\advance\@tempcnta 1\relax}
