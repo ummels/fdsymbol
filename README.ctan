@@ -20,24 +20,34 @@ the details.
 Installation
 ------------
 
-Note: If you have previously installed version 0.5 of this font
-package, please delete the directories `doc/fonts/FdSymbol`,
-`fonts/tfm/public/FdSymbol`, `fonts/type1/public/FdSymbol` and
-`fonts/source/public/FdSymbol` in the respective texmf tree before
-proceeding.
+1. In the latex directory, run `latex fdsymbol.ins` to generate the
+   LaTeX package.
 
-To install the font and the accompanying LaTeX package, unzip the
-file `fdsymbol.tds.zip` into a local texmf tree.
+2. Create the following directories in a local texmf tree:
 
-Afterwards, you may need to regenerate the file database:
+   - doc/latex/fdsymbol
+   - fonts/map/dvips/fdsymbol
+   - fonts/enc/dvips/fdsymbol
+   - fonts/tfm/public/fdsymbol
+   - fonts/type1/public/fdsymbol
+   - tex/latex/fdsymbol
+
+3. Copy all necessary files into the texmf tree:
+
+   - all files in the doc directory go to doc/latex/fdsymbol
+   - fdsymbol.map in the dvips directory goes to fonts/map/dvips/fdsymbol
+   - all other files in the dvips directory go to fonts/enc/dvips/fdsymbol
+   - all files in the tfm directory go to fonts/tfm/public/fdsymbol
+   - all files in the type1 directory go to fonts/type1/public/fdsymbol
+   - fdsymbol.sty in the latex directory goes to tex/latex/fdsymbol
+
+4. Afterwards, you may need to regenerate the file database:
 
     texhash
 
-Finally, you need to activate the map file:
+5. Finally, you need to activate the map file:
 
     updmap --enable Map=fdsymbol.map
-
-For a system-wide installation, replace updmap by updmap-sys.
 
 License
 -------
@@ -48,7 +58,6 @@ The font components of this software, e.g. MetaFont (.mf), TeX font metric
 (.tfm), and Type 1 (.pfb) files, are licensed under the SIL Open Font
 License, Version 1.1. This license is in the accompanying file OFL.txt,
 and is also available with a FAQ at: http://scripts.sil.org/OFL
-
 
 The LaTeX support files contained in this software may be modified
 and distributed under the terms and conditions of the LaTeX Project
