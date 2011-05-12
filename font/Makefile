@@ -1,13 +1,12 @@
-FONTFORGE = fontforge
-MF = mf
-MFTRACE = mftrace
-GFTODVI = gftodvi
-FONTCHART = t1testpage
-PSTOPDF = ps2pdf
-INSTALL = install
-INSTALLDIR = $(INSTALL) -d
-INSTALLDATA = $(INSTALL) -m 644
-
+FONTFORGE := fontforge
+MF := mf
+MFTRACE := mftrace
+GFTODVI := gftodvi
+FONTCHART := t1testpage
+PSTOPDF := ps2pdf
+INSTALL := install
+INSTALLDIR := $(INSTALL) -d
+INSTALLDATA := $(INSTALL) -m 644
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 pkg := fdsymbol

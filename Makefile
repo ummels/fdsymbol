@@ -1,8 +1,7 @@
-INSTALL = install
-INSTALLDIR = $(INSTALL) -d
-INSTALLDATA = $(INSTALL) -m 644
-SUBDIRS = dvips font latex
-
+INSTALL := install
+INSTALLDIR := $(INSTALL) -d
+INSTALLDATA := $(INSTALL) -m 644
+SUBDIRS := dvips font latex
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
 
 pkg := fdsymbol
