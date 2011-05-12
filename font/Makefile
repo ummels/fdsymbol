@@ -1,6 +1,9 @@
 FONTFORGE = fontforge
 MF = mf
 MFTRACE = mftrace
+GFTODVI = gftodvi
+FONTCHART = t1testpage
+PSTOPDF = ps2pdf
 INSTALL = install
 INSTALLDIR = $(INSTALL) -d
 INSTALLDATA = $(INSTALL) -m 644
@@ -12,11 +15,14 @@ font := FdSymbol
 names := A B C D E F
 weights := Book Regular Medium Bold
 
-tfmfiles := $(foreach i,$(names),$(patsubst %,$(font)$(i)-%.tfm,$(weights)))
-pfafiles := $(foreach i,$(names),$(patsubst %,$(font)$(i)-%.pfa,$(weights)))
-logfiles := $(foreach i,$(names),$(patsubst %,$(font)$(i)-%.log,$(weights)))
-makfiles := $(patsubst %,$(font)%.mak,$(names))
-pfbfiles := $(patsubst %,$(font)-%.pfb,$(weights))
+tfmfiles := $(foreach i,$(names),$(weights:%=$(font)$(i)-%.tfm))
+pfafiles := $(tfmfiles:%.tfm=%.pfa)
+makfiles := $(names:%=$(font)%.mak)
+pfbfiles := $(weights:%=$(font)-%.pfb)
+gffiles := $(tfmfiles:%.tfm=%.2602gf)
+dvifiles := $(tfmfiles:%.tfm=%.dvi)
+logfiles := $(tfmfiles:%.tfm=%.log)
+charts := $(pfbfiles:%.pfb=%.pdf)
 
 getenc = $(shell (echo $(1) | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]))
 
@@ -43,6 +49,19 @@ $(pfafiles): %.pfa: %.tfm
 $(pfbfiles): $(font)-%.pfb: $(foreach i,$(names),$(font)$(i)-%.pfa)
 	$(FONTFORGE) merge-fonts.pe $*
 
+proofs: $(dvifiles)
+
+$(gffiles): %.2602gf: %.mf
+	$(MF) '\mode=proofmofe; nodisplays; input $*'
+
+$(dvifiles): %.dvi: %.2602gf
+	$(GFTODVI) $<
+
+charts: $(charts)
+
+$(charts): %.pdf: %.pfb
+	$(FONTCHART) $< | $(PSTOPDF) - $@
+
 install: all
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDATA) $(tfmfiles) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
@@ -57,4 +76,11 @@ uninstall:
 	rm -rf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 clean:
-	rm -f $(makfiles) $(pfafiles) $(tfmfiles) $(pfbfiles) $(logfiles)
+	rm -f $(makfiles)
+	rm -f $(pfafiles)
+	rm -f $(tfmfiles)
+	rm -f $(pfbfiles)
+	rm -f $(gffiles)
+	rm -f $(dvifiles)
+	rm -f $(charts)
+	rm -f $(logfiles)

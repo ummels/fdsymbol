@@ -8,6 +8,7 @@
 *.toc
 *.???gf
 *.????gf
+*.dvi
 *.sty
 *.tmproj
 *.pfa
