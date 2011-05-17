@@ -6,10 +6,6 @@
 % is also available with a FAQ at: http://scripts.sil.org/OFL
 %
 
-font_identifier := "FdSymbolC";
-design_size := 10;
-font_size design_size * pt#;
-
 input fdbase;
 
 boolean negated;

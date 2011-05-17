@@ -6,8 +6,10 @@
 % is also available with a FAQ at: http://scripts.sil.org/OFL
 %
 
-string font_weight;
-font_weight := "Medium";
+if known ps_output:
+  font_family := "FdSymbolF";
+  font_weight := "Medium";
+fi
 weight_index := 2;
 
 input FdSymbolF;

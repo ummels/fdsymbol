@@ -6,6 +6,14 @@
 % is also available with a FAQ at: http://scripts.sil.org/OFL
 %
 
+design_size := 10;
+font_size design_size * pt#;
+
+if known ps_output:
+  font_version := "1.002";
+  font_comment := "Copyright (c) 2011, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.";
+fi
+
 u# := 0.6pt#;
 asc_height# := 7.54pt#; % 8.56pt#;
 cap_height# := 7.07pt#; %7.37pt#;
@@ -46,18 +54,6 @@ delim_height# := 4.9pt#; % half the height of normal delimiters
 bigop_height# := 10.7pt#; % height of big operators
 
 mode_setup;
-
-% mf2pt1 support
-
-if known ps_output:
-%  pencircle := mfplain_pencircle;
-%  pensquare := mfplain_pencircle;
-%  penrazor := mfplain_pencircle;
-  pensquare := pencircle;
-  penrazor := pencircle;
-  let filldraw := mfplain_filldraw;
-  let unfilldraw := mfplain_unfilldraw;
-fi
 
 define_pixels(u, asc_height, cap_height, desc_depth, delim_height, bigop_height, x_height);
 define_whole_pixels(dot_size, small_op_size, med_op_size, large_op_size, plus_size,

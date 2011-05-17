@@ -6,8 +6,10 @@
 % is also available with a FAQ at: http://scripts.sil.org/OFL
 %
 
-string font_weight;
-font_weight := "Book";
+if known ps_output:
+  font_family := "FdSymbolD";
+  font_weight := "Book";
+fi
 weight_index := 0;
 
 input FdSymbolD;
