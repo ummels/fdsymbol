@@ -20,9 +20,11 @@ the details.
 Installation
 ------------
 
-Building the fonts requires Metafont (>=2.718281), mftrace (>=1.2.16) and
-FontForge (>=20100501). To install the fonts, the accompanying LaTeX package
-and the documentation in your home texmf tree, run:
+Building the fonts requires Metafont (>=2.718281), MetaPost (>=1.211),
+mf2pt1 (>= 2.4.4) and FontForge (>=20110222).
+
+To install the fonts, the accompanying LaTeX package and the documentation
+in your home texmf tree, run:
 
     make install
 

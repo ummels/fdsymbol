@@ -29,6 +29,9 @@ ChangeLog
 31 Mar 2011 (Michael Ummels) FdSymbol version 1.001
 - Added aleph, beth, daleth and gimel
 
+21 May 2011 (Michael Ummels) FdSymbol version 1.002
+- Optimised all glyphs
+
 Acknowledgements
 -------------------------
 (Here is where contributors can be acknowledged. If you make modifications be sure to add your name (N), email (E), web-address (W) and description (D). This list is sorted by last name in alphabetical order.)
