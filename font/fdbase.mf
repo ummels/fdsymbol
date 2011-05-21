@@ -289,23 +289,24 @@ def draw_bump(suffix $)(expr sign, lc, rc, rad, thick) =
   penpos0$(thick, angle (rc - lc) + sign * 90);
   penpos1$(thick, angle (rc - lc) + sign * 90);
   penpos2$(thick, angle (rc - lc) + sign * 90);
-  penpos3$(thick, angle (rc - lc) + sign * 90);
-  penpos4$(thick, angle (rc - lc) + sign * 90);
+  penpos3$(thick, angle (rc - lc));
+  penpos4$(thick, angle (rc - lc));
 
-  z3$' = z3$;
-  z5$ = z3$.l;
-  z4$' = z4$;
+  z5$ = z3$.r;
   z6$ = z4$.l;
 
-  penpos3$'(thick, angle (rc - lc) + 180);
-  penpos5$(thick, angle (rc - lc) + 180);
-  penpos4$'(thick, angle (rc - lc));
-  penpos6$(thick, angle (rc - lc));
+  penpos5$(thick, angle (rc - lc) + sign * 90);
+  penpos6$(thick, angle (rc - lc) + sign * 90);
 
-  fill stroke z0$.e -- z3$.e;
-  fill stroke z5$.e -- z3$'.e{dir (angle (rc - lc) + sign * 90)} ..
-    z2$.e{rc - lc} .. z4$'.e{dir (angle (rc - lc) - sign * 90)} -- z6$.e;
-  fill stroke z1$.e -- z4$.e;
+  path p$, q$;
+  numeric s$, t$;
+
+  p$ = z3$.l{dir (angle(rc - lc) + sign * 90)} .. {rc - lc}z2$.r;
+  q$ = z2$.r{rc - lc} .. {dir (angle(rc - lc) - sign * 90)}z4$.r;
+  s$ = xpart (p$ intersectiontimes (z0$.r -- z1$.r));
+  t$ = xpart (q$ intersectiontimes (z0$.r -- z1$.r));
+
+  fill z0$.r -- point s$ of p$ & subpath (s$,1) of p$ & subpath (0,t$) of q$ & point t$ of q$ -- z1$.r -- z1$.l -- z6$l. -- z6${dir (angle (rc - lc) + sign * 90)} .. z2$.l{lc - rc} .. {dir (angle (rc - lc) - sign * 90)}z5$ -- z5$.l -- z0$.l -- cycle;
 
   penlabels(0$,1$,2$,3$,4$,5$,6$);
 enddef;
