@@ -29,9 +29,9 @@ $(pkg).tar.gz: all
 	cd ctan.tmp && rm -rf doc fonts tex source
 	cd ctan.tmp && mkdir -p doc dvips tfm type1 latex source
 	cp FONTLOG.txt OFL.txt latex/$(pkg).pdf ctan.tmp/doc
-	cp dvips/*.enc dvips/*.map ctan.tmp/dvips
-	cp font/*.tfm ctan.tmp/tfm
-	cp font/*.pfb ctan.tmp/type1
+	cp dvips/$(pkg)-?.enc dvips/*.map ctan.tmp/dvips
+	cp font/$(font)?-*.tfm ctan.tmp/tfm
+	cp font/$(font)-*.pfb ctan.tmp/type1
 	cp latex/$(pkg).dtx latex/$(pkg).ins ctan.tmp/latex
 	cp font/*.mf ctan.tmp/source
 	cp README.ctan ctan.tmp/README
