@@ -423,12 +423,16 @@ def draw_smile(suffix $)(expr sign, lc, rc, spread, thick, round) =
   penlabels(0$, 1$, 2$);
 enddef;
 
-def stroke_through(expr pos, spread) =
+def stroke_through_angle(expr pos, spread, angle) =
   begingroup;
-    stroke_len := 1/2spread / cosd 15;
+    stroke_len := 1/2spread / cosd (90 - angle);
 
-    draw_straight(pos + stroke_len * dir 75, pos - stroke_len * dir 75, stroke_through_thickness, true);
+    draw_straight(pos + stroke_len * dir angle, pos - stroke_len * dir angle, stroke_through_thickness, true);
   endgroup;
+enddef;
+
+def stroke_through(expr pos, spread) =
+  stroke_through_angle(pos, spread, 75);
 enddef;
 
 def stroke_through_arrow(expr pos, alpha, spread)(text angles) =
