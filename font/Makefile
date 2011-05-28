@@ -34,7 +34,7 @@ metrics: $(tfmfiles)
 type1: $(fonts)
 
 $(makfiles): %.mak: %.mf
-	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
+	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
 	@echo "$(patsubst %,$*-%.pfb,$(weights)): ../dvips/$(call getenc,$*).enc" >> $@
 
 $(tfmfiles): %.tfm: %.mf
