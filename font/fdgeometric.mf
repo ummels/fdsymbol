@@ -1633,7 +1633,8 @@ endchar;
 beginsymbol(5u# + line_thickness# + 2side_bearing#, asc_height#, desc_depth#); "sharp";
   thick := line_thickness;
 
-  x0l - x4 = x1l - x5 = x2l - x0r = x3l - x1r = x6 - x2r = x7 - x3r;
+  x0l - x4 = x1l - x5 = x6 - x2r = x7 - x3r;
+  x2l - x0r = x3l - x1r = 2(x0l - x4);
   x4 = x5 = w - x6 = w - x7 = side_bearing;
   y3 = h;
   y7r = x_height;
