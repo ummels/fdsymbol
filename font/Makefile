@@ -14,13 +14,13 @@ font := FdSymbol
 names := A B C D E F
 weights := Book Regular Medium Bold
 
-fonts := $(weights:%=$(font)-%.pfb)
 tfmfiles := $(foreach i,$(names),$(weights:%=$(font)$(i)-%.tfm))
 pfbfiles := $(tfmfiles:%.tfm=%.pfb)
-charts := $(fonts:%.pfb=%.pdf)
+pt1files := $(weights:%=$(font)-%.pfb)
+chartfiles := $(pt1files:%.pfb=%.pdf)
 gffiles := $(tfmfiles:%.tfm=%.2602gf)
-dvifiles := $(tfmfiles:%.tfm=%.dvi)
-makfiles := $(names:%=$(font)%.mak)
+prooffiles := $(tfmfiles:%.tfm=%.dvi)
+makefiles := $(names:%=$(font)%.mak)
 logfiles := $(tfmfiles:%.tfm=%.log)
 
 getenc = $(shell (echo $(1) | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]))
@@ -31,9 +31,9 @@ all: metrics type1
 
 metrics: $(tfmfiles)
 
-type1: $(fonts)
+type1: $(pt1files)
 
-$(makfiles): %.mak: %.mf
+$(makefiles): %.mak: %.mf
 	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
 	@echo "$(patsubst %,$*-%.pfb,$(weights)): ../dvips/$(call getenc,$*).enc" >> $@
 
@@ -43,23 +43,23 @@ $(tfmfiles): %.tfm: %.mf
 $(pfbfiles): %.pfb: %.mf
 	$(MFTOPT1) --rounding 0.25 --encoding=$(filter %.enc,$^) --ffscript=process.pe $*.mf
 
--include $(makfiles)
+-include $(makefiles)
 
-$(fonts): $(font)-%.pfb: $(foreach i,$(names),$(font)$(i)-%.pfb)
+$(pt1files): $(font)-%.pfb: $(foreach i,$(names),$(font)$(i)-%.pfb)
 	@echo "Generating $@..."
 	$(FONTFORGE) merge.pe $*
 
-proofs: $(dvifiles)
+proofs: $(prooffiles)
 
 $(gffiles): %.2602gf: %.mf
 	$(MF) '\mode=proofmofe; nodisplays; input $*'
 
-$(dvifiles): %.dvi: %.2602gf
+$(prooffiles): %.dvi: %.2602gf
 	$(GFTODVI) $<
 
-charts: $(charts)
+charts: $(chartfiles)
 
-$(charts): %.pdf: %.pfb
+$(chartfiles): %.pdf: %.pfb
 	$(FONTCHART) $< | $(PSTOPDF) - $@
 
 validate: $(pfbfiles)
@@ -70,7 +70,7 @@ install: all
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDATA) $(tfmfiles) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
-	$(INSTALLDATA) $(fonts) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(INSTALLDATA) $(pt1files) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(pkg)
 	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
@@ -80,11 +80,11 @@ uninstall:
 	rm -rf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 clean:
-	rm -f $(makfiles)
+	rm -f $(makefiles)
 	rm -f $(pfbfiles)
 	rm -f $(tfmfiles)
-	rm -f $(fonts)
+	rm -f $(pt1files)
 	rm -f $(gffiles)
-	rm -f $(dvifiles)
-	rm -f $(charts)
+	rm -f $(prooffiles)
+	rm -f $(chartfiles)
 	rm -f $(logfiles)
