@@ -161,11 +161,12 @@ def beginorder(expr sign, width, spread) =
     right_point := centre + sign * (w/2 - side_bearing - line_thickness/2) * right;
 enddef;
 
+% Make strokes run anti-clockwise
 vardef stroke text t =
   forsuffixes e = l, r:
     path_.e := t;
   endfor
-  path_.l -- reverse path_.r -- cycle
+  path_.r -- reverse path_.l -- cycle
 enddef;
 
 % Shapes
@@ -223,7 +224,7 @@ def draw_straight(expr orig, dest, thick, extend) =
       1/2[p2.l,p2.r] = dest;
     fi
     p1.l - p1.r = p2.l - p2.r = thick * dir (theta + 90);
-    fill p1.l -- p2.l -- p2.r -- p1.r -- cycle;
+    fill stroke p1.e -- p2.e;
   endgroup;
 enddef;
 
@@ -412,8 +413,8 @@ def draw_smile(suffix $)(expr sign, lc, rc, spread, thick, round) =
   if round:
     penpos2$(thick, angle(rc - lc) + sign * 90);
 
-	fill stroke z0$.e{dir (angle(rc - lc) - sign * theta)} ..
-	  {rc - lc}z2$.e{rc - lc} .. {dir (angle(rc - lc) + sign * theta)}z1$.e;
+    fill stroke z0$.e{dir (angle(rc - lc) - sign * theta)} ..
+      {rc - lc}z2$.e{rc - lc} .. {dir (angle(rc - lc) + sign * theta)}z1$.e;
   else:
     penpos2$(thick / cosd theta, angle(rc - lc) + sign * 90);
 
@@ -473,7 +474,7 @@ def draw_product(expr centre, width, height, sign, thick) =
   x10 = x6r;
   x11 = x7l;
 
-  fill z0l -- z0r{dir (sign * 20)} .. {sign * up}z6l -- z8l{sign * up} .. {dir (180 - sign * 15)}z2l -- z2r -- z3r -- z3l{dir (180 + sign * 15)} .. {sign * down}z9r -- z7r{sign * down} .. {dir (-sign * 20)}z1r -- z1l -- z5l -- z5r{dir (sign * 20)} .. {sign * up}z7l -- z11 -- z10 -- z6r{sign * down} .. {dir (-sign *  20)}z4r -- z4l -- cycle;
+  fill z0l -- z4l -- z4r{dir (sign * 160)} .. {sign * up}z6r -- z10 -- z11 -- z7l{sign * down} .. {dir (-sign * 160)}z5r -- z5l -- z1l -- z1r{dir (sign * 160)} .. {sign * up}z7r -- z9r{sign * up} .. {dir (sign * 15)}z3l -- z3r -- z2r -- z2l{dir (-sign * 15)} .. {sign * down}z8l -- z6l{sign * down} .. {dir (-sign * 160)}z0r -- cycle;
 
   penlabels(0,1,2,3,4,5,6,7,8,9,10,11);
 enddef;
@@ -592,7 +593,7 @@ def draw_arrowhead_right(expr pos, angle, spread, thick) =
     p3.l = pos + 1/2thick * dir (angle + 90) + whatever * dir angle;
     p3.r - p1.r = whatever * dir (angle + 105);
     p3.r = pos + 1/2thick * dir (angle + 90) + whatever * dir angle;
-    fill p1.r -- p2.r -- p2.l -- p3.l -- p3.r -- cycle;
+    fill p1.r -- p3.r -- p3.l -- p2.l -- p2.r -- cycle;
   endgroup;
 enddef;
 
