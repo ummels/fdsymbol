@@ -324,10 +324,11 @@ for sign = 1, -1:
       z1 = z0a + sign * scale * (0, 1/4r);
       z2 = z0a + sign * scale * (r, -1/4r);
 
-      fill stroke z0.e .. z1.e .. z2.e;
       if sign > 0:
+        fill stroke z0.e{dir 45} .. {dir 0}z1.e .. {dir -45}z2.e;
         draw_arrowhead(z2, -40, 2/3scale * arrow_spread, 5/6thick);
       else:
+        fill stroke z0.e{dir -135} .. {dir 180}z1.e .. {dir 135}z2.e;
         draw_arrowhead(z0, 40, 2/3scale * arrow_spread, 5/6thick);
       fi
 
