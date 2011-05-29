@@ -1037,7 +1037,7 @@ for sign = 1, -1:
 
     1/2[1/2[z0,z1], 1/2[z2,z3]] = (w/2, (h-d)/2);
 
-    draw_line(z0, z1, true);
+    draw_line(z2, z3, true);
     draw_line(1/2[z0,z1], 1/2[z2,z3], true);
   endchar;
 endfor;
