@@ -73,6 +73,18 @@ stroke_through_thickness := 9/10line_thickness;
 
 % Macros
 
+% Redefine clockwise and counterclockwise (turningnumber seems more stable)
+if known ps_output:
+  vardef counterclockwise primary p =
+    (if turningnumber p>0: p else: (reverse p) fi)
+  enddef;
+
+  vardef clockwise primary p =
+    (if turningnumber p<0: p else: (reverse p) fi)
+  enddef;
+fi
+
+% Selects the n-th element of a list
 def select(expr n)(text values) =
   begingroup;
     i := 0;
@@ -161,7 +173,7 @@ def beginorder(expr sign, width, spread) =
     right_point := centre + sign * (w/2 - side_bearing - line_thickness/2) * right;
 enddef;
 
-% Make strokes run anti-clockwise
+% Strokes a pen path
 vardef stroke text t =
   forsuffixes e = l, r:
     path_.e := t;
