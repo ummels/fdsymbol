@@ -2,8 +2,7 @@ FONTFORGE := fontforge
 MF := mf
 MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
-FONTCHART := t1testpage
-PSTOPDF := ps2pdf
+PDFTEX := pdftex
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
@@ -17,9 +16,9 @@ weights := Book Regular Medium Bold
 tfmfiles := $(foreach i,$(names),$(weights:%=$(font)$(i)-%.tfm))
 pfbfiles := $(tfmfiles:%.tfm=%.pfb)
 pt1files := $(weights:%=$(font)-%.pfb)
-chartfiles := $(pt1files:%.pfb=%.pdf)
 gffiles := $(tfmfiles:%.tfm=%.2602gf)
 prooffiles := $(tfmfiles:%.tfm=%.dvi)
+chartfiles := $(tfmfiles:%.tfm=%.pdf)
 makefiles := $(names:%=$(font)%.mak)
 logfiles := $(tfmfiles:%.tfm=%.log)
 
@@ -59,8 +58,10 @@ $(prooffiles): %.dvi: %.2602gf
 
 charts: $(chartfiles)
 
-$(chartfiles): %.pdf: %.pfb
-	$(FONTCHART) $< | $(PSTOPDF) - $@
+$(chartfiles): %.pdf: %.pfb %.tfm
+	echo $* | $(PDFTEX) "\pdfmapline{=$* FdSymbol <$*.pfb}\input fontchart.tex"
+	rm -f fontchart.log
+	mv fontchart.pdf $@
 
 validate: $(pfbfiles)
 	@echo "Validating fonts..."
