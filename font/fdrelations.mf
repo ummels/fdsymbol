@@ -159,8 +159,8 @@ if negated < 2:
   beginorder(1, order_width#, ifneg(4/2,7/2) * equal_spread# + ifneg(1,0) * 2/5order_width#); "bump over equal";
     s := equal_spread;
 
-	draw_bump(a, 1, left_ex + s * up, right_ex + s * up, order_width/5, line_thickness);
-	draw_line(left_ex, right_ex, false);
+    draw_bump(a, 1, left_ex + s * up, right_ex + s * up, order_width/5, line_thickness);
+    draw_line(left_ex, right_ex, false);
     draw_line(left_ex - s * up, right_ex - s * up, false);
 
     if negated = 1:
@@ -335,7 +335,7 @@ if negated < 2:
     s := 1/2equal_spread;
     r := 5/4s + 3/4line_thickness;
     t := 1/11r;
-	
+
     reg_poly_points(a)(5, centre + 7/2s * up, r, 90);
     reg_poly_points(b)(5, centre + 7/2s * up, .4r, 126);
 
@@ -408,7 +408,7 @@ if negated < 3:
       if negated = 1:
         stroke_through(centre, 6/3equal_spread + 3/4greater_spread);
       elseif negated = 2:
-	    stroke_through(1/2[z2,z3], equal_spread);
+        stroke_through(1/2[z2,z3], equal_spread);
       fi;
     endchar;
   endfor;
@@ -667,7 +667,7 @@ if negated < 2:
 
       fill stroke z4.e{dir (theta - 90)} .. {dir(-theta - 90)}z5.e;
 
-	  if negated = 1:
+      if negated = 1:
         stroke_through(centre, equal_spread + greater_spread);
       fi;
     endchar;
@@ -678,8 +678,8 @@ if negated < 2:
   for sign = 1, -1:
     beginorder(sign, order_width# * sqrt(7/6), ifneg(1,2) * equal_spread# + 3/4greater_spread#); "round less than or slanted equal";
       thick := line_thickness;
-	  s := 3/4greater_spread;
-	  t := 1/2equal_spread;
+      s := 3/4greater_spread;
+      t := 1/2equal_spread;
 
       z0 = left_ex + t * up;
       z1 = z0 + order_width * dir angle(right_ex - left_ex);
@@ -696,13 +696,13 @@ if negated < 2:
 
       fill stroke z4.e{dir (theta - 90)} .. {dir(-theta - 90)}z5.e;
 
-	  if sign = 1:
-	    draw_line(z1a - 2t * up, z4a - 2t * up, false);
-	  else:
-	    draw_line(z0a - 2t * up, z3a - 2t * up, false);
-	  fi;
+      if sign = 1:
+        draw_line(z1a - 2t * up, z4a - 2t * up, false);
+      else:
+        draw_line(z0a - 2t * up, z3a - 2t * up, false);
+      fi;
 
-	  if negated = 1:
+      if negated = 1:
         stroke_through(centre, 2equal_spread + 3/4greater_spread);
       fi;
     endchar;
@@ -738,7 +738,7 @@ if negated < 3:
       draw_line(z0' + s/2 * up, z0' - s/2 * up, false);
       draw_line(z2, z3, false);
 
-	  if negated = 1:
+      if negated = 1:
         stroke_through(centre, 5/2equal_spread + s);
       elseif negated = 2:
         stroke_through(1/2[z2,z3] + 1/2equal_spread * up, 2equal_spread);
@@ -945,7 +945,7 @@ if negated < 3:
     beginorder(sign, order_width#, ifneg(5/3,8/3,8/3) * equal_spread# + 3/4greater_spread#); "curly less than or double equal";
       s := 3/4greater_spread;
 
-	  z0 - z2 = z1 - z3 = (2/3equal_spread + s/2) * up;
+      z0 - z2 = z1 - z3 = (2/3equal_spread + s/2) * up;
       z0 - left_ex = z1 - right_ex = 5/6equal_spread * up;
       z2 - z4 = z3 - z5 = equal_spread * up;
 
@@ -953,7 +953,7 @@ if negated < 3:
       draw_line(z2, z3, false);
       draw_line(z4, z5, false);
 
-	  if negated = 1:
+      if negated = 1:
         stroke_through(centre, 8/3equal_spread + 3/4greater_spread);
       elseif negated = 2:
         stroke_through(1/2[1/2[z2,z3], 1/2[z4,z5]], 2equal_spread);
@@ -1072,7 +1072,7 @@ if negated < 2:
   for sign = 1, -1:
     beginorder(sign, order_width#, ifneg(1,2) * equal_spread# + 3/4greater_spread#); "slanted equal or less than";
       s := 3/4greater_spread;
-	  t := 1/2equal_spread;
+      t := 1/2equal_spread;
 
       draw_less(a, left_ex - t * up, right_ex - t * up, s, line_thickness, false);
 
@@ -1092,7 +1092,7 @@ fi
 if negated < 2:
   for sign = 1, -1:
     beginorder(sign, order_width#, ifneg(1,2) * equal_spread# + 3/4greater_spread#); "curly equal or curly less than";
-	  s := 3/4greater_spread;
+      s := 3/4greater_spread;
 
       z0 - z2 = -equal_spread * up;
       z1 - z3 = -(7/5equal_spread + s/2) * up;

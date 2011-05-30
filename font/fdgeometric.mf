@@ -1330,7 +1330,7 @@ for filled = false, true:
     z6 = z1'r + whatever * dir (270-45);
     z7 = z0 + thick * dir 20;
     z8 = z0 + thick * dir (180-20);
-	p1 = z7{dir (90+35)} .. {dir 90}z2r;
+    p1 = z7{dir (90+35)} .. {dir 90}z2r;
     p2 = z3r{dir 270} .. {dir (270-35)}z8;
     (t1,t2) = p1 intersectiontimes p2;
 

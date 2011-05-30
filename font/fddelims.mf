@@ -398,7 +398,7 @@ for negated = false, true:
       draw_line(z0, z1, false);
       draw_line(z2, z3, false);
 
-	  if negated:
+      if negated:
         if scale < 1: theta := 30; else: theta := 45; fi
         len := 1/2(7u + floor scale * u + line_thickness) / cosd theta;
         pair centre;

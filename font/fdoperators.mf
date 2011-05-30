@@ -93,9 +93,7 @@ endfor;
 for sign = 1, -1:
   for scale = 1, 1.4:
     beginbigop(scale, scale); "big union";
-      draw_subset(a, centre + sign * op_height/2 * up,
-                  centre - sign * op_height/2 * up,
-                  op_width - line_thickness, line_thickness);
+      draw_subset(a, centre + sign * op_height/2 * up, centre - sign * op_height/2 * up, op_width - line_thickness, line_thickness);
     endchar;
   endfor;
   charlist current_char - 1: current_char;
@@ -104,9 +102,7 @@ endfor;
 for sign = 1, -1:
   for scale = 1, 1.4:
     beginbigop(scale, scale); "big union dot";
-      draw_subset(a, centre + sign * op_height/2 * up,
-                  centre - sign * op_height/2 * up,
-                  op_width - line_thickness, line_thickness);
+      draw_subset(a, centre + sign * op_height/2 * up, centre - sign * op_height/2 * up, op_width - line_thickness, line_thickness);
       fill dot(centre - sign * 1/8op_height * up, dot_size);
     endchar;
   endfor;
@@ -116,9 +112,7 @@ endfor;
 for sign = 1, -1:
   for scale = 1, 1.4:
     beginbigop(scale, scale); "big union plus";
-      draw_subset(a, centre + sign * op_height/2 * up,
-                  centre - sign * op_height/2 * up,
-                  op_width - line_thickness, line_thickness);
+      draw_subset(a, centre + sign * op_height/2 * up, centre - sign * op_height/2 * up, op_width - line_thickness, line_thickness);
 
       r := 1/4op_width;
 
@@ -167,7 +161,7 @@ for sign = 1, -1:
       z1 - z0 = sign * (op_height - line_thickness) * up;
       1/2[1/2[z0,z1], 1/2[z2,z3]] = centre;
 
-	  draw_line(z0, z1, true);
+      draw_line(z0, z1, true);
       draw_line(z1, z2, true);
       draw_line(z2, z3, true);
 
@@ -269,7 +263,6 @@ for number = 0, 1, 2, 3:
 
       for i = 0 upto number:
         centre := (side_bearing + scale * (5i + 7/2) * u, (h - d)/2);
-
         draw_integral([i])(scale, centre, 3/2line_thickness * sqrt sqrt scale);
       endfor;
     endchar;
@@ -303,8 +296,8 @@ charlist current_char - 1: current_char;
 
 for sign = 1, -1:
   for scale = 1, 1.8:
-	beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "oriented integral";
-	  if scale > 1:
+    beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "oriented integral";
+      if scale > 1:
         italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
       fi
 
@@ -420,9 +413,8 @@ for number = 0, 1, 2:
       fi
 
       % Integral must come after unfill when processed with MetaPost!
-	  for i = 0 upto number:
+      for i = 0 upto number:
         centre := (side_bearing + scale * (5i + 4) * u, (h - d)/2);
-
         draw_integral([i])(scale, centre, 3/2line_thickness * sqrt sqrt scale);
       endfor;
     endchar;
@@ -435,8 +427,8 @@ for alpha = 0, 180:
     for scale = 1, 1.8:
       beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "oriented contour integral";
         if scale > 1:
-	      italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
-	    fi
+          italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
+        fi
 
         pair centre;
         centre := (side_bearing + scale * (4u + if alpha > 90: u else: 0 fi), (h - d)/2);

@@ -549,9 +549,9 @@ for sign = 1, -1:
       r := (w - 2side_bearing)/2 - arrow_spread/3;
 
       for i = 0 upto 7:
-	    z[i] = centre + r * dir (alpha + i/8 * 360);
-	    penpos[i](thick, alpha + i/8 * 360);
-	  endfor;
+        z[i] = centre + r * dir (alpha + i/8 * 360);
+        penpos[i](thick, alpha + i/8 * 360);
+      endfor;
 
       z0' = centre + r * dir (alpha + 10);
       penpos0'(thick, alpha + 10);
@@ -703,7 +703,7 @@ endfor;
 
 for alpha = 0, 90, 180, 270:
   beginarrow(alpha, 1, ifneg(5/2, 2) * arrow_spread#); "double models (" & decimal alpha & ")";
-	z1 - z0 = z3 - z2 = equal_spread * dir (arrow_dir + 90);
+    z1 - z0 = z3 - z2 = equal_spread * dir (arrow_dir + 90);
     z4 = foot + equal_spread * dir arrow_dir;
     1/2[z0,z1] = z4;
     1/2[z2,z3] = head_ex;
