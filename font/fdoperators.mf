@@ -262,7 +262,7 @@ charlist current_char - 1: current_char;
 
 for number = 0, 1, 2, 3:
   for scale = 1, 1.8:
-    beginsymbol(scale * (5number + 4) * u# + (sqrt scale) * 3/4line_thickness# + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "integral";
+    beginsymbol(scale * (5number + 4) * u# + (sqrt scale) * 3/4line_thickness# + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "integral";
       italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
 
       pair centre;
@@ -278,7 +278,7 @@ for number = 0, 1, 2, 3:
 endfor;
 
 for scale = 1, 1.8:
-  beginsymbol(scale * 9u# + 4(equal_spread# + dot_size#) + (sqrt scale) * 3/4line_thickness# + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "integral dots";
+  beginsymbol(scale * 9u# + 4(equal_spread# + dot_size#) + (sqrt scale) * 3/4line_thickness# + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "integral dots";
     italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
 
     pair centre;
@@ -303,7 +303,7 @@ charlist current_char - 1: current_char;
 
 for sign = 1, -1:
   for scale = 1, 1.8:
-	beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "oriented integral";
+	beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "oriented integral";
 	  if scale > 1:
         italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
       fi
@@ -339,7 +339,7 @@ for sign = 1, -1:
 endfor;
 
 for scale = 1, 1.8:
-  beginsymbol(scale * 4u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "integral with horizontal bar";
+  beginsymbol(scale * 4u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "integral with horizontal bar";
     if scale > 1:
       italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
     fi
@@ -358,7 +358,7 @@ endfor;
 charlist current_char - 1: current_char;
 
 for scale = 1, 1.8:
-  beginsymbol(scale * 4u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "integral with double horizontal bar";
+  beginsymbol(scale * 4u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "integral with double horizontal bar";
     if scale > 1:
       italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
     fi
@@ -381,7 +381,7 @@ endfor;
 charlist current_char - 1: current_char;
 
 for scale = 1, 1.8:
-  beginsymbol(scale * 4u# + (sqrt scale) * 3/4line_thickness# + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "stroked integral";
+  beginsymbol(scale * 4u# + (sqrt scale) * 3/4line_thickness# + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "stroked integral";
     italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
 
     pair centre;
@@ -399,7 +399,7 @@ charlist current_char - 1: current_char;
 
 for number = 0, 1, 2:
   for scale = 1, 1.8:
-    beginsymbol(scale * (5number + 5) * u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "contour integral";
+    beginsymbol(scale * (5number + 5) * u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "contour integral";
       if scale > 1:
         italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
       fi
@@ -433,7 +433,7 @@ endfor;
 for alpha = 0, 180:
   for sign = 1, -1:
     for scale = 1, 1.8:
-      beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "oriented contour integral";
+      beginsymbol(scale * 6u# + if scale > 1: (sqrt scale) * 3/4line_thickness# else: scale * 3u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "oriented contour integral";
         if scale > 1:
 	      italcorr scale * 3u# - (sqrt scale) * 3/4line_thickness#; % kerning between upper limit and lower limit
 	    fi
@@ -465,7 +465,7 @@ for alpha = 0, 180:
 endfor;
 
 for scale = 1, 1.8:
-  beginsymbol(scale * 13/2u# + if scale > 1: 0 else: scale * u# fi + 2side_bearing#, ((scale - 1)/2 + 1) * 1.6asc_height#, (scale - 1)/2 * 1.6asc_height#); "sum integral";
+  beginsymbol(scale * 13/2u# + if scale > 1: 0 else: scale * u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "sum integral";
     if scale > 1:
       italcorr scale * u#; % kerning between upper limit and lower limit
     fi

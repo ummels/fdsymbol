@@ -97,12 +97,9 @@ def select(expr n)(text values) =
   endgroup
 enddef;
 
+% Splits a length at the math axis
 def vcentre(expr size) =
   size/2 + math_axis#, size/2 - math_axis#
-enddef;
-
-def ocentre(expr size) =
-  size/2 + math_axis# + 1/2equal_spread#, size/2 - math_axis# - 1/2equal_spread#
 enddef;
 
 current_char := -1;
@@ -120,11 +117,11 @@ def beginoperator(expr size, ratio) =
   beginsymbol(size + 2side_bearing#, vcentre(ratio * size));
     pair centre;
     centre := (w/2, (h-d)/2);
-	radius := w/2 - side_bearing - 1/2line_thickness;
+    radius := w/2 - side_bearing - 1/2line_thickness;
 enddef;
 
 def beginbigop(expr xscale, yscale) =
-  beginsymbol(xscale * 3/2order_width# + 2side_bearing#, ocentre(yscale * bigop_height#));
+  beginsymbol(xscale * 3/2order_width# + 2side_bearing#, vcentre(yscale * bigop_height#));
     pair centre;
     centre := (w/2, (h-d)/2);
     op_width  := xscale * 3/2order_width;
@@ -132,7 +129,7 @@ def beginbigop(expr xscale, yscale) =
 enddef;
 
 def beginsquarebigop(expr xscale, yscale) =
-  beginsymbol(xscale * bigop_height# + 2side_bearing#, ocentre(yscale * bigop_height#));
+  beginsymbol(xscale * bigop_height# + 2side_bearing#, vcentre(yscale * bigop_height#));
     pair centre;
     centre := (w/2, (h-d)/2);
     op_width  := xscale * bigop_height;
