@@ -65,4 +65,4 @@ This work has the LPPL maintenance status `maintained'.
 The Current Maintainer of this work is Michael Ummels.
 
 This work consists of the files fdsymbol.dtx, fdsymbol.ins
-and the derived file fdsymbol.sty.
+and the derived files fdsymbol.pdf and fdsymbol.sty.
