@@ -542,7 +542,7 @@ if negated < 2:
   endfor;
 fi;
 
-if negated < 3:
+if negated < 2:
   for sign = 1, -1:
     beginorder(sign, order_width#, ifneg(7/3,17/6 + 1/2sign, 7/3) * equal_spread# + 3/2greater_spread#); "less double equal greater";
       s := 3/4greater_spread;
@@ -556,8 +556,6 @@ if negated < 3:
 
       if negated = 1:
         stroke_through(centre, (17/6 + 1/2sign) * equal_spread + 2s);
-      elseif negated = 2:
-        stroke_through(centre, 2equal_spread);
       fi;
     endchar;
   endfor;
