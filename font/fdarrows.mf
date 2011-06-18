@@ -660,31 +660,35 @@ fi
 
 current_char := 223;
 
-for alpha = 0, 90, 180, 270:
-  beginarrow(alpha, 2/3, ifneg(2, 3/2) * arrow_spread#); "derives (" & decimal alpha & ")";
-    draw_line(foot, head_ex, false);
-    draw_line(foot - 3/4arrow_spread * dir (arrow_dir + 90), foot + 3/4arrow_spread * dir (arrow_dir + 90), true);
+for length = 2/3, 2/5:
+  for alpha = 0, 90, 180, 270:
+    beginarrow(alpha, length, ifneg(2, 3/2) * arrow_spread#); "derives (" & decimal alpha & ")";
+      draw_line(foot, head_ex, false);
+      draw_line(foot - 3/4arrow_spread * dir (arrow_dir + 90), foot + 3/4arrow_spread * dir (arrow_dir + 90), true);
 
-    if negated:
-      stroke_through_arrow(2/3[foot, head], alpha, 2arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
-    fi
-  endchar;
+      if negated:
+        stroke_through_arrow(2/3[foot, head], alpha, 2arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
+      fi
+    endchar;
+  endfor;
 endfor;
 
-for alpha = 0, 90, 180, 270:
-  beginarrow(alpha, 2/3, ifneg(9/4, 7/4) * arrow_spread#); "models (" & decimal alpha & ")";
-    z1 - z0 = z3 - z2 = equal_spread * dir (arrow_dir + 90);
-    0.5[z0,z1] = foot;
-    0.5[z2,z3] = head_ex;
+for length = 2/3, 2/5:
+  for alpha = 0, 90, 180, 270:
+    beginarrow(alpha, length, ifneg(9/4, 7/4) * arrow_spread#); "models (" & decimal alpha & ")";
+      z1 - z0 = z3 - z2 = equal_spread * dir (arrow_dir + 90);
+      1/2[z0,z1] = foot;
+      1/2[z2,z3] = head_ex;
 
-    draw_line(z0, z2, false);
-    draw_line(z1, z3, false);
-    draw_line(foot - 7/8arrow_spread * dir (arrow_dir + 90), foot + 7/8arrow_spread * dir (arrow_dir + 90), true);
+      draw_line(z0, z2, false);
+      draw_line(z1, z3, false);
+      draw_line(foot - 7/8arrow_spread * dir (arrow_dir + 90), foot + 7/8arrow_spread * dir (arrow_dir + 90), true);
 
-    if negated:
-      stroke_through_arrow(2/3[foot, head], alpha, 9/4arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
-    fi
-  endchar;
+      if negated:
+        stroke_through_arrow(2/3[foot, head], alpha, 9/4arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
+      fi
+    endchar;
+  endfor;
 endfor;
 
 for alpha = 0, 90, 180, 270:
@@ -719,8 +723,8 @@ for alpha = 0, 90, 180, 270:
   endchar;
 endfor;
 
-if not negated:
-  beginarrow(0, 1, 7/4arrow_spread#); "Vvdash";
+for alpha = 0, 180:
+  beginarrow(alpha, 1, 7/4arrow_spread#); "Vvdash";
     s := 7/8arrow_spread;
     z0 = foot + 4/5equal_spread * dir arrow_dir;
     z1 = foot + 8/5equal_spread * dir arrow_dir;
@@ -730,4 +734,19 @@ if not negated:
     draw_line(z0 - s * dir (arrow_dir + 90), z0 + s * dir (arrow_dir + 90), true);
     draw_line(z1 - s * dir (arrow_dir + 90), z1 + s * dir (arrow_dir + 90), true);
   endchar;
-fi
+endfor;
+
+for alpha = 0, 180:
+  beginarrow(alpha, 2/3, ifneg(9/4, 7/4) * arrow_spread#); "triple models (" & decimal alpha & ")";
+    foot - z0 = z1 - foot = head_ex - z2 = z3 - head_ex = 4/5equal_spread * dir (arrow_dir + 90);
+
+    draw_line(z0, z2, false);
+    draw_line(foot, head_ex, false);
+    draw_line(z1, z3, false);
+    draw_line(foot - 7/8arrow_spread * dir (arrow_dir + 90), foot + 7/8arrow_spread * dir (arrow_dir + 90), true);
+
+    if negated:
+      stroke_through_arrow(2/3[foot, head], alpha, 9/4arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
+    fi
+  endchar;
+endfor;
