@@ -8,7 +8,7 @@ pkg := fdsymbol
 
 .PHONY: all package doc install uninstall clean
 
-all: package doc
+all: package
 
 package: $(pkg).sty
 
