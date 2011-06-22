@@ -59,9 +59,7 @@ $(prooffiles): %.dvi: %.2602gf
 charts: $(chartfiles)
 
 $(chartfiles): %.pdf: %.pfb %.tfm
-	echo $* | $(PDFTEX) "\pdfmapline{=$* FdSymbol <$*.pfb}\input fontchart.tex"
-	rm -f fontchart.log
-	mv fontchart.pdf $@
+	echo $* | $(PDFTEX) --jobname $* "\pdfmapline{=$* FdSymbol <$*.pfb}\input fontchart.tex"
 
 validate: $(pfbfiles)
 	@echo "Validating fonts..."
