@@ -24,7 +24,7 @@ $(pkg).pdf: $(pkg).dtx
 	  $(LATEX) $(pkg).dtx; \
 	done
 
-install: all doc
+install: all
 	$(INSTALLDIR) -d $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDATA) $(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDIR) -d $(TEXMFDIR)/doc/latex/$(pkg)
