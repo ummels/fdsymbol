@@ -6,37 +6,37 @@
   /arrowright /arrowup /arrowleft /arrowdown /uni2197 /uni2196 /uni2199 /uni2198
   /arrowdblright /arrowdblup /arrowdblleft /arrowdbldown /uni21D7 /uni21D6 /un21D9 /uni21D8
 %10
-  /arrowboth /arrowupdn /uni2921 /uni2922 /arrowdblboth /uni21D5 /uniE200 /uniE201
-  /uni21A0 /uni219F /uni219E /uni21A1 /uniE203 /uniE202 /uniE205 /uniE204
+  /arrowboth /arrowupdn /uni2921 /uni2922 /arrowdblboth /uni21D5 /sym030 /sym031
+  /uni21A0 /uni219F /uni219E /uni21A1 /sym033 /sym032 /sym035 /sym034
 %20
-  /uni21A3 /uniE206 /uni21A2 /uniE207 /uniE209 /uniE208 /uniE20B /uniE20A
-  /uni21A6 /uni21A5 /uni21A4 /uni21A7 /uniE20D /uniE20C /uniE20F /uniE20E
+  /uni21A3 /sym036 /uni21A2 /sym037 /sym039 /sym038 /sym03B /sym03A
+  /uni21A6 /uni21A5 /uni21A4 /uni21A7 /sym03D /sym03C /sym03F /sym03E
 %30
-  /uni21AA /uniE210 /uni21A9.alt /uniE211.alt /uni2924.alt /uni2923 /uni2926.alt /uni2925
-  /uni21AA.alt /uniE210.alt /uni21A9 /uniE211 /uni2924 /uni2923.alt /uni2926 /uni2925.alt
+  /uni21AA /sym040 /uni21A9.alt /sym041.alt /uni2924.alt /uni2923 /uni2926.alt /uni2925
+  /uni21AA.alt /sym040.alt /uni21A9 /sym041 /uni2924 /uni2923.alt /uni2926 /uni2925.alt
 %40
-  /uni21C0 /uni21BF /uni21BD /uni21C2 /uniE213 /uniE212 /uniE215 /uniE214
-  /uni21C1 /uni21BE /uni21BC /uni21C3 /uniE217 /uniE216 /uniE219 /uniE218
+  /uni21C0 /uni21BF /uni21BD /uni21C2 /sym043 /sym042 /sym045 /sym044
+  /uni21C1 /uni21BE /uni21BC /uni21C3 /sym047 /sym046 /sym049 /sym048
 %50
-  /uni294B /uni294D /uniE21B /uniE21A /uni294A /uni294C /uniE21D /uniE21C
-  /uni21CC /uni296E /uniE21F /uniE21E /uni21CB /uni296F /uniE221 /uniE220
+  /uni294B /uni294D /sym04B /sym04A /uni294A /uni294C /sym04D /sym04C
+  /uni21CC /uni296E /sym04F /sym04E /uni21CB /uni296F /sym051 /sym050
 %60
-  /uni21E2 /uni21E1 /uni21E0 /uni21E3 /uniE223 /uniE222 /uniE225 /uniE224
-  /uni22B8 /uni2AEF /uni27DC /uni2AF0 /uniE226 /uniE228 /uniE227 /uniE229
+  /uni21E2 /uni21E1 /uni21E0 /uni21E3 /sym053 /sym052 /sym055 /sym054
+  /uni22B8 /uni2AEF /uni27DC /uni2AF0 /sym056 /sym058 /sym057 /sym059
 %70
-  /uniE22B /uni22D4 /uniE22C /uniE22A /uni21C9 /uni21C8 /uni21C7 /uni21CA
-  /uniE22E /uniE22D /uniE230 /uniE22F /uni21C4 /uni21C5 /uniE232 /uniE231
+  /sym05B /uni22D4 /sym05C /sym05A /uni21C9 /uni21C8 /uni21C7 /uni21CA
+  /sym05E /sym05D /sym060 /sym05F /uni21C4 /uni21C5 /sym062 /sym061
 %80
-  /uni21C6 /uni21F5 /uniE234 /uniE233 /uni219D /uniE235.alt /uni219C.alt /uniE236
-  /uni219D.alt /uniE235 /uni219C /uniE236.alt /uni21AD /uniE237.alt /uni21AD.alt /uniE237
+  /uni21C6 /uni21F5 /sym064 /sym063 /uni219D /sym065.alt /uni219C.alt /sym066
+  /uni219D.alt /sym065 /uni219C /sym066.alt /uni21AD /sym067.alt /uni21AD.alt /sym067
 %90
-  /uniE23A /uniE239 /uniE238 /uni2938 /uniE23D /uniE23C /uni2936 /uni2935
-  /uni293B /uniE23B /uni293A /uni2939 /uni2934 /uniE23E /uniE23F /uni2937
+  /sym06A /sym069 /sym068 /uni2938 /sym06D /sym06C /uni2936 /uni2935
+  /uni293B /sym06B /uni293A /uni2939 /uni2934 /sym06E /sym06F /uni2937
 %A0
-  /uniE240 /uniE241 /uniE242 /uniE243 /uniE245 /uniE244 /uniE247 /uniE246
-  /uni27DD /uni27DE /uniE248 /uni21BA /uni27F2 /uniE24B /uni27F3 /uni21BB
+  /sym070 /sym071 /sym072 /sym073 /sym075 /sym074 /sym077 /sym076
+  /uni27DD /uni27DE /sym078 /uni21BA /uni27F2 /sym07B /uni27F3 /uni21BB
 %B0
-  /uniE249 /uniE24A /uni21DB /uni290A /uni21DA /uni290B /uni21B0 /uni21B1
+  /sym079 /sym07A /uni21DB /uni290A /uni21DA /uni290B /uni21B0 /uni21B1
   /uni21B2 /uni21B3 /uni21AC /uni21AB /.notdef /.notdef /.notdef /.notdef
 %C0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
@@ -45,9 +45,9 @@
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %E0
-  /uni22A2 /uni27C2 /uni22A3 /uniE24C /uni22A6 /uni2AE0 /uni2ADE /uni2ADF
-  /uni22A8 /uni2AEB /uni2AE4 /uni2AEA /uni22A7 /uniE24E /uniE24D /uniE24F
+  /uni22A2 /uni27C2 /uni22A3 /sym07C /uni22A6 /uni2AE0 /uni2ADE /uni2ADF
+  /uni22A8 /uni2AEB /uni2AE4 /uni2AEA /uni22A7 /sym07E /sym07D /sym07F
 %F0
-  /uni22A9 /uni234A /uni2AE3 /uni2351 /uni22AB /uniE250 /uni2AE5 /uniE251
-  /uni22AA /uniE252 /uni2AE2 /uniE253 /.notdef /.notdef /.notdef /.notdef
+  /uni22A9 /uni234A /uni2AE3 /uni2351 /uni22AB /sym080 /uni2AE5 /sym081
+  /uni22AA /sym082 /uni2AE2 /sym083 /.notdef /.notdef /.notdef /.notdef
 ] def
