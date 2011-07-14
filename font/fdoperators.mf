@@ -69,29 +69,6 @@ endfor;
 
 for sign = 1, -1:
   for scale = 1, 1.4:
-    beginbigop(scale, scale); "big curly wedge dot";
-      draw_prec(a, centre + sign * op_height/2 * up, centre - sign * op_height/2 * up, op_width - line_thickness, line_thickness, false);
-      fill dot(centre - sign * 3/8op_height * up, dot_size);
-    endchar;
-  endfor;
-  charlist current_char - 1: current_char;
-endfor;
-
-for sign = 1, -1:
-  for scale = 1, 1.4:
-    beginbigop(4/3scale, scale); "double big curly wedge";
-      z0 = centre - 1/8op_width * right;
-      z1 = centre + 1/8op_width * right;
-
-      draw_prec(a, z0 + sign * op_height/2 * up, z0 - sign * op_height/2 * up, 3/4op_width - line_thickness, line_thickness, false);
-      draw_prec(b, z1 + sign * op_height/2 * up, z1 - sign * op_height/2 * up, 3/4op_width - line_thickness, line_thickness, false);
-    endchar;
-  endfor;
-  charlist current_char - 1: current_char;
-endfor;
-
-for sign = 1, -1:
-  for scale = 1, 1.4:
     beginbigop(scale, scale); "big union";
       draw_subset(a, centre + sign * op_height/2 * up, centre - sign * op_height/2 * up, op_width - line_thickness, line_thickness);
     endchar;
