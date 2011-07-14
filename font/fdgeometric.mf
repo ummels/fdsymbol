@@ -88,32 +88,18 @@ beginoperator(plus_size#, 1); "times";
   draw_line(centre + r * dir 135, centre + r * dir 315, true);
 endchar;
 
-beginoperator(plus_size#, 1.25); "plus minus";
-  centre := centre + 0.125plus_size * up;
-  pair bt;
-  bt := centre + (radius + 0.25plus_size) * down;
-
-  draw_line(centre + radius * right, centre + radius * left, true);
-  draw_line(centre + radius * up, centre + radius * down, true);
-  draw_line(bt + radius * right, bt + radius * left, true);
-endchar;
-
-beginoperator(plus_size#, 1.25); "minus plus";
-  centre := centre + 0.125plus_size * down;
-  pair tp;
-  tp := centre + (radius + 0.25plus_size) * up;
-
-  draw_line(centre + radius * right, centre + radius * left, true);
-  draw_line(centre + radius * up, centre + radius * down, true);
-  draw_line(tp + radius * right, tp + radius * left, true);
-endchar;
-
 for angle = 0, 180:
   beginoperator(plus_size#, 1); "dot minus (" & decimal angle & ")";
     draw_line(centre - radius * dir angle, centre + radius * dir angle, true);
     fill dot(centre + equal_spread * dir (angle + 90), 3/4dot_size);
   endchar;
 endfor;
+
+beginoperator(plus_size#, 1); "divide";
+  draw_line(centre + radius * right, centre + radius * left, true);
+  fill dot(centre + equal_spread * up, 3/4dot_size);
+  fill dot(centre + equal_spread * down, 3/4dot_size);
+endchar;
 
 for sign = 1, -1:
   beginoperator(plus_size#, 1); "minus with two dots";
@@ -131,8 +117,58 @@ beginoperator(plus_size#, 1); "minus with four dots";
   fill dot(centre + (radius - 3/4dot_size) * right + equal_spread * down, 3/4dot_size);
 endchar;
 
-beginoperator(plus_size#, 1); "divide";
+for angle = 0, 180:
+  beginoperator(plus_size#, 1.25); "plus minus (" & decimal angle & ")";
+    centre := centre + 0.125plus_size * dir (angle + 90);
+    pair bt;
+    bt := centre + (radius + 0.25plus_size) * dir (angle - 90);
+
+    draw_line(centre + radius * right, centre + radius * left, true);
+    draw_line(centre + radius * up, centre + radius * down, true);
+    draw_line(bt + radius * right, bt + radius * left, true);
+  endchar;
+endfor;
+
+for angle = 0, 180:
+  beginoperator(plus_size#, 1.25); "dot plus (" & decimal angle & ")";
+    centre := centre + 0.125plus_size * dir (angle - 90);
+    pair tp;
+    tp := centre + (radius + 0.25plus_size) * dir (angle + 90);
+
+    draw_line(centre + radius * right, centre + radius * left, true);
+    draw_line(centre + radius * up, centre + radius * down, true);
+    fill dot(tp, 3/4dot_size);
+  endchar;
+endfor;
+
+beginoperator(plus_size#, 1.25); "dot times";
+  centre := centre + 0.125plus_size * down;
+  pair tp;
+  tp := centre + (radius + 0.2plus_size) * up;
+  r := 4/3radius;
+
+  draw_line(centre + r * dir 45, centre + r * dir 225, true);
+  draw_line(centre + r * dir 135, centre + r * dir 315, true);
+  fill dot(tp, 3/4dot_size);
+endchar;
+
+beginoperator(plus_size#, 1.25); "times bar";
+  centre := centre + 0.125plus_size * up;
+  pair bt;
+  bt := centre + (radius + 0.25plus_size) * down;
+  r := 4/3radius;
+
+  draw_line(centre + r * dir 45, centre + r * dir 225, true);
+  draw_line(centre + r * dir 135, centre + r * dir 315, true);
+  draw_line(bt + radius * right, bt + radius * left, true);
+endchar;
+
+beginoperator(plus_size#, 1); "divide on times";
+  r := 4/3radius;
+
   draw_line(centre + radius * right, centre + radius * left, true);
+  draw_line(centre + r * dir 45, centre + r * dir 225, true);
+  draw_line(centre + r * dir 135, centre + r * dir 315, true);
   fill dot(centre + equal_spread * up, 3/4dot_size);
   fill dot(centre + equal_spread * down, 3/4dot_size);
 endchar;
@@ -268,19 +304,26 @@ for sign = 1, -1:
 endfor;
 
 for sign = 1, -1:
-  beginoperator(plus_size#, 1); "curly wedge dot";
-    draw_prec(a, centre + sign * plus_size/2 * up, centre - sign * plus_size/2 * up, 2radius, line_thickness, false);
-    fill dot(1/2[z1a.l,z0a.r] + sign * 3/4dot_size * up, 3/4dot_size);
+  beginoperator(plus_size#, 1.25); "bar wedge";
+    centre := centre - sign * 0.125plus_size * up;
+    pair tp;
+    tp := centre + sign * (radius + 0.25plus_size) * up;
+
+    draw_less(a, centre + sign * plus_size/2 * up, centre - sign * plus_size/2 * up, 2radius, line_thickness, false);
+    draw_line(tp + radius * left, tp + radius * right, true);
   endchar;
 endfor;
 
 for sign = 1, -1:
-  beginsymbol(13/9plus_size# + 2side_bearing#, vcentre(plus_size#)); "double curly wedge";
-    1/2[z0,z1] = (w/2, (h-d)/2);
-    z1 - z0 = 4/9plus_size * right;
+  beginoperator(plus_size#, 1.5); "double bar wedge";
+    centre := centre - sign * 0.25plus_size * up;
+    pair tpa, tpb;
+    tpa := centre + sign * (radius + 0.25plus_size) * up;
+    tpb := centre + sign * (radius + 0.5plus_size) * up;
 
-    draw_prec(a, z0 + sign * plus_size/2 * up, z0 - sign * plus_size/2 * up, 2radius, line_thickness, false);
-    draw_prec(b, z1 + sign * plus_size/2 * up, z1 - sign * plus_size/2 * up, 2radius, line_thickness, false);
+    draw_less(a, centre + sign * plus_size/2 * up, centre - sign * plus_size/2 * up, 2radius, line_thickness, false);
+    draw_line(tpa + radius * left, tpa + radius * right, true);
+    draw_line(tpb + radius * left, tpb + radius * right, true);
   endchar;
 endfor;
 
@@ -1018,29 +1061,15 @@ beginsymbol(equal_spread# + line_thickness# + 2side_bearing#, vcentre(med_op_siz
   draw_smile(b, -1, z1 - r * up, z1 + r * up, equal_spread, line_thickness, true);
 endchar;
 
-beginsymbol(11/5equal_spread# + line_thickness# + 2side_bearing#, vcentre(med_op_size#)); "reversed between";
-  pair centre;
-  centre := (w/2, (h-d)/2);
-  r := med_op_size/2;
+beginsymbol(2equal_spread# + 2side_bearing#, x_height#, desc_depth#); "intercalate";
+  z1 - z0 = z3 - z2 = (2equal_spread - line_thickness) * right;
+  z2 - z0 = (h + d - line_thickness) * up;
 
-  z0 = centre + 3/4equal_spread * right;
-  z1 = centre - 3/4equal_spread * right;
+  1/2[1/2[z0,z1], 1/2[z2,z3]] = (w/2, (h-d)/2);
 
-  draw_smile(a, -1,  z0 - r * up, z0 + r * up, 2/3equal_spread, line_thickness, true);
-  draw_smile(b, 1, z1 - r * up, z1 + r * up, 2/3equal_spread, line_thickness, true);
+  draw_line(z2, z3, true);
+  draw_line(1/2[z0,z1], 1/2[z2,z3], true);
 endchar;
-
-for sign = 1, -1:
-  beginsymbol(order_width# + 2side_bearing#, cap_height#, 0); "top";
-    z1 - z0 = z3 - z2 = (order_width - line_thickness) * right;
-    z2 - z0 = sign * (cap_height - line_thickness) * up;
-
-    1/2[1/2[z0,z1], 1/2[z2,z3]] = (w/2, (h-d)/2);
-
-    draw_line(z2, z3, true);
-    draw_line(1/2[z0,z1], 1/2[z2,z3], true);
-  endchar;
-endfor;
 
 beginsymbol(2/3equal_spread# + line_thickness# + 2side_bearing#, vcentre(plus_size#)); "wreath";
   pair centre;

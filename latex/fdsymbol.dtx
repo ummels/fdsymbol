@@ -48,11 +48,11 @@
   pdfauthor={Michael Ummels}
 }
 
-% Restore FdSymbol's Hebrew letters (overwritten by fedraserif)
-\DeclareMathSymbol{\aleph}{0}{symbols}{"C2}
-\DeclareMathSymbol{\beth}{0}{symbols}{"C3}
-\DeclareMathSymbol{\gimel}{0}{symbols}{"C4}
-\DeclareMathSymbol{\daleth}{0}{symbols}{"C5}
+% Restore FdSymbol's Hebrew letters (overwritten by fedraserif.sty)
+\DeclareMathSymbol{\aleph}{0}{symbols}{"C5}
+\DeclareMathSymbol{\beth}{0}{symbols}{"C6}
+\DeclareMathSymbol{\gimel}{0}{symbols}{"C7}
+\DeclareMathSymbol{\daleth}{0}{symbols}{"C8}
 
 \linespread{1.1}
 
@@ -203,8 +203,6 @@
 % \showsymbol{\largewhitestar}
 % \showsymbol{\largeblackstar}, \cmd{\bigstar}
 % \showsymbol{\infty}
-% \showsymbol{\top}
-% \showsymbol{\bot}
 % \showsymbol{\angle}
 % \showsymbol{\revangle}
 % \showsymbol{\measuredangle}
@@ -244,6 +242,8 @@
 % \showsymbol{\gimel}
 % \showsymbol{\daleth}
 % \showsymbol{\wp}
+% \showsymbol{\top}
+% \showsymbol{\bot}
 % \showsymbol{/}, \cmd{\mathslash}
 % \showsymbol{\backslash}
 % {\catcode`\|=11 \showsymbol{|}, \cmd{\vert}}
@@ -266,15 +266,17 @@
 % \showsymbol{\medbackslash}, \cmd{\smallsetminus}
 % \showsymbol{+}, \cmd{\plus}
 % \showsymbol{\times}
-% \showsymbol{\pm}
-% \showsymbol{\mp}
 % \showsymbol{\dotminus}
 % \showsymbol{\minusdot}
+% \showsymbol{\div}
 % \showsymbol{\minusfdots}
 % \showsymbol{\minusrdots}
-% \showsymbol{\dotsminusdots}
+% \showsymbol{\pm}
+% \showsymbol{\mp}
 % \showsymbol{\dotplus}
-% \showsymbol{\div}
+% \showsymbol{\plusdot}
+% \showsymbol{\dottimes}
+% \showsymbol{\timesbar}
 % \showsymbol{\divideontimes}
 % \showsymbol{\intprod}
 % \showsymbol{\intprodr}
@@ -294,18 +296,14 @@
 % \showsymbol{\vee}, \cmd{\lor}
 % \showsymbol{\wedgedot}
 % \showsymbol{\veedot}
-% \showsymbol{\veebar}
-% \showsymbol{\barwedge}
-% \showsymbol{\veedoublebar}
-% \showsymbol{\doublebarwedge}
 % \showsymbol{\doublewedge}, \cmd{\wedgeonwedge}
 % \showsymbol{\doublevee}, \cmd{\veeonwee}
 % \showsymbol{\curlywedge}
 % \showsymbol{\curlyvee}
-% \showsymbol{\curlywedgedot}
-% \showsymbol{\curlyveedot}
-% \showsymbol{\doublecurlywedge}
-% \showsymbol{\doublecurlyvee}
+% \showsymbol{\barwedge}
+% \showsymbol{\veebar}
+% \showsymbol{\doublebarwedge}
+% \showsymbol{\veedoublebar}
 % \showsymbol{\cup}
 % \showsymbol{\cap}
 % \showsymbol{\doublecup}, \cmd{\Cup}
@@ -1086,6 +1084,7 @@
 % \showsymbol{:}, \cmd{\mathratio}
 % \showsymbol{\Colon}
 % \showsymbol{\relbar}
+% \showsymbol{\dotsminusdots}
 % \showsymbol{\rJoin}
 % \showsymbol{\lJoin}
 % \showsymbol{\bowtie}, \cmd{\Join}
@@ -1093,7 +1092,6 @@
 % \showsymbol{\backpropto}, \cmd{\propfrom}
 % \showsymbol{\crossing}
 % \showsymbol{\between}
-% \showsymbol{\separated}
 % \showsymbol{\shortmid}
 % \showsymbol{\mid}, \cmd{\divides}
 % \showsymbol{\nshortmid}
@@ -1382,7 +1380,6 @@
   \check@mathfonts\fontsize\sf@size\z@\math@fontsfalse\selectfont S}}}
 \DeclareRobustCommand{\Re}{\mathfrak{R}}
 \DeclareRobustCommand{\Im}{\mathfrak{I}}
-\DeclareRobustCommand{\dotplus}{\mathbin{\dot{+}}}
 \DeclareRobustCommand{\dotcong}{\mathrel{\dot{\cong}}}
 \DeclareRobustCommand{\thicksim}{\mathrel{\text{\boldmath$\m@th\sim$}}}
 \DeclareRobustCommand{\thickapprox}{\mathrel{\text{\boldmath$\m@th\approx$}}}
@@ -1390,12 +1387,7 @@
 \let\hslash\undefined
 \DeclareRobustCommand{\hbar}{\middlebar h}
 \DeclareRobustCommand{\hslash}{\middleslash h}
-\DeclareRobustCommand{\veebar}{\mathbin{\underline{\vee}}}
-\DeclareRobustCommand{\barwedge}{\mathbin{\overline{\wedge}}}
-\DeclareRobustCommand{\veedoublebar}{\mathbin{\underline{\underline{\vee}}}}
-\DeclareRobustCommand{\doublebarwedge}{\mathbin{\overline{\overline{\wedge}}}}
 \DeclareRobustCommand{\centerdot}{\mathbin{\rule{0.15em}{0.15em}}}
-\DeclareRobustCommand{\divideontimes}{\mathbin{\ooalign{$\div$\crcr$\times$}}}
 %    \end{macrocode}
 % Unneeded partial symbols.
 %    \begin{macrocode}
@@ -1547,14 +1539,19 @@
   \fdsy@DeclareAlias{\smallsetminus}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\plus}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\times}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\pm}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\mp}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\dotminus}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\minusdot}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\div}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\minusfdots}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\minusrdots}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\dotsminusdots}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\div}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\dotsminusdots}{symbols}{\mathrel}
+\fdsy@DeclareSymbol{\pm}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\mp}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\dotplus}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\plusdot}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\dottimes}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\timesbar}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\divideontimes}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\neg}{symbols}{\mathord}
   \fdsy@DeclareAlias{\lnot}{symbols}{\mathord}
   \fdsy@DeclareAlias{\minushookdown}{symbols}{\mathbin}
@@ -1600,10 +1597,10 @@
   \fdsy@DeclareAlias{\veeonvee}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\curlywedge}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\curlyvee}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\curlywedgedot}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\curlyveedot}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\doublecurlywedge}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\doublecurlyvee}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\barwedge}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\veebar}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\doublebarwedge}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\veedoublebar}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\cup}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\cap}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\doublecup}{symbols}{\mathbin}
@@ -1773,10 +1770,7 @@
   \fdsy@DeclareAlias{\propfrom}{symbols}{\mathrel}
 \fdsy@DeclareSymbol{\crossing}{symbols}{\mathrel}
 \fdsy@DeclareSymbol{\between}{symbols}{\mathrel}
-\fdsy@DeclareSymbol{\separated}{symbols}{\mathrel}
-\fdsy@DeclareSymbol{\top}{symbols}{\mathord}
-  \fdsy@DeclareAlias{\intercal}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\bot}{symbols}{\mathord}
+\fdsy@DeclareSymbol{\intercal}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\wreath}{symbols}{\mathbin}
   \fdsy@DeclareAlias{\wr}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\angle}{symbols}{\mathord}
@@ -2422,9 +2416,11 @@
   \fdsy@DeclareAlias{\vdash}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\upvdash}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\perp}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\bot}{arrows}{\mathord}
 \fdsy@DeclareSymbol{\leftvdash}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\dashv}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\downvdash}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\top}{arrows}{\mathord}
 \fdsy@DeclareSymbol{\rightassert}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\assert}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\shortrighttack}{arrows}{\mathrel}
@@ -3191,7 +3187,7 @@
 %    \begin{macrocode}
 \DeclareMathSymbol{+}{\mathbin}{symbols}{"11}
 \DeclareMathSymbol{-}{\mathbin}{symbols}{"0E}
-\DeclareMathSymbol{*}{\mathbin}{symbols}{"93}
+\DeclareMathSymbol{*}{\mathbin}{symbols}{"98}
 \DeclareMathSymbol{:}{\mathrel}{symbols}{"02}
 \DeclareMathSymbol{=}{\mathrel}{relations}{"00}
 \DeclareMathSymbol{<}{\mathrel}{relations}{"22}

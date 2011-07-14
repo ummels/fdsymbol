@@ -45,7 +45,8 @@
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %E0
-  /uni22A2 /uni27C2 /uni22A3 /sym07C /uni22A6 /uni2AE0 /uni2ADE /uni2ADF
+  /uni22A2 /uni22A5 %/uni27C2
+  /uni22A3 /uni22A4 /uni22A6 /uni2AE0 /uni2ADE /uni2ADF
   /uni22A8 /uni2AEB /uni2AE4 /uni2AEA /uni22A7 /sym07E /sym07D /sym07F
 %F0
   /uni22A9 /uni234A /uni2AE3 /uni2351 /uni22AB /sym080 /uni2AE5 /sym081
