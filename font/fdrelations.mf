@@ -242,6 +242,21 @@ if negated < 2:
   endfor;
 fi;
 
+if negated < 1:
+  for sign = 1, -1:
+    beginorder(sign, 4/3order_width# + 3/4dot_size#, equal_spread# + dot_size#); "colon equal";
+      s := 1/2equal_spread;
+      pair left_sep;
+      left_sep := left_ex + sign * (3/4dot_size + 1/3order_width) * right;
+
+      fill dot(left_ex + s * up + sign * 3/4dot_size * right, 3/4dot_size);
+      fill dot(left_ex - s * up + sign * 3/4dot_size * right, 3/4dot_size);
+      draw_line(left_sep + s * up, right_ex + s * up, false);
+      draw_line(left_sep - s * up, right_ex - s * up, false);
+    endchar;
+  endfor;
+fi;
+
 if negated < 2:
   for sign = 1, -1:
     beginorder(1, order_width#, ifneg(1/2,5/2) * equal_spread#); "smile";

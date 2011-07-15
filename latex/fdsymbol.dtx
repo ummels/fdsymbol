@@ -403,7 +403,6 @@
 % \begin{multicols}{2}
 % \raggedright
 % \showsymbol{=}, \cmd{\equal}, \cmd{\Relbar}
-% \showsymbol{\coloneq}, \cmd{\coloneqq}
 % \showsymbol{\equiv}
 % \showsymbol{\sim}
 % \showsymbol{\backsim}
@@ -424,6 +423,8 @@
 % \showsymbol{\Doteq}
 % \showsymbol{\fallingdotseq}
 % \showsymbol{\risingdotseq}
+% \showsymbol{\coloneq}, \cmd{\coloneqq}
+% \showsymbol{\eqcolon}, \cmd{\eqqcolon}
 % \showsymbol{\smile}, \cmd{\smallsmile}
 % \showsymbol{\frown}, \cmd{\smallfrown}
 % \showsymbol{\smilefrown}, \cmd{\asymp}
@@ -1848,6 +1849,10 @@
   \fdsy@DeclareAlias{\doteqdot}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\fallingdotseq}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\risingdotseq}{relations}{\mathrel}
+\fdsy@DeclareSymbol{\coloneq}{relations}{\mathrel}
+  \fdsy@DeclareAlias{\coloneqq}{relations}{\mathrel}
+\fdsy@DeclareSymbol{\eqcolon}{relations}{\mathrel}
+  \fdsy@DeclareAlias{\eqqcolon}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\smile}{relations}{\mathrel}
   \fdsy@DeclareAlias{\smallsmile}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\frown}{relations}{\mathrel}
@@ -2122,9 +2127,6 @@
 \fdsy@DeclareSymbol{\succnsim}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\precnapprox}{relations}{\mathrel}
 \fdsy@DeclareSymbol{\succnapprox}{relations}{\mathrel}
-
-\DeclareRobustCommand{\coloneq}{\mathrel{{\vdotdot}{\equal}}}
-\let\coloneqq\coloneq
 %    \end{macrocode}
 % FdSymbolC: arrows
 %    \begin{macrocode}
@@ -3190,8 +3192,8 @@
 \DeclareMathSymbol{*}{\mathbin}{symbols}{"98}
 \DeclareMathSymbol{:}{\mathrel}{symbols}{"02}
 \DeclareMathSymbol{=}{\mathrel}{relations}{"00}
-\DeclareMathSymbol{<}{\mathrel}{relations}{"22}
-\DeclareMathSymbol{>}{\mathrel}{relations}{"23}
+\DeclareMathSymbol{<}{\mathrel}{relations}{"24}
+\DeclareMathSymbol{>}{\mathrel}{relations}{"25}
 \iffdsy@largedelims
   \DeclareMathSymbol{|}{\mathord}{delimiters}{"B6}
   \DeclareMathSymbol{(}{\mathopen}{delimiters}{"01}
