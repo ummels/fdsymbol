@@ -27,20 +27,24 @@
   /sym05B /uni22D4 /sym05C /sym05A /uni21C9 /uni21C8 /uni21C7 /uni21CA
   /sym05E /sym05D /sym060 /sym05F /uni21C4 /uni21C5 /sym062 /sym061
 %80
-  /uni21C6 /uni21F5 /sym064 /sym063 /uni219D /sym065.alt /uni219C.alt /sym066
-  /uni219D.alt /sym065 /uni219C /sym066.alt /uni21AD /sym067.alt /uni21AD.alt /sym067
+  /uni21C6 /uni21F5 /sym064 /sym063 /uni219D %/uni21DD
+  /sym065.alt /uni219C.alt %/uni21DC.alt
+  /sym066
+  /uni219D.alt %/uni21DD.alt
+  /sym065 /uni219C %/uni21DC
+  /sym066.alt /uni21AD /sym067.alt /uni21AD.alt /sym067
 %90
   /sym06A /sym069 /sym068 /uni2938 /sym06D /sym06C /uni2936 /uni2935
   /uni293B /sym06B /uni293A /uni2939 /uni2934 /sym06E /sym06F /uni2937
 %A0
   /sym070 /sym071 /sym072 /sym073 /sym075 /sym074 /sym077 /sym076
-  /uni27DD /uni27DE /sym078 /uni21BA /uni27F2 /sym07B /uni27F3 /uni21BB
+  /sym03C /sym03D /sym078 /uni21BA /uni27F2 /sym07B /uni27F3 /uni21BB
 %B0
-  /sym079 /sym07A /uni21DB /uni290A /uni21DA /uni290B /uni21B0 /uni21B1
-  /uni21B2 /uni21B3 /uni21AC /uni21AB /.notdef /.notdef /.notdef /.notdef
+  /sym079 /sym07A /uni21DB /uni290A /uni21DA /uni290B /uni27F6 /uni27F5
+  /uni27F9 /uni27F8 /uni27F7 /uni27FA /uni27FC /uni27FB /uni27FE /uni27FD
 %C0
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /uni27FF /uni2B33 /uni27DD /uni27DE /uni21B0 /uni21B1 /uni21B2 /uni21B3
+  /uni21AC /uni21AB /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %D0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef

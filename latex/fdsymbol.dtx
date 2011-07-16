@@ -679,8 +679,8 @@
 % \showsymbol{\bdswarcarrow}
 % \showsymbol{\bdsearcarrow}
 % \showsymbol{\bdnearcarrow}
-% \showsymbol{\leftfootline}, \cmd{\vlongdash}
-% \showsymbol{\rightfootline}, \cmd{\longdashv}
+% \showsymbol{\leftfootline}
+% \showsymbol{\rightfootline}
 % \showsymbol{\acwcirclearrowup}
 % \showsymbol{\acwcirclearrowleft}, \cmd{\circlearrowleft},
 %   \cmd{\acwopencirclearrow}
@@ -695,19 +695,27 @@
 % \showsymbol{\Uuparrow}
 % \showsymbol{\Lleftarrow}
 % \showsymbol{\Ddownarrow}
+% \showsymbol{\longrightarrow}
+% \showsymbol{\longleftarrow}
+% \showsymbol{\Longrightarrow}
+% \showsymbol{\Longleftarrow}
+% \showsymbol{\longleftrightarrow}
+% \showsymbol{\Longleftrightarrow}
+% \showsymbol{\longmapsto}
+% \showsymbol{\longmapsfrom}
+% \showsymbol{\Longmapsto}
+% \showsymbol{\Longmapsfrom}
+% \showsymbol{\longrightwavearrow}, \cmd{\longleadsto},
+%   \cmd{\longrightsquigarrow}
+% \showsymbol{\longleftwavearrow}, \cmd{\longleftsquigarrow}
+% \showsymbol{\longleftfootline}, \cmd{\vlongdash}
+% \showsymbol{\longrightfootline}, \cmd{\longdashv}
 % \showsymbol{\Lsh}
 % \showsymbol{\Rsh}
 % \showsymbol{\Ldsh}
 % \showsymbol{\Rdsh}
 % \showsymbol{\looparrowright}
 % \showsymbol{\looparrowleft}
-% \showsymbol{\longrightarrow}
-% \showsymbol{\longleftarrow}
-% \showsymbol{\longleftrightarrow}
-% \showsymbol{\Longrightarrow}
-% \showsymbol{\Longleftarrow}
-% \showsymbol{\Longleftrightarrow}
-% \showsymbol{\longmapsto}
 % \showsymbol{\emptyblackspoon}, \cmd{\origof}
 % \showsymbol{\filledemptyspoon}, \cmd{\imageof}
 % \showsymbol{\leftrightspoon}, \cmd{\dualmap}
@@ -1038,8 +1046,8 @@
 % \showsymbol{\nbdswarcarrow}
 % \showsymbol{\nbdsearcarrow}
 % \showsymbol{\nbdnearcarrow}
-% \showsymbol{\nleftfootline}, \cmd{\nvlongdash}
-% \showsymbol{\nrightfootline}, \cmd{\nlongdashv}
+% \showsymbol{\nleftfootline}
+% \showsymbol{\nrightfootline}
 % \showsymbol{\nacwcirclearrowup}
 % \showsymbol{\nacwcirclearrowleft}, \cmd{\ncirclearrowleft},
 %   \cmd{\nacwopencirclearrow}
@@ -1054,6 +1062,21 @@
 % \showsymbol{\nUuparrow}
 % \showsymbol{\nLleftarrow}
 % \showsymbol{\nDdownarrow}
+% \showsymbol{\nlongrightarrow}
+% \showsymbol{\nlongleftarrow}
+% \showsymbol{\nLongrightarrow}
+% \showsymbol{\nLongleftarrow}
+% \showsymbol{\nlongleftrightarrow}
+% \showsymbol{\nLongleftrightarrow}
+% \showsymbol{\nlongmapsto}
+% \showsymbol{\nlongmapsfrom}
+% \showsymbol{\nLongmapsto}
+% \showsymbol{\nLongmapsfrom}
+% \showsymbol{\nlongrightwavearrow}, \cmd{\nlongleadsto},
+%   \cmd{\nlongrightsquigarrow}
+% \showsymbol{\nlongleftwavearrow}, \cmd{\nlongleftsquigarrow}
+% \showsymbol{\nlongleftfootline}, \cmd{\nvlongdash}
+% \showsymbol{\nlongrightfootline}, \cmd{\nlongdashv}
 % \showsymbol{\nrightvdash}, \cmd{\nvdash}
 % \showsymbol{\nupvdash}, \cmd{\nperp}
 % \showsymbol{\nleftvdash}, \cmd{\ndashv}
@@ -2390,9 +2413,7 @@
 \fdsy@DeclareSymbol{\bdnearcarrow}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\senwcurvearrow}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\leftfootline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\vlongdash}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\rightfootline}{arrows}{\mathrel}
-  \fdsy@DeclareAlias{\longdashv}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\acwcirclearrowup}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\acwcirclearrowleft}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\circlearrowleft}{arrows}{\mathrel}
@@ -2411,6 +2432,25 @@
 \fdsy@DeclareSymbol{\Uuparrow}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\Lleftarrow}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\Ddownarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longrightarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longleftarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Longrightarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Longleftarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longleftrightarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Longleftrightarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longmapsto}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longmapsfrom}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Longmapsto}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\Longmapsfrom}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longrightwavearrow}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\longleadsto}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\longrightsquigarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longleftwavearrow}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\longleftsquigarrow}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longleftfootline}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\vlongdash}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\longrightfootline}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\longdashv}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\Lsh}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\Rsh}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\Ldsh}{arrows}{\mathrel}
@@ -2470,13 +2510,6 @@
 \DeclareRobustCommand{\Relbar}{\mathrel=}
 \let\joinrel\undefined
 \DeclareRobustCommand\joinrel{\mathrel{\mkern-4mu}}
-\DeclareRobustCommand\longrightarrow{\DOTSB\relbar\joinrel\rightarrow}
-\DeclareRobustCommand\longleftarrow{\DOTSB\leftarrow\joinrel\relbar}
-\DeclareRobustCommand\longleftrightarrow{\DOTSB\leftarrow\joinrel\rightarrow}
-\DeclareRobustCommand\Longrightarrow{\DOTSB\Relbar\joinrel\Rightarrow}
-\DeclareRobustCommand\Longleftarrow{\DOTSB\Leftarrow\joinrel\Relbar}
-\DeclareRobustCommand\Longleftrightarrow{\DOTSB\Leftarrow\joinrel\Rightarrow}
-\DeclareRobustCommand\longmapsto{\DOTSB\leftfootline\mkern-7mu\rightarrow}
 \DeclareRobustCommand\emptyblackspoon{\DOTSB\leftspoon\mkern-13mu\rightblackspoon}
 \let\origof\emptyblackspoon
 \DeclareRobustCommand\filledemptyspoon{\DOTSB\leftblackspoon\mkern-13mu\rightspoon}
@@ -2731,9 +2764,7 @@
 \fdsy@DeclareSymbol{\nbdnearcarrow}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nsenwcurvearrow}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nleftfootline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\nvlongdash}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nrightfootline}{narrows}{\mathrel}
-  \fdsy@DeclareAlias{\nlongdashv}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nacwcirclearrowup}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nacwcirclearrowleft}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\ncirclearrowleft}{narrows}{\mathrel}
@@ -2752,6 +2783,25 @@
 \fdsy@DeclareSymbol{\nUuparrow}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nLleftarrow}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nDdownarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongrightarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongleftarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nLongrightarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nLongleftarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongleftrightarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nLongleftrightarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongmapsto}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongmapsfrom}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nLongmapsto}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nLongmapsfrom}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongrightwavearrow}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nlongleadsto}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nlongrightsquigarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongleftwavearrow}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nlongleftsquigarrow}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongleftfootline}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nvlongdash}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nlongrightfootline}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nlongdashv}{narrows}{\mathrel}
 \fdsy@setslot{224}
 \fdsy@DeclareSymbol{\nrightvdash}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\nvdash}{narrows}{\mathrel}
