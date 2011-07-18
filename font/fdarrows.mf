@@ -360,126 +360,77 @@ for alpha = 0, 90, 45, 135:
   endchar;
 endfor;
 
+for sign = 1, -1:
 for alpha = 0, 90, 180, 270:
-  beginarrow(alpha, 1, ifneg(3/2, 1) * arrow_spread#); "left right wave arrow (" & decimal alpha & ")";
+  beginarrow(alpha, 1, ifneg(3/2, 1) * arrow_spread#);
+  if sign > 0: "left right" else: "right left" fi & " wave arrow (" & decimal alpha & ")";
     thick := line_thickness;
 
-    z0 = foot - 1/10arrow_spread * dir (arrow_dir + 90);
-    z1 = 15/80[foot,head] + 1/4arrow_spread * dir (arrow_dir + 90);
-    z2 = 30/80[foot,head];
-    z3 = 45/80[foot,head] - 1/4arrow_spread * dir (arrow_dir + 90);
-    z4 = 60/80[foot,head];
-    z5 = head + 1/10arrow_spread * dir (arrow_dir + 90);
+    z0 = foot - sign * 1/8arrow_spread * dir (arrow_dir + 90);
+    z1 = 4/18[foot,head] + sign * 1/4arrow_spread * dir (arrow_dir + 90);
+    z2 = 7/18[foot,head];
+    z3 = 10/18[foot,head] - sign * 1/4arrow_spread * dir (arrow_dir + 90);
+    z4 = 12/18[foot,head] - sign * 1/8arrow_spread * dir (arrow_dir + 90);
+    z5 = 14/18[foot,head];
+    z6 = head;
 
-    penpos0(thick, arrow_dir - 45);
+    penpos0(thick, arrow_dir - 90 + sign * 55);
     penpos1(thick, arrow_dir - 90);
-    penpos2(thick, arrow_dir - 135);
+    penpos2(thick, arrow_dir - 90 - sign * 55);
     penpos3(thick, arrow_dir - 90);
-    penpos4(thick, arrow_dir - 45);
-    penpos5(thick, arrow_dir - 75);
+    penpos4(thick, arrow_dir - 90 + sign * 35);
+    penpos5(thick, arrow_dir - 90);
+    penpos6(thick, arrow_dir - 90);
 
-    penlabels(0,1,2,3,4,5);
+    penlabels(0,1,2,3,4,5,6);
 
-    fill stroke z0.e{dir (arrow_dir + 45)} .. z1.e .. z2.e{dir (arrow_dir - 45)} .. z3.e .. z4.e ... {dir (arrow_dir+15)}z5.e;
-    draw_arrowhead(z5, arrow_dir+15, arrow_spread, thick);
+    fill stroke z0.e{dir (arrow_dir + sign * 55)} .. z1.e{dir arrow_dir} .. z2.e{dir (arrow_dir - sign * 55)} .. z3.e{dir arrow_dir} .. z4.e{dir (arrow_dir + sign * 35)} ... {dir arrow_dir}z5.e -- z6.e;
+    draw_arrowhead(z6, arrow_dir, arrow_spread, thick);
 
     if negated:
       stroke_through_arrow(1/2[foot, head - 1/2arrow_spread * dir arrow_dir], alpha, 3/2arrow_spread)(70, 70, 70, 70, 70, 70, 70, 70);
     fi
   endchar;
 endfor;
-
-for alpha = 0, 90, 180, 270:
-  beginarrow(alpha, 1, ifneg(3/2, 1) * arrow_spread#); "right left wave arrow (" & decimal alpha & ")";
-    thick := line_thickness;
-
-    z0 = foot + 1/10arrow_spread * dir (arrow_dir + 90);
-    z1 = 15/80[foot,head] - 1/4arrow_spread * dir (arrow_dir + 90);
-    z2 = 30/80[foot,head];
-    z3 = 45/80[foot,head] + 1/4arrow_spread * dir (arrow_dir + 90);
-    z4 = 60/80[foot,head];
-    z5 = head - 1/10arrow_spread * dir (arrow_dir + 90);
-
-    penpos0(thick, arrow_dir - 135);
-    penpos1(thick, arrow_dir - 90);
-    penpos2(thick, arrow_dir - 45);
-    penpos3(thick, arrow_dir - 90);
-    penpos4(thick, arrow_dir - 135);
-    penpos5(thick, arrow_dir - 105);
-
-    penlabels(0,1,2,3,4,5);
-
-    fill stroke z0.e{dir (arrow_dir - 45)} .. z1.e .. z2.e{dir (arrow_dir + 45)} .. z3.e .. z4.e ... {dir (arrow_dir-15)}z5.e;
-    draw_arrowhead(z5, arrow_dir-15, arrow_spread, thick);
-
-    if negated:
-      stroke_through_arrow(1/2[foot, head - 1/2arrow_spread * dir arrow_dir], alpha, 3/2arrow_spread)(110, 110, 110, 110, 110, 110, 110, 110);
-    fi
-  endchar;
 endfor;
 
-for alpha = 0, 90:
-  beginarrow(alpha, 19/16, ifneg(3/2, 1) * arrow_spread#); "left right bidirectional wave arrow (" & decimal alpha & ")";
-    thick := line_thickness;
+for sign = 1, -1:
+  for alpha = 0, 90:
+    beginarrow(alpha, 6/5, ifneg(3/2, 1) * arrow_spread#);
+    if sign > 0: "left right" else: "right left" fi & " bidirectional wave arrow (" & decimal alpha & ")";
+      thick := line_thickness;
 
-    z0 = foot - 1/10arrow_spread * dir (arrow_dir + 90);
-    z1 =  4/20[foot,head];
-    z2 =  7/20[foot,head] + 1/4arrow_spread * dir (arrow_dir + 90);
-    z3 = 10/20[foot,head];
-    z4 = 13/20[foot,head] - 1/4arrow_spread * dir (arrow_dir + 90);
-    z5 = 16/20[foot,head];
-    z6 = head + 1/10arrow_spread * dir (arrow_dir + 90);
+      z0 = foot;
+      z1 = 4/22[foot,head];
+      z2 = 6/22[foot,head] + sign * 1/8arrow_spread * dir (arrow_dir + 90);
+      z3 = 8/22[foot,head] + sign * 1/4arrow_spread * dir (arrow_dir + 90);
+      z4 = 11/22[foot,head];
+      z5 = 14/22[foot,head] - sign * 1/4arrow_spread * dir (arrow_dir + 90);
+      z6 = 16/22[foot,head] - sign * 1/8arrow_spread * dir (arrow_dir + 90);
+      z7 = 18/22[foot,head];
+      z8 = head;
 
-    penpos0(thick, arrow_dir - 75);
-    penpos1(thick, arrow_dir - 45);
-    penpos2(thick, arrow_dir - 90);
-    penpos3(thick, arrow_dir - 135);
-    penpos4(thick, arrow_dir - 90);
-    penpos5(thick, arrow_dir - 45);
-    penpos6(thick, arrow_dir - 75);
+      penpos0(thick, arrow_dir - 90);
+      penpos1(thick, arrow_dir - 90);
+      penpos2(thick, arrow_dir - 90 + sign * 35);
+      penpos3(thick, arrow_dir - 90);
+      penpos4(thick, arrow_dir - 90 - sign * 55);
+      penpos5(thick, arrow_dir - 90);
+      penpos6(thick, arrow_dir - 90 + sign * 35);
+      penpos7(thick, arrow_dir - 90);
+      penpos8(thick, arrow_dir - 90);
 
-    penlabels(0,1,2,3,4,5,6);
+      penlabels(0,1,2,3,4,5,6,7,8);
 
-    fill stroke z0.e{dir (arrow_dir + 15)} .. z1.e .. z2.e .. z3.e{dir (arrow_dir - 45)} .. z4.e .. z5.e ... {dir (arrow_dir+15)}z6.e;
-    draw_arrowhead(z0, arrow_dir + 195, arrow_spread, thick);
-    draw_arrowhead(z6, arrow_dir +  15, arrow_spread, thick);
+      fill stroke z0e. -- z1.e{dir arrow_dir} .. z2.e{dir (arrow_dir + sign * 35)} .. z3.e{dir arrow_dir} .. z4.e{dir (arrow_dir - sign * 55)} .. z5.e{dir arrow_dir} ... z6.e{dir (arrow_dir + sign * 35)} .. {dir arrow_dir}z7.e -- z8.e;
+      draw_arrowhead(z0, arrow_dir + 180, arrow_spread, thick);
+      draw_arrowhead(z8, arrow_dir, arrow_spread, thick);
 
-    if negated:
-      stroke_through_arrow(1/2[foot, head], alpha, 3/2arrow_spread)(70, 70, 70, 70);
-    fi
-  endchar;
-endfor;
-
-for alpha = 0, 90:
-  beginarrow(alpha, 19/16, ifneg(3/2, 1) * arrow_spread#); "right left bidirectional wave arrow (" & decimal alpha & ")";
-    thick := line_thickness;
-
-    z0 = foot + 1/10arrow_spread * dir (arrow_dir + 90);
-    z1 =  4/20[foot,head];
-    z2 =  7/20[foot,head] - 1/4arrow_spread * dir (arrow_dir + 90);
-    z3 = 10/20[foot,head];
-    z4 = 13/20[foot,head] + 1/4arrow_spread * dir (arrow_dir + 90);
-    z5 = 16/20[foot,head];
-    z6 = head - 1/10arrow_spread * dir (arrow_dir + 90);
-
-    penpos0(thick, arrow_dir - 105);
-    penpos1(thick, arrow_dir - 135);
-    penpos2(thick, arrow_dir - 90);
-    penpos3(thick, arrow_dir - 45);
-    penpos4(thick, arrow_dir - 90);
-    penpos5(thick, arrow_dir - 135);
-    penpos6(thick, arrow_dir - 105);
-
-    penlabels(0,1,2,3,4,5,6);
-
-    fill stroke z0.e{dir (arrow_dir - 15)} .. z1.e .. z2.e .. z3.e{dir (arrow_dir + 45)} .. z4.e .. z5.e ... {dir (arrow_dir-15)}z6.e;
-    draw_arrowhead(z0, arrow_dir - 195, arrow_spread, thick);
-    draw_arrowhead(z6, arrow_dir - 15, arrow_spread, thick);
-
-    if negated:
-      stroke_through_arrow(1/2[foot, head], alpha, 3/2arrow_spread)(110, 110, 110, 110);
-    fi
-  endchar;
+      if negated:
+        stroke_through_arrow(1/2[foot, head], alpha, 3/2arrow_spread)(70, 70, 70, 70);
+      fi
+    endchar;
+  endfor;
 endfor;
 
 for alpha = 0, 90, 180, 270, 45, 135, 225, 315:
@@ -525,7 +476,7 @@ for alpha = 0, 90, 180, 270, 45, 135, 225, 315:
 endfor;
 
 for alpha = 0, 90, 180, 270, 45, 135, 225, 315:
-  beginarrow(alpha, 6/5, ifneg(3/2,1) * arrow_spread#); "bend arrow (" & decimal alpha & ")";
+  beginarrow(alpha, 6/5, ifneg(3/2,1) * arrow_spread#); "bidirectional bend arrow (" & decimal alpha & ")";
     thick := line_thickness;
 
     z0 = 1/20[foot,head] - 1/2arrow_spread * dir (arrow_dir + 90);
@@ -709,46 +660,42 @@ for alpha = 0, 180:
     thick := line_thickness;
     sign := if alpha > 0: 1 else: -1 fi;
 
-    z0 = foot_ex;
-    z1 = foot;
-    z2 = 1/15[foot,head] + 1/10arrow_spread * up;
-    z3 = 2/15[foot,head] + 1/4arrow_spread * up;
-    z4 = 3/15[foot,head];
-    z5 = 4/15[foot,head] - 1/4arrow_spread * up;
-    z6 = 5/15[foot,head];
-    z7 = 6/15[foot,head] + 1/4arrow_spread * up;
-    z8 = 7/15[foot,head];
-    z9 = 8/15[foot,head] - 1/4arrow_spread * up;
-    z10 = 9/15[foot,head];
-    z11 = 10/15[foot,head] + 1/4arrow_spread * up;
-    z12 = 11/15[foot,head];
-    z13 = 12/15[foot,head] - 1/4arrow_spread * up;
-    z14 = 13/15[foot,head] - 1/10arrow_spread * up;
-    z15 = 14/15[foot,head];
-    z16 = head;
+    z0 = foot - 1/8arrow_spread * up;
+    z1 = 4/43[foot,head] + 1/4arrow_spread * up;
+    z2 = 7/43[foot,head];
+    z3 = 10/43[foot,head] - 1/4arrow_spread * up;
+    z4 = 13/43[foot,head];
+    z5 = 16/43[foot,head] + 1/4arrow_spread * up;
+    z6 = 19/43[foot,head];
+    z7 = 22/43[foot,head] - 1/4arrow_spread * up;
+    z8 = 25/43[foot,head];
+    z9 = 28/43[foot,head] + 1/4arrow_spread * up;
+    z10 = 31/43[foot,head];
+    z11 = 34/43[foot,head] - 1/4arrow_spread * up;
+    z12 = 36/43[foot,head] - 1/8arrow_spread * up;
+    z13 = 38/43[foot,head];
+    z14 = head;
 
-    penpos0(thick, sign * 90);
+    penpos0(thick, sign * 35);
     penpos1(thick, sign * 90);
-    penpos2(thick, sign * 60);
+    penpos2(thick, sign * 145);
     penpos3(thick, sign * 90);
-    penpos4(thick, sign * 135);
+    penpos4(thick, sign * 35);
     penpos5(thick, sign * 90);
-    penpos6(thick, sign * 45);
+    penpos6(thick, sign * 145);
     penpos7(thick, sign * 90);
-    penpos8(thick, sign * 135);
+    penpos8(thick, sign * 35);
     penpos9(thick, sign * 90);
-    penpos10(thick, sign * 45);
+    penpos10(thick, sign * 145);
     penpos11(thick, sign * 90);
-    penpos12(thick, sign * 135);
+    penpos12(thick, sign * 45);
     penpos13(thick, sign * 90);
-    penpos14(thick, sign * 60);
-    penpos15(thick, sign * 90);
-    penpos16(thick, sign * 90);
+    penpos14(thick, sign * 90);
 
-    penlabels(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+    penlabels(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14);
 
-    fill stroke z0e -- z1.e{dir (sign * 90 + 90)} .. {dir (sign * 60 + 90)}z2.e .. {dir (sign * 90 + 90)}z3.e .. {dir (sign * 135 + 90)}z4.e .. {dir (sign * 90 + 90)}z5.e .. {dir (sign * 45 + 90)}z6.e .. {dir (sign * 90 + 90)}z7.e .. {dir (sign * 135 + 90)}z8.e .. {dir (sign * 90 + 90)}z9.e .. {dir (sign * 45 + 90)}z10.e .. {dir (sign * 90 + 90)}z11.e .. {dir (sign * 135 + 90)}z12.e .. {dir (sign * 90 + 90)}z13.e .. {dir (sign * 60 + 90)}z14.e .. {dir (sign * 90 + 90)}z15.e -- z16.e;
-    draw_arrowhead(z16, arrow_dir, arrow_spread, thick);
+    fill stroke z0e{dir (sign * 35 + 90)} .. z1.e{dir (sign * 90 + 90)} .. z2.e{dir (sign * 145 + 90)} .. z3.e{dir (sign * 90 + 90)} .. z4.e{dir (sign * 35 + 90)} .. z5.e{dir (sign * 90 + 90)} .. z6.e{dir (sign * 145 + 90)} .. z7.e{dir (sign * 90 + 90)} .. z8.e{dir (sign * 35 + 90)} .. z9.e{dir (sign * 90 + 90)} .. z10.e{dir (sign * 145 + 90)} .. z11.e{dir (sign * 90 + 90)} .. z12.e{dir (sign * 45 + 90)} .. {dir (sign * 90 + 90)}z13.e -- z14.e;
+    draw_arrowhead(z14, arrow_dir, arrow_spread, thick);
 
     if negated:
       stroke_through_arrow(1/2[foot, head - 1/2arrow_spread * dir arrow_dir], alpha, 3/2arrow_spread)(70, 70, 70, 70, 70, 70, 70, 70);
