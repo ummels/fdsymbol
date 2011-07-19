@@ -27,11 +27,11 @@
   /sym05B /uni22D4 /sym05C /sym05A /uni21C9 /uni21C8 /uni21C7 /uni21CA
   /sym05E /sym05D /sym060 /sym05F /uni21C4 /uni21C5 /sym062 /sym061
 %80
-  /uni21C6 /uni21F5 /sym064 /sym063 /uni219D %/uni21DD
-  /sym065.alt /uni219C.alt %/uni21DC.alt
+  /uni21C6 /uni21F5 /sym064 /sym063 /uni219D %/uni21DD /uni2933
+  /sym065.alt /uni219C.alt %/uni21DC.alt /uni2B3F.alt
   /sym066
-  /uni219D.alt %/uni21DD.alt
-  /sym065 /uni219C %/uni21DC
+  /uni219D.alt %/uni21DD.alt /uni2933.alt
+  /sym065 /uni219C %/uni21DC /uni2B3F
   /sym066.alt /uni21AD /sym067.alt /uni21AD.alt /sym067
 %90
   /sym06A /sym069 /sym068 /uni2938 /sym06D /sym06C /uni2936 /uni2935
