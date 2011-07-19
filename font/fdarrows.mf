@@ -744,8 +744,11 @@ if not negated:
   endfor;
 
   for sign = -1, 1:
-    beginoperator(arrow_len#, 1); "loop arrow";
+    beginsymbol(arrow_diag_len# + 2side_bearing#, vcentre(arrow_diag_len#)); "loop arrow";
       thick := line_thickness;
+      arrow_len := arrow_diag_len;
+      pair centre;
+      centre := (w/2, (h-d)/2);
 
       z0 = centre + sign * (arrow_len - line_thickness)/2 * left;
       z1 = centre + arrow_len/2 * down;
