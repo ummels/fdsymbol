@@ -24,6 +24,7 @@
   /uni21E2 /uni21E1 /uni21E0 /uni21E3 /sym053 /sym052 /sym055 /sym054
   /uni22B8 /uni2AEF /uni27DC /uni2AF0 /sym056 /sym058 /sym057 /sym059
 %70
+  /uni29DF /sym0AA /uni22B7 /uni22B6
   /sym05B /uni22D4 /sym05C /sym05A /uni21C9 /uni21C8 /uni21C7 /uni21CA
   /sym05E /sym05D /sym060 /sym05F /uni21C4 /uni21C5 /sym062 /sym061
 %80
@@ -44,7 +45,7 @@
   /uni27F9 /uni27F8 /uni27F7 /uni27FA /uni27FC /uni27FB /uni27FE /uni27FD
 %C0
   /uni27FF /uni2B33 /uni27DD /uni27DE /uni21B0 /uni21B1 /uni21B2 /uni21B3
-  /uni21AC /uni21AB /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /uni21AC /uni21AB /.notdef /.notdef
 %D0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef

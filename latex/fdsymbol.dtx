@@ -623,6 +623,10 @@
 % \showsymbol{\upblackspoon}
 % \showsymbol{\leftblackspoon}
 % \showsymbol{\downblackspoon}
+% \showsymbol{\leftrightspoon}, \cmd{\dualmap}
+% \showsymbol{\leftrightblackspoon}
+% \showsymbol{\blackwhitespoon}, \cmd{\imageof}
+% \showsymbol{\whiteblackspoon}, \cmd{\origof}
 % \showsymbol{\rightpitchfork}
 % \showsymbol{\uppitchfork}, \cmd{\pitchfork}
 % \showsymbol{\leftpitchfork}
@@ -717,10 +721,6 @@
 % \showsymbol{\Rdsh}
 % \showsymbol{\looparrowright}
 % \showsymbol{\looparrowleft}
-% \showsymbol{\emptyblackspoon}, \cmd{\origof}
-% \showsymbol{\filledemptyspoon}, \cmd{\imageof}
-% \showsymbol{\leftrightspoon}, \cmd{\dualmap}
-% \showsymbol{\leftrightblackspoon}
 % \showsymbol{\rightvdash}, \cmd{\vdash}
 % \showsymbol{\upvdash}, \cmd{\perp}
 % \showsymbol{\leftvdash}, \cmd{\dashv}
@@ -991,6 +991,10 @@
 % \showsymbol{\nupblackspoon}
 % \showsymbol{\nleftblackspoon}
 % \showsymbol{\ndownblackspoon}
+% \showsymbol{\nleftrightspoon}, \cmd{\ndualmap}
+% \showsymbol{\nleftrightblackspoon}
+% \showsymbol{\nblackwhitespoon}, \cmd{\nimageof}
+% \showsymbol{\nwhiteblackspoon}, \cmd{\norigof}
 % \showsymbol{\nrightpitchfork}
 % \showsymbol{\nuppitchfork}, \cmd{\npitchfork}
 % \showsymbol{\nleftpitchfork}
@@ -2308,6 +2312,13 @@
 \fdsy@DeclareSymbol{\upblackspoon}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\leftblackspoon}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\downblackspoon}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\leftrightspoon}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\dualmap}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\leftrightblackspoon}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\blackwhitespoon}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\imageof}{arrows}{\mathrel}
+\fdsy@DeclareSymbol{\whiteblackspoon}{arrows}{\mathrel}
+  \fdsy@DeclareAlias{\origof}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\rightpitchfork}{arrows}{\mathrel}
 \fdsy@DeclareSymbol{\uppitchfork}{arrows}{\mathrel}
   \fdsy@DeclareAlias{\pitchfork}{arrows}{\mathrel}
@@ -2514,13 +2525,6 @@
 \DeclareRobustCommand{\Relbar}{\mathrel=}
 \let\joinrel\undefined
 \DeclareRobustCommand\joinrel{\mathrel{\mkern-4mu}}
-\DeclareRobustCommand\emptyblackspoon{\DOTSB\leftspoon\mkern-13mu\rightblackspoon}
-\let\origof\emptyblackspoon
-\DeclareRobustCommand\filledemptyspoon{\DOTSB\leftblackspoon\mkern-13mu\rightspoon}
-\let\imageof\filledemptyspoon
-\DeclareRobustCommand\leftrightspoon{\DOTSB\leftspoon\mkern-13mu\rightspoon}
-\let\dualmap\leftrightspoon
-\DeclareRobustCommand\leftrightblackspoon{\DOTSB\leftblackspoon\mkern-13mu\rightblackspoon}
 %    \end{macrocode}
 % FdSymbolD: stroked arrows
 %    \begin{macrocode}
@@ -2661,6 +2665,13 @@
 \fdsy@DeclareSymbol{\nupblackspoon}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nleftblackspoon}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\ndownblackspoon}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nleftrightspoon}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\ndualmap}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nleftrightblackspoon}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nblackwhitespoon}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\nimageof}{narrows}{\mathrel}
+\fdsy@DeclareSymbol{\nwhiteblackspoon}{narrows}{\mathrel}
+  \fdsy@DeclareAlias{\norigof}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nrightpitchfork}{narrows}{\mathrel}
 \fdsy@DeclareSymbol{\nuppitchfork}{narrows}{\mathrel}
   \fdsy@DeclareAlias{\npitchfork}{narrows}{\mathrel}

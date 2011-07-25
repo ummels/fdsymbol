@@ -273,7 +273,7 @@ for alpha = 0, 90, 180, 270, 45, 135, 225, 315:
 endfor;
 
 for alpha = 0, 90, 180, 270:
-  beginarrow(alpha, 6/5, ifneg(3/2, 1) * arrow_spread#); "multi map (" & decimal alpha & ")";
+  beginarrow(alpha, 1, ifneg(3/2, 1) * arrow_spread#); "multi map (" & decimal alpha & ")";
     draw_line(foot_ex, head - (4/5arrow_spread + 1/4line_thickness) * dir arrow_dir, false);
     draw_circle(head - 2/5arrow_spread * dir arrow_dir, 2/5arrow_spread, line_thickness);
 
@@ -284,12 +284,44 @@ for alpha = 0, 90, 180, 270:
 endfor;
 
 for alpha = 0, 90, 180, 270:
-  beginarrow(alpha, 6/5, ifneg(3/2, 1) * arrow_spread#); "filled multi map (" & decimal alpha & ")";
+  beginarrow(alpha, 1, ifneg(3/2, 1) * arrow_spread#); "filled multi map (" & decimal alpha & ")";
     draw_line(foot_ex, head_ex - 2/5arrow_spread * dir arrow_dir, false);
     filldraw_circle(head - 2/5arrow_spread * dir arrow_dir, 2/5arrow_spread, line_thickness);
 
     if negated:
       stroke_through_arrow(1/2[foot, head - 4/5arrow_spread * dir arrow_dir], alpha, 3/2arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
+    fi
+  endchar;
+endfor;
+
+beginarrow(0, 7/5, ifneg(3/2, 1) * arrow_spread#); "double multi map";
+  draw_line(foot + (4/5arrow_spread + 1/4line_thickness) * right, head - (4/5arrow_spread + 1/4line_thickness) * right, false);
+  draw_circle(head - 2/5arrow_spread * right, 2/5arrow_spread, line_thickness);
+  draw_circle(foot + 2/5arrow_spread * right, 2/5arrow_spread, line_thickness);
+
+  if negated:
+    stroke_through_arrow(1/2[foot, head], 0, 3/2arrow_spread)(70);
+  fi
+endchar;
+
+beginarrow(0, 7/5, ifneg(3/2, 1) * arrow_spread#); "filled double multi map";
+  draw_line(foot_ex + 2/5arrow_spread * right, head - 2/5arrow_spread * right, false);
+  filldraw_circle(head - 2/5arrow_spread * right, 2/5arrow_spread, line_thickness);
+  filldraw_circle(foot + 2/5arrow_spread * right, 2/5arrow_spread, line_thickness);
+
+  if negated:
+    stroke_through_arrow(1/2[foot, head], 0, 3/2arrow_spread)(70);
+  fi
+endchar;
+
+for alpha = 0, 180:
+  beginarrow(alpha, 7/5, ifneg(3/2, 1) * arrow_spread#); "image of (" & decimal alpha & ")";
+    draw_line(foot_ex + 2/5arrow_spread * dir arrow_dir, head - (4/5arrow_spread + 1/4line_thickness) * dir arrow_dir, false);
+    filldraw_circle(foot + 2/5arrow_spread * dir arrow_dir, 2/5arrow_spread, line_thickness);
+    draw_circle(head - 2/5arrow_spread * dir arrow_dir, 2/5arrow_spread, line_thickness);
+
+    if negated:
+      stroke_through_arrow(1/2[foot, head], alpha, 3/2arrow_spread)(70, 70, 110, 110, 70, 70, 110, 110);
     fi
   endchar;
 endfor;
