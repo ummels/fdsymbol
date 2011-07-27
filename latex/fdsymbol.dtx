@@ -1173,7 +1173,7 @@
 % \showop{\prod}
 % \showop{\coprod}
 % \showop{\sum}
-% \showop{\osum}
+% \showop{\osum}, \cmd{\modtwosum}
 % \showop{\int}
 % \showop{\iint}
 % \showop{\iiint}
@@ -2934,7 +2934,9 @@
 \fdsy@DeclareSymbol{\tsum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dsum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tosum}{largesymbols}{\mathop}
+  \fdsy@DeclareAlias{\tmodtwosum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dosum}{largesymbols}{\mathop}
+  \fdsy@DeclareAlias{\dmodtwosum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tiint}{largesymbols}{\mathop}
@@ -3025,6 +3027,7 @@
 \fdsy@DeclareOperator{\bigoast}{\dbigoast}{\tbigoast}
 \fdsy@DeclareOperator{\sum}{\dsum}{\tsum}
 \fdsy@DeclareOperator{\osum}{\dosum}{\tosum}
+\fdsy@DeclareOperator{\modtwosum}{\dmodtwosum}{\tmodtwosum}
 \fdsy@DeclareOperator{\prod}{\dprod}{\tprod}
 \fdsy@DeclareOperator{\coprod}{\dcoprod}{\tcoprod}
 \fdsy@DeclareIntegral{\iint}{\diint}{\tiint}
