@@ -33,7 +33,7 @@ metrics: $(tfmfiles)
 type1: $(pt1files)
 
 $(makefiles): %.mak: %.mf
-	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(sort $(shell awk -f finddeps.awk $*.mf))" > $@
+	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(shell ./finddeps.py $*.mf)" > $@
 	@echo "$(patsubst %,$*-%.pfb,$(weights)): ../dvips/$(call getenc,$*).enc" >> $@
 
 $(tfmfiles): %.tfm: %.mf
