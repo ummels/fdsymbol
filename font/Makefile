@@ -3,6 +3,7 @@ MF := mf
 MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 PDFTEX := pdftex
+PYTHON := python
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
@@ -33,7 +34,7 @@ metrics: $(tfmfiles)
 type1: $(pt1files)
 
 $(makefiles): %.mak: %.mf
-	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(shell ./finddeps.py $*.mf)" > $@
+	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(shell $(PYTHON) finddeps.py $*.mf)" > $@
 	@echo "$(patsubst %,$*-%.pfb,$(weights)): ../dvips/$(call getenc,$*).enc" >> $@
 
 $(tfmfiles): %.tfm: %.mf
