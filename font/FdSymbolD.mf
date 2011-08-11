@@ -13,4 +13,8 @@ negated := true;
 
 input fdarrows;
 
+current_char := 223;
+
+input fdturnstile;
+
 bye;

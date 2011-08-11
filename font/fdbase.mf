@@ -44,6 +44,7 @@ med_op_size# := 12.5u#; % radius of medium operators
 plus_size# := 9u#;
 large_op_size# := 18u#; % radius of large operators
 order_width# := 8u#; % width of equal sign
+turnstile_width# := 11u#; % width of turnstile symbols
 equal_spread# := .7math_axis#; % distance between the lines of the equal sign
 greater_spread# := 10/4equal_spread#; % distance between the ends of the greater sign
 arrow_horiz_len# := 12.5u#; % length of horizontal arrows
@@ -57,7 +58,7 @@ mode_setup;
 
 define_pixels(u, asc_height, cap_height, desc_depth, delim_height, bigop_height, x_height);
 define_whole_pixels(dot_size, small_op_size, med_op_size, large_op_size, plus_size,
-  order_width, equal_spread, greater_spread,
+  order_width, turnstile_width, equal_spread, greater_spread,
   arrow_horiz_len, arrow_vert_len, arrow_diag_len, arrow_spread);
 
 if known ps_output:
@@ -166,6 +167,20 @@ def beginorder(expr sign, width, spread) =
     left_point := centre - sign * (w/2 - side_bearing - line_thickness/2) * right;
     right_ex := centre + sign * (w/2 - side_bearing) * right;
     right_point := centre + sign * (w/2 - side_bearing - line_thickness/2) * right;
+enddef;
+
+def beginturnstile(expr angle, scale) =
+  beginsymbol(abs(sind(angle) + scale * cosd(angle)) * turnstile_width# + 2side_bearing#, abs(min(scale, 1 + (scale - 1)/2) * sind(angle) + cosd(angle)) * cap_height#, abs(max(0, (scale - 1)/2) * sind(angle)) * cap_height#);
+    pair foot;
+
+    if angle mod 180 = 0:
+      len := scale * turnstile_width;
+      spread := cap_height - line_thickness;
+    else:
+      len := scale * cap_height;
+      spread := turnstile_width - line_thickness;;
+    fi
+    foot = (w/2, (h - d)/2) - (len - line_thickness)/2 * dir angle;
 enddef;
 
 % Strokes a pen path
