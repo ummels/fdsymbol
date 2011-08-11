@@ -148,8 +148,7 @@ def beginarrow(expr angle, scale, spread) =
     else:                      arrow_diag_len
     fi;
 
-  beginsymbol(arrow_len# * abs (cosd (angle)) + (spread + line_thickness#) * abs (sind (angle)) + 2side_bearing#,
-      vcentre(arrow_len# * abs (sind (angle)) + (spread + line_thickness#) * abs (cosd (angle))));
+  beginsymbol(arrow_len# * abs(cosd(angle)) + (spread + line_thickness#) * abs(sind(angle)) + 2side_bearing#, vcentre(arrow_len# * abs(sind(angle)) + (spread + line_thickness#) * abs(cosd(angle))));
     pair centre, head, head_ex, foot, foot_ex;
 
     centre := (w/2, (h-d)/2);
@@ -157,7 +156,6 @@ def beginarrow(expr angle, scale, spread) =
     head_ex := centre + arrow_len/2 * dir angle;
     foot := centre - (arrow_len - line_thickness)/2 * dir angle;
     foot_ex := centre - arrow_len/2 * dir angle;
-    arrow_dir := angle;
 enddef;
 
 def beginorder(expr sign, width, spread) =
@@ -447,8 +445,8 @@ enddef;
 
 def stroke_through_arrow(expr pos, alpha, spread)(text angles) =
   begingroup;
-    stroke_dir := arrow_dir + select(alpha/45)(angles);
-    stroke_len := 1/2spread / sind (stroke_dir - arrow_dir);
+    stroke_dir := alpha + select(alpha / 45)(angles);
+    stroke_len := 1/2spread / sind (stroke_dir - alpha);
 
     draw_straight(pos + stroke_len * dir stroke_dir, pos - stroke_len * dir stroke_dir, stroke_through_thickness, true);
   endgroup;
