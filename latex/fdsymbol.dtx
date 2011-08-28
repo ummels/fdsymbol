@@ -69,7 +69,7 @@
 %</driver>
 %\fi
 %
-% \CheckSum{5511}
+% \CheckSum{5531}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -111,7 +111,7 @@
 % \subsubsection*{Acknowledgements}
 %
 % The FdSymbol font is derived from
-% MnSymbol\footnote{\url{http://www.ctan.org/tex-archive/fonts/mnsymbol/}},
+% MnSymbol\footnote{\url{http://www.ctan.org/pkg/mnsymbol/}},
 % another math symbol font, designed by Achim Blumensath.
 %
 % \section{Interferences with other packages}
@@ -1305,7 +1305,7 @@
 % \subsection{Faked symbols}
 %
 % The following symbols are taken from the text font or
-% another math font (in case of \cmd{\Re} and \cmd{\Im}).
+% another math font (in case of \cmd{\Bbbk}, \cmd{\Re} and \cmd{\Im}).
 %
 % \begin{multicols}{2}
 % \raggedright
@@ -1317,6 +1317,7 @@
 % \showsymbol{\mathdollar}
 % \showsymbol{\mathsterling}
 % \showsymbol{\yen}
+% \showsymbol{\Bbbk}
 % \showsymbol{\Re}
 % \showsymbol{\Im}
 % \showsymbol{\hbar}
@@ -1339,13 +1340,13 @@
 % |\eth|\par
 % |\digamma|\par
 % |\varkappa|\par
-% |\Bbbk|\par
 % |\backepsilon|\par
 % |\mapstochar|\par
 % |\lhook|\par
 % |\rhook|\par
 % |\diagup|\par
-% |\diagdown|
+% |\diagdown|\par
+% \quad
 % \end{multicols}
 %
 % \StopEventually{}
@@ -1408,7 +1409,6 @@
 %    \begin{macrocode}
 \@ifpackageloaded{amsmath}{}{\RequirePackage{amsmath}}
 \@ifpackageloaded{textcomp}{}{\RequirePackage{textcomp}}
-\@ifundefined{mathfrak}{\RequirePackage{eufrak}}{}
 %    \end{macrocode}
 % If the option \textsf{largedelims} has been selected, we readjust the
 % scaling factors of big delimiters, so that |\Big|, |\bigg| and |\Bigg| do
@@ -1544,10 +1544,20 @@
 \SetSymbolFont{largesymbols}{bold}{U}{FdSymbolE}{b}{n}
 \SetSymbolFont{delimiters}{bold}{U}{FdSymbolF}{b}{n}
 %    \end{macrocode}
-% At the moment, we still use cmsy for the calligraphic alphabet.
+% At the moment, we still use cmsy for the calligraphic alphabet,
+% msb for the blackboard bold alphabet, and euf for the Fraktur
+% alphabet.
 %    \begin{macrocode}
+\let\mathcal\undefined
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
+\let\mathbb\undefined
+\DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
+\let\Bbbk\undefined
+\newcommand{\Bbbk}{\mathbb{\mathchar"717C}}
+\let\mathfrak\undefined
+\DeclareMathAlphabet{\mathfrak}{U}{euf}{m}{n}
+\SetMathAlphabet{\mathfrak}{bold}{U}{euf}{b}{n}
 %    \end{macrocode}
 % A command to take math symbols from text fonts.
 %    \begin{macrocode}
