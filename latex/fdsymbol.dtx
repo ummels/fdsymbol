@@ -1364,40 +1364,41 @@
 % The next option allows to scale the fonts by an arbitrary factor.
 %    \begin{macrocode}
 \newcommand{\fdsy@scale}{1.0}
-\define@key{fdsymbol.sty}{scale}{\renewcommand\fdsy@scale{#1}}
+\define@key{fdsymbol.sty}{scale}{\renewcommand*\fdsy@scale{#1}}
 %    \end{macrocode}
 % The following two options control which weights are used
 % for which math version and font size.
 %    \begin{macrocode}
-\newcommand\fdsy@mweight{Book}
-\newcommand\fdsy@msweight{Book}
-\newcommand\fdsy@bweight{Medium}
-\newcommand\fdsy@bsweight{Medium}
-\define@choicekey*{fdsymbol.sty}{normalweight}[\@tempa\@tempb]{book,regular,auto}{%
+\newcommand\fdsy@mweight@normal{Book}
+\newcommand\fdsy@mweight@small{Book}
+\newcommand\fdsy@bweight@normal{Medium}
+\newcommand\fdsy@bweight@small{Medium}
+\define@choicekey*{fdsymbol.sty}{normalweight}%
+[\@tempa\@tempb]{book,regular,auto}{%
   \ifcase\@tempb\relax
-    \renewcommand\fdsy@mweight{Book}
-    \renewcommand\fdsy@msweight{Book}
+    \renewcommand\fdsy@mweight@normal{Book}%
+    \renewcommand\fdsy@mweight@small{Book}%
   \or
-    \renewcommand\fdsy@mweight{Regular}
-    \renewcommand\fdsy@msweight{Regular}
+    \renewcommand\fdsy@mweight@normal{Regular}%
+    \renewcommand\fdsy@mweight@small{Regular}%
   \or
-    \renewcommand\fdsy@mweight{Book}
-    \renewcommand\fdsy@msweight{Regular}
+    \renewcommand\fdsy@mweight@normal{Book}%
+    \renewcommand\fdsy@mweight@small{Regular}%
   \fi
 }
-\define@choicekey*{fdsymbol.sty}{boldweight}[\@tempa\@tempb]{medium,bold,auto}{%
+\define@choicekey*{fdsymbol.sty}{boldweight}%
+[\@tempa\@tempb]{medium,bold,auto}{%
   \ifcase\@tempb\relax
-    \renewcommand\fdsy@bweight{Medium}
-    \renewcommand\fdsy@bsweight{Medium}
+    \renewcommand\fdsy@bweight@normal{Medium}%
+    \renewcommand\fdsy@bweight@small{Medium}%
   \or
-    \renewcommand\fdsy@bweight{Bold}
-    \renewcommand\fdsy@bsweight{Bold}
+    \renewcommand\fdsy@bweight@normal{Bold}%
+    \renewcommand\fdsy@bweight@small{Bold}%
   \or
-    \renewcommand\fdsy@bweight{Medium}
-    \renewcommand\fdsy@bsweight{Bold}
+    \renewcommand\fdsy@bweight@normal{Medium}%
+    \renewcommand\fdsy@bweight@small{Bold}%
   \fi
 }
-
 \ExecuteOptionsX{largedelims=false}
 \ProcessOptionsX
 %    \end{macrocode}
@@ -1482,52 +1483,52 @@
 \DeclareFontFamily{U}{FdSymbolF}{}
 
 \DeclareFontShape{U}{FdSymbolA}{m}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolA-\fdsy@msweight
-    <7.1-> s * [\fdsy@scale] FdSymbolA-\fdsy@mweight
+    <-7.1> s * [\fdsy@scale] FdSymbolA-\fdsy@mweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolA-\fdsy@mweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolA}{b}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolA-\fdsy@bsweight
-    <7.1-> s * [\fdsy@scale] FdSymbolA-\fdsy@bweight
+    <-7.1> s * [\fdsy@scale] FdSymbolA-\fdsy@bweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolA-\fdsy@bweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolB}{m}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolB-\fdsy@msweight
-    <7.1-> s * [\fdsy@scale] FdSymbolB-\fdsy@mweight
+    <-7.1> s * [\fdsy@scale] FdSymbolB-\fdsy@mweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolB-\fdsy@mweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolB}{b}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolB-\fdsy@bsweight
-    <7.1-> s * [\fdsy@scale] FdSymbolB-\fdsy@bweight
+    <-7.1> s * [\fdsy@scale] FdSymbolB-\fdsy@bweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolB-\fdsy@bweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolC}{m}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolC-\fdsy@msweight
-    <7.1-> s * [\fdsy@scale] FdSymbolC-\fdsy@mweight
+    <-7.1> s * [\fdsy@scale] FdSymbolC-\fdsy@mweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolC-\fdsy@mweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolC}{b}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolC-\fdsy@bsweight
-    <7.1-> s * [\fdsy@scale] FdSymbolC-\fdsy@bweight
+    <-7.1> s * [\fdsy@scale] FdSymbolC-\fdsy@bweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolC-\fdsy@bweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolD}{m}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolD-\fdsy@msweight
-    <7.1-> s * [\fdsy@scale] FdSymbolD-\fdsy@mweight
+    <-7.1> s * [\fdsy@scale] FdSymbolD-\fdsy@mweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolD-\fdsy@mweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolD}{b}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolD-\fdsy@bsweight
-    <7.1-> s * [\fdsy@scale] FdSymbolD-\fdsy@bweight
+    <-7.1> s * [\fdsy@scale] FdSymbolD-\fdsy@bweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolD-\fdsy@bweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolE}{m}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolE-\fdsy@msweight
-    <7.1-> s * [\fdsy@scale] FdSymbolE-\fdsy@mweight
+    <-7.1> s * [\fdsy@scale] FdSymbolE-\fdsy@mweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolE-\fdsy@mweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolE}{b}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolE-\fdsy@bsweight
-    <7.1-> s * [\fdsy@scale] FdSymbolE-\fdsy@bweight
+    <-7.1> s * [\fdsy@scale] FdSymbolE-\fdsy@bweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolE-\fdsy@bweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolF}{m}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolF-\fdsy@msweight
-    <7.1-> s * [\fdsy@scale] FdSymbolF-\fdsy@mweight
+    <-7.1> s * [\fdsy@scale] FdSymbolF-\fdsy@mweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolF-\fdsy@mweight@normal
 }{}
 \DeclareFontShape{U}{FdSymbolF}{b}{n}{
-    <-7.1> s * [\fdsy@scale] FdSymbolF-\fdsy@bsweight
-    <7.1-> s * [\fdsy@scale] FdSymbolF-\fdsy@bweight
+    <-7.1> s * [\fdsy@scale] FdSymbolF-\fdsy@bweight@small
+    <7.1-> s * [\fdsy@scale] FdSymbolF-\fdsy@bweight@normal
 }{}
 
 \DeclareSymbolFont{symbols}{U}{FdSymbolA}{m}{n}
