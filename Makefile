@@ -1,8 +1,12 @@
+RM := $(RM)
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
 SUBDIRS := dvips font latex
+
+ifneq (,$(findstring install,$(MAKECMDGOALS)))
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
+endif
 
 pkg := fdsymbol
 font := FdSymbol
@@ -19,14 +23,14 @@ install:
 
 uninstall:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d uninstall; done
-	rm -rf $(TEXMFDIR)/doc/fonts/$(pkg)
+	$(RM) $(TEXMFDIR)/doc/fonts/$(pkg)
 
 ctan: $(pkg).tar.gz
 
 $(pkg).tar.gz: all
 	$(MAKE) install TEXMFDIR:=$(abspath ctan.tmp)
 	cd ctan.tmp && zip -r $(pkg).tds.zip doc fonts tex source
-	cd ctan.tmp && rm -rf doc fonts tex source
+	cd ctan.tmp && $(RM) doc fonts tex source
 	cd ctan.tmp && mkdir -p doc dvips tfm type1 latex source
 	cp FONTLOG.txt OFL.txt latex/$(pkg).pdf ctan.tmp/doc
 	cp dvips/$(pkg)-?.enc dvips/*.map ctan.tmp/dvips
@@ -36,8 +40,8 @@ $(pkg).tar.gz: all
 	cp font/*.mf ctan.tmp/source
 	cp README.ctan ctan.tmp/README
 	(cd ctan.tmp && tar -c *) | gzip - > $@
-	rm -rf ctan.tmp
+	$(RM) ctan.tmp
 
 clean:
 	for d in $(SUBDIRS); do $(MAKE) -C $$d clean; done
-	rm -f $(pkg).tar.gz
+	$(RM) $(pkg).tar.gz

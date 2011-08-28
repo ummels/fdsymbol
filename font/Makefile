@@ -8,7 +8,10 @@ RM := rm -rf
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
+
+ifneq (,$(findstring install,$(MAKECMDGOALS)))
 TEXMFDIR := $(shell kpsewhich -expand-var='$$TEXMFHOME')
+endif
 
 pkg := fdsymbol
 font := FdSymbol
@@ -21,10 +24,8 @@ pt1files := $(weights:%=$(font)-%.pfb)
 gffiles := $(tfmfiles:%.tfm=%.2602gf)
 prooffiles := $(tfmfiles:%.tfm=%.dvi)
 chartfiles := $(tfmfiles:%.tfm=%.pdf)
-makefiles := $(names:%=$(font)%.mak)
+depfiles := $(names:%=$(font)%.dep)
 logfiles := $(tfmfiles:%.tfm=%.log)
-
-getenc = $(shell (echo $(1) | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]))
 
 .PHONY: all metrics type1 validate install uninstall clean
 
@@ -44,7 +45,9 @@ $(tfmfiles): %.tfm: %.mf
 $(pfbfiles): %.pfb: %.mf
 	$(MFTOPT1) --rounding 0.25 --encoding=$(filter %.enc,$^) --ffscript=process.pe $*.mf
 
--include $(makefiles)
+ifneq ($(MAKECMDGOALS),clean)
+-include $(depfiles)
+endif
 
 $(pt1files): $(font)-%.pfb: $(foreach i,$(names),$(font)$(i)-%.pfb)
 	@echo "Generating $@..."
@@ -61,7 +64,7 @@ $(prooffiles): %.dvi: %.2602gf
 charts: $(chartfiles)
 
 $(chartfiles): %.pdf: %.pfb %.tfm
-	echo $* | $(PDFTEX) --jobname $* "\pdfmapline{=$* FdSymbol <$*.pfb}\input fontchart.tex"
+	echo $* | $(PDFTEX) --jobname $* "\\pdfmapline{=$* FdSymbol <$*.pfb}\\input fontchart.tex"
 
 validate: $(pfbfiles)
 	@echo "Validating fonts..."
@@ -76,9 +79,9 @@ install: all
 	$(INSTALLDATA) *.mf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 uninstall:
-	rm -rf $(TEXMFDIR)/fonts/tfm/public/$(pkg)
-	rm -rf $(TEXMFDIR)/fonts/type1/public/$(pkg)
-	rm -rf $(TEXMFDIR)/fonts/source/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 clean:
 	$(RM) $(depfiles)
