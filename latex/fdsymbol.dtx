@@ -3279,7 +3279,9 @@
 \DeclareMathSymbol{\bracemu}{\mathord}{delimiters}{"D1}
 \DeclareMathSymbol{\bracemid}{\mathord}{delimiters}{"D2}
 
-\def\bracefill@#1#2#3#4#5{$\m@th#5#1\leaders\hbox{$#4$}\hfill#2\leaders\hbox{$#4$}\hfill#3$}
+\def\bracefill@#1#2#3#4#5{%
+  $\m@th#5#1\leaders\hbox{$#4$}\hfill#2\leaders\hbox{$#4$}\hfill#3$%
+}
 \def\downbracefill@{\bracefill@\braceld\bracemd\bracerd\bracemid}
 \def\upbracefill@{\bracefill@\bracelu\bracemu\braceru\bracemid}
 \def\downgroupfill@{\bracefill@\braceld{}\bracerd\bracemid}
@@ -3288,8 +3290,12 @@
 \def\leftharpoonfill@{\arrowfill@\leftharpoondown\relbar\relbar}
 \def\rightharpoonfill@{\arrowfill@\relbar\relbar\rightharpoonup}
 
-\DeclareRobustCommand{\overbrace}[1]{\mathop{\mathpalette{\overarrow@\downbracefill@}{#1}}\limits}
-\DeclareRobustCommand{\underbrace}[1]{\mathop{\mathpalette{\underarrow@\upbracefill@}{#1}}\limits}
+\DeclareRobustCommand{\overbrace}[1]{%
+  \mathop{\mathpalette{\overarrow@\downbracefill@}{#1}}\limits%
+}
+\DeclareRobustCommand{\underbrace}[1]{%
+  \mathop{\mathpalette{\underarrow@\upbracefill@}{#1}}\limits%
+}
 \DeclareRobustCommand{\overgroup}{\mathpalette{\overarrow@\downgroupfill@}}
 \DeclareRobustCommand{\undergroup}{\mathpalette{\underarrow@\upgroupfill@}}
 \DeclareRobustCommand{\overlinesegment}{\mathpalette{\overarrow@\linesegmentfill@}}
