@@ -16,6 +16,6 @@
 *.tfm
 *.afm
 *.map
-*.mak
+*.dep
 fdsymbol.tar.gz
 

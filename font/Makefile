@@ -4,6 +4,7 @@ MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 PDFTEX := pdftex
 PYTHON := python
+RM := rm -rf
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
@@ -33,9 +34,9 @@ metrics: $(tfmfiles)
 
 type1: $(pt1files)
 
-$(makefiles): %.mak: %.mf
-	@echo "$(patsubst %,$*-%.tfm,$(weights)) $(patsubst %,$*-%.pfb,$(weights)) $(patsubst %,$*-%.2602gf,$(weights)): $*.mf $(shell $(PYTHON) finddeps.py $*.mf)" > $@
-	@echo "$(patsubst %,$*-%.pfb,$(weights)): ../dvips/$(call getenc,$*).enc" >> $@
+$(depfiles): %.dep: %.mf
+	@echo "$(weights:%=$*-%.tfm) $(weights:%=$*-%.pfb) $(weights:%=$*-%.2602gf): $*.mf $$($(PYTHON) finddeps.py $*.mf)" > $@
+	@echo "$(weights:%=$*-%.pfb): ../dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
 $(tfmfiles): %.tfm: %.mf
 	$(MF) '\mode=nullmode; input $*'
@@ -80,11 +81,11 @@ uninstall:
 	rm -rf $(TEXMFDIR)/fonts/source/public/$(pkg)
 
 clean:
-	rm -f $(makefiles)
-	rm -f $(pfbfiles)
-	rm -f $(tfmfiles)
-	rm -f $(pt1files)
-	rm -f $(gffiles)
-	rm -f $(prooffiles)
-	rm -f $(chartfiles)
-	rm -f $(logfiles)
+	$(RM) $(depfiles)
+	$(RM) $(pfbfiles)
+	$(RM) $(tfmfiles)
+	$(RM) $(pt1files)
+	$(RM) $(gffiles)
+	$(RM) $(prooffiles)
+	$(RM) $(chartfiles)
+	$(RM) $(logfiles)
