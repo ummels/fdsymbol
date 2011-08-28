@@ -61,6 +61,9 @@
 \newcommand{\file}[1]{\texttt{#1}}
 \providecommand{\figureversion}[1]{}
 
+\renewcommand{\theCodelineNo}%
+  {\normalfont\figureversion{tab}\scriptsize\arabic{CodelineNo}}
+
 \begin{document}
 \DocInput{fdsymbol.dtx}
 \end{document}
@@ -1349,8 +1352,6 @@
 % \StopEventually{}
 %
 % \section{Implementation}
-%
-% \figureversion{tabular}
 %
 %    \begin{macrocode}
 %<*style>
