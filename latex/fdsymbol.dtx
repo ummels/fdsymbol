@@ -46,6 +46,7 @@
   pdftitle={FdSymbol: A Math Symbol Font},
   pdfauthor={Michael Ummels}
 }
+\usepackage{microtype}
 
 % Restore FdSymbol's Hebrew letters (overwritten by fedraserif.sty)
 \DeclareMathSymbol{\aleph}{0}{symbols}{"C5}
@@ -1368,7 +1369,7 @@
 % The next option allows to scale the fonts by an arbitrary factor.
 %    \begin{macrocode}
 \newcommand{\fdsy@scale}{1.0}
-\define@key{fdsymbol.sty}{scale}{\renewcommand*\fdsy@scale{#1}}
+\define@key{fdsymbol.sty}{scale}{\renewcommand\fdsy@scale{#1}}
 %    \end{macrocode}
 % The following two options control which weights are used
 % for which math version and font size.
