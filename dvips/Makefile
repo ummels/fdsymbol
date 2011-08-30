@@ -1,3 +1,4 @@
+RM := rm -rf
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
@@ -30,8 +31,8 @@ install: all
 	$(INSTALLDATA) *.enc $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 
 uninstall:
-	rm -rf $(TEXMFDIR)/fonts/map/dvips/$(pkg)
-	rm -rf $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 
 clean:
-	rm -f $(pkg).map
+	$(RM) $(pkg).map

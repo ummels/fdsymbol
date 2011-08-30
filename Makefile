@@ -1,4 +1,4 @@
-RM := $(RM)
+RM := rm -rf
 INSTALL := install
 INSTALLDIR := $(INSTALL) -d
 INSTALLDATA := $(INSTALL) -m 644
