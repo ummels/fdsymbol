@@ -43,10 +43,10 @@ endfor;
 
 charlist current_char - 5: current_char - 4: current_char - 3: current_char - 2: current_char - 1: current_char;
 
-beginsymbol(6u#, x_height# + 2rule_thickness# + 5/2line_thickness#, 0); "vec";
+beginsymbol(6u# + side_bearing#, x_height# + 2rule_thickness# + 5/2line_thickness#, 0); "vec";
   thick := 3/4line_thickness;
 
-  x0 = 0;
+  x0 = side_bearing;
   x1 = w - 1/2thick;
   y0 = y1 = h - 5/4line_thickness;
 
