@@ -1561,14 +1561,14 @@
 \DeclareMathAlphabet{\mathfrak}{U}{euf}{m}{n}
 \SetMathAlphabet{\mathfrak}{bold}{U}{euf}{b}{n}
 %    \end{macrocode}
-% A command to take math symbols from text fonts.
+% A command for taking math symbols from the text font.
 %    \begin{macrocode}
-\newcommand\fdsy@bold{bold}
-\newcommand\fdsy@text[1]{%
+\def\fdsy@bold{bold}
+\newcommand*\fdsy@text[1]{%
   \ifx\fdsy@bold\math@version
-    \text{\bfseries#1}%
+    \text{\normalfont\bfseries#1}%
   \else
-    \text{\mdseries#1}%
+    \text{\normalfont\mdseries#1}%
   \fi
 }
 %    \end{macrocode}
