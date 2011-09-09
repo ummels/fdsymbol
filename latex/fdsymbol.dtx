@@ -1550,16 +1550,13 @@
 % msb for the blackboard bold alphabet, and euf for the Fraktur
 % alphabet.
 %    \begin{macrocode}
-\let\mathcal\undefined
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 \SetMathAlphabet{\mathcal}{bold}{OMS}{cmsy}{b}{n}
-\let\mathbb\undefined
 \DeclareMathAlphabet{\mathbb}{U}{msb}{m}{n}
-\let\Bbbk\undefined
-\newcommand{\Bbbk}{\mathbb{\mathchar"717C}}
-\let\mathfrak\undefined
 \DeclareMathAlphabet{\mathfrak}{U}{euf}{m}{n}
 \SetMathAlphabet{\mathfrak}{bold}{U}{euf}{b}{n}
+\let\Bbbk\undefined
+\newcommand{\Bbbk}{\mathbb{\mathchar"717C}}
 %    \end{macrocode}
 % A command for taking math symbols from the text font.
 %    \begin{macrocode}
