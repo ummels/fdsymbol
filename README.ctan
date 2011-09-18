@@ -20,8 +20,7 @@ the details.
 Installation
 ------------
 
-1. In the latex directory, run `latex fdsymbol.ins` to generate the
-   LaTeX package.
+1. Run `latex fdsymbol.ins` to generate the LaTeX package.
 
 2. Create the following directories in a local texmf tree:
 
@@ -34,12 +33,12 @@ Installation
 
 3. Copy all necessary files into the texmf tree:
 
-   - all files in the doc directory go to doc/latex/fdsymbol
+   - fdsymbol.pdf goes to doc/latex/fdsymbol
    - fdsymbol.map in the dvips directory goes to fonts/map/dvips/fdsymbol
    - all other files in the dvips directory go to fonts/enc/dvips/fdsymbol
    - all files in the tfm directory go to fonts/tfm/public/fdsymbol
    - all files in the type1 directory go to fonts/type1/public/fdsymbol
-   - fdsymbol.sty in the latex directory goes to tex/latex/fdsymbol
+   - fdsymbol.sty goes to tex/latex/fdsymbol
 
 4. Afterwards, you may need to regenerate the file database:
 
