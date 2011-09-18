@@ -49,6 +49,8 @@ Installation
 
     updmap --enable Map=fdsymbol.map
 
+For a system-wide installation, replace updmap by updmap-sys.
+
 License
 -------
 
