@@ -17,5 +17,6 @@
 *.afm
 *.map
 *.dep
-fdsymbol.tar.gz
+*.tar.gz
+*.zip
 
