@@ -58,7 +58,7 @@ all: metrics type1 latex $(mapfile)
 # rules for building Makefiles with additional dependencies
 
 $(depfiles): %.dep: source/%.mf
-	@echo "$(weights:%=$(tfmdir)/$*-%.tfm) $(weights:%=$(pfbdir)/$*-%.pfb) $(weights:%=$(testdir)/$*-%.2602gf): $< $$($(PYTHON) scripts/finddeps.py $<)" > $@
+	@echo "$(weights:%=$(tfmdir)/$*-%.tfm) $(weights:%=$(pfbdir)/$*-%.pfb) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) scripts/finddeps.py $<)" > $@
 	@echo "$(weights:%=$(pfbdir)/$*-%.pfb): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
 # rules for building metrics and Postscript fonts
