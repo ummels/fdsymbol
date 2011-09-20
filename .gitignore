@@ -5,6 +5,7 @@
 *.log
 *.aux
 *.out
+*.hd
 *.toc
 *.???gf
 *.????gf
@@ -17,6 +18,5 @@
 *.afm
 *.map
 *.dep
-*.tar.gz
 *.zip
-
+*.gz
