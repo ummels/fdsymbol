@@ -66,3 +66,6 @@ The Current Maintainer of this work is Michael Ummels.
 
 This work consists of the files fdsymbol.dtx, fdsymbol.ins
 and the derived files fdsymbol.sty and fdsymbol.pdf.
+
+All other files distributed with these sources, e.g. the Makefile and
+the Python scripts are in the public domain.
