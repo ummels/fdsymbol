@@ -5,7 +5,7 @@ MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 T1TESTPAGE := t1testpage
 PSTOPDF := ps2pdf
-PYTHON := python
+PYTHON := python2.7
 PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
 RM := rm -rf
 TAR := tar
@@ -24,10 +24,9 @@ font := FdSymbol
 names := A B C D E F
 weights := Book Regular Medium Bold
 
-tfmdir := tfm
-pfbdir := type1
+fontdir := fonts
 testdir := test
-outdirs := $(tfmdir) $(pfbdir) $(testdir)
+outdirs := $(fontdir) $(testdir)
 
 # $(call lc,text)
 lc = $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$1))))))))))))))))))))))))))
@@ -36,8 +35,9 @@ depfiles := $(names:%=$(font)%.dep)
 encfiles := $(foreach i,$(names),dvips/$(pkg)-$(call lc,$i).enc)
 mapfile := dvips/$(pkg).map
 fonts := $(foreach i,$(names),$(weights:%=$(font)$(i)-%))
-tfmfiles := $(fonts:%=$(tfmdir)/%.tfm)
-pfbfiles := $(fonts:%=$(pfbdir)/%.pfb)
+tfmfiles := $(fonts:%=$(fontdir)/%.tfm)
+pfbfiles := $(fonts:%=$(fontdir)/%.pfb)
+otffiles := $(weights:%=$(fontdir)/$(font)-%.otf)
 gffiles := $(fonts:%=$(testdir)/%.2602gf)
 prooffiles := $(fonts:%=$(testdir)/%.dvi)
 chartfiles := $(fonts:%=$(testdir)/%.pdf)
@@ -50,34 +50,60 @@ ifeq (,$(findstring clean,$(MAKECMDGOALS)))
 create-dirs := $(shell $(MKDIR) $(outdirs))
 endif
 
+# macro for generating font-specific rules
+
+# $(call fontrule,weight)
+define fontrule
+.PHONY: $1
+$1: $(fontdir)/$(font)-$1.otf
+
+$(fontdir)/$(font)-$1.otf: $(foreach i,$(names),$(fontdir)/$(font)$i-$1.pfb)
+
+.PHONY: $1-test
+$1-test: $1-proofs $1-charts
+
+.PHONY: $1-proofs
+$1-proofs: $(filter %-$1.dvi,$(prooffiles))
+
+.PHONY: $1-charts
+$1-carts: $(filter %-$1.dvi,$(chartfiles))
+endef
+
 # default rule
 
 .PHONY: all
-all: metrics type1 latex $(mapfile)
+all: texfonts opentype latex $(mapfile)
 
 # rules for building Makefiles with additional dependencies
 
 $(depfiles): %.dep: source/%.mf
-	@echo "$(weights:%=$(tfmdir)/$*-%.tfm) $(weights:%=$(pfbdir)/$*-%.pfb) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) scripts/finddeps.py $<)" > $@
-	@echo "$(weights:%=$(pfbdir)/$*-%.pfb): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
+	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(fontdir)/$*-%.pfb) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) scripts/finddeps.py $<)" > $@
+	@echo "$(weights:%=$(fontdir)/$*-%.pfb): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
-# rules for building metrics and Postscript fonts
+# rules for building Postscript fonts and TeX metrics
 
-.PHONY: metrics
-metrics: $(tfmfiles)
+.PHONY: texfonts
+texfonts: $(pfbfiles) $(tfmfiles)
 
-.PHONY: type1
-type1: $(pfbfiles)
+$(foreach weight,$(weights),$(eval $(call fontrule,$(weight))))
 
-$(tfmfiles): $(tfmdir)/%.tfm: source/%.mf
-	cd $(tfmdir) && MFINPUTS=$(abspath source) $(MF) '\mode=nullmode; input $*'
+$(pfbfiles): $(fontdir)/%.pfb: source/%.mf
+	cd $(fontdir) && $(MFTOPT1) --rounding 0.25 --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath scripts/process.pe) $(abspath $<)
 
-$(pfbfiles): $(pfbdir)/%.pfb: source/%.mf
-	cd $(pfbdir) && $(MFTOPT1) --rounding 0.25 --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath scripts/process.pe) $(abspath $<)
+$(tfmfiles): $(fontdir)/%.tfm: source/%.mf
+	cd $(fontdir) && MFINPUTS=$(abspath source) $(MF) '\mode=nullmode; input $*'
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(depfiles)
 endif
+
+# rules for building OpenType fonts
+
+.PHONY: opentype
+opentype: $(otffiles)
+
+$(otffiles): source/features.fea
+	$(PYTHON) scripts/makeotf.py -f $< $(filter %.pfb,$^) $@
 
 # rules for building the mapfile
 
@@ -143,7 +169,7 @@ $(prooffiles): $(testdir)/%.dvi: $(testdir)/%.2602gf
 .PHONY: charts
 charts: $(chartfiles)
 
-$(chartfiles): $(testdir)/%.pdf: $(pfbdir)/%.pfb
+$(chartfiles): $(testdir)/%.pdf: $(fontdir)/%.pfb
 	$(T1TESTPAGE) $< | $(PSTOPDF) - $@
 
 # rule for validating the generated Postscript fonts
@@ -163,6 +189,8 @@ check:
 install: all
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(INSTALLDATA) $(pfbfiles) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(INSTALLDIR) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
+	$(INSTALLDATA) $(otffiles) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDATA) $(tfmfiles) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/source/public/$(pkg)
@@ -183,6 +211,7 @@ install: all
 .PHONY: uninstall
 uninstall:
 	$(RM) $(TEXMFDIR)/fonts/type1/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)

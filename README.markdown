@@ -21,7 +21,8 @@ Installation
 ------------
 
 Building the fonts requires Metafont (>=2.718281), MetaPost (>=1.211),
-mf2pt1 (>= 2.4.4) and FontForge (>=20110222).
+mf2pt1 (>= 2.4.4), FontForge (>=20110222), and Python 2.7 with the fontforge
+module enabled.
 
 To install the fonts, the accompanying LaTeX package and the documentation
 in your home texmf tree, run:
@@ -49,7 +50,7 @@ License
 Copyright (c) 2011 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
 The font components of this software, e.g. MetaFont (.mf), TeX font metric
-(.tfm), and Type 1 (.pfb) files, are licensed under the
+(.tfm), Type 1 (.pfb), and OpenType (.otf) files, are licensed under the
 [SIL Open Font License][OFL], Version 1.1.
 
 [OFL]: http://scripts.sil.org/OFL
