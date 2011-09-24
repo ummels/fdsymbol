@@ -10,7 +10,7 @@
   /bracketright /bracketright.big1 /bracketright.big2 /bracketright.big3 /bracketright.big4 /bracketright.big5 /uni230A /uni230A.big1
 %20
   /uni230A.big2 /uni230A.big3 /uni230A.big4 /uni230A.big5 /uni230B /uni230B.big1 /uni230B.big2 /uni230B.big3
-  /uni230B.big4 /uni20B.big5 /uni2308 /uni2308.big1 /uni2308.big2 /uni2308.big3 /uni2308.big4 /uni2308.big5
+  /uni230B.big4 /uni230B.big5 /uni2308 /uni2308.big1 /uni2308.big2 /uni2308.big3 /uni2308.big4 /uni2308.big5
 %30
   /uni2309 /uni2309.big1 /uni2309.big2 /uni2309.big3 /uni2309.big4 /uni2309.big5 /uni231C /uni231C.big1
   /uni231C.big2 /uni231C.big3 /uni231C.big4 /uni231C.big5 /uni231D /uni231D.big1 /uni231D.big2 /uni231D.big3
@@ -37,7 +37,7 @@
   /uni2992.big5 /slash /slash.big1 /slash.big2 /slash.big3 /slash.big4 /slash.big5 /backslash
 %B0
   /backslash.big1 /backslash.big2 /backslash.big3 /backslash.big4 /backslash.big5 /uni2223.short /uni2223 /uni2223.big1 %/uni007C
-  /uni2224.short /uni2224 /uni224.big1 /sym0A8 /uni2225.short /uni2225 /uni2225.big1 %/uni2016
+  /uni2224.short /uni2224 /uni2224.big1 /sym0A8 /uni2225.short /uni2225 /uni2225.big1 %/uni2016
   /uni2226.short
 %C0
   /uni2226 /uni2226.big1 /sym0A9 /uni2980 /uni2980.big1 /sym0AA /arrowup.short /arrowdown.short
