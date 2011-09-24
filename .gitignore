@@ -20,6 +20,5 @@
 *.dep
 *.zip
 *.gz
-tfm
-type1
+fonts
 test
