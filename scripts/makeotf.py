@@ -38,12 +38,12 @@ def addligatures(font):
         glyphname = glyph.glyphname
         if "." in glyphname: break
         # Test for glyph1_glyph2_... ligature
-        components = glyphname.split("_")
-        if len(components) > 1:
+        if "_" in glyphname:
+            components = glyphname.split("_")
             addlig(components, glyph)
         # Test for uniXXXXYYYY... ligature
-        if (glyphname.startswith("uni") and "_" not in glyphname and
-            len(glyphname) > 7 and len(glyphname) % 4 == 3):
+        elif (glyphname.startswith("uni") and len(glyphname) > 7 and
+              len(glyphname) % 4 == 3):
             components = ["uni" + glyphname[k:k + 4] for
                           k in range(3, len(glyphname), 4)]
             addlig(components, glyph)
@@ -59,7 +59,8 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--featurefile",
                         help="OpenType feature file",
                         metavar="featurefile")
-    parser.add_argument("fontfile", nargs="+", help="original font file (.pfb)")
+    parser.add_argument("fontfile", nargs="+",
+                        help="original font file (.pfb)")
     parser.add_argument("otffile", help="output file (.otf)")
     args = parser.parse_args()
 
