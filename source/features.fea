@@ -13,7 +13,7 @@ lookup disp { # Display mode
   sub summation by summation.disp;
   sub integral by integral.disp;
   sub uni2210 by uni2210.disp;
-  sub uni222B2026222B by uni222B2026222B.disp;
+  sub uni222B22EF222B by uni222B22EF222B.disp;
   sub [uni222C-uni222F] by [uni222C.disp-uni222F.disp];
   sub [uni2230-uni2233] by [uni2230.disp-uni2233.disp];
   sub uni2232.alt by uni2232.alt.disp;
