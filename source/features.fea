@@ -8,12 +8,115 @@ feature liga {
   sub integral integral integral integral by uni2A0C;
 } liga;
 
+lookup ss01 { # Big operators
+  sub product by product.disp;
+  sub summation by summation.disp;
+  sub integral by integral.disp;
+  sub uni2210 by uni2210.disp;
+  sub uni222B2026222B by uni222B2026222B.disp;
+  sub [uni222C-uni222F] by [uni222C.disp-uni222F.disp];
+  sub [uni2230-uni2233] by [uni2230.disp-uni2233.disp];
+  sub uni2232.alt by uni2232.alt.disp;
+  sub uni2233.alt by uni2233.alt.disp;
+  sub [uni2A00-uni2A09] by [uni2A00.disp-uni2A09.disp];
+  sub [uni2A0A-uni2A0F] by [uni2A0A.disp-uni2A0F.disp];
+  sub uni2A11 by uni2A11.disp;
+  sub [uni22C0-uni22C3] by [uni22C0.disp-uni22C3.disp];
+  sub [sym090-sym099] by [sym090.disp-sym099.disp];
+  sub sym09A by sym09A.disp;
+  sub sym09B by sym09B.disp;  
+} ss01;
+
+lookup ss02 { # Slanted equal between less and greater
+  sub uni22DA by uni22DA.alt;
+  sub uni22DB by uni22DB.alt;
+  sub uni22DA0338 by uni22DA0338.alt;
+  sub uni22DB0338 by uni22DB0338.alt;
+} ss02;
+
+lookup ss03 { # Reversed hook in hook arrow
+  sub uni21A9 by uni21A9.alt;
+  sub uni21AA by uni21AA.alt;
+  sub [uni2923-uni2926] by [uni2923.alt-uni2926.alt];
+  sub sym03E by sym03E.alt;
+  sub sym03F by sym03F.alt;
+  sub uni21A90338 by uni21A90338.alt;
+  sub uni21AA0338 by uni21AA0338.alt;
+  sub uni29230338 by uni29230338.alt;
+  sub uni29240338 by uni29240338.alt;
+  sub uni29250338 by uni29250338.alt;
+  sub uni29260338 by uni29260338.alt;
+  sub sym03E_uni0338 by sym03E_uni0338.alt;
+  sub sym03F_uni0338 by sym03F_uni0338.alt;
+} ss03;
+
+lookup ss04 { # Reversed wave in wavy arrow
+  sub uni219C by uni219C.alt;
+  sub uni219D by uni219D.alt;
+  sub uni21AD by uni21AD.alt;
+  sub [sym064-sym066] by [sym064.alt-sym066.alt];
+  sub uni219C0338 by uni219C0338.alt;
+  sub uni219D0338 by uni219D0338.alt;
+  sub uni21AD0338 by uni21AD0338.alt;
+  sub [sym064_uni0338-sym066_uni0338] by
+   [sym064_uni0338.alt-sym066_uni0338.alt];
+} ss04;
+
+lookup ss05 { # Shorter double turnstile symbols
+  sub uni22A9 by uni22A9.alt;
+  sub uni22AE by uni22AE.alt;
+  sub uni2AE3 by uni2AE3.alt;
+  sub uni2AE30338 by uni2AE30338.alt;
+} ss05;
+
+lookup ss06 { # Position of arrow head in contour integrals
+  sub uni2232 by uni2232.alt;
+  sub uni2233 by uni2233.alt;
+} ss06;
+
+lookup ss07 { # Bigger delimiters
+  sub parenleft by parenleft.big1;
+  sub parenright by parenright.big1;
+  sub bracketleft by bracketleft.big1;
+  sub bracketright by bracketright.big1;
+  sub braceleft by braceleft.big1;
+  sub braceright by braceright.big1;
+  sub slash by slash.big1;
+  sub backslash by backslash.big1;
+  sub radical by radical.big1;
+  sub [uni2223-uni2226] by [uni2223.big1-uni2226.big1];
+  sub uni2308 by uni2308.big1;
+  sub uni2309 by uni2309.big1;
+  sub uni230A by uni230A.big1;
+  sub uni230B by uni230B.big1;
+  sub [uni231C-uni231F] by [uni231C.big1-uni231F.big1];
+  sub [uni27E6-uni27E9] by [uni27E6.big1-uni27E9.big1];
+  sub uni27EA by uni27EA.big1;
+  sub uni27EB by uni27EB.big1;
+  sub uni2980 by uni2980.big1;
+  sub uni2991 by uni2991.big1;
+  sub uni2992 by uni2992.big1;
+  sub sym0A0 by sym0A0.big1;
+  sub sym0A1 by sym0A1.big1;
+} ss07;
+
+feature salt {
+  lookup ss01;
+  lookup ss02;
+  lookup ss03;
+  lookup ss04;
+  lookup ss05;
+  lookup ss06;
+  lookup ss07;
+} salt;
+
 feature aalt {
-  feature ss01;
-  feature ss02;
-  feature ss03;
-  feature ss04;
-  feature ss06;
+  lookup ss01;
+  lookup ss02;
+  lookup ss03;
+  lookup ss04;
+  lookup ss05;
+  lookup ss06;
   sub product by product.small;
   sub integral by integral.small;
   sub arrowup by arrowup.short;
@@ -60,94 +163,30 @@ feature aalt {
   sub sym0A1 from [sym0A1.big1-sym0A1.big5];
 } aalt;
 
-feature ss01 { # Big operators
-  sub product by product.disp;
-  sub summation by summation.disp;
-  sub integral by integral.disp;
-  sub uni2210 by uni2210.disp;
-  sub uni222B2026222B by uni222B2026222B.disp;
-  sub [uni222C-uni222F] by [uni222C.disp-uni222F.disp];
-  sub [uni2230-uni2233] by [uni2230.disp-uni2233.disp];
-  sub uni2232.alt by uni2232.alt.disp;
-  sub uni2233.alt by uni2233.alt.disp;
-  sub [uni2A00-uni2A09] by [uni2A00.disp-uni2A09.disp];
-  sub [uni2A0A-uni2A0F] by [uni2A0A.disp-uni2A0F.disp];
-  sub uni2A11 by uni2A11.disp;
-  sub [uni22C0-uni22C3] by [uni22C0.disp-uni22C3.disp];
-  sub [sym090-sym099] by [sym090.disp-sym099.disp];
-  sub sym09A by sym09A.disp;
-  sub sym09B by sym09B.disp;  
+feature ss01 {
+  lookup ss01;
 } ss01;
 
-feature ss02 { # Slanted equal between less and greater
-  sub uni22DA by uni22DA.alt;
-  sub uni22DB by uni22DB.alt;
-  sub uni22DA0338 by uni22DA0338.alt;
-  sub uni22DB0338 by uni22DB0338.alt;
+feature ss02 {
+  lookup ss02;
 } ss02;
 
-feature ss03 { # Reversed hook in hook arrow
-  sub uni21A9 by uni21A9.alt;
-  sub uni21AA by uni21AA.alt;
-  sub [uni2923-uni2926] by [uni2923.alt-uni2926.alt];
-  sub sym03E by sym03E.alt;
-  sub sym03F by sym03F.alt;
-  sub uni21A90338 by uni21A90338.alt;
-  sub uni21AA0338 by uni21AA0338.alt;
-  sub uni29230338 by uni29230338.alt;
-  sub uni29240338 by uni29240338.alt;
-  sub uni29250338 by uni29250338.alt;
-  sub uni29260338 by uni29260338.alt;
-  sub sym03E_uni0338 by sym03E_uni0338.alt;
-  sub sym03F_uni0338 by sym03F_uni0338.alt;
+feature ss03 {
+  lookup ss03;
 } ss03;
 
-feature ss04 { # Reversed wave in wavy arrow
-  sub uni219C by uni219C.alt;
-  sub uni219D by uni219D.alt;
-  sub uni21AD by uni21AD.alt;
-  sub [sym064-sym066] by [sym064.alt-sym066.alt];
-  sub uni219C0338 by uni219C0338.alt;
-  sub uni219D0338 by uni219D0338.alt;
-  sub uni21AD0338 by uni21AD0338.alt;
-  sub [sym064_uni0338-sym066_uni0338] by
-   [sym064_uni0338.alt-sym066_uni0338.alt];
+feature ss04 {
+  lookup ss04;
 } ss04;
 
-feature ss05 { # Shorter double turnstile symbols
-  sub uni22A9 by uni22A9.alt;
-  sub uni22AE by uni22AE.alt;
-  sub uni2AE3 by uni2AE3.alt;
-  sub uni2AE30338 by uni2AE30338.alt;
+feature ss05 {
+  lookup ss05;
 } ss05;
 
-feature ss06 { # Position of arrow head in contour integrals
-  sub uni2232 by uni2232.alt;
-  sub uni2233 by uni2233.alt;
+feature ss06 {
+  lookup ss06;
 } ss06;
 
-feature ss07 { # Bigger delimiters
-  sub parenleft by parenleft.big1;
-  sub parenright by parenright.big1;
-  sub bracketleft by bracketleft.big1;
-  sub bracketright by bracketright.big1;
-  sub braceleft by braceleft.big1;
-  sub braceright by braceright.big1;
-  sub slash by slash.big1;
-  sub backslash by backslash.big1;
-  sub radical by radical.big1;
-  sub [uni2223-uni2226] by [uni2223.big1-uni2226.big1];
-  sub uni2308 by uni2308.big1;
-  sub uni2309 by uni2309.big1;
-  sub uni230A by uni230A.big1;
-  sub uni230B by uni230B.big1;
-  sub [uni231C-uni231F] by [uni231C.big1-uni231F.big1];
-  sub [uni27E6-uni27E9] by [uni27E6.big1-uni27E9.big1];
-  sub uni27EA by uni27EA.big1;
-  sub uni27EB by uni27EB.big1;
-  sub uni2980 by uni2980.big1;
-  sub uni2991 by uni2991.big1;
-  sub uni2992 by uni2992.big1;
-  sub sym0A0 by sym0A0.big1;
-  sub sym0A1 by sym0A1.big1;
+feature ss07 {
+  lookup ss07;
 } ss07;
