@@ -25,7 +25,9 @@ def addligatures(font):
     
     def addlig(components, glyph):
         # Test whether all components are in the font before adding ligature
-        if reduce(lambda b, g: b and (g in font), components, True):
+        if reduce(lambda b, g: b and (font.findEncodingSlot(g) >= 0), components, True):
+            # Find correct glyphnames for components
+            components = [font[font.findEncodingSlot(g)].glyphname for g in components]
             glyph.addPosSub("Ligature subtable", tuple(components))
 
     font.addLookup("Ligature lookup",
@@ -36,7 +38,7 @@ def addligatures(font):
     font.addLookupSubtable("Ligature lookup", "Ligature subtable")
     for glyph in font.glyphs():
         glyphname = glyph.glyphname
-        if "." in glyphname: break
+        if "." in glyphname: continue
         # Test for glyph1_glyph2_... ligature
         if "_" in glyphname:
             components = glyphname.split("_")
