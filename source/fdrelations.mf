@@ -673,7 +673,7 @@ if negated < 2:
       theta := angle(z0a - z2a); 
 
       z0a - z4 = 1/2thick * dir theta;
-      z1a - z5 = 1/2thick * dir theta;
+      z1a - z5 = 1/2thick * dir -theta;
 
       penpos4(thick, theta);
       penpos5(thick, -theta);
@@ -683,6 +683,7 @@ if negated < 2:
       if negated = 1:
         stroke_through(centre, equal_spread + greater_spread);
       fi;
+      penlabels(4,5);
     endchar;
   endfor;
 fi;
@@ -702,7 +703,7 @@ if negated < 2:
       theta := angle(z0a - z2a); 
 
       z0a - z4 = 1/2thick * dir theta;
-      z1a - z5 = 1/2thick * dir theta;
+      z1a - z5 = 1/2thick * dir -theta;
 
       penpos4(thick, theta);
       penpos5(thick, -theta);
