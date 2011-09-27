@@ -76,7 +76,7 @@ all: texfonts opentype latex $(mapfile)
 
 # rules for building Makefiles with additional dependencies
 
-$(depfiles): %.dep: source/%.mf
+$(depfiles): %.dep: source/%.mf scripts/finddeps.py
 	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(fontdir)/$*-%.pfb) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) scripts/finddeps.py $<)" > $@
 	@echo "$(weights:%=$(fontdir)/$*-%.pfb): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
@@ -87,7 +87,7 @@ texfonts: $(pfbfiles) $(tfmfiles)
 
 $(foreach weight,$(weights),$(eval $(call fontrule,$(weight))))
 
-$(pfbfiles): $(fontdir)/%.pfb: source/%.mf
+$(pfbfiles): $(fontdir)/%.pfb: source/%.mf scripts/process.pe
 	cd $(fontdir) && $(MFTOPT1) --rounding 0.25 --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath scripts/process.pe) $(abspath $<)
 
 $(tfmfiles): $(fontdir)/%.tfm: source/%.mf
@@ -102,7 +102,7 @@ endif
 .PHONY: opentype
 opentype: $(otffiles)
 
-$(otffiles): source/features.fea
+$(otffiles): source/features.fea scripts/makeotf.py
 	$(PYTHON) scripts/makeotf.py -f $< $(filter %.pfb,$^) $@
 
 # rules for building the mapfile
