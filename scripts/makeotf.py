@@ -52,6 +52,14 @@ def addspace(font):
     space = font.createChar(0x20, "space")
     space.width = 400
 
+def adjustmetrics(font):
+    font.os2_typolinegap = 500 # Change?
+    font.hhea_linegap = 0
+    font.hhea_ascent_add = 0
+    font.hhea_descent_add = 0
+    font.hhea_ascent = font.ascent + font.os2_typolinegap / 2
+    font.hhea_descent = -font.descent - font.os2_typolinegap / 2
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
     Create one OpenType font from several Type1 fonts.
@@ -74,6 +82,7 @@ if __name__ == "__main__":
     if args.featurefile:
         font.mergeFeature(args.featurefile)
     addspace(font)
+    adjustmetrics(font)
 
     font.generate(args.otffile, flags=("opentype"))
     print "Succesfully generated " + args.otffile + "."
