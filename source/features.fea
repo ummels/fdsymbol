@@ -8,7 +8,7 @@ feature liga {
   sub integral integral integral integral by uni2A0C;
 } liga;
 
-lookup ss01 { # Big operators
+lookup disp { # Display mode
   sub product by product.disp;
   sub summation by summation.disp;
   sub integral by integral.disp;
@@ -25,6 +25,32 @@ lookup ss01 { # Big operators
   sub [sym090-sym099] by [sym090.disp-sym099.disp];
   sub sym09A by sym09A.disp;
   sub sym09B by sym09B.disp;  
+} disp;
+
+lookup ss01 { # Bigger delimiters
+  sub parenleft by parenleft.big1;
+  sub parenright by parenright.big1;
+  sub bracketleft by bracketleft.big1;
+  sub bracketright by bracketright.big1;
+  sub braceleft by braceleft.big1;
+  sub braceright by braceright.big1;
+  sub slash by slash.big1;
+  sub backslash by backslash.big1;
+  sub radical by radical.big1;
+  sub [uni2223-uni2226] by [uni2223.big1-uni2226.big1];
+  sub uni2308 by uni2308.big1;
+  sub uni2309 by uni2309.big1;
+  sub uni230A by uni230A.big1;
+  sub uni230B by uni230B.big1;
+  sub [uni231C-uni231F] by [uni231C.big1-uni231F.big1];
+  sub [uni27E6-uni27E9] by [uni27E6.big1-uni27E9.big1];
+  sub uni27EA by uni27EA.big1;
+  sub uni27EB by uni27EB.big1;
+  sub uni2980 by uni2980.big1;
+  sub uni2991 by uni2991.big1;
+  sub uni2992 by uni2992.big1;
+  sub sym0A0 by sym0A0.big1;
+  sub sym0A1 by sym0A1.big1;
 } ss01;
 
 lookup ss02 { # Slanted equal between less and greater
@@ -74,32 +100,6 @@ lookup ss06 { # Position of arrow head in contour integrals
   sub uni2233 by uni2233.alt;
 } ss06;
 
-lookup ss07 { # Bigger delimiters
-  sub parenleft by parenleft.big1;
-  sub parenright by parenright.big1;
-  sub bracketleft by bracketleft.big1;
-  sub bracketright by bracketright.big1;
-  sub braceleft by braceleft.big1;
-  sub braceright by braceright.big1;
-  sub slash by slash.big1;
-  sub backslash by backslash.big1;
-  sub radical by radical.big1;
-  sub [uni2223-uni2226] by [uni2223.big1-uni2226.big1];
-  sub uni2308 by uni2308.big1;
-  sub uni2309 by uni2309.big1;
-  sub uni230A by uni230A.big1;
-  sub uni230B by uni230B.big1;
-  sub [uni231C-uni231F] by [uni231C.big1-uni231F.big1];
-  sub [uni27E6-uni27E9] by [uni27E6.big1-uni27E9.big1];
-  sub uni27EA by uni27EA.big1;
-  sub uni27EB by uni27EB.big1;
-  sub uni2980 by uni2980.big1;
-  sub uni2991 by uni2991.big1;
-  sub uni2992 by uni2992.big1;
-  sub sym0A0 by sym0A0.big1;
-  sub sym0A1 by sym0A1.big1;
-} ss07;
-
 feature salt {
   lookup ss01;
   lookup ss02;
@@ -107,7 +107,6 @@ feature salt {
   lookup ss04;
   lookup ss05;
   lookup ss06;
-  lookup ss07;
 } salt;
 
 feature aalt {
@@ -117,6 +116,7 @@ feature aalt {
   lookup ss04;
   lookup ss05;
   lookup ss06;
+  lookup disp;
   sub product by product.small;
   sub integral by integral.small;
   sub arrowup by arrowup.short;
@@ -186,7 +186,3 @@ feature ss05 {
 feature ss06 {
   lookup ss06;
 } ss06;
-
-feature ss07 {
-  lookup ss07;
-} ss07;
