@@ -683,6 +683,7 @@ if negated < 2:
       if negated = 1:
         stroke_through(centre, equal_spread + greater_spread);
       fi;
+
       penlabels(4,5);
     endchar;
   endfor;
