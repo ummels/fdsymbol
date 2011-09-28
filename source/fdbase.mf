@@ -109,6 +109,7 @@ def beginsymbol(expr width, height, depth) =
   current_char := current_char + 1;
   beginchar(current_char, width, height, depth);
     if not known ps_output:
+      proofrule((side_bearing, math_axis),(w - side_bearing, math_axis));
       proofrule((side_bearing, h),(side_bearing, -d));
       proofrule((w - side_bearing, h),(w - side_bearing,  -d));
     fi
