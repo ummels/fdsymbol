@@ -586,9 +586,9 @@ if negated < 2:
       draw_less(b, right_ex - t * up, left_ex - t * up, s, line_thickness, false);
 
       if sign = 1:
-        draw_line(z1a - equal_spread * up, z4a - equal_spread * up, false);
+        draw_line(1/2[z1a,z4b], 1/2[z4a,z1b], false);
       else:
-        draw_line(z0a - equal_spread * up, z3a - equal_spread * up, false);
+        draw_line(1/2[z0a,z3b], 1/2[z3a,z0b], false);
       fi;
       
       if negated = 1:
