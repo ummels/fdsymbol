@@ -3,8 +3,17 @@
 import sys
 import argparse
 import fontforge
+from itertools import product
 
 family = "FdSymbol"
+
+aliases = {"uni2A3D": ["uni2319"],
+           "uni219D": ["uni21DD", "uni2933"],
+           "uni219C": ["uni21DC", "uni2B3F"],
+           "uni22A5": ["uni27C2"],
+           "uni2AE7": ["uni3012"],
+           "uni2223": ["bar"],
+           "uni2225": ["uni2016"]}
 
 def setnames(font):
     """Set the font name."""
@@ -12,6 +21,11 @@ def setnames(font):
     font.familyname = family
     font.fontname = family + "-" + weight
     font.fullname = family + " "  + weight
+
+def addspace(font):
+    """Add a space character."""
+    space = font.createChar(0x20, "space")
+    space.width = 400
 
 def fillpua(font):
     """Map each glyph of the form sym0xx to uniE0xx."""
@@ -22,12 +36,11 @@ def fillpua(font):
 
 def addligatures(font):
     """Add ligature table."""
-    
     def addlig(components, glyph):
-        # Test whether all components are in the font before adding ligature
-        if reduce(lambda b, g: b and (font.findEncodingSlot(g) >= 0), components, True):
-            # Find correct glyphnames for components
-            components = [font[font.findEncodingSlot(g)].glyphname for g in components]
+        if all((font.findEncodingSlot(name) in font) for name in components):
+            # Translate to real glyphnames
+            components = [font[font.findEncodingSlot(name)].glyphname
+                          for name in components]
             glyph.addPosSub("Ligature subtable", tuple(components))
 
     font.addLookup("Ligature lookup",
@@ -38,29 +51,53 @@ def addligatures(font):
     font.addLookupSubtable("Ligature lookup", "Ligature subtable")
     for glyph in font.glyphs():
         glyphname = glyph.glyphname
-        if "." in glyphname: continue
+        # Skip glyph variants
+        if "." in glyphname:
+            pass
         # Test for glyph1_glyph2_... ligature
-        if "_" in glyphname:
+        elif "_" in glyphname:
             components = glyphname.split("_")
             addlig(components, glyph)
         # Test for uniXXXXYYYY... ligature
         elif (glyphname.startswith("uni") and len(glyphname) > 7 and
               len(glyphname) % 4 == 3):
-            components = ["uni" + glyphname[k:k + 4] for
-                          k in range(3, len(glyphname), 4)]
+            components = ["uni" + glyphname[k:k + 4]
+                          for k in range(3, len(glyphname), 4)]
             addlig(components, glyph)
 
-def addspace(font):
-    space = font.createChar(0x20, "space")
-    space.width = 400
+def addaliases(font):
+    """Add alias glyphs."""
+    
+    for glyphname in aliases:
+        if glyphname in font:
+            for name in aliases[glyphname]:
+                g = font.createMappedChar(name)
+                if not g.isWorthOutputting():
+                    g.addReference(glyphname)
+    # Amend lookup tables
+    for glyph in font.glyphs():
+        for row in glyph.getPosSub("*"):
+            if row[1] == "Substitution" and glyph.glyphname in aliases:
+                for name in aliases[glyph.glyphname]:
+                    font[name].addPosSub(row[0],row[2])
+            elif (row[1] in ["AltSubs", "MultSubs"] and
+                  glyph.glyphname in aliases):
+                for name in aliases[glyph.glyphname]:
+                    font[name].addPosSub(row[0],row[2:])
+            elif row[1] == "Ligature":
+                for components in product(*(aliases.get(name, []) + [name]
+                                          for name in row[2:])):
+                    if components != row[2:]:
+                        glyph.addPosSub(row[0],components)
 
 def adjustmetrics(font):
+    """Adjust vertical metrics."""
     font.os2_typolinegap = 500 # Change?
     font.hhea_linegap = 0
     font.hhea_ascent_add = 0
     font.hhea_descent_add = 0
     font.hhea_ascent = font.ascent + font.os2_typolinegap / 2
-    font.hhea_descent = -font.descent - font.os2_typolinegap / 2
+    font.hhea_descent = -(font.descent + font.os2_typolinegap / 2)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""
@@ -77,13 +114,14 @@ if __name__ == "__main__":
     font = fontforge.open(args.fontfile[0])
     for fname in args.fontfile[1:]:
         font.mergeFonts(fname)
-
+    font.encoding = "UnicodeBmp"
     setnames(font)
+    addspace(font)
     fillpua(font)
     addligatures(font)
     if args.featurefile:
         font.mergeFeature(args.featurefile)
-    addspace(font)
+    addaliases(font)
     adjustmetrics(font)
 
     font.generate(args.otffile, flags=("opentype"))
