@@ -1,26 +1,25 @@
 #!/usr/bin/python
 
-import sys
 import argparse
 import fontforge
 from itertools import product
 
 family = "FdSymbol"
 
-aliases = {"uni2A3D": ["uni2319"],
-           "uni219D": ["uni21DD", "uni2933"],
-           "uni219C": ["uni21DC", "uni2B3F"],
-           "uni22A5": ["uni27C2"],
-           "uni2AE7": ["uni3012"],
-           "uni2223": ["bar"],
-           "uni2225": ["uni2016"]}
+aliases = {"uni2A3D": ("uni2319",),
+           "uni219D": ("uni21DD", "uni2933"),
+           "uni219C": ("uni21DC", "uni2B3F"),
+           "uni22A5": ("uni27C2",),
+           "uni2AE7": ("uni3012",),
+           "uni2223": ("bar",),
+           "uni2225": ("uni2016",)}
 
 def setnames(font):
     """Set the font name."""
     weight = font.fontname.rpartition("-")[2]
     font.familyname = family
     font.fontname = family + "-" + weight
-    font.fullname = family + " "  + weight
+    font.fullname = family + " " + weight
 
 def addspace(font):
     """Add a space character."""
@@ -45,9 +44,9 @@ def addligatures(font):
 
     font.addLookup("Ligature lookup",
                    "gsub_ligature", (),
-                   (('liga', (('DFLT', ('dflt',)),
-                              ('grek', ('dflt',)),
-                              ('latn', ('dflt',)))),))
+                   (("liga", (("DFLT", ("dflt",)),
+                              ("grek", ("dflt",)),
+                              ("latn", ("dflt",)))),))
     font.addLookupSubtable("Ligature lookup", "Ligature subtable")
     for glyph in font.glyphs():
         glyphname = glyph.glyphname
@@ -67,7 +66,6 @@ def addligatures(font):
 
 def addaliases(font):
     """Add alias glyphs."""
-    
     for glyphname in aliases:
         if glyphname in font:
             for name in aliases[glyphname]:
@@ -77,18 +75,17 @@ def addaliases(font):
     # Amend lookup tables
     for glyph in font.glyphs():
         for row in glyph.getPosSub("*"):
-            if row[1] == "Substitution" and glyph.glyphname in aliases:
-                for name in aliases[glyph.glyphname]:
-                    font[name].addPosSub(row[0],row[2])
-            elif (row[1] in ["AltSubs", "MultSubs"] and
-                  glyph.glyphname in aliases):
-                for name in aliases[glyph.glyphname]:
-                    font[name].addPosSub(row[0],row[2:])
+            if row[1] == "Substitution":
+                for name in aliases.get(glyph.glyphname, ()):
+                    font[name].addPosSub(row[0], row[2])
+            elif row[1] in ("AltSubs", "MultSubs"):
+                for name in aliases.get(glyph.glyphname, ()):
+                    font[name].addPosSub(row[0], row[2:])
             elif row[1] == "Ligature":
-                for components in product(*(aliases.get(name, []) + [name]
-                                          for name in row[2:])):
+                for components in product(*(aliases.get(name, ()) + (name,)
+                                            for name in row[2:])):
                     if components != row[2:]:
-                        glyph.addPosSub(row[0],components)
+                        glyph.addPosSub(row[0], components)
 
 def adjustmetrics(font):
     """Adjust vertical metrics."""
