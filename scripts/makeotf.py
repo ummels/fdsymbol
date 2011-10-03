@@ -1,12 +1,11 @@
 #!/usr/bin/python
 
 import argparse
-import fontforge
 from itertools import product
+import fontforge
 
-family = "FdSymbol"
-
-aliases = {"uni2A3D": ("uni2319",),
+FAMILY = "FdSymbol"
+ALIASES = {"uni2A3D": ("uni2319",),
            "uni219D": ("uni21DD", "uni2933"),
            "uni219C": ("uni21DC", "uni2B3F"),
            "uni22A5": ("uni27C2",),
@@ -17,9 +16,9 @@ aliases = {"uni2A3D": ("uni2319",),
 def setnames(font):
     """Set the font name."""
     weight = font.fontname.rpartition("-")[2]
-    font.familyname = family
-    font.fontname = family + "-" + weight
-    font.fullname = family + " " + weight
+    font.familyname = FAMILY
+    font.fontname = FAMILY + "-" + weight
+    font.fullname = FAMILY + " " + weight
 
 def addspace(font):
     """Add a space character."""
@@ -35,12 +34,13 @@ def fillpua(font):
 
 def addligatures(font):
     """Add ligature table."""
-    def addlig(components, glyph):
+    def addlig(iterable, glyph):
+        components = tuple(iterable)
         if all((font.findEncodingSlot(name) in font) for name in components):
             # Translate to real glyphnames
-            components = [font[font.findEncodingSlot(name)].glyphname
-                          for name in components]
-            glyph.addPosSub("Ligature subtable", tuple(components))
+            components = tuple(font[font.findEncodingSlot(name)].glyphname
+                          for name in components)
+            glyph.addPosSub("Ligature subtable", components)
 
     font.addLookup("Ligature lookup",
                    "gsub_ligature", (),
@@ -60,29 +60,29 @@ def addligatures(font):
         # Test for uniXXXXYYYY... ligature
         elif (glyphname.startswith("uni") and len(glyphname) > 7 and
               len(glyphname) % 4 == 3):
-            components = ["uni" + glyphname[k:k + 4]
-                          for k in range(3, len(glyphname), 4)]
+            components = ("uni" + glyphname[k:k + 4]
+                          for k in range(3, len(glyphname), 4))
             addlig(components, glyph)
 
 def addaliases(font):
     """Add alias glyphs."""
-    for glyphname in aliases:
+    for glyphname in ALIASES:
         if glyphname in font:
-            for name in aliases[glyphname]:
-                g = font.createMappedChar(name)
-                if not g.isWorthOutputting():
-                    g.addReference(glyphname)
+            for name in ALIASES[glyphname]:
+                glyph = font.createMappedChar(name)
+                if not glyph.isWorthOutputting():
+                    glyph.addReference(glyphname)
     # Amend lookup tables
     for glyph in font.glyphs():
         for row in glyph.getPosSub("*"):
             if row[1] == "Substitution":
-                for name in aliases.get(glyph.glyphname, ()):
+                for name in ALIASES.get(glyph.glyphname, ()):
                     font[name].addPosSub(row[0], row[2])
             elif row[1] in ("AltSubs", "MultSubs"):
-                for name in aliases.get(glyph.glyphname, ()):
+                for name in ALIASES.get(glyph.glyphname, ()):
                     font[name].addPosSub(row[0], row[2:])
             elif row[1] == "Ligature":
-                for components in product(*(aliases.get(name, ()) + (name,)
+                for components in product(*(ALIASES.get(name, ()) + (name,)
                                             for name in row[2:])):
                     if components != row[2:]:
                         glyph.addPosSub(row[0], components)
@@ -120,6 +120,5 @@ if __name__ == "__main__":
         font.mergeFeature(args.featurefile)
     addaliases(font)
     adjustmetrics(font)
-
-    font.generate(args.otffile, flags=("opentype"))
+    font.generate(args.otffile, flags=("opentype",))
     print "Succesfully generated " + args.otffile + "."
