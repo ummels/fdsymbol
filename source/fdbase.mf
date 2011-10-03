@@ -23,19 +23,19 @@ math_axis# := 2.75pt#;
 if weight_index = 0: % Book
   line_thickness# := 0.64pt#;
   rule_thickness# := 0.56pt#;
-  dot_size# := 0.84pt#;
+  dot_size# := 0.75pt#;
 elseif weight_index = 1: % Regular
   line_thickness# := 0.74pt#;
   rule_thickness# := 0.58pt#;
-  dot_size# := 0.9pt#;
+  dot_size# := 0.84pt#;
 elseif weight_index = 2: % Medium
   line_thickness# := 0.86pt#;
   rule_thickness# := 0.6pt#;
-  dot_size# := 0.97pt#;
+  dot_size# := 0.94pt#;
 else: % Bold
   line_thickness# := 1.0pt#;
   rule_thickness# := 0.64pt#;
-  dot_size# := 1.05pt#;
+  dot_size# := 1.06pt#;
 fi;
 
 side_bearing# := 1.5u#;
@@ -229,7 +229,7 @@ enddef;
 
 def dot(expr centre, radius) =
   superellipse(centre + radius * right, centre + radius * up,
-    centre - radius * right, centre - radius * up, 0.57)
+    centre - radius * right, centre - radius * up, 0.6)
 enddef;
 
 % Draw macros
