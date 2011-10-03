@@ -1232,16 +1232,18 @@ beginsymbol(3u# + line_thickness#, 4/5asc_height#, 0); "backprime";
 endchar;
 
 for sign = 1, -1:
-  beginoperator(plus_size#, 1); "product";
-    draw_product(centre, plus_size, plus_size, sign, 4/3line_thickness);
-  endchar;
+  for serifs = true, false:
+    beginoperator(plus_size#, 1); "product";
+      draw_product(centre, plus_size, plus_size, sign, line_thickness, serifs);
+    endchar;
+  endfor;
 endfor;
 
 beginsymbol(2/5asc_height# + 2side_bearing#, asc_height#, 0); "small integral";
   pair centre;
   centre := (w/2, (h - d)/2);
 
-  draw_integral(a, 1/2, centre, 4/3line_thickness);
+  draw_integral(a, 1/2, centre, line_thickness);
 endchar;
 
 beginsymbol(11u# + line_thickness# + 2side_bearing#, asc_height#, 0); "check mark";

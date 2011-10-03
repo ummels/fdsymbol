@@ -3,16 +3,19 @@ languagesystem latn dflt;
 languagesystem grek dflt;
 
 feature liga {
-  sub integral integral by uni222C;
-  sub integral integral integral by uni222D;
   sub integral integral integral integral by uni2A0C;
+  sub integral integral integral by uni222D;
+  sub integral integral by uni222C;
 } liga;
 
 lookup disp { # Display mode
   sub product by product.disp;
+  sub product.sf by product.sf.disp;
   sub summation by summation.disp;
+  sub summation.sf by summation.sf.disp;
   sub integral by integral.disp;
   sub uni2210 by uni2210.disp;
+  sub uni2210.sf by uni2210.sf.disp;
   sub uni222B22EF222B by uni222B22EF222B.disp;
   sub [uni222C-uni222F] by [uni222C.disp-uni222F.disp];
   sub [uni2230-uni2233] by [uni2230.disp-uni2233.disp];
@@ -20,6 +23,8 @@ lookup disp { # Display mode
   sub uni2233.alt by uni2233.alt.disp;
   sub [uni2A00-uni2A09] by [uni2A00.disp-uni2A09.disp];
   sub [uni2A0A-uni2A0F] by [uni2A0A.disp-uni2A0F.disp];
+  sub uni2A0A.sf by uni2A0A.sf.disp;
+  sub uni2A0B.sf by uni2A0B.sf.disp;
   sub uni2A11 by uni2A11.disp;
   sub [uni22C0-uni22C3] by [uni22C0.disp-uni22C3.disp];
   sub [sym090-sym099] by [sym090.disp-sym099.disp];
@@ -100,14 +105,20 @@ lookup ss06 { # Position of arrow head in contour integrals
   sub uni2233 by uni2233.alt;
 } ss06;
 
-feature salt {
-  lookup ss01;
-  lookup ss02;
-  lookup ss03;
-  lookup ss04;
-  lookup ss05;
-  lookup ss06;
-} salt;
+lookup ss07 { # Sans-serif sum and product symbol
+  sub product by product.sf;
+  sub product.disp by product.sf.disp;
+  sub product.small by product.sf.small;
+  sub summation by summation.sf;
+  sub summation.disp by summation.sf.disp;
+  sub uni2210 by uni2210.sf;
+  sub uni2210.disp by uni2210.sf.disp;
+  sub uni2A0A by uni2A0A.sf;
+  sub uni2A0A.disp by uni2A0A.sf.disp;
+  sub uni2A0B by uni2A0B.sf;
+  sub uni2A0B.disp by uni2A0B.sf.disp;
+  sub uni2A3F by uni2A3F.sf;
+} ss07;
 
 feature aalt {
   lookup ss01;
@@ -116,17 +127,24 @@ feature aalt {
   lookup ss04;
   lookup ss05;
   lookup ss06;
+  lookup ss07;
   lookup disp;
-  sub product by product.small;
+  sub summation by summation.sf.disp;
   sub integral by integral.small;
   sub arrowup by arrowup.short;
   sub arrowdown by arrowdown.short;
   sub arrowdblup by arrowdblup.short;
   sub arrowdbldown by arrowdbldown.short;
+  sub uni2210 by uni2210.sf.disp;
+  sub uni2232 by uni2232.alt.disp;
+  sub uni2233 by uni2233.alt.disp;
   sub uni2980 by uni2980.big1;
+  sub uni2A0A by uni2A0A.sf.disp;
+  sub uni2A0B by uni2A0B.sf.disp;
 } aalt;
 
 feature aalt {
+  sub product from [product.small product.sf.small product.sf.disp];
   sub parenleft from [parenleft.big1-parenleft.big5];
   sub parenright from [parenright.big1-parenright.big5];
   sub bracketleft from [bracketleft.big1-bracketleft.big5];
@@ -163,6 +181,20 @@ feature aalt {
   sub sym0A1 from [sym0A1.big1-sym0A1.big5];
 } aalt;
 
+feature salt {
+  lookup ss01;
+  lookup ss02;
+  lookup ss03;
+  lookup ss04;
+  lookup ss05;
+  lookup ss06;
+  lookup ss07;
+} salt;
+
+feature titl {
+  lookup disp;
+} titl;
+
 feature ss01 {
   lookup ss01;
 } ss01;
@@ -186,3 +218,7 @@ feature ss05 {
 feature ss06 {
   lookup ss06;
 } ss06;
+
+feature ss07 {
+  lookup ss07;
+} ss07;

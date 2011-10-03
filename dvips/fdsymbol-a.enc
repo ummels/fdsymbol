@@ -35,13 +35,13 @@
   /asteriskmath /infinity /proportional /sym018 /sym019 /uni226C /uni22BA /uni2240
 %A0
   /angle /uni29A3 /uni2221 /uni299B /uni2222 /uni29A1 /uni29A0 /sym01A
-  /uni221F /uni22BE /uni299C /uni299D /minute /uni2035 /product.small /uni2A3F
+  /uni221F /uni22BE /uni299C /uni299D /minute /uni2035 /product.small /product.sf.small
 %B0
-  /integral.small /uni2713 /uni21AF /uni2662 /diamond /uni2661 /heart /spade
-  /club /uni2720 /uni2721 /uni2314 /universal /existential /uni2204 /uni2132
+  /uni2A3F /uni2A3F.sf /integral.small /uni2713 /uni21AF /uni2662 /diamond /uni2661
+  /heart /spade /club /uni2720 /uni2721 /uni2314 /universal /existential
 %C0
-  /uni2141 /uni2201 /uni266D /uni266E /uni266F /aleph /uni2136 /uni2137
-  /uni2138 /weierstrass /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /uni2204 /uni2132 /uni2141 /uni2201 /uni266D /uni266E /uni266F /aleph
+  /uni2136 /uni2137 /uni2138 /weierstrass /.notdef /.notdef /.notdef /.notdef
 %D0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef

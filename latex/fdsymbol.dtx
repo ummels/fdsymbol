@@ -50,10 +50,10 @@
 }
 
 % Restore FdSymbol's Hebrew letters (overwritten by fedraserif.sty)
-\DeclareMathSymbol{\aleph}{0}{symbols}{"C5}
-\DeclareMathSymbol{\beth}{0}{symbols}{"C6}
-\DeclareMathSymbol{\gimel}{0}{symbols}{"C7}
-\DeclareMathSymbol{\daleth}{0}{symbols}{"C8}
+\DeclareMathSymbol{\aleph}{0}{symbols}{"C7}
+\DeclareMathSymbol{\beth}{0}{symbols}{"C8}
+\DeclareMathSymbol{\gimel}{0}{symbols}{"C9}
+\DeclareMathSymbol{\daleth}{0}{symbols}{"CA}
 
 \linespread{1.1}
 
@@ -71,7 +71,7 @@
 %</driver>
 %\fi
 %
-% \CheckSum{5525}
+% \CheckSum{5594}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -411,6 +411,7 @@
 % \showsymbol{\intercal}
 % \showsymbol{\wreath}, \cmd{\wr}
 % \showsymbol{\amalg}
+% \showsymbol{\varamalg}
 % \showsymbol{\lhd}
 % \showsymbol{\rhd}
 % \showsymbol{\unlhd}
@@ -1200,9 +1201,13 @@
 % \showop{\bigodot}
 % \showop{\bigoast}
 % \showop{\prod}
+% \showop{\varprod}
 % \showop{\coprod}
+% \showop{\varcoprod}
 % \showop{\sum}
+% \showop{\varsum}
 % \showop{\osum}, \cmd{\modtwosum}
+% \showop{\varosum}, \cmd{\varmodtwosum}
 % \showop{\int}
 % \showop{\iint}
 % \showop{\iiint}
@@ -1221,8 +1226,11 @@
 % \showop{\rcircleleftint}, \cmd{\varointctrclockwise}
 % \showop{\lcircleleftint}, \cmd{\ointclockwise}
 % \showop{\sumint}
+% \showop{\varsumint}
 % \showop{\smallprod}
+% \showop{\varsmallprod}
 % \showop{\smallcoprod}
+% \showop{\varsmallcoprod}
 % \showop{\smallint}
 % \showop{\surd}
 % \end{multicols}
@@ -1859,8 +1867,11 @@
 \fdsy@DeclareSymbol{\prime}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\backprime}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\smallprod}{symbols}{\mathop}
+\fdsy@DeclareSymbol{\varsmallprod}{symbols}{\mathop}
 \fdsy@DeclareSymbol{\smallcoprod}{symbols}{\mathop}
   \fdsy@DeclareAlias{\amalg}{symbols}{\mathbin}
+\fdsy@DeclareSymbol{\varsmallcoprod}{symbols}{\mathop}
+  \fdsy@DeclareAlias{\varamalg}{symbols}{\mathbin}
 \fdsy@DeclareSymbol{\smallint}{symbols}{\mathop}
 \fdsy@DeclareSymbol{\checkmark}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\lightning}{symbols}{\mathord}
@@ -2979,14 +2990,24 @@
 \fdsy@DeclareSymbol{\dbigoast}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tprod}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dprod}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\tvarprod}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\dvarprod}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tcoprod}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dcoprod}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\tvarcoprod}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\dvarcoprod}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tsum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dsum}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\tvarsum}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\dvarsum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tosum}{largesymbols}{\mathop}
   \fdsy@DeclareAlias{\tmodtwosum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dosum}{largesymbols}{\mathop}
   \fdsy@DeclareAlias{\dmodtwosum}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\tvarosum}{largesymbols}{\mathop}
+  \fdsy@DeclareAlias{\tvarmodtwosum}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\dvarosum}{largesymbols}{\mathop}
+  \fdsy@DeclareAlias{\dvarmodtwosum}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tiint}{largesymbols}{\mathop}
@@ -3039,6 +3060,8 @@
   \fdsy@DeclareAlias{\dointclockwise}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tsumint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dsumint}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\tvarsumint}{largesymbols}{\mathop}
+\fdsy@DeclareSymbol{\dvarsumint}{largesymbols}{\mathop}
 \let\intop\tint
 \let\ointop\toint
 
@@ -3075,11 +3098,16 @@
 \fdsy@DeclareOperator{\bigotimes}{\dbigotimes}{\tbigotimes}
 \fdsy@DeclareOperator{\bigodot}{\dbigodot}{\tbigodot}
 \fdsy@DeclareOperator{\bigoast}{\dbigoast}{\tbigoast}
-\fdsy@DeclareOperator{\sum}{\dsum}{\tsum}
-\fdsy@DeclareOperator{\osum}{\dosum}{\tosum}
-\fdsy@DeclareOperator{\modtwosum}{\dmodtwosum}{\tmodtwosum}
 \fdsy@DeclareOperator{\prod}{\dprod}{\tprod}
+\fdsy@DeclareOperator{\varprod}{\dvarprod}{\tvarprod}
 \fdsy@DeclareOperator{\coprod}{\dcoprod}{\tcoprod}
+\fdsy@DeclareOperator{\varcoprod}{\dvarcoprod}{\tvarcoprod}
+\fdsy@DeclareOperator{\sum}{\dsum}{\tsum}
+\fdsy@DeclareOperator{\varsum}{\dvarsum}{\tvarsum}
+\fdsy@DeclareOperator{\osum}{\dosum}{\tosum}
+\fdsy@DeclareOperator{\varosum}{\dvarosum}{\tvarosum}
+\fdsy@DeclareOperator{\modtwosum}{\dmodtwosum}{\tmodtwosum}
+\fdsy@DeclareOperator{\varmodtwosum}{\dvarmodtwosum}{\tvarmodtwosum}
 \fdsy@DeclareIntegral{\iint}{\diint}{\tiint}
 \fdsy@DeclareIntegral{\iiint}{\diiint}{\tiiint}
 \fdsy@DeclareIntegral{\iiiint}{\diiiint}{\tiiiint}
@@ -3105,6 +3133,7 @@
 \fdsy@DeclareIntegral{\lcircleleftint}{\dlcircleleftint}{\tlcircleleftint}
 \fdsy@DeclareIntegral{\ointclockwise}{\dointclockwise}{\tointclockwise}
 \fdsy@DeclareIntegral{\sumint}{\dsumint}{\tsumint}
+\fdsy@DeclareIntegral{\varsumint}{\dvarsumint}{\tvarsumint}
 
 \def\intkern@{\mkern-8.5mu\mathchoice{\mkern-1mu}{}{}{}}
 \def\intdots@{\mkern-6mu%

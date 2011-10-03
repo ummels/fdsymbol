@@ -208,28 +208,34 @@ endfor;
 charlist current_char - 1: current_char;
 
 for sign = 1, -1:
+  for serifs = true, false:
+    for scale = 1, 1.4:
+      beginbigop(5/4scale, scale); "product";
+        draw_product(centre, op_width, op_height, sign, line_thickness * sqrt sqrt scale, serifs);
+      endchar;
+    endfor;
+    charlist current_char - 1: current_char;
+  endfor;
+endfor;
+
+for serifs = true, false:
   for scale = 1, 1.4:
-    beginbigop(1.3scale, scale); "product";
-      draw_product(centre, op_width, op_height, sign, 5/3line_thickness * sqrt sqrt scale);
+    beginbigop(scale, scale); "sum";
+      draw_sum(a)(centre, op_width, op_height, line_thickness * sqrt sqrt scale, serifs);
     endchar;
   endfor;
   charlist current_char - 1: current_char;
 endfor;
 
-for scale = 1, 1.4:
-  beginbigop(scale, scale); "sum";
-    draw_sum(a)(centre, op_width, op_height, 5/3line_thickness * sqrt sqrt scale);
-  endchar;
+for serifs = true, false:
+  for scale = 1, 1.4:
+    beginbigop(scale, scale); "sum modulo two";
+      draw_sum(a)(centre, op_width, op_height, line_thickness * sqrt sqrt scale, serifs);
+      draw_circle(z12a, sqrt scale * 1/4op_width, line_thickness * sqrt sqrt scale);
+    endchar;
+  endfor;
+  charlist current_char - 1: current_char;
 endfor;
-charlist current_char - 1: current_char;
-
-for scale = 1, 1.4:
-  beginbigop(scale, scale); "sum modulo two";
-    draw_sum(a)(centre, op_width, op_height, 5/3line_thickness * sqrt sqrt scale);
-    draw_circle(z13a, sqrt scale * 1/4op_width, line_thickness * sqrt sqrt scale);
-  endchar;
-endfor;
-charlist current_char - 1: current_char;
 
 for number = 0, 1, 2, 3:
   for scale = 1, 1.8:
@@ -240,7 +246,7 @@ for number = 0, 1, 2, 3:
 
       for i = 0 upto number:
         centre := (side_bearing + scale * (5i + 7/2) * u, (h - d)/2);
-        draw_integral([i])(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+        draw_integral([i])(scale, centre, line_thickness * sqrt sqrt scale);
       endfor;
     endchar;
   endfor;
@@ -254,11 +260,11 @@ for scale = 1, 1.8:
     pair centre;
     centre := (side_bearing + scale * 7/2u, (h - d)/2);
 
-    draw_integral([0])(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+    draw_integral([0])(scale, centre, line_thickness * sqrt sqrt scale);
 
     centre := (side_bearing + scale * 6u + 4(equal_spread + dot_size), (h - d)/2);
 
-    draw_integral([1])(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+    draw_integral([1])(scale, centre, line_thickness * sqrt sqrt scale);
 
     z0 = 1/4[z0[0],z0[1]];
     z1 = 2/4[z0[0],z0[1]];
@@ -281,7 +287,7 @@ for sign = 1, -1:
       pair centre;
       centre := (side_bearing + scale * 9/2u, (h - d)/2);
 
-      draw_integral(a)(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+      draw_integral(a)(scale, centre, line_thickness * sqrt sqrt scale);
 
       thick := line_thickness * sqrt sqrt scale;
       r := 4u;
@@ -317,7 +323,7 @@ for scale = 1, 1.8:
     pair centre;
     centre := (side_bearing + scale * 7/2u, (h - d)/2);
 
-    draw_integral(a)(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+    draw_integral(a)(scale, centre, line_thickness * sqrt sqrt scale);
 
     r := scale * 5/2u;
     thick := line_thickness * sqrt sqrt scale;
@@ -336,7 +342,7 @@ for scale = 1, 1.8:
     pair centre;
     centre := (side_bearing + scale * 7/2u, (h - d)/2);
 
-    draw_integral(a)(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+    draw_integral(a)(scale, centre, line_thickness * sqrt sqrt scale);
 
     z1 - z0 = equal_spread * up;
     1/2[z0, z1] = z0a;
@@ -357,7 +363,7 @@ for scale = 1, 1.8:
     pair centre;
     centre := (side_bearing + scale * 7/2u, (h - d)/2);
 
-    draw_integral(a)(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+    draw_integral(a)(scale, centre, line_thickness * sqrt sqrt scale);
 
     r := scale * 7/2u;
     thick := line_thickness * sqrt sqrt scale;
@@ -392,7 +398,7 @@ for number = 0, 1, 2:
       % Integral must come after unfill when processed with MetaPost!
       for i = 0 upto number:
         centre := (side_bearing + scale * (5i + 4) * u, (h - d)/2);
-        draw_integral([i])(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+        draw_integral([i])(scale, centre, line_thickness * sqrt sqrt scale);
       endfor;
     endchar;
   endfor;
@@ -410,7 +416,7 @@ for alpha = 0, 180:
         pair centre;
         centre := (side_bearing + scale * (4u + if alpha > 90: u else: 0 fi), (h - d)/2);
 
-        draw_integral(a)(scale, centre, 3/2line_thickness * sqrt sqrt scale);
+        draw_integral(a)(scale, centre, line_thickness * sqrt sqrt scale);
 
         thick := line_thickness * sqrt sqrt scale;
         r := scale * 4u;
@@ -433,18 +439,19 @@ for alpha = 0, 180:
   endfor;
 endfor;
 
-for scale = 1, 1.8:
-  beginsymbol(scale * 13/2u# + if scale > 1: 0 else: scale * u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "sum integral";
-    if scale > 1:
-      italcorr scale * u#; % kerning between upper limit and lower limit
-    fi
+for serifs = true, false:
+  for scale = 1, 1.8:
+    beginsymbol(scale * 13/2u# + if scale > 1: 0 else: scale * u# fi + 2side_bearing#, vcentre(scale * 1.6asc_height#)); "sum integral";
+      if scale > 1:
+        italcorr scale * u#; % kerning between upper limit and lower limit
+      fi
 
-    pair centre;
-    centre := (side_bearing + scale * 4u, (h - d)/2);
+      pair centre;
+      centre := (side_bearing + scale * 4u, (h - d)/2);
 
-    draw_integral(a)(scale, centre, 3/2line_thickness * sqrt sqrt scale);
-    draw_sum(b, 1/4[z0a.l,z0a.r], scale * 7u, scale * 3/4asc_height, line_thickness * sqrt sqrt scale);
-
-  endchar;
+      draw_integral(a)(scale, centre, line_thickness * sqrt sqrt scale);
+      draw_sum(b, 1/4[z0a.l,z0a.r], scale * 7u, scale * 3/4asc_height, 5/6line_thickness * sqrt sqrt scale, serifs);
+    endchar;
+  endfor;
+  charlist current_char - 1: current_char;
 endfor;
-charlist current_char - 1: current_char;
