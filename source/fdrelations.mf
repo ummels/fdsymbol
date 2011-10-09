@@ -663,28 +663,37 @@ fi;
 if negated < 2:
   for sign = 1, -1:
     beginorder(sign, order_width# * sqrt(5/4), ifneg(0,1) * equal_spread# + greater_spread#); "round less than";
+      path p;
+      numeric r,s;
       thick := line_thickness;
 
       z0 = left_ex;
       z1 = z0 + order_width * dir angle(right_ex - left_ex);
 
-      draw_less(a, z0, z1, greater_spread, thick, false);
+      put_less(a, z0, z1, greater_spread, thick, false);
 
-      theta := angle(z0a - z2a); 
+      z9 = whatever[z3a.l, z0a.l] = whatever[z4a.l,z1a.l];
 
-      z0a - z4 = 1/2thick * dir theta;
-      z1a - z5 = 1/2thick * dir -theta;
+      penpos1'(thick, 90 - sign*90);
+    
+      z1'r = z9 + sign*length(z0a.l - z9)*right;
+      z4r  = z0a.l - line_thickness*(dir(angle(z0a.l-z9)));
+      z5r  = z1a.l - line_thickness*(dir(angle(z1a.l-z9)));
 
-      penpos4(thick, theta);
-      penpos5(thick, -theta);
-
-      fill stroke z4.e{dir (theta - 90)} .. {dir(-theta - 90)}z5.e;
-
+      theta := angle(z0a.l - z9);
+    
+      p = (z4r{dir(theta -90)} .. z1'l .. {dir(-theta -90)}z5r);
+      r = ypart ((z5a -- z0a.r) intersectiontimes p);
+      s = ypart ((z5a -- z1a.r) intersectiontimes p);
+    
+      fill   z0a.l{dir(theta -90)} .. z1'.r .. {dir(-theta -90)}z1a.l -- z4a.l -- z3a.l -- cycle;
+      unfill subpath (r,s) of p  -- z5a   -- cycle;
+    
       if negated = 1:
         stroke_through(centre, equal_spread + greater_spread);
       fi;
 
-      penlabels(4,5);
+      penlabels(1',4,5,9);
     endchar;
   endfor;
 fi;
@@ -692,6 +701,8 @@ fi;
 if negated < 2:
   for sign = 1, -1:
     beginorder(sign, order_width# * sqrt(7/6), ifneg(1,2) * equal_spread# + 3/4greater_spread#); "round less than or slanted equal";
+      path p;
+      numeric u,v;
       thick := line_thickness;
       s := 3/4greater_spread;
       t := 1/2equal_spread;
@@ -699,18 +710,25 @@ if negated < 2:
       z0 = left_ex + t * up;
       z1 = z0 + order_width * dir angle(right_ex - left_ex);
 
-      draw_less(a, z0, z1, s, thick, false);
+      put_less(a, z0, z1, s, thick, false);
+ 
+      penpos1'(thick, 90 - sign*90);
+    
+      z9 = whatever[z3a.l, z0a.l] = whatever[z4a.l,z1a.l];
 
-      theta := angle(z0a - z2a); 
+      z1'r = z9 + sign*length(z0a.l - z9)*right;
+      z4r  = z0a.l - line_thickness*(dir(angle(z0a.l-z9)));
+      z5r  = z1a.l - line_thickness*(dir(angle(z1a.l-z9)));
 
-      z0a - z4 = 1/2thick * dir theta;
-      z1a - z5 = 1/2thick * dir -theta;
+      theta := angle(z0a.l - z9);
+    
+      p = (z4r{dir(theta -90)} .. z1'l .. {dir(-theta -90)}z5r);
+      u = ypart ((z5a -- z0a.r) intersectiontimes p);
+      v = ypart ((z5a -- z1a.r) intersectiontimes p);
 
-      penpos4(thick, theta);
-      penpos5(thick, -theta);
-
-      fill stroke z4.e{dir (theta - 90)} .. {dir(-theta - 90)}z5.e;
-
+      fill   z0a.l{dir(theta -90)} .. z1'.r .. {dir(-theta -90)}z1a.l -- z4a.l -- z3a.l -- cycle;
+      unfill subpath (u,v) of p  -- z5a   -- cycle;
+    
       if sign = 1:
         draw_line(z1a - 2t * up, z4a - 2t * up, false);
       else:
@@ -720,6 +738,8 @@ if negated < 2:
       if negated = 1:
         stroke_through(centre, 2equal_spread + 3/4greater_spread);
       fi;
+
+      penlabels(1',4,5,9);
     endchar;
   endfor;
 fi;
