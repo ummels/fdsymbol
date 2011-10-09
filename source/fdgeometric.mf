@@ -1467,23 +1467,35 @@ beginoperator(med_op_size#, 2/sqrt(3)); "star of david";
 endchar;
 
 beginoperator(plus_size#, 1); "sector";
+  path p;
+  numeric r,s;
+
   thick := line_thickness;
   alpha := 90;
 
   z0 = centre - 1/2plus_size * dir alpha;
   z1 = z0 + 9/10plus_size * dir alpha;
 
-  draw_less(a, z0, z1, 9/10plus_size, thick, false);
+  put_less(a, z0, z1, 9/10plus_size, thick, false);
+  
+  z9 = whatever[z3a.l, z0a.l] = whatever[z4a.l,z1a.l];
+  
+  penpos1'(thick, 90);
+  
+  z1'r = z9 + length(z0a.l - z9)*up;
+  z4r  = z0a.l - line_thickness*(dir(angle(z0a.l-z9)));
+  z5r  = z1a.l - line_thickness*(dir(angle(z1a.l-z9)));
 
-  theta := angle(z0a - z2a) - alpha; 
+  theta := angle(z0a.l - z9);
+  
+  p = (z4r{dir(theta -90)} .. z1'l .. {dir(-theta +90)}z5r);
+  r = ypart ((z5a -- z0a.r) intersectiontimes p);
+  s = ypart ((z5a -- z1a.r) intersectiontimes p);
+  show(-theta-90);
+  fill   z0a.l{dir(theta -90)} .. z1'.r .. {dir(-theta +90)}z1a.l -- z4a.l -- z3a.l -- cycle;
+  unfill subpath (r,s) of p  -- z5a   -- cycle;
 
-  z0a - z4 = 1/2thick * dir (alpha + theta);
-  z1a - z5 = 1/2thick * dir (alpha - theta);
-
-  penpos4(thick, alpha + theta);
-  penpos5(thick, alpha - theta);
-
-  fill stroke z4.e{dir (alpha + theta - 90)} .. {dir(alpha - theta - 90)}z5.e;
+  penlabels(1',4,5,9);
 endchar;
 
 beginsymbol(5/4order_width# + 2side_bearing#, cap_height#, 0); "forall";
