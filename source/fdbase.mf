@@ -498,8 +498,8 @@ def draw_product(expr centre, width, height, sign, thick, serifs) =
     penpos2(thinner, sign * 93);
     penpos3(thinner, sign * 87);
   else:
-    penpos2(thinner, sign * 90);
-    penpos3(thinner, sign * 90);
+    penpos2(thicker, sign * 90);
+    penpos3(thicker, sign * 90);
   fi
   penpos4(thinner, sign * 80);
   penpos5(thinner, sign * 100);
@@ -522,10 +522,9 @@ def draw_product(expr centre, width, height, sign, thick, serifs) =
 enddef;
 
 def draw_sum(suffix $)(expr centre, width, height, thick, serifs) =
-  if serifs:
-    thicker := 11/8thick;
-    thinner := 1/2thick;
-  fi
+  thicker := 11/8thick;
+  thinner := 1/2thick;
+  alpha := angle(width, height - thicker);
 
   z1$ - z0$ = z3$ - z2$ = width * right;
   z2$ - z0$ = height * up;
@@ -536,7 +535,7 @@ def draw_sum(suffix $)(expr centre, width, height, thick, serifs) =
     z3$ - z7$ = 2/3thicker * up;
   else:
     z6$l = z1$;
-    z3$ - z7$ = thick * up;
+    z3$ - z7$ = thicker * up;
   fi
   z8$r = z2$ + whatever * right;
   z8$l = z2$ + whatever * down;
@@ -550,12 +549,12 @@ def draw_sum(suffix $)(expr centre, width, height, thick, serifs) =
     penpos6$(thicker, 90);
     penpos8$(5/6thicker, 77);
     penpos10$(3/4thicker, 103);
-    penpos12$(6/5thicker, 10);
+    penpos12$(thicker / sind alpha, 10);
   else:
-    penpos6$(thick, 90);
-    penpos8$(thick, 90);
-    penpos10$(thick, 90);
-    penpos12$(4/3thick, 0);
+    penpos6$(thicker, 90);
+    penpos8$(thicker, 90);
+    penpos10$(thicker, 90);
+    penpos12$(thicker / sind alpha, 0);
   fi
 
   z9$ = z12$r + whatever * (z8$l - z12$l) = z7$ + whatever * right;
