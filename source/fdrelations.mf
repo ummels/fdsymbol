@@ -670,15 +670,19 @@ if negated < 2:
 
       draw_less(a, z0, z1, greater_spread, thick, false);
 
-      theta := angle(z0a - z2a); 
+      theta := angle(z0a - z2a);
 
-      z0a - z4 = 1/2thick * dir theta;
-      z1a - z5 = 1/2thick * dir -theta;
+      z0a = z4r;
+      z0a.r = z4'.r;
+      z1a = z5r;
+      z1a.r = z5'.r;
 
       penpos4(thick, theta);
+      penpos4'(thick, theta);
       penpos5(thick, -theta);
+      penpos5'(thick, -theta);
 
-      fill stroke z4.e{dir (theta - 90)} .. {dir(-theta - 90)}z5.e;
+      fill stroke z4.e -- z4'.e{dir (theta - 90)} .. {dir (-theta - 90)}z5'.e -- z5.e;
 
       if negated = 1:
         stroke_through(centre, equal_spread + greater_spread);
@@ -709,7 +713,7 @@ if negated < 2:
       penpos4(thick, theta);
       penpos5(thick, -theta);
 
-      fill stroke z4.e{dir (theta - 90)} .. {dir(-theta - 90)}z5.e;
+      fill stroke z4.e{dir (theta - 90)} .. {dir (-theta - 90)}z5.e;
 
       if sign = 1:
         draw_line(z1a - 2t * up, z4a - 2t * up, false);

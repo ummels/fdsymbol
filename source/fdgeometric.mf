@@ -1477,13 +1477,19 @@ beginoperator(plus_size#, 1); "sector";
 
   theta := angle(z0a - z2a) - alpha; 
 
-  z0a - z4 = 1/2thick * dir (alpha + theta);
-  z1a - z5 = 1/2thick * dir (alpha - theta);
+  z0a = z4r;
+  z0a.r = z4'.r;
+  z1a = z5r;
+  z1a.r = z5'.r;
 
   penpos4(thick, alpha + theta);
+  penpos4'(thick, alpha + theta);
   penpos5(thick, alpha - theta);
+  penpos5'(thick, alpha - theta);
 
-  fill stroke z4.e{dir (alpha + theta - 90)} .. {dir(alpha - theta - 90)}z5.e;
+  fill stroke z4e -- z4'.e{dir (alpha + theta - 90)} .. {dir(alpha - theta - 90)}z5'.e -- z5e;
+
+  penlabels(4,5);
 endchar;
 
 beginsymbol(5/4order_width# + 2side_bearing#, cap_height#, 0); "forall";
