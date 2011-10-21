@@ -13,112 +13,103 @@ ALIASES = {"uni2A3D": ("uni2319",),
            "uni2223": ("bar",),
            "uni2225": ("uni2016",)}
 
-def setnames(font):
-    """Set the font name."""
-    weight = font.fontname.rpartition("-")[2]
-    font.familyname = FAMILY
-    font.fontname = FAMILY + "-" + weight
-    font.fullname = FAMILY + " " + weight
+def addlig(iterable, glyph):
+    """Make glyph a ligature for iterable."""
+    components = tuple(iterable)
+    if all((font.findEncodingSlot(name) in font) for name in components):
+        # Translate to real glyphnames
+        components = tuple(font[font.findEncodingSlot(name)].glyphname
+                           for name in components)
+        glyph.addPosSub("Ligature subtable", components)
 
-def addspace(font):
-    """Add a space character."""
-    space = font.createChar(0x20, "space")
-    space.width = 400
+parser = argparse.ArgumentParser(description="""
+Create one OpenType font from several Type1 fonts.
+""")
+parser.add_argument("-f", "--featurefile", help="OpenType feature file",
+                    metavar="featurefile")
+parser.add_argument("fontfile", nargs="+",help="original font file (.pfb)")
+parser.add_argument("otffile", help="output file (.otf)")
+args = parser.parse_args()
 
-def fillpua(font):
-    """Map each glyph of the form sym0xx to uniE0xx."""
-    for i in range(0x100): # Adapt if necessary
-        glyphname = "sym{0:03X}".format(i)
-        if glyphname in font:
-            font[glyphname].unicode = 0xE000 + i
+# Read PFB files
+font = fontforge.open(args.fontfile[0])
+for fname in args.fontfile[1:]:
+    font.mergeFonts(fname)
+font.encoding = "UnicodeBmp"
 
-def addligatures(font):
-    """Add ligature table."""
-    def addlig(iterable, glyph):
-        components = tuple(iterable)
-        if all((font.findEncodingSlot(name) in font) for name in components):
-            # Translate to real glyphnames
-            components = tuple(font[font.findEncodingSlot(name)].glyphname
-                          for name in components)
-            glyph.addPosSub("Ligature subtable", components)
+# Set the font name
+weight = font.fontname.rpartition("-")[2]
+font.familyname = FAMILY
+font.fontname = FAMILY + "-" + weight
+font.fullname = FAMILY + " " + weight
 
-    font.addLookup("Ligature lookup",
-                   "gsub_ligature", (),
-                   (("liga", (("DFLT", ("dflt",)),
-                              ("grek", ("dflt",)),
-                              ("latn", ("dflt",)))),))
-    font.addLookupSubtable("Ligature lookup", "Ligature subtable")
-    for glyph in font.glyphs():
-        glyphname = glyph.glyphname
-        # Skip glyph variants
-        if "." in glyphname:
-            pass
-        # Test for glyph1_glyph2_... ligature
-        elif "_" in glyphname:
-            components = glyphname.split("_")
-            addlig(components, glyph)
-        # Test for uniXXXXYYYY... ligature
-        elif (glyphname.startswith("uni") and len(glyphname) > 7 and
-              len(glyphname) % 4 == 3):
-            components = ("uni" + glyphname[k:k + 4]
-                          for k in range(3, len(glyphname), 4))
-            addlig(components, glyph)
+# Add space
+space = font.createChar(0x20, "space")
+space.width = 400
 
-def addaliases(font):
-    """Add alias glyphs."""
-    for glyphname in ALIASES:
-        if glyphname in font:
-            for name in ALIASES[glyphname]:
-                glyph = font.createMappedChar(name)
-                if not glyph.isWorthOutputting():
-                    glyph.addReference(glyphname)
-    # Amend lookup tables
-    for glyph in font.glyphs():
-        for row in glyph.getPosSub("*"):
-            if row[1] == "Substitution":
-                for name in ALIASES.get(glyph.glyphname, ()):
-                    font[name].addPosSub(row[0], row[2])
-            elif row[1] in ("AltSubs", "MultSubs"):
-                for name in ALIASES.get(glyph.glyphname, ()):
-                    font[name].addPosSub(row[0], row[2:])
-            elif row[1] == "Ligature":
-                for components in product(*(ALIASES.get(name, ()) + (name,)
-                                            for name in row[2:])):
-                    if components != row[2:]:
-                        glyph.addPosSub(row[0], components)
+# Map each glyph of the form sym0xx to uniE0xx
+for i in range(0x100): # Adapt if necessary
+    glyphname = "sym{0:03X}".format(i)
+    if glyphname in font:
+        font[glyphname].unicode = 0xE000 + i
 
-def adjustmetrics(font):
-    """Adjust vertical metrics."""
-    font.os2_typolinegap = 500 # Change?
-    font.hhea_linegap = 0
-    font.hhea_ascent_add = 0
-    font.hhea_descent_add = 0
-    font.hhea_ascent = font.ascent + font.os2_typolinegap / 2
-    font.hhea_descent = -(font.descent + font.os2_typolinegap / 2)
+# Add ligature table
+font.addLookup("Ligature lookup",
+               "gsub_ligature", (),
+               (("liga", (("DFLT", ("dflt",)),
+                          ("grek", ("dflt",)),
+                          ("latn", ("dflt",)))),))
+font.addLookupSubtable("Ligature lookup", "Ligature subtable")
+for glyph in font.glyphs():
+    glyphname = glyph.glyphname
+    # Skip glyph variants
+    if "." in glyphname:
+        pass
+    # Test for glyph1_glyph2_... ligature
+    elif "_" in glyphname:
+        components = glyphname.split("_")
+        addlig(components, glyph)
+    # Test for uniXXXXYYYY... ligature
+    elif (glyphname.startswith("uni") and len(glyphname) > 7 and
+          len(glyphname) % 4 == 3):
+        components = ("uni" + glyphname[k:k + 4]
+                      for k in range(3, len(glyphname), 4))
+        addlig(components, glyph)
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="""
-    Create one OpenType font from several Type1 fonts.
-    """)
-    parser.add_argument("-f", "--featurefile",
-                        help="OpenType feature file",
-                        metavar="featurefile")
-    parser.add_argument("fontfile", nargs="+",
-                        help="original font file (.pfb)")
-    parser.add_argument("otffile", help="output file (.otf)")
-    args = parser.parse_args()
+# Read feature file
+if args.featurefile:
+    font.mergeFeature(args.featurefile)
 
-    font = fontforge.open(args.fontfile[0])
-    for fname in args.fontfile[1:]:
-        font.mergeFonts(fname)
-    font.encoding = "UnicodeBmp"
-    setnames(font)
-    addspace(font)
-    fillpua(font)
-    addligatures(font)
-    if args.featurefile:
-        font.mergeFeature(args.featurefile)
-    addaliases(font)
-    adjustmetrics(font)
-    font.generate(args.otffile, flags=("opentype",))
-    print "Succesfully generated " + args.otffile + "."
+# Add alias glyphs
+for glyphname in ALIASES:
+    if glyphname in font:
+        for name in ALIASES[glyphname]:
+            glyph = font.createMappedChar(name)
+            if not glyph.isWorthOutputting():
+                glyph.addReference(glyphname)
+# Amend lookup tables
+for glyph in font.glyphs():
+    for row in glyph.getPosSub("*"):
+        if row[1] == "Substitution":
+            for name in ALIASES.get(glyph.glyphname, ()):
+                font[name].addPosSub(row[0], row[2])
+        elif row[1] in ("AltSubs", "MultSubs"):
+            for name in ALIASES.get(glyph.glyphname, ()):
+                font[name].addPosSub(row[0], row[2:])
+        elif row[1] == "Ligature":
+            for components in product(*(ALIASES.get(name, ()) + (name,)
+                                        for name in row[2:])):
+                if components != row[2:]:
+                    glyph.addPosSub(row[0], components)
+
+# Adjust vertical metrics
+font.os2_typolinegap = 500 # Change?
+font.hhea_linegap = 0
+font.hhea_ascent_add = 0
+font.hhea_descent_add = 0
+font.hhea_ascent = font.ascent + font.os2_typolinegap / 2
+font.hhea_descent = -(font.descent + font.os2_typolinegap / 2)
+
+# Write OTF file
+font.generate(args.otffile, flags=("opentype",))
+print "Succesfully generated " + args.otffile + "."
