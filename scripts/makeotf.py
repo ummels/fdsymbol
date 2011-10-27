@@ -18,9 +18,9 @@ def addlig(iterable, glyph):
     components = tuple(iterable)
     if all((font.findEncodingSlot(name) in font) for name in components):
         # Translate to real glyphnames
-        components = tuple(font[font.findEncodingSlot(name)].glyphname
-                           for name in components)
-        glyph.addPosSub("Ligature subtable", components)
+        glyphs = tuple(font[font.findEncodingSlot(name)].glyphname
+                       for name in components)
+        glyph.addPosSub("Ligature subtable", glyphs)
 
 parser = argparse.ArgumentParser(description="""
 Create one OpenType font from several Type1 fonts.
@@ -48,7 +48,7 @@ space = font.createChar(0x20, "space")
 space.width = 400
 
 # Map each glyph of the form sym0xx to uniE0xx
-for i in range(0x100): # Adapt if necessary
+for i in xrange(0x100): # Adapt if necessary
     glyphname = "sym{0:03X}".format(i)
     if glyphname in font:
         font[glyphname].unicode = 0xE000 + i
@@ -73,7 +73,7 @@ for glyph in font.glyphs():
     elif (glyphname.startswith("uni") and len(glyphname) > 7 and
           len(glyphname) % 4 == 3):
         components = ("uni" + glyphname[k:k + 4]
-                      for k in range(3, len(glyphname), 4))
+                      for k in xrange(3, len(glyphname), 4))
         addlig(components, glyph)
 
 # Read feature file
