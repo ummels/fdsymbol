@@ -71,7 +71,7 @@
 %</driver>
 %\fi
 %
-% \CheckSum{5594}
+% \CheckSum{5703}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -108,7 +108,7 @@
 % to the preamble of your document. This redefines most of the standard
 % mathematical symbols and makes available many new ones
 % (see Section~\ref{sec:glyphs}). For the available options see
-% Section~\ref{sec:selection}.
+% Section~\ref{sec:options}.
 %
 % \subsubsection*{Acknowledgements}
 %
@@ -124,7 +124,33 @@
 % can either load these packages before \pkg{fdsymbol} or you can include the
 % options in the |\documentclass| command.
 %
+% \section{Options}\label{sec:options}
+%
+% All package options are set using a \meta{key}|=|\meta{value} syntax.
+% Boolean options accept |true| and |false| as values, and setting a Boolean
+% key without a value is equivalent to setting it to |true|.
+% Table~\ref{tab:options} lists all option keys of the \pkg{fdsymbol}
+% package with their possible values; values that are marked with an asterisk
+% correspond to the default behaviour of the package.
+% \begin{table}
+% \centering
+% \begin{tabular}{@{}ll@{}}
+% \toprule
+% Key & Values \\
+% \midrule
+% \opt{normalweight} & \opt{Book}*, \opt{Regular}, \opt{auto} \\
+% \opt{boldweight} & \opt{Medium}*, \opt{Bold}, \opt{auto} \\
+% \opt{scale} & \meta{factor} \\
+% \opt{largedelims} & \opt{true}, \opt{false}* \\
+% \opt{opstyle} & \opt{serif}*, \opt{sans} \\
+% \bottomrule
+% \end{tabular}
+% \caption{\label{tab:options}Summary of options}
+% \end{table}
+%
 % \section{Font selection}\label{sec:selection}
+%
+% \subsection{Weights}
 %
 % FdSymbol comes in four weights, which are (in increasing order) Book,
 % Regular, Medium and Bold. Of these, Book and Regular are suitable for normal
@@ -140,6 +166,8 @@
 % Book weight will be used for normal and large sizes, but the Regular weight
 % will be used for small sizes (e.g.\ in sub- and superscripts).
 %
+% \subsection{Size}
+%
 % In order to use FdSymbol with different text fonts, it is possible to scale
 % the fonts by an arbitrary factor. This can be achieved with the option
 % \opt{scale}. For example, to use the fonts at 90\,\% of their original size,
@@ -151,21 +179,15 @@
 % the height of normal delimiters will match the height of text delimiters in
 % Fedra Serif~B if you select this option.
 %
-% The following table summarises all options (keys) that can be used with the
-% \pkg{fdsymbol} package. Values that correspond to the default behaviour of
-% the package are marked by an asterisk.
-% \begin{center}
-% \begin{tabular}{@{}ll@{}}
-% \toprule
-% Key & Values \\
-% \midrule
-% \opt{normalweight} & \opt{Book}*, \opt{Regular}, \opt{auto} \\
-% \opt{boldweight} & \opt{Medium}*, \opt{Bold}, \opt{auto} \\
-% \opt{scale} & \meta{factor} \\
-% \opt{largedelims} & \opt{true}, \opt{false}* \\
-% \bottomrule
-% \end{tabular}
-% \end{center}
+% \subsection{Stylistic variants}
+%
+% In order to use FdSymbol with sans-serif text fonts, there are sans-serif
+% variants of glyphs that contain a product or summation sign. These can
+% be accessed by the commands |\varprod|, |\varcoprod|, |\varsum|, etc.
+% To access these glyphs using the standard commands |\prod|, |\coprod|,
+% |\sum|, etc., use the option \opt{opstyle=sans}.
+% If this option is active, the serif variants of these glyphs can be accessed
+% by the |\var|\dots\ commands instead.
 %
 % \section{Symbols}\label{sec:glyphs}
 %
@@ -1411,7 +1433,18 @@
     \renewcommand\fdsy@bweight@small{Bold}%
   \fi
 }
-\ExecuteOptionsX{largedelims=false}
+%    \end{macrocode}
+% Finally, the following option controls the style of large operators.
+%    \begin{macrocode}
+\newif\iffdsy@sfop
+\fdsy@choicekey{opstyle}{serif,sans}{%
+  \ifcase\@tempb\relax
+    \fdsy@sfopfalse
+  \or
+    \fdsy@sfoptrue
+  \fi
+}
+\ExecuteOptionsX{largedelims=false,opstyle=serif}
 \ProcessOptionsX
 %    \end{macrocode}
 % Load external packages, but only if they are not already loaded
@@ -1866,12 +1899,21 @@
   \fdsy@DeclareAlias{\rightanglemdot}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\prime}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\backprime}{symbols}{\mathord}
-\fdsy@DeclareSymbol{\smallprod}{symbols}{\mathop}
-\fdsy@DeclareSymbol{\varsmallprod}{symbols}{\mathop}
-\fdsy@DeclareSymbol{\smallcoprod}{symbols}{\mathop}
-  \fdsy@DeclareAlias{\amalg}{symbols}{\mathbin}
-\fdsy@DeclareSymbol{\varsmallcoprod}{symbols}{\mathop}
-  \fdsy@DeclareAlias{\varamalg}{symbols}{\mathbin}
+\iffdsy@sfop
+  \fdsy@DeclareSymbol{\varsmallprod}{symbols}{\mathop}
+  \fdsy@DeclareSymbol{\smallprod}{symbols}{\mathop}
+  \fdsy@DeclareSymbol{\varsmallcoprod}{symbols}{\mathop}
+    \fdsy@DeclareAlias{\varamalg}{symbols}{\mathbin}
+  \fdsy@DeclareSymbol{\smallcoprod}{symbols}{\mathop}
+    \fdsy@DeclareAlias{\amalg}{symbols}{\mathbin}
+\else
+  \fdsy@DeclareSymbol{\smallprod}{symbols}{\mathop}
+  \fdsy@DeclareSymbol{\varsmallprod}{symbols}{\mathop}
+  \fdsy@DeclareSymbol{\smallcoprod}{symbols}{\mathop}
+    \fdsy@DeclareAlias{\amalg}{symbols}{\mathbin}
+  \fdsy@DeclareSymbol{\varsmallcoprod}{symbols}{\mathop}
+    \fdsy@DeclareAlias{\varamalg}{symbols}{\mathbin}
+\fi
 \fdsy@DeclareSymbol{\smallint}{symbols}{\mathop}
 \fdsy@DeclareSymbol{\checkmark}{symbols}{\mathord}
 \fdsy@DeclareSymbol{\lightning}{symbols}{\mathord}
@@ -2988,26 +3030,49 @@
 \fdsy@DeclareSymbol{\dbigodot}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tbigoast}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dbigoast}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tvarprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dvarprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tcoprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dcoprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tvarcoprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dvarcoprod}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tsum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dsum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tvarsum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dvarsum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tosum}{largesymbols}{\mathop}
-  \fdsy@DeclareAlias{\tmodtwosum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dosum}{largesymbols}{\mathop}
-  \fdsy@DeclareAlias{\dmodtwosum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tvarosum}{largesymbols}{\mathop}
-  \fdsy@DeclareAlias{\tvarmodtwosum}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dvarosum}{largesymbols}{\mathop}
-  \fdsy@DeclareAlias{\dvarmodtwosum}{largesymbols}{\mathop}
+\iffdsy@sfop
+  \fdsy@DeclareSymbol{\tvarprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\tvarmodtwosum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\dvarmodtwosum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\tmodtwosum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\dmodtwosum}{largesymbols}{\mathop}
+\else
+  \fdsy@DeclareSymbol{\tprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarcoprod}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarsum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\tmodtwosum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\dmodtwosum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\tvarmodtwosum}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarosum}{largesymbols}{\mathop}
+    \fdsy@DeclareAlias{\dvarmodtwosum}{largesymbols}{\mathop}
+\fi
 \fdsy@DeclareSymbol{\tint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dint}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\tiint}{largesymbols}{\mathop}
@@ -3058,10 +3123,17 @@
   \fdsy@DeclareAlias{\tointclockwise}{largesymbols}{\mathop}
 \fdsy@DeclareSymbol{\dlcircleleftint}{largesymbols}{\mathop}
   \fdsy@DeclareAlias{\dointclockwise}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tsumint}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dsumint}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\tvarsumint}{largesymbols}{\mathop}
-\fdsy@DeclareSymbol{\dvarsumint}{largesymbols}{\mathop}
+\iffdsy@sfop
+  \fdsy@DeclareSymbol{\tvarsumint}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarsumint}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tsumint}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dsumint}{largesymbols}{\mathop}
+\else
+  \fdsy@DeclareSymbol{\tsumint}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dsumint}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\tvarsumint}{largesymbols}{\mathop}
+  \fdsy@DeclareSymbol{\dvarsumint}{largesymbols}{\mathop}
+\fi
 \let\intop\tint
 \let\ointop\toint
 
