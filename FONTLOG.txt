@@ -38,6 +38,10 @@ ChangeLog
 27 Aug 2011 (Michael Ummels) FdSymbol version 1.004
 - Added many more glyphs and optimised turnstile glyphs
 
+1 Nov 2011 (Michael Ummels) FdSymbol version 1.005
+- First release in OpenType format
+- Added sans-serif variants of large operators
+
 Acknowledgements
 -------------------------
 (Here is where contributors can be acknowledged. If you make modifications be sure to add your name (N), email (E), web-address (W) and description (D). This list is sorted by last name in alphabetical order.)
