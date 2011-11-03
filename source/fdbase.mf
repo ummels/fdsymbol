@@ -10,7 +10,7 @@ design_size := 10;
 font_size design_size * pt#;
 
 if known ps_output:
-  font_version := "1.005";
+  font_version := "1.006";
   font_comment := "Copyright (c) 2011, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.";
 fi
 
