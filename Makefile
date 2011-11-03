@@ -146,8 +146,8 @@ $(pkg).tds.zip: $(tfmfiles) $(pfbfiles) $(mapfile) $(encfiles) $(srcfiles) $(add
 
 # rules for building a tarball for CTAN
 
-.PHONY: ctan
-ctan: $(pkg).tar.gz
+.PHONY: dist
+dist: $(pkg).tar.gz
 
 $(pkg).tar.gz: $(pkg).tds.zip README.ctan $(tfmfiles) $(pfbfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).pdf) FONTLOG.txt OFL.txt
 	$(TAR) -cz -s '/README\.ctan/README/' -s '/latex.//' $^ > $@
