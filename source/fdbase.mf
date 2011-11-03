@@ -541,6 +541,8 @@ def draw_sum(suffix $)(expr centre, width, height, thick, serifs) =
   z8$l = z2$ + whatever * down;
   z10$r = z0$ + whatever * up;
   z10$l = z0$ + whatever * right;
+  z9$' = 1/4[z7$,z8$l];
+  z11$' = 1/4[z6$r,z10$r];
   z12$ = centre;
 
   if serifs:
@@ -562,7 +564,7 @@ def draw_sum(suffix $)(expr centre, width, height, thick, serifs) =
   y11$ = y10$r;
 
   if serifs:
-    fill z10$l -- z6$l -- z4$l -- z4$r{-dir 77} ... {left}1/4[z6$r,z10$r] -- z11$ -- z12$r -- z9$ -- 1/4[z7$,z8$l]{right} ... {-dir 113}z5$r -- z5$l -- z3$ -- z8$r -- z8$l -- z12$l -- z10$r -- cycle;
+    fill z10$l -- z6$l -- z4$l -- z4$r{-dir 77} ... {z11$ - z11$'}z11$' -- z11$ -- z12$r -- z9$ -- z9$'{z9$' - z9$} ... {-dir 113}z5$r -- z5$l -- z3$ -- z8$r -- z8$l -- z12$l -- z10$r -- cycle;
     penlabels(3$,4$,5$,6$,7$,8$,9$,10$,11$,12$);
   else:
     fill z10$l -- z6$l -- z6$r -- z11$ -- z12$r -- z9$ -- z7$ -- z3$ -- z8$r -- z8$l -- z12$l -- z10$r -- cycle;
