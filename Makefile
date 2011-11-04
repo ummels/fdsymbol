@@ -66,7 +66,7 @@ $1-test: $1-proofs $1-charts
 $1-proofs: $(filter %-$1.dvi,$(prooffiles))
 
 .PHONY: $1-charts
-$1-carts: $(filter %-$1.dvi,$(chartfiles))
+$1-charts: $(filter %-$1.pdf,$(chartfiles))
 endef
 
 # default rule
@@ -226,7 +226,7 @@ uninstall:
 clean:
 	$(RM) $(outdirs)
 	$(RM) $(depfiles)
-	$(RM) mapfile latex/$(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
+	$(RM) $(mapfile) latex/$(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
 	$(RM) $(tempfiles)
 
 # delete files on error
