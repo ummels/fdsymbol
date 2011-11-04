@@ -139,7 +139,7 @@ latex/$(pkg).pdf: latex/$(pkg).dtx
 .PHONY: tds
 tds: $(pkg).tds.zip
 
-$(pkg).tds.zip: $(tfmfiles) $(pfbfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf) FONTLOG.txt OFL.txt
+$(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf) FONTLOG.txt OFL.txt
 	$(MAKE) install TEXMFDIR:=tds.tmp
 	(cd tds.tmp && $(ZIP) -r - *) > $@
 	$(RM) tds.tmp
@@ -149,7 +149,7 @@ $(pkg).tds.zip: $(tfmfiles) $(pfbfiles) $(mapfile) $(encfiles) $(srcfiles) $(add
 .PHONY: dist
 dist: $(pkg).tar.gz
 
-$(pkg).tar.gz: $(pkg).tds.zip README.ctan $(tfmfiles) $(pfbfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).pdf) FONTLOG.txt OFL.txt
+$(pkg).tar.gz: $(pkg).tds.zip README.ctan $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).pdf) FONTLOG.txt OFL.txt
 	$(TAR) -cz -s '/README\.ctan/README/' -s '/latex.//' $^ > $@
 
 # rules for building proofs and charts
