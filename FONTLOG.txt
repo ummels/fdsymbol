@@ -45,6 +45,9 @@ ChangeLog
 2 Nov 2011 (Michael Ummels) FdSymbol version 1.006
 - Fixed unsmooth curve in summation sign
 
+6 Nov 2011 (Michael Ummels) FdSymbol version 1.007
+- Modified integral sign
+
 Acknowledgements
 -------------------------
 (Here is where contributors can be acknowledged. If you make modifications be sure to add your name (N), email (E), web-address (W) and description (D). This list is sorted by last name in alphabetical order.)

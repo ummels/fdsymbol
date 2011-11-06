@@ -10,7 +10,7 @@ design_size := 10;
 font_size design_size * pt#;
 
 if known ps_output:
-  font_version := "1.006";
+  font_version := "1.007";
   font_comment := "Copyright (c) 2011, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.";
 fi
 
@@ -577,7 +577,7 @@ def draw_integral(suffix $)(expr scale, centre, thick) =
 
   penpos0$(thicker, 0);
   penpos1$(thicker, 0);
-  penpos2$(thick, -90);
+  penpos2$(9/8thick, -105);
   penpos3$(thicker, 0);
   penpos4$(thick, -90);
 
@@ -593,9 +593,9 @@ def draw_integral(suffix $)(expr scale, centre, thick) =
   penpos5$(9/8thick,-105);
   penpos6$(9/8thick,-82);
 
-  y5$l = y2$l - 1/8thick;
+  y5$l = y2$l - 1/12thick;
   x5$r = 5/4[x1$, x2$];
-  y6$l = y4$.l;
+  y6$l = y4$l;
   x6$r = 5/4[x3$, x4$];
 
   ucorr := max (x2$r, x1$r + 3/8thick) - x2$r;
