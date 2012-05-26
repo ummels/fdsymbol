@@ -426,7 +426,7 @@ extensible current_char: 0, 0, 0, current_char; % double vertical line
 charlist current_char - 5: current_char -4: current_char;
 
 for scale = 1, 1.2:
-  beginsymbol(8u# + 3line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "tripe vertical bar";
+  beginsymbol(8u# + 3line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "triple vertical bar";
     x0 = x1;
     x2 = x3;
     x4 = x5;
@@ -583,3 +583,19 @@ endchar;
 
 extensible current_char - 2: current_char - 2, 0, current_char - 1, current_char;
 charlist root_char: root_char + 1: root_char + 2: root_char + 3: root_char + 4: root_char + 5: current_char - 2;
+
+% more roots
+
+for scale = 1, 1.2, 1.5, 1.8, 2.4, 3:
+  beginsymbol((4scale + 2) * u# + 5/2line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "root";
+    draw_root(line_thickness);
+  endchar;
+endfor;
+
+beginsymbol(14u# + 5/2line_thickness# + 2side_bearing#, 1.2delim_height#, 0); "root -- top";
+  draw_root_top(line_thickness);
+endchar;
+
+beginsymbol(14u# + 5/2line_thickness# + 2side_bearing#, 2.4delim_height#, 0); "root -- bottom";
+  draw_root_bot(line_thickness);
+endchar;

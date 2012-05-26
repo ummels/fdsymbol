@@ -43,10 +43,10 @@
   /uni2226 /uni2226.big1 /sym0A9 /uni2980 /uni2980.big1 /sym0AA /arrowup.short /arrowdown.short
   /sym0AB /arrowdblup.short /arrowdbldown.short /sym0AC /sym0AD /sym0AF /sym0AE /sym0B0
 %D0
-  /sym0B2 /sym0B3 /sym0B1 /radical /radical.big1 /radical.big2 /radical.big3 /radical.big4
-  /radical.big5 /sym0B4 /uni23B7 /sym0B5 /.notdef /.notdef /.notdef /.notdef
+  /sym0B2 /sym0B3 /sym0B1 /radical.tex /radical.tex.big1 /radical.tex.big2 /radical.tex.big3 /radical.tex.big4
+  /radical.tex.big5 /radical.tex.top /uni23B7.tex /radical.ex /radical /radical.big1 /radical.big2 /radical.big3
 %E0
-  /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+  /radical.big4 /radical.big5 /radical.top /uni23B7 /.notdef /.notdef /.notdef /.notdef
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
 %F0
   /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
