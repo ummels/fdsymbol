@@ -150,7 +150,7 @@ $(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(src
 dist: $(pkg).tar.gz
 
 $(pkg).tar.gz: $(pkg).tds.zip README.ctan $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).pdf) FONTLOG.txt OFL.txt
-	$(TAR) -cz -s '/README\.ctan/README/' -s '/latex.//' $^ > $@
+	$(TAR) -cz -s '/README\.ctan/README/' -s '@latex/@@' -s '@fonts/\(.*\.otf\)@\1@' -s '@fonts/\(.*\.tfm\)@tfm/\1@' -s '@fonts/\(.*\.pfb\)@type1/\1@' $^ > $@
 
 # rules for building proofs and charts
 
