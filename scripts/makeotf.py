@@ -87,6 +87,7 @@ for glyphname in ALIASES:
             glyph = font.createMappedChar(name)
             if not glyph.isWorthOutputting():
                 glyph.addReference(glyphname)
+
 # Amend lookup tables
 for glyph in font.glyphs():
     for row in glyph.getPosSub("*"):
