@@ -1391,9 +1391,8 @@ beginsymbol(13u#, cap_height#, 0); "spade suit";
   penpos1(2u, 0);
   penpos6(3u, 0);
 
-  fill z0{dir (270-30)} .. z2 .. z4 .. {dir (90-30)}z1l
-    -- z1r{dir (270+30)} .. z5 .. z3 .. {dir (90+30)}z0 -- cycle;
-  fill stroke z1e -- z6e;
+  fill z0{dir (270-30)} .. z2 .. z4 .. {dir (90-30)}z1l -- z6l --
+    z6r -- z1r{dir (270+30)} .. z5 .. z3 .. {dir (90+30)}z0 -- cycle;
 
   penlabels(0,1,2,3,4,5,6);
 endchar;
