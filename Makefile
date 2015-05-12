@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 FONTFORGE := fontforge
-MF := mf -interaction nonstopmode -halt-on-error
+MF := mf-nowin -interaction nonstopmode -halt-on-error
 MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 T1TESTPAGE := t1testpage
