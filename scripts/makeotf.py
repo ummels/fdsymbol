@@ -23,11 +23,11 @@ def addlig(iterable, glyph):
         glyph.addPosSub("Ligature subtable", glyphs)
 
 parser = argparse.ArgumentParser(description="""
-Create one OpenType font from several Type1 fonts.
+Create one OpenType font from several fonts.
 """)
 parser.add_argument("-f", "--featurefile", help="OpenType feature file",
                     metavar="featurefile")
-parser.add_argument("fontfile", nargs="+",help="original font file (.pfb)")
+parser.add_argument("fontfile", nargs="+",help="original font file (.sfd,.pfb)")
 parser.add_argument("otffile", help="output file (.otf)")
 args = parser.parse_args()
 
@@ -84,7 +84,7 @@ if args.featurefile:
 for glyphname in ALIASES:
     if glyphname in font:
         for name in ALIASES[glyphname]:
-            glyph = font.createMappedChar(name)
+            glyph = font.createChar(fontforge.unicodeFromName(name), name)
             if not glyph.isWorthOutputting():
                 glyph.addReference(glyphname)
 
