@@ -1,10 +1,11 @@
 SHELL := /bin/sh
 FONTFORGE := fontforge
+AFMTOTFM := afm2tfm
 MF := mf-nowin -interaction nonstopmode -halt-on-error
 MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 T1TESTPAGE := t1testpage
-PSTOPDF := ps2pdf
+PSTOPDF := pstopdf
 PYTHON := python2.7
 PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
 RM := rm -rf
@@ -24,6 +25,9 @@ font := FdSymbol
 names := A B C D E F
 weights := Book Regular Medium Bold
 
+tempdir := temp
+sourcedir := source
+scriptdir := scripts
 fontdir := fonts
 testdir := test
 outdirs := $(fontdir) $(testdir)
@@ -35,13 +39,15 @@ depfiles := $(names:%=$(font)%.dep)
 encfiles := $(foreach i,$(names),dvips/$(pkg)-$(call lc,$i).enc)
 mapfile := dvips/$(pkg).map
 fonts := $(foreach i,$(names),$(weights:%=$(font)$(i)-%))
+afmfiles := $(fonts:%=$(fontdir)/%.afm)
 tfmfiles := $(fonts:%=$(fontdir)/%.tfm)
+sfdfiles := $(fonts:%=$(fontdir)/%.sfd)
 pfbfiles := $(fonts:%=$(fontdir)/%.pfb)
 otffiles := $(weights:%=$(fontdir)/$(font)-%.otf)
 gffiles := $(fonts:%=$(testdir)/%.2602gf)
 prooffiles := $(fonts:%=$(testdir)/%.dvi)
 chartfiles := $(fonts:%=$(testdir)/%.pdf)
-srcfiles := $(fonts:%=source/%.mf) $(names:%=source/$(font)%.mf) $(addprefix source/,fdbase.mf fdaccents.mf fdarrows.mf fddelims.mf fdgeometric.mf fdoperators.mf fdrelations.mf fdturnstile.mf)
+srcfiles := $(fonts:%=$(sourcedir)/%.mf) $(names:%=$(sourcedir)/$(font)%.mf) $(addprefix $(sourcedir)/,fdbase.mf fdaccents.mf fdarrows.mf fddelims.mf fdgeometric.mf fdoperators.mf fdrelations.mf fdturnstile.mf)
 tempfiles := $(addprefix latex/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
 
 # create output directories
@@ -57,7 +63,7 @@ define fontrule
 .PHONY: $1
 $1: $(fontdir)/$(font)-$1.otf
 
-$(fontdir)/$(font)-$1.otf: $(foreach i,$(names),$(fontdir)/$(font)$i-$1.pfb)
+$(fontdir)/$(font)-$1.otf: $(foreach i,$(names),$(fontdir)/$(font)$i-$1.sfd)
 
 .PHONY: $1-test
 $1-test: $1-proofs $1-charts
@@ -76,22 +82,32 @@ all: texfonts opentype latex $(mapfile)
 
 # rules for building Makefiles with additional dependencies
 
-$(depfiles): %.dep: source/%.mf scripts/finddeps.py
-	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(fontdir)/$*-%.pfb) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) scripts/finddeps.py $<)" > $@
-	@echo "$(weights:%=$(fontdir)/$*-%.pfb): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
+$(depfiles): %.dep: $(sourcedir)/%.mf
+	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(fontdir)/$*-%.sfd) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
 # rules for building Postscript fonts and TeX metrics
+
+.PHONY: ffsources
+ffsources: $(sfdfiles)
 
 .PHONY: texfonts
 texfonts: $(pfbfiles) $(tfmfiles)
 
 $(foreach weight,$(weights),$(eval $(call fontrule,$(weight))))
 
-$(pfbfiles): $(fontdir)/%.pfb: source/%.mf scripts/process.pe
-	cd $(fontdir) && $(MFTOPT1) --rounding 0.25 --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath scripts/process.pe) $(abspath $<)
+$(sfdfiles): $(fontdir)/%.sfd: $(sourcedir)/%.mf
+	$(MKDIR) $(tempdir)
+	cd $(tempdir) && $(MFTOPT1) --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath $(scriptdir)/process.pe) $(abspath $<) && cp $*.sfd $(abspath $@)
 
-$(tfmfiles): $(fontdir)/%.tfm: source/%.mf
-	cd $(fontdir) && MFINPUTS=$(abspath source) $(MF) '\mode=nullmode; input $*'
+$(pfbfiles): $(fontdir)/%.pfb: $(fontdir)/%.sfd
+	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@", "", 0); Quit(0)'
+
+$(afmfiles): $(fontdir)/%.afm: $(fontdir)/%.sfd
+	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@"); Quit(0)'
+
+$(tfmfiles): $(fontdir)/%.tfm: $(fontdir)/%.afm
+	cd $(fontdir) && $(AFMTOTFM) $*.afm
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(depfiles)
@@ -102,8 +118,8 @@ endif
 .PHONY: opentype
 opentype: $(otffiles)
 
-$(otffiles): source/features.fea scripts/makeotf.py
-	$(PYTHON) scripts/makeotf.py -f $< $(filter %.pfb,$^) $@
+$(otffiles): $(sourcedir)/features.fea
+	$(PYTHON) $(scriptdir)/makeotf.py -f $< $(filter %.sfd,$^) $@
 
 # rules for building the mapfile
 
@@ -160,7 +176,7 @@ test: proofs charts
 .PHONY: proofs
 proofs: $(prooffiles)
 
-$(gffiles): $(testdir)/%.2602gf: source/%.mf
+$(gffiles): $(testdir)/%.2602gf: $(sourcedir)/%.mf
 	cd $(testdir) && MFINPUTS=$(abspath source) $(MF) '\mode=proofmofe; nodisplays; input $*'
 
 $(prooffiles): $(testdir)/%.dvi: $(testdir)/%.2602gf
@@ -170,16 +186,16 @@ $(prooffiles): $(testdir)/%.dvi: $(testdir)/%.2602gf
 charts: $(chartfiles)
 
 $(chartfiles): $(testdir)/%.pdf: $(fontdir)/%.pfb
-	$(T1TESTPAGE) $< | $(PSTOPDF) - $@
+	$(T1TESTPAGE) $< | $(PSTOPDF) -i -o $@
 
 # rule for validating the generated Postscript fonts
 
 .PHONY: check
-check:
+check: $(sfdfiles)
 	@echo "Validating fonts..."
-	@for file in $(pfbfiles); do \
+	@for file in $(sfdfiles); do \
 	  if [ -e $$file ]; then \
-	    $(FONTFORGE) -script scripts/validate.pe $$file 2> /dev/null; \
+	    $(FONTFORGE) -script $(scriptdir)/validate.pe $$file 2> /dev/null; \
 	  fi; \
 	done
 
@@ -213,6 +229,7 @@ uninstall:
 	$(RM) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/opentype/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/tfm/public/$(pkg)
+	$(RM) $(TEXMFDIR)/fonts/source/public/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/map/dvips/$(pkg)
 	$(RM) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 	$(RM) $(TEXMFDIR)/tex/latex/$(pkg)
@@ -224,10 +241,15 @@ uninstall:
 
 .PHONY: clean
 clean:
-	$(RM) $(outdirs)
+	$(RM) $(otffiles) $(pfbfiles) $(afmfiles) $(tfmfiles)
+	$(RM) $(tempdir) $(testdir)
 	$(RM) $(depfiles)
 	$(RM) $(mapfile) latex/$(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
 	$(RM) $(tempfiles)
+
+.PHONY: maintainer-clean
+maintainer-clean: clean
+	$(RM) $(fontdir)
 
 # delete files on error
 

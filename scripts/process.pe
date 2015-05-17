@@ -1,7 +1,6 @@
 #!/usr/local/bin/fontforge
 
 Open($1);
-#Save($1:r + ".sfd");
 SelectAll();
 AddExtrema();
 RemoveOverlap();
@@ -13,5 +12,5 @@ RoundToInt();
 ChangePrivateEntry("BlueValues", "[-10 0 546 556 707 717 754 764]");
 ChangePrivateEntry("OtherBlues", "[-230 -220]");
 AutoHint();
-Generate($1, "", 0);
+Save($1:r + ".sfd");
 Quit(0);
