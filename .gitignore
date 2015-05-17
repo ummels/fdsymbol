@@ -12,6 +12,7 @@
 *.dvi
 *.sty
 *.tmproj
+*.otf
 *.pfa
 *.pfb
 *.tfm
