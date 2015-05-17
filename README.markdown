@@ -5,6 +5,8 @@ FdSymbol is a math symbol font, designed as a companion to the
 [Fedra family][FD] by Typotheque, but it might also fit other contemporary
 typefaces.
 
+[![Build Status](https://travis-ci.org/ummels/fdsymbol.svg?branch=master)](https://travis-ci.org/ummels/fdsymbol)
+
 [FD]: http://www.typotheque.com/fonts
 
 Usage
@@ -14,8 +16,8 @@ To use this font in LaTeX, include
 
     \usepackage{fdsymbol}
 
-in the preamble of your LaTeX document. See the PDF documentation for
-the details.
+in the preamble of your LaTeX document. See the [PDF documentation](fdsymbol.pdf)
+for the details.
 
 Installation
 ------------
