@@ -83,8 +83,8 @@ all: texfonts opentype latex $(mapfile)
 # rules for building Makefiles with additional dependencies
 
 $(depfiles): %.dep: $(sourcedir)/%.mf
-	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(fontdir)/$*-%.sfd) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
-	@echo "$(weights:%=$(fontdir)/$*-%.sfd): dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd) $(weights:%=$(testdir)/$*-%.2602gf) $@: | $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd): | dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
 # rules for building Postscript fonts and TeX metrics
 
@@ -96,9 +96,9 @@ texfonts: $(pfbfiles) $(tfmfiles)
 
 $(foreach weight,$(weights),$(eval $(call fontrule,$(weight))))
 
-$(sfdfiles): $(fontdir)/%.sfd: $(sourcedir)/%.mf
+$(sfdfiles): $(fontdir)/%.sfd: | $(sourcedir)/%.mf
 	$(MKDIR) $(tempdir)
-	cd $(tempdir) && $(MFTOPT1) --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath $(scriptdir)/process.pe) $(abspath $<) && cp $*.sfd $(abspath $@)
+	cd $(tempdir) && $(MFTOPT1) --encoding=$(abspath $(filter %.enc,$|)) --ffscript=$(abspath $(scriptdir)/process.pe) $(abspath $<) && cp $*.sfd $(abspath $@)
 
 $(pfbfiles): $(fontdir)/%.pfb: $(fontdir)/%.sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@", "", 0); Quit(0)'
@@ -107,7 +107,7 @@ $(afmfiles): $(fontdir)/%.afm: $(fontdir)/%.sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@"); Quit(0)'
 
 $(tfmfiles): $(fontdir)/%.tfm: $(fontdir)/%.afm
-	cd $(fontdir) && $(AFMTOTFM) $*.afm
+	$(AFMTOTFM) $< $@
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(depfiles)
@@ -249,6 +249,8 @@ clean:
 
 .PHONY: maintainer-clean
 maintainer-clean: clean
+	@echo 'This command is intended for maintainers to use; it'
+	@echo 'deletes files that may need special tools to rebuild.'
 	$(RM) $(fontdir)
 
 # delete files on error
