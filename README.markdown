@@ -16,7 +16,7 @@ To use this font in LaTeX, include
 
     \usepackage{fdsymbol}
 
-in the preamble of your LaTeX document. See the [PDF documentation](fdsymbol.pdf)
+in the preamble of your LaTeX document. See the [PDF documentation](latex/fdsymbol.pdf)
 for the details.
 
 Installation
