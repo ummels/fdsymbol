@@ -47,6 +47,7 @@ tfmfiles := $(fonts:%=$(fontdir)/%.tfm)
 sfdfiles := $(fonts:%=$(fontdir)/%.sfd)
 pfbfiles := $(fonts:%=$(fontdir)/%.pfb)
 otffiles := $(weights:%=$(fontdir)/$(font)-%.otf)
+logfiles := $(fonts:%=$(fontdir)/%.log)
 gffiles := $(fonts:%=$(testdir)/%.2602gf)
 prooffiles := $(fonts:%=$(testdir)/%.dvi)
 chartfiles := $(fonts:%=$(testdir)/%.pdf)
@@ -259,7 +260,7 @@ uninstall:
 
 .PHONY: clean
 clean:
-	$(RM) $(otffiles) $(pfbfiles) $(tfmfiles)
+	$(RM) $(otffiles) $(pfbfiles) $(tfmfiles) $(logfiles)
 	$(RM) $(tempdir) $(testdir)
 	$(RM) $(depfiles)
 	$(RM) $(mapfile) $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex $(pkg).tds.zip $(pkg).tar.gz
