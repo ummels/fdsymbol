@@ -6,9 +6,12 @@ GFTODVI := gftodvi
 T1TESTPAGE := t1testpage
 PSTOPDF := pstopdf
 PYTHON := python2.7
+LATEX := latex -interaction nonstopmode -halt-on-error
 PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
+LUALATEX := lualatex -interaction nonstopmode -halt-on-error
+DVIPS := dvips
 RM := rm -rf
-TAR := tar
+TAR := gtar -c -z --owner=root --group=root --mode='a+r'
 ZIP := zip
 MKDIR := mkdir -p
 INSTALL := install
@@ -30,6 +33,7 @@ scriptdir := scripts
 fontdir := fonts
 encdir := dvips
 testdir := test
+latexdir := latex
 outdirs := $(fontdir) $(testdir)
 
 # $(call lc,text)
@@ -47,7 +51,9 @@ gffiles := $(fonts:%=$(testdir)/%.2602gf)
 prooffiles := $(fonts:%=$(testdir)/%.dvi)
 chartfiles := $(fonts:%=$(testdir)/%.pdf)
 srcfiles := $(fonts:%=$(sourcedir)/%.mf) $(names:%=$(sourcedir)/$(font)%.mf) $(addprefix $(sourcedir)/,fdbase.mf fdaccents.mf fdarrows.mf fddelims.mf fdgeometric.mf fdoperators.mf fdrelations.mf fdturnstile.mf)
-tempfiles := $(addprefix latex/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
+testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi test-$(pkg)-luatex.pdf)
+latexfiles := $(addprefix $(latexdir)/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf)
+tempfiles := $(addprefix $(latexdir)/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
 
 # create output directories
 
@@ -131,20 +137,37 @@ $(mapfile):
 # rules for building the LaTeX package
 
 .PHONY: latex
-latex: latex/$(pkg).sty
+latex: $(latexdir)/$(pkg).sty
 
-latex/$(pkg).sty: latex/$(pkg).ins latex/$(pkg).dtx
-	cd latex && $(PDFLATEX) $(pkg).ins
+$(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex: $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx
+	$(LATEX) -output-directory $(latexdir) $<
+
+# rules for building the test documents
+
+.PHONY: test
+test: $(testfiles)
+
+$(testdir)/test-$(pkg).pdf: $(latexdir)/test-$(pkg).tex $(mapfile)
+	$(PDFLATEX) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{$<}"
+
+$(testdir)/test-$(pkg).ps: $(testdir)/test-$(pkg).dvi $(mapfile)
+	$(DVIPS) -u $(mapfile) $< -o $@
+
+$(testdir)/test-$(pkg).dvi: $(latexdir)/test-$(pkg).tex
+	$(LATEX) -output-directory $(testdir) $<
+
+$(testdir)/test-$(pkg)-luatex.pdf: $(latexdir)/test-$(pkg).tex $(mapfile)
+	$(LUALATEX) -output-directory $(testdir) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(mapfile)')}\input{$<}"
 
 # rules for rebuilding the documentation
 
 .PHONY: doc
-doc: latex/$(pkg).pdf
+doc: $(latexdir)/$(pkg).pdf
 
-latex/$(pkg).pdf: latex/$(pkg).dtx
-	cd latex && $(PDFLATEX) $(pkg).dtx && \
-	(while grep -s 'Rerun to get' $(pkg).log; do \
-	  $(PDFLATEX) $(pkg).dtx; \
+$(latexdir)/$(pkg).pdf: $(latexdir)/$(pkg).dtx $(mapfile)
+	$(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$<}" && \
+	(while grep -s 'Rerun to get' $(latexdir)/$(pkg).log; do \
+	  $(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$<}"; \
 	done)
 
 # rules for building a TDS zip file
@@ -152,7 +175,7 @@ latex/$(pkg).pdf: latex/$(pkg).dtx
 .PHONY: tds
 tds: $(pkg).tds.zip
 
-$(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf) FONTLOG.txt OFL.txt
+$(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexfiles) FONTLOG.txt OFL.txt
 	$(MAKE) install TEXMFDIR:=tds.tmp
 	(cd tds.tmp && $(ZIP) -r - *) > $@
 	$(RM) tds.tmp
@@ -162,13 +185,10 @@ $(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(src
 .PHONY: dist
 dist: $(pkg).tar.gz
 
-$(pkg).tar.gz: $(pkg).tds.zip README.ctan $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(addprefix latex/,$(pkg).ins $(pkg).dtx $(pkg).pdf) FONTLOG.txt OFL.txt
-	$(TAR) -cz -s '/README\.ctan/README/' -s '@latex/@@' -s '@fonts/\(.*\.otf\)@\1@' -s '@fonts/\(.*\.tfm\)@tfm/\1@' -s '@fonts/\(.*\.pfb\)@type1/\1@' $^ > $@
+$(pkg).tar.gz: $(pkg).tds.zip README.ctan $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx $(latexdir)/$(pkg).pdf FONTLOG.txt OFL.txt
+	$(TAR) --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan,README,' --transform 's,$(latexdir)/,,' --transform 's,$(sourcedir)/,source/,' --transform 's,$(fontdir)/\(.*\.otf\),\1,' --transform 's,$(fontdir)/\(.*\.tfm\),tfm/\1,' --transform 's,$(fontdir)/\(.*\.pfb\),type1/\1,' --transform 's,$(encdir)/,dvips/,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
 
 # rules for building proofs and charts
-
-.PHONY: test
-test: proofs charts
 
 .PHONY: proofs
 proofs: $(prooffiles)
@@ -213,13 +233,13 @@ install: all
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 	$(INSTALLDATA) $(encfiles) $(TEXMFDIR)/fonts/enc/dvips/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/tex/latex/$(pkg)
-	$(INSTALLDATA) latex/$(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
+	$(INSTALLDATA) $(latexdir)/$(pkg).sty $(TEXMFDIR)/tex/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(pkg)
-	$(INSTALLDATA) latex/$(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDATA) $(latexdir)/$(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/source/latex/$(pkg)
-	$(INSTALLDATA) latex/$(pkg).ins latex/$(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
+	$(INSTALLDATA) $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
 
 .PHONY: uninstall
 uninstall:
@@ -241,7 +261,7 @@ clean:
 	$(RM) $(otffiles) $(pfbfiles) $(tfmfiles)
 	$(RM) $(tempdir) $(testdir)
 	$(RM) $(depfiles)
-	$(RM) $(mapfile) latex/$(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
+	$(RM) $(mapfile) $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex $(pkg).tds.zip $(pkg).tar.gz
 	$(RM) $(tempfiles)
 
 .PHONY: maintainer-clean
