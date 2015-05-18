@@ -52,10 +52,11 @@ gffiles := $(fonts:%=$(testdir)/%.2602gf)
 prooffiles := $(fonts:%=$(testdir)/%.dvi)
 chartfiles := $(fonts:%=$(testdir)/%.pdf)
 srcfiles := $(fonts:%=$(sourcedir)/%.mf) $(names:%=$(sourcedir)/$(font)%.mf) $(addprefix $(sourcedir)/,fdbase.mf fdaccents.mf fdarrows.mf fddelims.mf fdgeometric.mf fdoperators.mf fdrelations.mf fdturnstile.mf)
-testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi test-$(pkg)-luatex.pdf)
+#testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).dvi test-$(pkg).ps test-$(pkg)-luatex.pdf)
+testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).dvi test-$(pkg)-luatex.pdf)
 latexfiles := $(addprefix $(latexdir)/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf)
 tempfiles := $(addprefix $(latexdir)/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
-texvars := TEXINPUTS=$(latexdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir):
+texvars := TEXINPUTS=$(latexdir): ENCFONTS=$(encdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir):
 
 # create output directories
 
