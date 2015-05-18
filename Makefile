@@ -1,6 +1,5 @@
 SHELL := /bin/sh
 FONTFORGE := fontforge
-AFMTOTFM := afm2tfm
 MF := mf-nowin -interaction nonstopmode -halt-on-error
 MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
@@ -29,6 +28,7 @@ tempdir := temp
 sourcedir := source
 scriptdir := scripts
 fontdir := fonts
+encdir := dvips
 testdir := test
 outdirs := $(fontdir) $(testdir)
 
@@ -36,10 +36,9 @@ outdirs := $(fontdir) $(testdir)
 lc = $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$1))))))))))))))))))))))))))
 
 depfiles := $(names:%=$(font)%.dep)
-encfiles := $(foreach i,$(names),dvips/$(pkg)-$(call lc,$i).enc)
-mapfile := dvips/$(pkg).map
+encfiles := $(foreach i,$(names),$(encdir)/$(pkg)-$(call lc,$i).enc)
+mapfile := $(encdir)/$(pkg).map
 fonts := $(foreach i,$(names),$(weights:%=$(font)$(i)-%))
-afmfiles := $(fonts:%=$(fontdir)/%.afm)
 tfmfiles := $(fonts:%=$(fontdir)/%.tfm)
 sfdfiles := $(fonts:%=$(fontdir)/%.sfd)
 pfbfiles := $(fonts:%=$(fontdir)/%.pfb)
@@ -83,8 +82,9 @@ all: texfonts opentype latex $(mapfile)
 # rules for building Makefiles with additional dependencies
 
 $(depfiles): %.dep: $(sourcedir)/%.mf
-	@echo "$(weights:%=$(fontdir)/$*-%.sfd) $(weights:%=$(testdir)/$*-%.2602gf) $@: | $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
-	@echo "$(weights:%=$(fontdir)/$*-%.sfd): | dvips/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
+	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd): | $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd): | $(encdir)/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
 # rules for building Postscript fonts and TeX metrics
 
@@ -103,11 +103,8 @@ $(sfdfiles): $(fontdir)/%.sfd: | $(sourcedir)/%.mf
 $(pfbfiles): $(fontdir)/%.pfb: $(fontdir)/%.sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@", "", 0); Quit(0)'
 
-$(afmfiles): $(fontdir)/%.afm: $(fontdir)/%.sfd
-	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@"); Quit(0)'
-
-$(tfmfiles): $(fontdir)/%.tfm: $(fontdir)/%.afm
-	$(AFMTOTFM) $< $@
+$(tfmfiles): $(fontdir)/%.tfm: source/%.mf
+	cd $(fontdir) && MFINPUTS=$(abspath source) $(MF) '\mode=nullmode; input $*'
 
 ifneq ($(MAKECMDGOALS),clean)
 -include $(depfiles)
@@ -237,11 +234,11 @@ uninstall:
 	$(RM) $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(RM) $(TEXMFDIR)/source/latex/$(pkg)
 
-# rule for cleaning the source tree
+# rules for cleaning the source tree
 
 .PHONY: clean
 clean:
-	$(RM) $(otffiles) $(pfbfiles) $(afmfiles) $(tfmfiles)
+	$(RM) $(otffiles) $(pfbfiles) $(tfmfiles)
 	$(RM) $(tempdir) $(testdir)
 	$(RM) $(depfiles)
 	$(RM) $(mapfile) latex/$(pkg).sty $(pkg).tds.zip $(pkg).tar.gz
