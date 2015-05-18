@@ -10,6 +10,10 @@
 *.???gf
 *.????gf
 *.dvi
+*.ps
+*.pdf
+!/latex/fdsymbol.pdf
+*.tex
 *.sty
 *.tmproj
 *.otf
@@ -21,5 +25,5 @@
 *.dep
 *.zip
 *.gz
-test
-temp
+/test
+/temp
