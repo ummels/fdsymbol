@@ -22,11 +22,11 @@ for the details.
 Installation
 ------------
 
-Building the fonts requires FontForge (>=20110222), afm2tfm and Python 2.7 with the
-`fontforge` module enabled.
+Building the fonts requires Metafont (>=2.718281), FontForge (>=20110222) and
+Python 2.7 with the `fontforge` module enabled.
 
 Rebuilding the FontForge source files from the Metafont sources additionally requires
-Metafont (>=2.718281), MetaPost (>=1.902) and mf2pt1 (>= 2.5).
+MetaPost (>=1.902) and mf2pt1 (>= 2.5).
 
 To install the fonts, the accompanying LaTeX package and the documentation
 in your home texmf tree, run:
