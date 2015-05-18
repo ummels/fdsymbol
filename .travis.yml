@@ -1,7 +1,9 @@
 language: python
 python: "2.7_with_system_site_packages"
 sudo: false
-script: make
+script:
+    - make install
+    - make test
 addons:
     apt:
         packages:
