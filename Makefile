@@ -54,6 +54,7 @@ srcfiles := $(fonts:%=$(sourcedir)/%.mf) $(names:%=$(sourcedir)/$(font)%.mf) $(a
 testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi test-$(pkg)-luatex.pdf)
 latexfiles := $(addprefix $(latexdir)/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf)
 tempfiles := $(addprefix $(latexdir)/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
+texvars := TEXINPUTS=$(latexdir): TFMFONTS=$(fontdir): T1INPUTS=$(fontdir):
 
 # create output directories
 
@@ -147,17 +148,17 @@ $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex: $(latexdir)/$(pkg).ins $(lat
 .PHONY: test
 test: $(testfiles)
 
-$(testdir)/test-$(pkg).pdf: $(latexdir)/test-$(pkg).tex $(mapfile)
-	$(PDFLATEX) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{$<}"
+$(testdir)/test-$(pkg).pdf: $(latexdir)/test-$(pkg).tex $(latexdir)/$(pkg).sty $(pfbfiles) $(tfmfiles) $(mapfile)
+	$(texvars) $(PDFLATEX) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{test-$(pkg)}"
 
-$(testdir)/test-$(pkg).ps: $(testdir)/test-$(pkg).dvi $(mapfile)
-	$(DVIPS) -u $(mapfile) $< -o $@
+$(testdir)/test-$(pkg).ps: $(testdir)/test-$(pkg).dvi $(pfbfiles) $(mapfile)
+	$(texvars) $(DVIPS) -u $(mapfile) $< -o $@
 
-$(testdir)/test-$(pkg).dvi: $(latexdir)/test-$(pkg).tex
-	$(LATEX) -output-directory $(testdir) $<
+$(testdir)/test-$(pkg).dvi: $(latexdir)/test-$(pkg).tex $(latexdir)/$(pkg).sty $(tfmfiles)
+	$(texvars) $(LATEX) -output-directory $(testdir) $<
 
-$(testdir)/test-$(pkg)-luatex.pdf: $(latexdir)/test-$(pkg).tex $(mapfile)
-	$(LUALATEX) -output-directory $(testdir) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(mapfile)')}\input{$<}"
+$(testdir)/test-$(pkg)-luatex.pdf: $(latexdir)/test-$(pkg).tex $(latexdir)/$(pkg).sty $(pfbfiles) $(tfmfiles) $(mapfile)
+	$(texvars) $(LUALATEX) -output-directory $(testdir) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(mapfile)')}\input{test-$(pkg)}"
 
 # rules for rebuilding the documentation
 
@@ -165,9 +166,9 @@ $(testdir)/test-$(pkg)-luatex.pdf: $(latexdir)/test-$(pkg).tex $(mapfile)
 doc: $(latexdir)/$(pkg).pdf
 
 $(latexdir)/$(pkg).pdf: $(latexdir)/$(pkg).dtx $(mapfile)
-	$(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$<}" && \
+	$(texvars) $(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$(pkg).dtx}" && \
 	(while grep -s 'Rerun to get' $(latexdir)/$(pkg).log; do \
-	  $(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$<}"; \
+	  $(texvars) $(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$(pkg).dtx}"; \
 	done)
 
 # rules for building a TDS zip file
