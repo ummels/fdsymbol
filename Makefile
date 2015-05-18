@@ -55,7 +55,7 @@ srcfiles := $(fonts:%=$(sourcedir)/%.mf) $(names:%=$(sourcedir)/$(font)%.mf) $(a
 testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).ps test-$(pkg).dvi test-$(pkg)-luatex.pdf)
 latexfiles := $(addprefix $(latexdir)/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf)
 tempfiles := $(addprefix $(latexdir)/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
-texvars := TEXINPUTS=$(latexdir): TFMFONTS=$(fontdir): T1INPUTS=$(fontdir):
+texvars := TEXINPUTS=$(latexdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir):
 
 # create output directories
 
