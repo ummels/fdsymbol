@@ -141,7 +141,7 @@ $(mapfile):
 # rules for building the LaTeX package
 
 .PHONY: latex
-latex: $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex
+latex: $(latexdir)/$(pkg).sty
 
 $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex: $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx
 	$(LATEX) -output-directory $(latexdir) $<
@@ -149,7 +149,7 @@ $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex: $(latexdir)/$(pkg).ins $(lat
 # rules for testing the build
 
 .PHONY: test
-test: all
+test: all $(latexdir)/test-$(pkg).tex
 	@echo "Testing pdflatex..."
 	$(pdflatex) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{test-$(pkg)}"
 	@echo ""
