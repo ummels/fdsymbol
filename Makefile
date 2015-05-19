@@ -11,7 +11,7 @@ PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
 LUALATEX := lualatex -interaction nonstopmode -halt-on-error
 DVIPS := dvips
 RM := rm -rf
-TAR := gtar -c -z --owner=root --group=root --mode='a+r'
+TAR := gtar --owner=root --group=root --mode='a+r'
 ZIP := zip
 MKDIR := mkdir -p
 INSTALL := install
@@ -36,6 +36,13 @@ testdir := test
 latexdir := latex
 outdirs := $(fontdir) $(testdir)
 
+# Need DVIPSHEADERS for older versions of dvips
+texvars := TEXINPUTS=$(latexdir): ENCFONTS=$(encdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir): DVIPSHEADERS=$(fontdir):
+latex := $(texvars) $(LATEX)
+pdflatex := $(texvars) $(PDFLATEX)
+lualatex := $(texvars) $(LUALATEX)
+dvips := $(texvars) $(DVIPS)
+
 # $(call lc,text)
 lc = $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$1))))))))))))))))))))))))))
 
@@ -52,11 +59,8 @@ gffiles := $(fonts:%=$(testdir)/%.2602gf)
 prooffiles := $(fonts:%=$(testdir)/%.dvi)
 chartfiles := $(fonts:%=$(testdir)/%.pdf)
 srcfiles := $(fonts:%=$(sourcedir)/%.mf) $(names:%=$(sourcedir)/$(font)%.mf) $(addprefix $(sourcedir)/,fdbase.mf fdaccents.mf fdarrows.mf fddelims.mf fdgeometric.mf fdoperators.mf fdrelations.mf fdturnstile.mf)
-#testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).dvi test-$(pkg).ps test-$(pkg)-luatex.pdf)
-testfiles := $(addprefix $(testdir)/,test-$(pkg).pdf test-$(pkg).dvi test-$(pkg)-luatex.pdf)
 latexfiles := $(addprefix $(latexdir)/,$(pkg).ins $(pkg).dtx $(pkg).sty $(pkg).pdf)
 tempfiles := $(addprefix $(latexdir)/,$(pkg).aux $(pkg).log $(pkg).out $(pkg).toc $(pkg).hd)
-texvars := TEXINPUTS=$(latexdir): ENCFONTS=$(encdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir):
 
 # create output directories
 
@@ -140,27 +144,24 @@ $(mapfile):
 # rules for building the LaTeX package
 
 .PHONY: latex
-latex: $(latexdir)/$(pkg).sty
+latex: $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex
 
 $(latexdir)/$(pkg).sty $(latexdir)/test-$(pkg).tex: $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx
 	$(LATEX) -output-directory $(latexdir) $<
 
-# rules for building the test documents
+# rules for testing the build
 
 .PHONY: test
-test: $(testfiles)
-
-$(testdir)/test-$(pkg).pdf: $(latexdir)/test-$(pkg).tex $(latexdir)/$(pkg).sty $(pfbfiles) $(tfmfiles) $(mapfile)
-	$(texvars) $(PDFLATEX) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{test-$(pkg)}"
-
-$(testdir)/test-$(pkg).ps: $(testdir)/test-$(pkg).dvi $(pfbfiles) $(mapfile)
-	$(texvars) $(DVIPS) -u $(mapfile) $< -o $@
-
-$(testdir)/test-$(pkg).dvi: $(latexdir)/test-$(pkg).tex $(latexdir)/$(pkg).sty $(tfmfiles)
-	$(texvars) $(LATEX) -output-directory $(testdir) $<
-
-$(testdir)/test-$(pkg)-luatex.pdf: $(latexdir)/test-$(pkg).tex $(latexdir)/$(pkg).sty $(pfbfiles) $(tfmfiles) $(mapfile)
-	$(texvars) $(LUALATEX) -output-directory $(testdir) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(mapfile)')}\input{test-$(pkg)}"
+test: all
+	@echo "Testing pdflatex..."
+	$(pdflatex) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{test-$(pkg)}"
+	@echo ""
+	@echo "Testing latex+dvips..."
+	$(latex) -output-directory $(testdir) "\input{test-$(pkg)}"
+	$(dvips) -u $(mapfile) $(testdir)/test-$(pkg).dvi -o $(testdir)/test-$(pkg).ps
+	@echo ""
+	@echo "Testing lualatex..."
+	$(lualatex) -output-directory $(testdir) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(mapfile)')}\input{test-$(pkg)}"
 
 # rules for rebuilding the documentation
 
@@ -189,7 +190,7 @@ $(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(src
 dist: $(pkg).tar.gz
 
 $(pkg).tar.gz: $(pkg).tds.zip README.ctan $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx $(latexdir)/$(pkg).pdf FONTLOG.txt OFL.txt
-	$(TAR) --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan,README,' --transform 's,$(latexdir)/,,' --transform 's,$(sourcedir)/,source/,' --transform 's,$(fontdir)/\(.*\.otf\),\1,' --transform 's,$(fontdir)/\(.*\.tfm\),tfm/\1,' --transform 's,$(fontdir)/\(.*\.pfb\),type1/\1,' --transform 's,$(encdir)/,dvips/,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
+	$(TAR) -c - z --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan,README,' --transform 's,$(latexdir)/,,' --transform 's,$(sourcedir)/,source/,' --transform 's,$(fontdir)/\(.*\.otf\),\1,' --transform 's,$(fontdir)/\(.*\.tfm\),tfm/\1,' --transform 's,$(fontdir)/\(.*\.pfb\),type1/\1,' --transform 's,$(encdir)/,dvips/,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
 
 # rules for building proofs and charts
 
@@ -269,8 +270,6 @@ clean:
 
 .PHONY: maintainer-clean
 maintainer-clean: clean
-	@echo 'This command is intended for maintainers to use; it'
-	@echo 'deletes files that may need special tools to rebuild.'
 	$(RM) $(fontdir)
 
 # delete files on error
