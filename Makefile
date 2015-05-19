@@ -77,9 +77,6 @@ $1: $(fontdir)/$(font)-$1.otf
 
 $(fontdir)/$(font)-$1.otf: $(foreach i,$(names),$(fontdir)/$(font)$i-$1.sfd)
 
-.PHONY: $1-test
-$1-test: $1-proofs $1-charts
-
 .PHONY: $1-proofs
 $1-proofs: $(filter %-$1.dvi,$(prooffiles))
 
