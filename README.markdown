@@ -51,7 +51,7 @@ For a system-wide installation, replace updmap by updmap-sys.
 License
 -------
 
-Copyright (c) 2012-2015 by Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (c) 2011-2015 by Michael Ummels <michael.ummels@rwth-aachen.de>
 
 The font components of this software, e.g. MetaFont (.mf), TeX font metric
 (.tfm), Type 1 (.pfb), and OpenType (.otf) files, are licensed under the
