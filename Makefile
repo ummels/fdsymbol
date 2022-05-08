@@ -5,7 +5,7 @@ MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 T1TESTPAGE := t1testpage
 PSTOPDF := pstopdf
-PYTHON := python2.7
+PYTHON := python3
 LATEX := latex -interaction nonstopmode -halt-on-error
 PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
 LUALATEX := lualatex -interaction nonstopmode -halt-on-error
@@ -36,12 +36,11 @@ testdir := test
 latexdir := latex
 outdirs := $(fontdir) $(testdir)
 
-# Need DVIPSHEADERS for older versions of dvips
-texvars := TEXINPUTS=$(latexdir): ENCFONTS=$(encdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir): DVIPSHEADERS=$(fontdir):
+texvars := TEXINPUTS=$(latexdir): ENCFONTS=$(encdir): TFMFONTS=$(fontdir): T1FONTS=$(fontdir):
 latex := $(texvars) $(LATEX)
 pdflatex := $(texvars) $(PDFLATEX)
 lualatex := $(texvars) $(LUALATEX)
-dvips := $(texvars) $(DVIPS)
+dvips := $(texvars) DVIPSHEADERS=$(encdir):$(fontdir): $(DVIPS)
 
 # $(call lc,text)
 lc = $(subst A,a,$(subst B,b,$(subst C,c,$(subst D,d,$(subst E,e,$(subst F,f,$(subst G,g,$(subst H,h,$(subst I,i,$(subst J,j,$(subst K,k,$(subst L,l,$(subst M,m,$(subst N,n,$(subst O,o,$(subst P,p,$(subst Q,q,$(subst R,r,$(subst S,s,$(subst T,t,$(subst U,u,$(subst V,v,$(subst W,w,$(subst X,x,$(subst Y,y,$(subst Z,z,$1))))))))))))))))))))))))))
@@ -166,9 +165,9 @@ test: all $(latexdir)/test-$(pkg).tex
 doc: $(latexdir)/$(pkg).pdf
 
 $(latexdir)/$(pkg).pdf: $(latexdir)/$(pkg).dtx $(mapfile)
-	$(texvars) $(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$(pkg).dtx}" && \
+	$(pdflatex) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$(pkg).dtx}" && \
 	(while grep -s 'Rerun to get' $(latexdir)/$(pkg).log; do \
-	  $(texvars) $(PDFLATEX) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$(pkg).dtx}"; \
+	  $(pdflatex) -output-directory $(latexdir) "\pdfmapfile{+$(mapfile)}\input{$(pkg).dtx}"; \
 	done)
 
 # rules for building a TDS zip file

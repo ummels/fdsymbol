@@ -1,8 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 import re
 import os.path
+from functools import reduce
 
 res = set()
 stack = [os.path.normpath(x) for x in sys.argv[1:]]
@@ -24,4 +25,4 @@ while stack:
         pass
 
 if res:
-    print reduce(lambda x, y: x + " " + y, res)
+    print(reduce(lambda x, y: x + " " + y, res))
