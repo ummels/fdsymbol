@@ -92,8 +92,8 @@ all: texfonts opentype latex $(mapfile)
 
 $(depfiles): %.dep: $(sourcedir)/%.mf
 	@echo "$(weights:%=$(fontdir)/$*-%.tfm) $(weights:%=$(testdir)/$*-%.2602gf) $@: $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
-	@echo "$(weights:%=$(fontdir)/$*-%.sfd): | $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" > $@
-	@echo "$(weights:%=$(fontdir)/$*-%.sfd): | $(encdir)/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd): $< $$($(PYTHON) $(scriptdir)/finddeps.py $<)" >> $@
+	@echo "$(weights:%=$(fontdir)/$*-%.sfd): $(encdir)/$$(echo $* | sed 's/$(font)/$(pkg)-/' | tr [:upper:] [:lower:]).enc" >> $@
 
 # rules for building Postscript fonts and TeX metrics
 
@@ -105,9 +105,9 @@ texfonts: $(pfbfiles) $(tfmfiles)
 
 $(foreach weight,$(weights),$(eval $(call fontrule,$(weight))))
 
-$(sfdfiles): $(fontdir)/%.sfd: | $(sourcedir)/%.mf
+$(sfdfiles): $(fontdir)/%.sfd: $(sourcedir)/%.mf
 	$(MKDIR) $(tempdir)
-	cd $(tempdir) && $(MFTOPT1) --encoding=$(abspath $(filter %.enc,$|)) --ffscript=$(abspath $(scriptdir)/process.pe) $(abspath $<) && cp $*.sfd $(abspath $@)
+	cd $(tempdir) && $(MFTOPT1) --encoding=$(abspath $(filter %.enc,$^)) --ffscript=$(abspath $(scriptdir)/process.pe) $(abspath $<) && cp $*.sfd $(abspath $@)
 
 $(pfbfiles): $(fontdir)/%.pfb: $(fontdir)/%.sfd
 	$(FONTFORGE) -lang=ff -c 'Open("$<"); Generate("$@", "", 0); Quit(0)'
@@ -212,7 +212,7 @@ check: $(sfdfiles)
 	@echo "Validating fonts..."
 	@for file in $(sfdfiles); do \
 	  if [ -e $$file ]; then \
-	    $(FONTFORGE) -script $(scriptdir)/validate.pe $$file 2> /dev/null; \
+	    $(PYTHON) $(scriptdir)/validate.py $$file; \
 	  fi; \
 	done
 

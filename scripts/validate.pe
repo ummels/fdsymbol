@@ -1,8 +1,0 @@
-#!/usr/local/bin/fontforge
-
-Open($1);
-if (Validate() != 0)
-    Print($1 + " did not validate!")
-    Quit(1);
-endif
-Quit(0);
