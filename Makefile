@@ -208,18 +208,24 @@ $(chartfiles): $(testdir)/%.pdf: $(fontdir)/%.pfb
 # rule for validating the generated Postscript fonts
 
 .PHONY: check
-check: $(sfdfiles)
-	@echo "Validating fonts..."
+check: check-sfd check-otf
+
+.PHONY: check-sfd
+check-sfd: $(sfdfiles)
 	@for file in $(sfdfiles); do \
-	  if [ -e $$file ]; then \
-	    $(PYTHON) $(scriptdir)/validate.py $$file; \
-	  fi; \
+	  $(PYTHON) $(scriptdir)/validate.py $$file; \
+	done
+
+.PHONY: check-otf
+check-otf: $(otffiles)
+	@for file in $(otffiles); do \
+	  $(PYTHON) $(scriptdir)/validate.py $$file; \
 	done
 
 # rules for (un)installing everything
 
 .PHONY: install
-install: all
+install: all check
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(INSTALLDATA) $(pfbfiles) $(TEXMFDIR)/fonts/type1/public/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/fonts/opentype/public/$(pkg)

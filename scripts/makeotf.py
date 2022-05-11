@@ -111,13 +111,4 @@ font.hhea_ascent_add = 0
 font.hhea_descent_add = 0
 font.hhea_ascent = font.ascent + font.os2_typolinegap // 2
 font.hhea_descent = -(font.descent + font.os2_typolinegap // 2)
-
-# Vaildate and Write OTF file
-print("Validating font...")
-if font.validate() == 0:
-    font.generate(args.otffile, flags=("opentype",))
-    print("Succesfully generated " + args.otffile + ".")
-    sys.exit(0)
-else:
-    print("Font did not validate. No OTF file generated.")
-    sys.exit(1)
+font.generate(args.otffile, flags=("opentype",))
