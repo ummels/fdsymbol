@@ -16,7 +16,7 @@ enddef;
 lparen_char = current_char + 1;
 rparen_char = current_char + 7;
 for sign = 1, -1:
-  for scale = 1, 1.2, 1.5, 1.8, 2.4, 3:
+  for scale = 1, 1.1, 1.4, 1.8, 2.4, 3:
     beginsymbol((2scale + 4.5)/2 * u# + line_thickness# + 2side_bearing#, vcentre(2scale * delim_height#)); "parenthesis";
       draw_paren(sign, dthick(scale) * line_thickness);
     endchar;

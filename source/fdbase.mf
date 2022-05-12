@@ -19,23 +19,27 @@ asc_height# := 7.54pt#; % 8.56pt#;
 cap_height# := 7.07pt#; %7.37pt#;
 desc_depth# := 2.2pt#; % 2.94pt#;
 x_height# := 5.46pt#;
-math_axis# := 2.75pt#;
+math_axis# := 3.0pt#;
 if weight_index = 0: % Book
   line_thickness# := 0.64pt#;
   rule_thickness# := 0.56pt#;
   dot_size# := 0.75pt#;
-elseif weight_index = 1: % Regular
+  equal_spread# := 1.8pt#;
+elseif weight_index = 1: % Demi
   line_thickness# := 0.74pt#;
   rule_thickness# := 0.58pt#;
   dot_size# := 0.84pt#;
+  equal_spread# := 1.9pt#;
 elseif weight_index = 2: % Medium
   line_thickness# := 0.86pt#;
   rule_thickness# := 0.6pt#;
   dot_size# := 0.94pt#;
+  equal_spread# := 1.95pt#;
 else: % Bold
   line_thickness# := 1.0pt#;
   rule_thickness# := 0.64pt#;
   dot_size# := 1.06pt#;
+  equal_spread# := 1.99pt#;
 fi;
 
 side_bearing# := 1.5u#;
@@ -45,13 +49,12 @@ plus_size# := 9u#;
 large_op_size# := 18u#; % radius of large operators
 order_width# := 8u#; % width of equal sign
 turnstile_width# := 11u#; % width of turnstile symbols
-equal_spread# := .7math_axis#; % distance between the lines of the equal sign
 greater_spread# := 10/4equal_spread#; % distance between the ends of the greater sign
 arrow_horiz_len# := 12.5u#; % length of horizontal arrows
 arrow_vert_len# := 12.5u#; % length of vertical arrows
 arrow_diag_len# := 1/2(arrow_horiz_len# + arrow_vert_len#);
 arrow_spread# := 1.6equal_spread#;
-delim_height# := 4.9pt#; % half the height of normal delimiters
+delim_height# := 5.3pt#; % half the height of normal delimiters
 bigop_height# := 10.7pt#; % height of big operators
 
 mode_setup;

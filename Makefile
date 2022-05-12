@@ -25,7 +25,7 @@ endif
 pkg := fdsymbol
 font := FdSymbol
 names := A B C D E F
-weights := Book Regular Medium Bold
+weights := Book Demi Medium Bold
 
 tempdir := temp
 sourcedir := source

@@ -152,7 +152,7 @@ $\big(\sum_{\aleph\in\wp}\aleph=\beth
 % \toprule
 % Key & Values \\
 % \midrule
-% \opt{normalweight} & \opt{Book}*, \opt{Regular}, \opt{auto} \\
+% \opt{normalweight} & \opt{Book}*, \opt{Demi}, \opt{auto} \\
 % \opt{boldweight} & \opt{Medium}*, \opt{Bold}, \opt{auto} \\
 % \opt{scale} & \meta{factor} \\
 % \opt{largedelims} & \opt{true}, \opt{false}* \\
@@ -167,7 +167,7 @@ $\big(\sum_{\aleph\in\wp}\aleph=\beth
 % \subsection{Weights}
 %
 % FdSymbol comes in four weights, which are (in increasing order) Book,
-% Regular, Medium and Bold. Of these, Book and Regular are suitable for normal
+% Demi, Medium and Bold. Of these, Book and Demi are suitable for normal
 % math typesetting, while Medium and Bold can be used for bold math
 % typesetting. Using the options \opt{normalweight} and \opt{boldweight}, you
 % can select which weights are used. For example, to use the Medium weight as
@@ -177,7 +177,7 @@ $\big(\sum_{\aleph\in\wp}\aleph=\beth
 % Book and Medium are used. Additionally, it is possible to use a
 % suitable weight automatically depending on the font size by selecting
 % \opt{auto}. For example, if you use the option \opt{normalweight=auto}, the
-% Book weight will be used for normal and large sizes, but the Regular weight
+% Book weight will be used for normal and large sizes, but the Demi weight
 % will be used for small sizes (e.g.\ in sub- and superscripts).
 %
 % \subsection{Size}
@@ -1428,11 +1428,11 @@ $\big(\sum_{\aleph\in\wp}\aleph=\beth
     \renewcommand\fdsy@mweight@normal{Book}%
     \renewcommand\fdsy@mweight@small{Book}%
   \or
-    \renewcommand\fdsy@mweight@normal{Regular}%
-    \renewcommand\fdsy@mweight@small{Regular}%
+    \renewcommand\fdsy@mweight@normal{Demi}%
+    \renewcommand\fdsy@mweight@small{Demi}%
   \or
     \renewcommand\fdsy@mweight@normal{Book}%
-    \renewcommand\fdsy@mweight@small{Regular}%
+    \renewcommand\fdsy@mweight@small{Demi}%
   \fi
 }
 \fdsy@choicekey{boldweight}{medium,bold,auto}{%
