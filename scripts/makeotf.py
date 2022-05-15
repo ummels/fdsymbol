@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import argparse
+import os
 import sys
 from itertools import product
 import fontforge
 
-FAMILY = "FdSymbol"
 ALIASES = {"uni2A3D": ("uni2319",),
            "uni219D": ("uni21DD", "uni2933"),
            "uni219C": ("uni21DC", "uni2B3F"),
@@ -39,10 +39,12 @@ for fname in args.fontfile[1:]:
 font.encoding = "UnicodeBmp"
 
 # Set the font name
-weight = font.fontname.rpartition("-")[2]
-font.familyname = FAMILY
-font.fontname = FAMILY + "-" + weight
-font.fullname = FAMILY + " " + weight
+partition = args.otffile.rpartition("-")
+family = partition[0].rpartition(os.sep)[2]
+weight = partition[2].partition(".")[0]
+font.familyname = family
+font.fontname = family + "-" + weight
+font.fullname = family + " " + weight
 
 # Add space
 space = font.createChar(0x20, "space")
