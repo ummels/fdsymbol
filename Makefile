@@ -4,7 +4,7 @@ MF := mf-nowin -progname=mf -interaction nonstopmode -halt-on-error
 MFTOPT1 := mf2pt1
 GFTODVI := gftodvi
 T1TESTPAGE := t1testpage
-PSTOPDF := pstopdf
+PS2PDF := ps2pdf
 PYTHON := python3
 LATEX := latex -interaction nonstopmode -halt-on-error
 PDFLATEX := pdflatex -interaction nonstopmode -halt-on-error
@@ -203,7 +203,7 @@ $(prooffiles): $(testdir)/%.dvi: $(testdir)/%.2602gf
 charts: $(chartfiles)
 
 $(chartfiles): $(testdir)/%.pdf: $(fontdir)/%.pfb
-	$(T1TESTPAGE) $< | $(PSTOPDF) -i -o $@
+	$(T1TESTPAGE) $< | $(PS2PDF) - $@
 
 # rule for validating the generated Postscript fonts
 
