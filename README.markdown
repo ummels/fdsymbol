@@ -15,7 +15,7 @@ To use this font in LaTeX, include
 in the preamble of your LaTeX document. See the [PDF documentation](latex/fdsymbol.pdf)
 for the details.
 
-If you are interested in a full integration with [Fedra Serif Pro](https://www.typotheque.com/fonts/fedra_serif_a), take a look at the [fedraserif](https://github.com/ummels/fedraserif) package. 
+If you are interested in a full integration with [Fedra Serif](https://www.typotheque.com/fonts/fedra-serif), take a look at the [fedraserif](https://github.com/ummels/fedraserif) package. 
 
 Installation
 ------------
