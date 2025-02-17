@@ -5,6 +5,7 @@
 *.log
 *.aux
 *.out
+*.fls
 *.hd
 *.toc
 *.???gf
@@ -15,7 +16,7 @@
 !/latex/fdsymbol.pdf
 *.tex
 *.sty
-*.tmproj
+*.fdb_latexmk
 *.otf
 *.pfa
 *.pfb

@@ -3,8 +3,8 @@ FontName: FdSymbolF-Medium
 FullName: FdSymbolF-Medium
 FamilyName: FdSymbolF
 Weight: Medium
-Copyright: Copyright (c) 2012, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.
-Version: 1.008
+Copyright: Copyright (c) 2011-2025, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.
+Version: 1.010
 ItalicAngle: 0
 UnderlinePosition: -100
 UnderlineWidth: 50
@@ -17,8 +17,8 @@ Layer: 1 0 "Fore" 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
-CreationTime: 1739777140
-ModificationTime: 1739777140
+CreationTime: 1739799039
+ModificationTime: 1739799039
 OS2TypoAscent: 0
 OS2TypoAOffset: 1
 OS2TypoDescent: 0

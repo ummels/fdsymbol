@@ -1,5 +1,5 @@
 %
-% Copyright (c) 2011-2015, Michael Ummels <michael.ummels@rwth-aachen.de>
+% Copyright (c) 2011-2025, Michael Ummels <michael@ummels.de>
 %
 % This Font Software is licensed under the SIL Open Font License,
 % Version 1.1. This license is in the accompanying file OFL.txt, and
@@ -10,8 +10,8 @@ design_size := 10;
 font_size design_size * pt#;
 
 if known ps_output:
-  font_version := "1.008";
-  font_comment := "Copyright (c) 2012, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.";
+  font_version := "1.010";
+  font_comment := "Copyright (c) 2011-2025, Michael Ummels. This Font Software is licensed under the SIL Open Font License, Version 1.1.";
 fi
 
 u# := 0.6pt#;

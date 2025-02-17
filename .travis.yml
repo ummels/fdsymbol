@@ -1,10 +1,12 @@
 language: python
-python: "2.7_with_system_site_packages"
+dist: jammy
+virtualenv:
+  system_site_packages: true
 sudo: false
 script: make test
 addons:
     apt:
         packages:
             - fontforge-nox
-            - python-fontforge
+            - python3-fontforge
             - texlive-latex-recommended

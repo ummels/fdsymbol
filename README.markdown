@@ -44,14 +44,14 @@ Afterwards, you may need to regenerate the file database:
 
 Finally, you need to activate the map file:
 
-    updmap --enable Map=fdsymbol.map
+    updmap-user --enable Map=fdsymbol.map
 
-For a system-wide installation, replace updmap by updmap-sys.
+For a system-wide installation, replace updmap-user by updmap-sys.
 
 License
 -------
 
-Copyright (c) 2011-2022 by Michael Ummels <michael@ummels.de>
+Copyright (c) 2011-2025 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. MetaFont (.mf), TeX font metric
 (.tfm), Type 1 (.pfb), and OpenType (.otf) files, are licensed under the

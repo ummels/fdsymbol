@@ -1,4 +1,4 @@
-Copyright (c) 2011-2015, Michael Ummels <michael.ummels@rwth-aachen.de>
+Copyright (c) 2011-2025, Michael Ummels <michael@ummels.de>
 All Rights Reserved.
 
 "FdSymbol" is Reserved Font Name for this Font Software.
