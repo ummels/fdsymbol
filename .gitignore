@@ -27,3 +27,4 @@
 *.gz
 /test
 /temp
+/venv

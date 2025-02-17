@@ -7,7 +7,7 @@ from functools import reduce
 
 res = set()
 stack = [os.path.normpath(x) for x in sys.argv[1:]]
-expr = re.compile("input\s+([\w.]+)")
+expr = re.compile("input\\s+([\\w.]+)")
 
 while stack:
     current = stack.pop() # Pop from stack
