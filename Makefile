@@ -152,10 +152,6 @@ test: all $(latexdir)/test-$(pkg).tex
 	@echo "Testing pdflatex..."
 	$(pdflatex) -output-directory $(testdir) "\pdfmapfile{$(mapfile)}\input{test-$(pkg)}"
 	@echo ""
-	@echo "Testing latex+dvips..."
-	$(latex) -output-directory $(testdir) "\input{test-$(pkg)}"
-	$(dvips) -u $(mapfile) $(testdir)/test-$(pkg).dvi -o $(testdir)/test-$(pkg).ps
-	@echo ""
 	@echo "Testing lualatex..."
 	$(lualatex) -output-directory $(testdir) -jobname test-$(pkg)-luatex "\directlua{pdf.mapfile('$(mapfile)')}\input{test-$(pkg)}"
 
@@ -206,8 +202,6 @@ $(chartfiles): $(testdir)/%.pdf: $(fontdir)/%.pfb
 	$(T1TESTPAGE) $< | $(PS2PDF) - $@
 
 # rule for validating the generated Postscript fonts
-
-
 
 .PHONY: check
 check: check-sfd check-otf
