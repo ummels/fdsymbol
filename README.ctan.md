@@ -4,7 +4,7 @@ FdSymbol - A math symbol font
 FdSymbol is a math symbol font, designed as a companion to the Fedra family
 by Typotheque, but it might also fit other contemporary typefaces.
 
-The development of this font package is hosted at github:
+The development of this font package is hosted at GitHub:
 http://github.com/ummels/fdsymbol
 
 Usage
@@ -20,35 +20,10 @@ the details.
 Installation
 ------------
 
-1. Run `latex fdsymbol.ins` to generate the LaTeX package.
-
-2. Create the following directories in a local texmf tree:
-
-   - doc/latex/fdsymbol
-   - fonts/map/dvips/fdsymbol
-   - fonts/enc/dvips/fdsymbol
-   - fonts/tfm/public/fdsymbol
-   - fonts/type1/public/fdsymbol
-   - tex/latex/fdsymbol
-
-3. Copy all necessary files into the texmf tree:
-
-   - fdsymbol.pdf goes to doc/latex/fdsymbol
-   - fdsymbol.map in the dvips directory goes to fonts/map/dvips/fdsymbol
-   - all other files in the dvips directory go to fonts/enc/dvips/fdsymbol
-   - all files in the tfm directory go to fonts/tfm/public/fdsymbol
-   - all files in the type1 directory go to fonts/type1/public/fdsymbol
-   - fdsymbol.sty goes to tex/latex/fdsymbol
-
-4. Afterwards, you may need to regenerate the file database:
-
-    texhash
-
-5. Finally, you need to activate the map file:
-
-    updmap --enable Map=fdsymbol.map
-
-For a system-wide installation, replace updmap by updmap-sys.
+The font and the correspoding LaTeX support package is best installed through
+the package manager of a TeX distribution such as TeX Live or MiKTeX.
+Alternatively, you can download the linked TDS archive file and follow the
+instructions contained in `doc/latex/README.md`.
 
 License
 -------

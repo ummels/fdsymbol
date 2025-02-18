@@ -171,7 +171,7 @@ $(latexdir)/$(pkg).pdf: $(latexdir)/$(pkg).dtx $(mapfile)
 .PHONY: tds
 tds: $(pkg).tds.zip
 
-$(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexfiles) FONTLOG.txt OFL.txt
+$(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexfiles) README.tds.md FONTLOG.txt OFL.txt
 	$(MAKE) install TEXMFDIR:=tds.tmp
 	(cd tds.tmp && $(ZIP) -r - *) > $@
 	$(RM) tds.tmp
@@ -181,8 +181,8 @@ $(pkg).tds.zip: $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(src
 .PHONY: dist
 dist: $(pkg).tar.gz
 
-$(pkg).tar.gz: $(pkg).tds.zip README.ctan $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx $(latexdir)/$(pkg).pdf FONTLOG.txt OFL.txt
-	$(TAR) -c - z --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan,README,' --transform 's,$(latexdir)/,,' --transform 's,$(sourcedir)/,source/,' --transform 's,$(fontdir)/\(.*\.otf\),\1,' --transform 's,$(fontdir)/\(.*\.tfm\),tfm/\1,' --transform 's,$(fontdir)/\(.*\.pfb\),type1/\1,' --transform 's,$(encdir)/,dvips/,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
+$(pkg).tar.gz: $(pkg).tds.zip README.ctan.md $(pfbfiles) $(otffiles) $(tfmfiles) $(mapfile) $(encfiles) $(srcfiles) $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx $(latexdir)/$(pkg).pdf FONTLOG.txt OFL.txt
+	$(TAR) -c -z --transform 's,^,$(pkg)/,g' --transform 's,README\.ctan\.md,README.md,' --transform 's,$(latexdir)/,,' --transform 's,$(sourcedir)/,source/,' --transform 's,$(fontdir)/\(.*\.otf\),\1,' --transform 's,$(fontdir)/\(.*\.tfm\),tfm/\1,' --transform 's,$(fontdir)/\(.*\.pfb\),type1/\1,' --transform 's,$(encdir)/,dvips/,' --transform 's,$(pkg)/$(pkg).tds.zip,$(pkg).tds.zip,' $^ > $@
 
 # rules for building proofs and charts
 
@@ -245,6 +245,7 @@ install: all check
 	$(INSTALLDIR) $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDATA) FONTLOG.txt OFL.txt $(TEXMFDIR)/doc/fonts/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/doc/latex/$(pkg)
+	$(INSTALLDATA) README.tds.md $(TEXMFDIR)/doc/latex/$(pkg)/README.md
 	$(INSTALLDATA) $(latexdir)/$(pkg).pdf $(TEXMFDIR)/doc/latex/$(pkg)
 	$(INSTALLDIR) $(TEXMFDIR)/source/latex/$(pkg)
 	$(INSTALLDATA) $(latexdir)/$(pkg).ins $(latexdir)/$(pkg).dtx $(TEXMFDIR)/source/latex/$(pkg)
