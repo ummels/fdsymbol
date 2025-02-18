@@ -26,6 +26,7 @@
 *.dep
 *.zip
 *.gz
-/test
-/temp
-/venv
+.vscode/
+test/
+temp/
+venv/
