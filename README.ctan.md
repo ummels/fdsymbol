@@ -13,8 +13,8 @@ To use this font in LaTeX, include
 
     \usepackage{fdsymbol}
 
-in the preamble of your LaTeX document. See the
-[PDF documentation](latex/fdsymbol.pdf) for the details.
+in the preamble of your LaTeX document. See the PDF documentation for the
+details.
 
 If you are interested in a full integration with
 [Fedra Serif](https://www.typotheque.com/fonts/fedra-serif), take a look at the
