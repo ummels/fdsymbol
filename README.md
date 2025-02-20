@@ -1,12 +1,10 @@
-FdSymbol - A math symbol font
-=============================
+# FdSymbol - A math symbol font
 
 FdSymbol is a math symbol font, designed as a companion to the
 [Fedra family](https://www.typotheque.com/fonts) by Typotheque, but it might
 also fit other contemporary typefaces.
 
-Usage
------
+## Usage
 
 To use this font in LaTeX, include
 
@@ -17,10 +15,9 @@ in the preamble of your LaTeX document. See the
 
 If you are interested in a full integration with
 [Fedra Serif](https://www.typotheque.com/fonts/fedra-serif), take a look at the
-[fedraserif](https://github.com/ummels/fedraserif) package. 
+[fedraserif](https://github.com/ummels/fedraserif) package.
 
-Installation
-------------
+## Installation
 
 Building the fonts requires Metafont (>=2.718281), FontForge (>=20201107) and
 Python 3 with the `fontforge` module enabled.
@@ -52,22 +49,18 @@ For installation in a system-wide texmf tree, replace `updmap-user` by
 Make sure you have read https://tug.org/texlive/scripts-sys-user.html before
 invoking `updmap-user`.
 
-License
--------
+## License
 
 Copyright (c) 2011-2025 by Michael Ummels <michael@ummels.de>
 
 The font components of this software, e.g. MetaFont (.mf), TeX font metric
 (.tfm), Type 1 (.pfb), and OpenType (.otf) files, are licensed under the
-[SIL Open Font License][OFL], Version 1.1.
-
-[OFL]: http://scripts.sil.org/OFL
+[SIL Open Font License](https://openfontlicense.org), Version 1.1.
 
 The LaTeX support files contained in this software may be modified and
 distributed under the terms and conditions of the
-[LaTeX Project Public License][LPPL], version 1.3c or greater (your choice).
-
-[LPPL]: https://www.latex-project.org/lppl/
+[LaTeX Project Public License](https://www.latex-project.org/lppl/),
+version 1.3c or greater (your choice).
 
 This work has the LPPL maintenance status `maintained'.
 
