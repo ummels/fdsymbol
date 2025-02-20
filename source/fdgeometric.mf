@@ -3,7 +3,7 @@
 %
 % This Font Software is licensed under the SIL Open Font License,
 % Version 1.1. This license is in the accompanying file OFL.txt, and
-% is also available with a FAQ at: http://scripts.sil.org/OFL
+% is also available with a FAQ at: https://openfontlicense.org
 %
 
 beginsymbol(2dot_size# + 2side_bearing#, vcentre(2dot_size#)); "centre dot";
